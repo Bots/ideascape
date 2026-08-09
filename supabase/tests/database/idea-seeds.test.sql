@@ -1,6 +1,6 @@
 begin;
 
-select plan(6);
+select plan(7);
 
 select ok(
   exists (
@@ -83,6 +83,23 @@ select is(
   ),
   4::bigint,
   'launch ideas contain useful discovery and detail copy'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    where slug in (
+      'clean-air-library',
+      'repair-commons',
+      'neighbor-ride-credits',
+      'after-dark-storefronts'
+    )
+      and position(E'\\n' in description) = 0
+      and position(E'\n' in description) > 0
+  ),
+  4::bigint,
+  'launch idea paragraphs use real line breaks'
 );
 
 set local role anon;
