@@ -17,6 +17,10 @@ vi.mock("@/features/auth/auth-service", () => ({
 	signOut: vi.fn(),
 }));
 
+vi.mock("@/features/profiles/profile-page", () => ({
+	ProfilePage: () => <h1>Public profile route</h1>,
+}));
+
 function renderApp(path = "/") {
 	return render(
 		<MemoryRouter initialEntries={[path]}>
@@ -89,6 +93,14 @@ describe("App", () => {
 		expect(
 			screen.queryByRole("heading", { name: /check your email/i }),
 		).not.toBeInTheDocument();
+	});
+
+	it("renders the public profile route", () => {
+		renderApp("/profiles/ada-lovelace-11111111");
+
+		expect(
+			screen.getByRole("heading", { name: /public profile route/i }),
+		).toBeInTheDocument();
 	});
 
 	it("renders the auth callback status and a way home", () => {

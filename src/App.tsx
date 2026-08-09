@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { AuthCallbackPage } from "@/features/auth/auth-callback-page";
 import { AuthNavigation } from "@/features/auth/auth-navigation";
 import { AuthPage } from "@/features/auth/auth-page";
+import { ProfilePage } from "@/features/profiles/profile-page";
 
 const principles = [
 	{
@@ -110,6 +111,7 @@ function App() {
 				path="/sign-up"
 				element={<AuthPage key="sign-up" mode="sign-up" />}
 			/>
+			<Route path="/profiles/:username" element={<ProfilePage />} />
 			<Route path="/auth/callback" element={<AuthCallbackPage />} />
 		</Routes>
 	);
