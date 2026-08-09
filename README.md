@@ -52,11 +52,11 @@ npm run supabase:reset
 npm run supabase:stop
 ```
 
-The repository has not been linked to a hosted Supabase project. Link it when a project reference and authenticated CLI session are available:
+The repository is linked to the hosted `ideascape` Supabase project (`icvscetnellunorarhvt`). To restore the CLI link on another workstation:
 
 ```bash
 npx supabase login
-npx supabase link --project-ref <project-ref>
+npx supabase link --project-ref icvscetnellunorarhvt
 ```
 
 ## Quality checks

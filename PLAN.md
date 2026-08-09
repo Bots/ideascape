@@ -10,7 +10,7 @@ Help creators validate and fund promising ideas through transparent campaigns, c
 - [x] Add routing, server-state, validation, and testing foundations
 - [x] Initialize local Supabase configuration
 - [x] Define safe public and server-side environment boundaries
-- [ ] Link the hosted Supabase project
+- [x] Link the hosted Supabase project
 - [x] Add CI for checks and production builds
 
 ## Phase 2 — Identity and ideas
