@@ -59,6 +59,19 @@ npx supabase login
 npx supabase link --project-ref icvscetnellunorarhvt
 ```
 
+### Authentication
+
+Email/password authentication is implemented and enabled. The application also includes provider-ready GitHub and Google OAuth buttons, but each hosted provider must be configured before it can be used:
+
+1. Open the Supabase Dashboard and select the Ideascape project.
+2. Go to **Authentication → Sign In / Providers**.
+3. Enable GitHub or Google and provide that provider's client ID and secret.
+4. Register the Supabase provider callback with the OAuth provider:
+   `https://icvscetnellunorarhvt.supabase.co/auth/v1/callback`
+5. In Supabase authentication URL configuration, allow each deployed application origin and its `/auth/callback` URL. For local development, allow `http://localhost:5173/auth/callback` and `http://127.0.0.1:5173/auth/callback`.
+
+Provider client secrets belong only in Supabase's provider configuration. Never add them to Vite environment variables or commit them to this repository.
+
 ## Quality checks
 
 ```bash

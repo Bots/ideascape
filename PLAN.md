@@ -15,7 +15,7 @@ Help creators validate and fund promising ideas through transparent campaigns, c
 
 ## Phase 2 — Identity and ideas
 
-- [ ] Add email and OAuth authentication
+- [x] Add email and OAuth authentication (hosted OAuth providers require dashboard credentials)
 - [ ] Create public profiles
 - [ ] Model ideas, categories, media, and lifecycle states
 - [ ] Build idea creation and editing
