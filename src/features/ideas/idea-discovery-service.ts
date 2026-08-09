@@ -31,6 +31,7 @@ export type PublishedIdeaSummary = {
 	created_at: string;
 	category: IdeaCategorySummary | null;
 	creator: IdeaCreatorSummary;
+	media: IdeaMedia[];
 };
 
 export type IdeaMedia = {
@@ -55,13 +56,13 @@ const summaryColumns = `
 	published_at,
 	created_at,
 	category:categories(id, slug, name),
-	creator:profiles!ideas_creator_id_fkey(id, username, display_name, avatar_url)
+	creator:profiles!ideas_creator_id_fkey(id, username, display_name, avatar_url),
+	media:idea_media(id, kind, url, alt_text, sort_order)
 `;
 
 const detailColumns = `
 	${summaryColumns},
-	description,
-	media:idea_media(id, kind, url, alt_text, sort_order)
+	description
 `;
 
 function throwIfError(error: unknown): void {
@@ -78,7 +79,12 @@ export async function listPublishedIdeas(): Promise<PublishedIdeaSummary[]> {
 		.order("published_at", { ascending: false, nullsFirst: false });
 
 	throwIfError(error);
-	return (data ?? []) as unknown as PublishedIdeaSummary[];
+	return ((data ?? []) as unknown as PublishedIdeaSummary[]).map((idea) => ({
+		...idea,
+		media: [...(idea.media ?? [])].sort(
+			(left, right) => left.sort_order - right.sort_order,
+		),
+	}));
 }
 
 export async function getPublishedIdea(

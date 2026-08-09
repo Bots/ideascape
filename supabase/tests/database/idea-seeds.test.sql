@@ -1,6 +1,6 @@
 begin;
 
-select plan(7);
+select plan(8);
 
 select ok(
   exists (
@@ -100,6 +100,26 @@ select is(
   ),
   4::bigint,
   'launch idea paragraphs use real line breaks'
+);
+
+select is(
+  (
+    select count(*)
+    from public.idea_media
+    join public.ideas on ideas.id = idea_media.idea_id
+    where ideas.slug in (
+      'clean-air-library',
+      'repair-commons',
+      'neighbor-ride-credits',
+      'after-dark-storefronts'
+    )
+      and idea_media.kind = 'image'
+      and idea_media.sort_order = 0
+      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
+      and char_length(idea_media.alt_text) >= 20
+  ),
+  4::bigint,
+  'every launch idea has an accessible hosted cover image'
 );
 
 set local role anon;

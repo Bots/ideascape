@@ -15,7 +15,8 @@ const idea = {
 	slug: "solar-desalination-aaaaaaaa",
 	title: "Solar desalination",
 	summary: "Affordable clean water powered directly by sunlight.",
-	description: "A modular desalination system designed for coastal communities.",
+	description:
+		"A modular desalination system designed for coastal communities.",
 	status: "published" as const,
 	published_at: "2026-08-09T00:00:00.000Z",
 	created_at: "2026-08-08T00:00:00.000Z",
@@ -86,10 +87,9 @@ describe("IdeaDetailPage", () => {
 		expect(
 			screen.getByRole("img", { name: /solar desalination prototype/i }),
 		).toHaveAttribute("src", idea.media[0].url);
-		expect(screen.getByRole("link", { name: /back to ideas/i })).toHaveAttribute(
-			"href",
-			"/ideas",
-		);
+		expect(
+			screen.getByRole("link", { name: /back to ideas/i }),
+		).toHaveAttribute("href", "/ideas");
 	});
 
 	it("renders safe video media as an external link", async () => {

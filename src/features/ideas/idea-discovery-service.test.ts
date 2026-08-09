@@ -40,6 +40,15 @@ const summary = {
 	created_at: "2026-08-08T00:00:00.000Z",
 	category,
 	creator,
+	media: [
+		{
+			id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+			kind: "image" as const,
+			url: "https://example.com/solar.png",
+			alt_text: "Solar desalination prototype",
+			sort_order: 0,
+		},
+	],
 };
 const detail = {
 	...summary,
@@ -75,6 +84,26 @@ describe("idea discovery service", () => {
 			ascending: false,
 			nullsFirst: false,
 		});
+		expect(select.mock.calls[0]?.[0]).toContain("media:idea_media");
+	});
+
+	it("sorts discovery media so the first image is a stable cover", async () => {
+		listOrder.mockResolvedValueOnce({
+			data: [
+				{
+					...summary,
+					media: [
+						{ ...summary.media[0], id: "second", sort_order: 2 },
+						{ ...summary.media[0], id: "first", sort_order: 0 },
+					],
+				},
+			],
+			error: null,
+		});
+
+		const [result] = await listPublishedIdeas();
+
+		expect(result.media.map((item) => item.id)).toEqual(["first", "second"]);
 	});
 
 	it("loads a non-draft idea by exact slug and orders its media", async () => {

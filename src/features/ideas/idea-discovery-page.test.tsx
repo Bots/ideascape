@@ -25,6 +25,15 @@ const idea = {
 		display_name: "Idea Creator",
 		avatar_url: null,
 	},
+	media: [
+		{
+			id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+			kind: "image" as const,
+			url: "https://example.com/solar.png",
+			alt_text: "Solar desalination prototype",
+			sort_order: 0,
+		},
+	],
 };
 
 function renderDiscovery() {
@@ -68,6 +77,9 @@ describe("IdeaDiscoveryPage", () => {
 		expect(ideaLink).toHaveAttribute("href", `/ideas/${idea.slug}`);
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getByText("Technology")).toBeInTheDocument();
+		expect(
+			screen.getByRole("img", { name: /solar desalination prototype/i }),
+		).toHaveAttribute("src", idea.media[0].url);
 		expect(screen.getByRole("link", { name: /idea creator/i })).toHaveAttribute(
 			"href",
 			`/profiles/${idea.creator.username}`,

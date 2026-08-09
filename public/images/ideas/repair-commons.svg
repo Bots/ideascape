@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Repair Commons on Wheels</title>
+  <desc id="desc">Neighbors repair household items beside a bright mobile workshop.</desc>
+  <defs>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff944d"/><stop offset="1" stop-color="#ee4f1a"/></linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f6dec4"/><stop offset="1" stop-color="#dfb587"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#2b1912" flood-opacity=".24"/></filter>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.2" fill="#7d3a24" opacity=".13"/></pattern>
+  </defs>
+  <rect width="1200" height="675" fill="#fff7eb"/>
+  <circle cx="1020" cy="95" r="190" fill="#ffd2a8" opacity=".55"/>
+  <path d="M0 472c214-58 394 25 601-13 218-40 388-22 599 35v181H0Z" fill="url(#ground)"/>
+  <g filter="url(#shadow)">
+    <path d="M104 177h617c38 0 69 31 69 69v270H104Z" fill="#fffdf8" stroke="#41271f" stroke-width="5"/>
+    <path d="M104 177h617c38 0 69 31 69 69v65H104Z" fill="url(#orange)"/>
+    <rect x="143" y="339" width="405" height="144" rx="12" fill="#ffe7ce" stroke="#41271f" stroke-width="4"/>
+    <path d="M584 338h166v178H584Z" fill="#f45d22"/>
+    <circle cx="228" cy="518" r="55" fill="#2e211c"/><circle cx="228" cy="518" r="26" fill="#fff0dd"/>
+    <circle cx="665" cy="518" r="55" fill="#2e211c"/><circle cx="665" cy="518" r="26" fill="#fff0dd"/>
+    <g stroke="#41271f" stroke-width="10" stroke-linecap="round"><path d="M202 254h87"/><path d="M332 254h87"/><path d="M462 254h87"/></g>
+    <g fill="#41271f"><circle cx="185" cy="254" r="10"/><circle cx="315" cy="254" r="10"/><circle cx="445" cy="254" r="10"/></g>
+  </g>
+  <g transform="translate(805 302)">
+    <circle cx="111" cy="162" r="88" fill="none" stroke="#32231d" stroke-width="13"/><circle cx="111" cy="162" r="9" fill="#32231d"/>
+    <circle cx="257" cy="162" r="88" fill="none" stroke="#32231d" stroke-width="13"/><circle cx="257" cy="162" r="9" fill="#32231d"/>
+    <path d="M111 162l62-106 84 106-101-4-45 4 64-59h84" fill="none" stroke="#f45d22" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M173 56h52M246 42h-39" stroke="#32231d" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g>
+    <circle cx="822" cy="240" r="35" fill="#8c4b35"/><path d="M770 402c7-89 25-127 58-127 41 0 58 45 63 127Z" fill="#243d3a"/><path d="M793 300c-36 19-65 54-86 91" fill="none" stroke="#8c4b35" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="1026" cy="251" r="32" fill="#d58a62"/><path d="M975 398c9-81 26-114 58-114s51 34 56 114Z" fill="url(#orange)"/><path d="M1000 308c-26 17-51 41-75 71" fill="none" stroke="#d58a62" stroke-width="17" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(718 383) rotate(-12)" fill="#41271f"><rect x="0" y="0" width="117" height="16" rx="8"/><circle cx="12" cy="8" r="20" fill="none" stroke="#41271f" stroke-width="9"/></g>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">The Clean Air Library</title>
+  <desc id="desc">A warm community library prepared as a cleaner-air room.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb06a"/><stop offset="1" stop-color="#f45d22"/></linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe7ce"/><stop offset="1" stop-color="#efc9a3"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#3a2015" flood-opacity=".22"/></filter>
+    <pattern id="grain" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="4" cy="6" r="1" fill="#261812" opacity=".08"/><circle cx="19" cy="21" r=".8" fill="#fff" opacity=".2"/></pattern>
+  </defs>
+  <rect width="1200" height="675" fill="#fff7ec"/>
+  <rect x="46" y="48" width="1108" height="579" rx="38" fill="#fffaf4" stroke="#dfbea1" stroke-width="4" filter="url(#shadow)"/>
+  <rect x="83" y="90" width="1034" height="375" rx="24" fill="url(#sky)"/>
+  <circle cx="935" cy="182" r="78" fill="#ffd6a6" opacity=".72"/>
+  <path d="M83 350 C250 290 370 395 540 333 S830 288 1117 350 V465 H83Z" fill="#713728" opacity=".23"/>
+  <rect x="112" y="112" width="976" height="331" rx="16" fill="#fff9ef"/>
+  <g fill="url(#sky)"><rect x="133" y="132" width="278" height="210" rx="10"/><rect x="461" y="132" width="278" height="210" rx="10"/><rect x="789" y="132" width="278" height="210" rx="10"/></g>
+  <g fill="#fff1df" opacity=".38"><path d="M133 244h278v98H133z"/><path d="M461 210h278v132H461z"/><path d="M789 270h278v72H789z"/></g>
+  <path d="M83 443h1034v146H83z" fill="url(#floor)"/>
+  <g fill="#38241c"><rect x="135" y="365" width="246" height="18" rx="9"/><rect x="152" y="383" width="212" height="92" rx="8"/></g>
+  <g fill="#f45d22"><rect x="170" y="402" width="28" height="54" rx="3"/><rect x="206" y="394" width="34" height="62" rx="3"/><rect x="248" y="410" width="24" height="46" rx="3"/><rect x="280" y="399" width="42" height="57" rx="3"/></g>
+  <g filter="url(#shadow)">
+    <rect x="492" y="356" width="128" height="180" rx="28" fill="#fffdf8" stroke="#d5a886" stroke-width="4"/>
+    <rect x="515" y="378" width="82" height="11" rx="5.5" fill="#38241c" opacity=".75"/>
+    <circle cx="556" cy="430" r="33" fill="#ffe1c4"/><path d="M536 430c17-23 31-23 42 0-17 20-31 20-42 0Z" fill="#f45d22"/>
+    <g stroke="#f45d22" stroke-width="5" stroke-linecap="round" opacity=".65"><path d="M525 330c-18-19-14-37 3-52"/><path d="M556 326c-7-26 2-44 22-56"/><path d="M586 337c8-19 23-30 45-33"/></g>
+  </g>
+  <g>
+    <circle cx="761" cy="390" r="37" fill="#8d4a32"/><path d="M705 526c7-80 23-110 58-110s55 31 64 110Z" fill="#283e3a"/><path d="M745 430c30 22 54 26 82 7" fill="none" stroke="#f45d22" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="928" cy="407" r="32" fill="#d88c62"/><path d="M879 526c10-67 24-92 52-92 31 0 47 27 54 92Z" fill="#f45d22"/><path d="M890 452c-31 10-61 27-88 50" fill="none" stroke="#d88c62" stroke-width="15" stroke-linecap="round"/>
+  </g>
+  <path d="M63 526c207-47 363 67 553 11 197-59 367-8 522 38" fill="none" stroke="#f45d22" stroke-width="5" opacity=".25"/>
+  <rect width="1200" height="675" fill="url(#grain)"/>
+</svg>

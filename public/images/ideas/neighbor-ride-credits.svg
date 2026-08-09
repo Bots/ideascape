@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Neighbor Ride Credits</title>
+  <desc id="desc">A friendly community ride arrives along a warm neighborhood street.</desc>
+  <defs>
+    <linearGradient id="sunset" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe0be"/><stop offset=".48" stop-color="#ff9b59"/><stop offset="1" stop-color="#e94d19"/></linearGradient>
+    <linearGradient id="car" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff7b35"/><stop offset="1" stop-color="#dc3f12"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#311d15" flood-opacity=".28"/></filter>
+    <pattern id="grain" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="5" cy="8" r="1" fill="#5e3021" opacity=".1"/><circle cx="20" cy="17" r=".8" fill="#fff" opacity=".22"/></pattern>
+  </defs>
+  <rect width="1200" height="675" fill="#fff7eb"/>
+  <rect x="0" y="0" width="1200" height="422" fill="url(#sunset)"/>
+  <circle cx="914" cy="125" r="75" fill="#fff1d9" opacity=".72"/>
+  <g opacity=".42" fill="#713a28"><path d="M0 302l153-97 136 78 153-115 168 121 122-74 186 83 132-102 150 89v137H0Z"/></g>
+  <path d="M0 394h1200v281H0Z" fill="#f3d7b8"/>
+  <path d="M-50 676C191 488 392 454 611 491c229 39 371 3 639-136v321Z" fill="#3b302a"/>
+  <path d="M-15 676c238-162 426-183 617-151 222 37 382 5 638-118" fill="none" stroke="#ffd4a5" stroke-width="12" stroke-dasharray="48 45" opacity=".9"/>
+  <g filter="url(#shadow)">
+    <path d="M315 356h439c54 0 99 27 131 79l45 73v69H238v-87l59-116c5-10 10-18 18-18Z" fill="url(#car)" stroke="#32231d" stroke-width="5"/>
+    <path d="M387 377h314c38 0 72 19 95 56l18 30H332l39-75c4-7 8-11 16-11Z" fill="#d8eff0" stroke="#32231d" stroke-width="4"/>
+    <path d="M544 378v84" stroke="#32231d" stroke-width="5"/>
+    <circle cx="365" cy="567" r="62" fill="#241b17"/><circle cx="365" cy="567" r="27" fill="#f9dfbd"/>
+    <circle cx="801" cy="567" r="62" fill="#241b17"/><circle cx="801" cy="567" r="27" fill="#f9dfbd"/>
+    <rect x="260" y="485" width="620" height="29" rx="14" fill="#ffad6d" opacity=".5"/>
+    <rect x="827" y="515" width="69" height="24" rx="12" fill="#fff1d6"/>
+  </g>
+  <g>
+    <circle cx="194" cy="338" r="39" fill="#8a4a35"/><path d="M129 512c9-99 30-141 70-141 44 0 65 47 72 141Z" fill="#26433e"/><path d="M172 389c32 32 59 46 98 52" fill="none" stroke="#8a4a35" stroke-width="19" stroke-linecap="round"/>
+    <circle cx="1047" cy="342" r="38" fill="#d78a60"/><path d="M984 506c8-93 31-132 68-132 40 0 62 42 68 132Z" fill="#fff2df" stroke="#f45d22" stroke-width="7"/><path d="M1024 395c-26 28-51 48-82 65" fill="none" stroke="#d78a60" stroke-width="18" stroke-linecap="round"/>
+    <path d="M1072 385v-71c0-32 48-32 48 0 0 39-48 73-48 73s-48-34-48-73c0-32 48-32 48 0" fill="#f45d22" opacity=".95" transform="translate(-9 -90) scale(.48)"/>
+  </g>
+  <g transform="translate(1016 178)"><path d="M0 39C0 17 17 0 39 0s39 17 39 39c0 36-39 72-39 72S0 75 0 39Z" fill="#fff8ee" stroke="#40251b" stroke-width="5"/><circle cx="39" cy="38" r="13" fill="#f45d22"/></g>
+  <rect width="1200" height="675" fill="url(#grain)"/>
+</svg>

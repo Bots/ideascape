@@ -207,7 +207,14 @@ select is(
   'anonymous visitors see published ideas but not drafts'
 );
 select is(
-  (select count(*) from public.idea_media),
+  (
+    select count(*)
+    from public.idea_media
+    where idea_id in (
+      'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+      'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb'
+    )
+  ),
   1::bigint,
   'anonymous visitors see media only for published ideas'
 );

@@ -14,9 +14,9 @@ describe("Supabase hosted authentication configuration", () => {
 			'"https://ideascape-gamma.vercel.app/auth/callback"',
 		);
 		expect(supabaseConfig).toMatch(
-		/\[auth\.external\.google\][\s\S]*?enabled = true[\s\S]*?client_id = "674905397433-t4gfnh2suns4qugakmv2pd1u1hk98adc\.apps\.googleusercontent\.com"[\s\S]*?secret = "env\(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET\)"/,
-	);
-});
+			/\[auth\.external\.google\][\s\S]*?enabled = true[\s\S]*?client_id = "674905397433-t4gfnh2suns4qugakmv2pd1u1hk98adc\.apps\.googleusercontent\.com"[\s\S]*?secret = "env\(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET\)"/,
+		);
+	});
 });
 
 describe("Vercel deployment routing", () => {
