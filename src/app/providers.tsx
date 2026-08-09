@@ -2,6 +2,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { type PropsWithChildren, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "@/features/auth/auth-provider";
+import { ThemeProvider } from "@/features/theme/theme-provider";
+import { ThemeToggle } from "@/features/theme/theme-toggle";
 
 export function AppProviders({ children }: PropsWithChildren) {
 	const [queryClient] = useState(
@@ -17,10 +19,13 @@ export function AppProviders({ children }: PropsWithChildren) {
 	);
 
 	return (
-		<BrowserRouter>
-			<QueryClientProvider client={queryClient}>
-				<AuthProvider>{children}</AuthProvider>
-			</QueryClientProvider>
-		</BrowserRouter>
+		<ThemeProvider>
+			<BrowserRouter>
+				<QueryClientProvider client={queryClient}>
+					<AuthProvider>{children}</AuthProvider>
+				</QueryClientProvider>
+			</BrowserRouter>
+			<ThemeToggle />
+		</ThemeProvider>
 	);
 }

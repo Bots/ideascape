@@ -5,9 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Ideascape is a community funding platform where ambitious ideas find the people ready to make them real."
+      content="Explore IdeaScape concept previews and signal which ideas you would like to see happen. No payment or commitment."
     />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#fff8ef" />
+    <script>
+      (() => {
+        let savedTheme = null;
+        try {
+          savedTheme = window.localStorage.getItem("ideascape.theme");
+        } catch {
+          // System preference still works when browser storage is unavailable.
+        }
+
+        const isDark =
+          savedTheme === "dark" ||
+          (savedTheme !== "light" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+        if (isDark) {
+          document.documentElement.classList.add("dark");
+        }
+        document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute("content", isDark ? "#211815" : "#fff8ef");
+      })();
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>Ideascape — Back the possibility</title>
   </head>

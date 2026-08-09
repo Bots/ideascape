@@ -16,7 +16,7 @@ export function InterestModeNotice({
 		<div
 			aria-label="Exploration mode"
 			className={cn(
-				"relative overflow-hidden rounded-2xl border border-primary/25 bg-[linear-gradient(115deg,oklch(0.97_0.045_70),oklch(0.99_0.012_78))] p-4 shadow-[0_18px_45px_-35px_oklch(0.49_0.14_39_/_0.5)] sm:p-5",
+				"relative overflow-hidden rounded-2xl border border-primary/25 bg-[linear-gradient(115deg,oklch(0.97_0.045_70),oklch(0.99_0.012_78))] p-4 shadow-[0_18px_45px_-35px_oklch(0.49_0.14_39_/_0.5)] dark:border-primary/35 dark:bg-[linear-gradient(115deg,oklch(0.245_0.05_49),oklch(0.205_0.028_44))] dark:shadow-[0_18px_45px_-30px_oklch(0.1_0.025_43_/_0.9)] sm:p-5",
 				className,
 			)}
 			role="note"
