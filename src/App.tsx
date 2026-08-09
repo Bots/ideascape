@@ -7,6 +7,7 @@ import {
 	Users,
 } from "lucide-react";
 import { Link, Route, Routes } from "react-router-dom";
+import { InterestModeNotice } from "@/components/interest-mode-notice";
 import { buttonVariants } from "@/components/ui/button";
 import { AuthCallbackPage } from "@/features/auth/auth-callback-page";
 import { AuthNavigation } from "@/features/auth/auth-navigation";
@@ -61,8 +62,9 @@ function HomePage() {
 						<AuthNavigation />
 					</div>
 				</header>
+				<InterestModeNotice className="mt-5" showAction />
 
-				<section className="grid flex-1 items-center gap-16 py-20 lg:grid-cols-[1.03fr_0.97fr] lg:gap-12 lg:py-24">
+				<section className="grid flex-1 items-center gap-16 py-16 lg:grid-cols-[1.03fr_0.97fr] lg:gap-12 lg:py-20">
 					<div className="relative z-10">
 						<p className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.19em] text-primary">
 							<Sparkles className="size-4" aria-hidden="true" />
@@ -104,7 +106,7 @@ function HomePage() {
 						<dl className="mt-12 flex flex-wrap gap-x-10 gap-y-5 border-t border-primary/15 pt-7">
 							<div>
 								<dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-									Launch ideas
+									Concept previews
 								</dt>
 								<dd className="mt-1 text-3xl font-semibold tracking-tight">
 									4

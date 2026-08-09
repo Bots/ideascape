@@ -72,6 +72,16 @@ describe("App", () => {
 		expect(
 			screen.getByRole("link", { name: /explore ideas/i }),
 		).toHaveAttribute("href", "/ideas");
+		const explorationNote = screen.getByRole("note", {
+			name: /exploration mode/i,
+		});
+		expect(explorationNote).toHaveTextContent(
+			/testing whether people want a place like this/i,
+		);
+		expect(
+			screen.getByRole("link", { name: /join the experiment/i }),
+		).toHaveAttribute("href", "/sign-up");
+		expect(screen.getByText("Concept previews")).toBeInTheDocument();
 	});
 
 	it("renders the sign-in route", () => {

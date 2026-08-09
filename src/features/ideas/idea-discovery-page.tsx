@@ -7,6 +7,7 @@ import {
 	Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { InterestModeNotice } from "@/components/interest-mode-notice";
 import { buttonVariants } from "@/components/ui/button";
 import {
 	listPublishedIdeas,
@@ -14,7 +15,7 @@ import {
 } from "@/features/ideas/idea-discovery-service";
 
 const statusLabels: Record<PublishedIdeaStatus, string> = {
-	published: "Published",
+	published: "Concept preview",
 	funding: "Funding",
 	funded: "Funded",
 	in_progress: "In progress",
@@ -89,6 +90,7 @@ export function IdeaDiscoveryPage() {
 							</p>
 						</div>
 					</div>
+					<InterestModeNotice className="mt-8" />
 
 					{ideasQuery.isPending ? (
 						<div

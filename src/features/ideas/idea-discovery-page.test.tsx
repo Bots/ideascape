@@ -77,6 +77,7 @@ describe("IdeaDiscoveryPage", () => {
 		expect(ideaLink).toHaveAttribute("href", `/ideas/${idea.slug}`);
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getByText("Technology")).toBeInTheDocument();
+		expect(screen.getByText("Concept preview")).toBeInTheDocument();
 		expect(
 			screen.getByRole("img", { name: /solar desalination prototype/i }),
 		).toHaveAttribute("src", idea.media[0].url);
@@ -84,6 +85,9 @@ describe("IdeaDiscoveryPage", () => {
 			"href",
 			`/profiles/${idea.creator.username}`,
 		);
+		expect(
+			screen.getByRole("note", { name: /exploration mode/i }),
+		).toHaveTextContent(/concept previews, not active fundraisers/i);
 	});
 
 	it("renders a useful empty state", async () => {

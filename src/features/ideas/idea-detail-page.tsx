@@ -7,6 +7,7 @@ import {
 	Sparkles,
 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import { InterestModeNotice } from "@/components/interest-mode-notice";
 import { buttonVariants } from "@/components/ui/button";
 import {
 	getPublishedIdea,
@@ -15,7 +16,7 @@ import {
 } from "@/features/ideas/idea-discovery-service";
 
 const statusLabels: Record<PublishedIdeaStatus, string> = {
-	published: "Published",
+	published: "Concept preview",
 	funding: "Funding",
 	funded: "Funded",
 	in_progress: "In progress",
@@ -178,6 +179,7 @@ export function IdeaDetailPage() {
 								</Link>
 							</p>
 						</div>
+						<InterestModeNotice className="mt-10" />
 
 						{ideaQuery.data.media.length > 0 ? (
 							<section className="mt-12 grid gap-6" aria-label="Idea media">

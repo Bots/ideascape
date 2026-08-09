@@ -80,6 +80,7 @@ describe("IdeaDetailPage", () => {
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getByText(idea.description)).toBeInTheDocument();
 		expect(screen.getByText("Technology")).toBeInTheDocument();
+		expect(screen.getByText("Concept preview")).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /idea creator/i })).toHaveAttribute(
 			"href",
 			`/profiles/${idea.creator.username}`,
@@ -90,6 +91,9 @@ describe("IdeaDetailPage", () => {
 		expect(
 			screen.getByRole("link", { name: /back to ideas/i }),
 		).toHaveAttribute("href", "/ideas");
+		expect(
+			screen.getByRole("note", { name: /exploration mode/i }),
+		).toHaveTextContent(/testing whether people want a place like this/i);
 	});
 
 	it("renders safe video media as an external link", async () => {
