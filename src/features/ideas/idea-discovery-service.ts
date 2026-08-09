@@ -21,7 +21,7 @@ export type IdeaCategorySummary = {
 	name: string;
 };
 
-export type PublishedIdeaSummary = {
+type PublishedIdeaBase = {
 	id: string;
 	slug: string;
 	title: string;
@@ -34,6 +34,10 @@ export type PublishedIdeaSummary = {
 	media: IdeaMedia[];
 };
 
+export type PublishedIdeaSummary = PublishedIdeaBase & {
+	interestCount: number;
+};
+
 export type IdeaMedia = {
 	id: string;
 	kind: "image" | "video";
@@ -42,7 +46,7 @@ export type IdeaMedia = {
 	sort_order: number;
 };
 
-export type PublishedIdeaDetail = PublishedIdeaSummary & {
+export type PublishedIdeaDetail = PublishedIdeaBase & {
 	description: string;
 	media: IdeaMedia[];
 };
@@ -72,15 +76,33 @@ function throwIfError(error: unknown): void {
 }
 
 export async function listPublishedIdeas(): Promise<PublishedIdeaSummary[]> {
-	const { data, error } = await getSupabaseClient()
+	const client = getSupabaseClient();
+	const { data, error } = await client
 		.from("ideas")
 		.select(summaryColumns)
 		.neq("status", "draft")
 		.order("published_at", { ascending: false, nullsFirst: false });
 
 	throwIfError(error);
-	return ((data ?? []) as unknown as PublishedIdeaSummary[]).map((idea) => ({
+	const ideas = (data ?? []) as unknown as PublishedIdeaBase[];
+	if (ideas.length === 0) {
+		return [];
+	}
+
+	const { data: interestCounts, error: interestError } = await client.rpc(
+		"get_idea_interest_counts",
+		{ target_idea_ids: ideas.map((idea) => idea.id) },
+	);
+	throwIfError(interestError);
+	const countByIdeaId = new Map<string, number>(
+		(
+			(interestCounts ?? []) as { idea_id: string; interest_count: number }[]
+		).map((row) => [row.idea_id, row.interest_count]),
+	);
+
+	return ideas.map((idea) => ({
 		...idea,
+		interestCount: countByIdeaId.get(idea.id) ?? 0,
 		media: [...(idea.media ?? [])].sort(
 			(left, right) => left.sort_order - right.sort_order,
 		),

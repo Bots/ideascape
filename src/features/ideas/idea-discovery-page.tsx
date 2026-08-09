@@ -5,6 +5,7 @@ import {
 	Lightbulb,
 	LoaderCircle,
 	Sparkles,
+	UsersRound,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { InterestModeNotice } from "@/components/interest-mode-notice";
@@ -30,6 +31,18 @@ function isSafeImageUrl(value: string): boolean {
 	} catch {
 		return false;
 	}
+}
+
+function interestLabel(count: number): string {
+	if (count === 0) {
+		return "Be first to signal interest";
+	}
+
+	if (count === 1) {
+		return "1 person interested";
+	}
+
+	return `${count} people interested`;
 }
 
 export function IdeaDiscoveryPage() {
@@ -193,10 +206,16 @@ export function IdeaDiscoveryPage() {
 														{idea.creator.display_name}
 													</Link>
 												</p>
-												<ArrowUpRight
-													className="size-5 text-primary transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-													aria-hidden="true"
-												/>
+												<div className="flex items-center gap-3">
+													<p className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
+														<UsersRound className="size-4" aria-hidden="true" />
+														{interestLabel(idea.interestCount)}
+													</p>
+													<ArrowUpRight
+														className="size-5 text-primary transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+														aria-hidden="true"
+													/>
+												</div>
 											</div>
 										</div>
 									</article>

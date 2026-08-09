@@ -18,6 +18,7 @@ const select = vi.fn((columns: string) =>
 	columns.includes("description") ? { eq: detailEq } : { neq: listNeq },
 );
 const from = vi.fn(() => ({ select }));
+const rpc = vi.fn();
 
 const creator = {
 	id: "11111111-1111-4111-8111-111111111111",
@@ -69,14 +70,30 @@ beforeEach(() => {
 	vi.clearAllMocks();
 	vi.mocked(getSupabaseClient).mockReturnValue({
 		from,
+		rpc,
 	} as unknown as ReturnType<typeof getSupabaseClient>);
 	listOrder.mockResolvedValue({ data: [summary], error: null });
+	rpc.mockResolvedValue({
+		data: [{ idea_id: summary.id, interest_count: 4 }],
+		error: null,
+	});
 	detailMaybeSingle.mockResolvedValue({ data: detail, error: null });
 });
 
 describe("idea discovery service", () => {
+	it("batches public interest counts into discovery summaries", async () => {
+		const [result] = await listPublishedIdeas();
+
+		expect(rpc).toHaveBeenCalledWith("get_idea_interest_counts", {
+			target_idea_ids: [summary.id],
+		});
+		expect(result.interestCount).toBe(4);
+	});
+
 	it("lists non-draft ideas newest first with creator and category summaries", async () => {
-		await expect(listPublishedIdeas()).resolves.toEqual([summary]);
+		await expect(listPublishedIdeas()).resolves.toEqual([
+			{ ...summary, interestCount: 4 },
+		]);
 
 		expect(from).toHaveBeenCalledWith("ideas");
 		expect(listNeq).toHaveBeenCalledWith("status", "draft");

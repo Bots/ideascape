@@ -18,6 +18,7 @@ const idea = {
 	status: "published" as const,
 	published_at: "2026-08-09T00:00:00.000Z",
 	created_at: "2026-08-08T00:00:00.000Z",
+	interestCount: 4,
 	category: { id: 1, slug: "technology", name: "Technology" },
 	creator: {
 		id: "11111111-1111-4111-8111-111111111111",
@@ -78,6 +79,7 @@ describe("IdeaDiscoveryPage", () => {
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getByText("Technology")).toBeInTheDocument();
 		expect(screen.getByText("Concept preview")).toBeInTheDocument();
+		expect(screen.getByText("4 people interested")).toBeInTheDocument();
 		expect(
 			screen.getByRole("img", { name: /solar desalination prototype/i }),
 		).toHaveAttribute("src", idea.media[0].url);
@@ -88,6 +90,17 @@ describe("IdeaDiscoveryPage", () => {
 		expect(
 			screen.getByRole("note", { name: /exploration mode/i }),
 		).toHaveTextContent(/concept previews, not active fundraisers/i);
+	});
+
+	it("encourages the first interest signal without implying funding", async () => {
+		mockedListPublishedIdeas.mockResolvedValue([{ ...idea, interestCount: 0 }]);
+
+		renderDiscovery();
+
+		expect(
+			await screen.findByText("Be first to signal interest"),
+		).toBeInTheDocument();
+		expect(screen.queryByText(/fund now/i)).not.toBeInTheDocument();
 	});
 
 	it("renders a useful empty state", async () => {
