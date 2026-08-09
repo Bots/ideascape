@@ -90,6 +90,8 @@ Database migrations must be reviewed before running `npx supabase db push` again
 
 The database models curated categories, creator-owned ideas, ordered image/video media, and explicit lifecycle states from `draft` through `completed` or `cancelled`. Draft ideas and their media are visible only to their creator; published lifecycle states are publicly readable. Database tests exercise these visibility and ownership rules under anonymous, owner, and non-owner roles.
 
+Authenticated creators can start a private draft at `/ideas/new`. After the first save, Ideascape opens `/ideas/<id>/edit`, where the creator can continue editing the category, title, summary, and description. Fresh databases include six initial categories so the editor is usable immediately.
+
 ## Quality checks
 
 ```bash
