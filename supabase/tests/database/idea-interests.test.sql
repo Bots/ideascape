@@ -1,6 +1,6 @@
 begin;
 
-select plan(17);
+select plan(21);
 
 select has_table('public', 'idea_interests', 'idea interests table exists');
 select columns_are(
@@ -31,6 +31,12 @@ select has_function(
   array['uuid'],
   'public interest summary function exists'
 );
+select has_function(
+  'public',
+  'get_idea_interest_counts',
+  array['uuid[]'],
+  'public batch interest count function exists'
+);
 
 insert into auth.users (
   id, instance_id, aud, role, email, encrypted_password, email_confirmed_at,
@@ -55,17 +61,29 @@ values
 insert into public.ideas (
   id, creator_id, category_id, slug, title, summary, description, status, published_at
 )
-values (
-  'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
-  '33333333-3333-4333-8333-333333333333',
-  (select id from public.categories where slug = 'community'),
-  'interest-signal-fixture',
-  'Interest Signal Fixture',
-  'A published idea used to test interest signals.',
-  'This deterministic fixture proves public counts and private member signals.',
-  'published',
-  now()
-);
+values
+  (
+    'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
+    '33333333-3333-4333-8333-333333333333',
+    (select id from public.categories where slug = 'community'),
+    'interest-signal-fixture',
+    'Interest Signal Fixture',
+    'A published idea used to test interest signals.',
+    'This deterministic fixture proves public counts and private member signals.',
+    'published',
+    now()
+  ),
+  (
+    'dddddddd-dddd-4ddd-8ddd-dddddddddddd',
+    '33333333-3333-4333-8333-333333333333',
+    (select id from public.categories where slug = 'community'),
+    'private-interest-signal-fixture',
+    'Private Interest Signal Fixture',
+    'A draft idea whose aggregate must remain private.',
+    'This deterministic fixture proves draft counts are not exposed.',
+    'draft',
+    null
+  );
 
 set local role anon;
 select is(
@@ -136,6 +154,40 @@ select is(
   ),
   false,
   'other visitors do not inherit someone else interest state'
+);
+select is(
+  (
+    select count(*)
+    from public.get_idea_interest_counts(
+      array[
+        'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
+        'dddddddd-dddd-4ddd-8ddd-dddddddddddd',
+        '00000000-0000-4000-8000-000000000202'
+      ]::uuid[]
+    )
+  ),
+  2::bigint,
+  'batch counts return one row per requested published idea'
+);
+select is(
+  (
+    select interest_count
+    from public.get_idea_interest_counts(
+      array['cccccccc-cccc-4ccc-8ccc-cccccccccccc']::uuid[]
+    )
+  ),
+  1::bigint,
+  'batch counts include aggregate interest without exposing member rows'
+);
+select is(
+  (
+    select interest_count
+    from public.get_idea_interest_counts(
+      array['00000000-0000-4000-8000-000000000202']::uuid[]
+    )
+  ),
+  0::bigint,
+  'batch counts include published ideas with no interest'
 );
 select throws_ok(
   $$
