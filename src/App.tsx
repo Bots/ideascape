@@ -6,16 +6,42 @@ import {
 	Sparkles,
 	Users,
 } from "lucide-react";
+import { lazy, Suspense } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import { InterestModeNotice } from "@/components/interest-mode-notice";
 import { buttonVariants } from "@/components/ui/button";
-import { AuthCallbackPage } from "@/features/auth/auth-callback-page";
 import { AuthNavigation } from "@/features/auth/auth-navigation";
-import { AuthPage } from "@/features/auth/auth-page";
-import { IdeaDetailPage } from "@/features/ideas/idea-detail-page";
-import { IdeaDiscoveryPage } from "@/features/ideas/idea-discovery-page";
-import { IdeaEditorPage } from "@/features/ideas/idea-editor-page";
-import { ProfilePage } from "@/features/profiles/profile-page";
+
+const AuthCallbackPage = lazy(() =>
+	import("@/features/auth/auth-callback-page").then((module) => ({
+		default: module.AuthCallbackPage,
+	})),
+);
+const AuthPage = lazy(() =>
+	import("@/features/auth/auth-page").then((module) => ({
+		default: module.AuthPage,
+	})),
+);
+const IdeaDetailPage = lazy(() =>
+	import("@/features/ideas/idea-detail-page").then((module) => ({
+		default: module.IdeaDetailPage,
+	})),
+);
+const IdeaDiscoveryPage = lazy(() =>
+	import("@/features/ideas/idea-discovery-page").then((module) => ({
+		default: module.IdeaDiscoveryPage,
+	})),
+);
+const IdeaEditorPage = lazy(() =>
+	import("@/features/ideas/idea-editor-page").then((module) => ({
+		default: module.IdeaEditorPage,
+	})),
+);
+const ProfilePage = lazy(() =>
+	import("@/features/profiles/profile-page").then((module) => ({
+		default: module.ProfilePage,
+	})),
+);
 
 const principles = [
 	{
@@ -206,23 +232,38 @@ function HomePage() {
 
 function App() {
 	return (
-		<Routes>
-			<Route path="/" element={<HomePage />} />
-			<Route
-				path="/sign-in"
-				element={<AuthPage key="sign-in" mode="sign-in" />}
-			/>
-			<Route
-				path="/sign-up"
-				element={<AuthPage key="sign-up" mode="sign-up" />}
-			/>
-			<Route path="/profiles/:username" element={<ProfilePage />} />
-			<Route path="/ideas" element={<IdeaDiscoveryPage />} />
-			<Route path="/ideas/new" element={<IdeaEditorPage />} />
-			<Route path="/ideas/:ideaId/edit" element={<IdeaEditorPage />} />
-			<Route path="/ideas/:slug" element={<IdeaDetailPage />} />
-			<Route path="/auth/callback" element={<AuthCallbackPage />} />
-		</Routes>
+		<Suspense fallback={<RouteLoadingFallback />}>
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route
+					path="/sign-in"
+					element={<AuthPage key="sign-in" mode="sign-in" />}
+				/>
+				<Route
+					path="/sign-up"
+					element={<AuthPage key="sign-up" mode="sign-up" />}
+				/>
+				<Route path="/profiles/:username" element={<ProfilePage />} />
+				<Route path="/ideas" element={<IdeaDiscoveryPage />} />
+				<Route path="/ideas/new" element={<IdeaEditorPage />} />
+				<Route path="/ideas/:ideaId/edit" element={<IdeaEditorPage />} />
+				<Route path="/ideas/:slug" element={<IdeaDetailPage />} />
+				<Route path="/auth/callback" element={<AuthCallbackPage />} />
+			</Routes>
+		</Suspense>
+	);
+}
+
+function RouteLoadingFallback() {
+	return (
+		<main className="grid min-h-screen place-items-center bg-background px-6 text-foreground">
+			<p
+				className="rounded-full border border-primary/20 bg-card px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm"
+				role="status"
+			>
+				Loading page…
+			</p>
+		</main>
 	);
 }
 

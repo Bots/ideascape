@@ -84,19 +84,19 @@ describe("App", () => {
 		expect(screen.getByText("Concept previews")).toBeInTheDocument();
 	});
 
-	it("renders the sign-in route", () => {
+	it("renders the sign-in route", async () => {
 		renderApp("/sign-in");
 
 		expect(
-			screen.getByRole("heading", { name: /^sign in$/i }),
+			await screen.findByRole("heading", { name: /^sign in$/i }),
 		).toBeInTheDocument();
 	});
 
-	it("renders the sign-up route", () => {
+	it("renders the sign-up route", async () => {
 		renderApp("/sign-up");
 
 		expect(
-			screen.getByRole("heading", { name: /create your account/i }),
+			await screen.findByRole("heading", { name: /create your account/i }),
 		).toBeInTheDocument();
 	});
 
@@ -105,7 +105,10 @@ describe("App", () => {
 		vi.mocked(signUpWithEmail).mockResolvedValue({ hasSession: false });
 		renderApp("/sign-up");
 
-		await user.type(screen.getByLabelText(/email/i), "new-maker@example.com");
+		await user.type(
+			await screen.findByLabelText(/email/i),
+			"new-maker@example.com",
+		);
 		await user.type(screen.getByLabelText(/password/i), "secret password");
 		await user.click(screen.getByRole("button", { name: /create account/i }));
 		await user.click(
@@ -125,45 +128,51 @@ describe("App", () => {
 
 	it.each(["/ideas/new", "/ideas/aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa/edit"])(
 		"renders the idea editor at %s",
-		(path) => {
+		async (path) => {
 			renderApp(path);
 
 			expect(
-				screen.getByRole("heading", { name: /idea editor route/i }),
+				await screen.findByRole("heading", { name: /idea editor route/i }),
 			).toBeInTheDocument();
 		},
 	);
 
-	it("renders the public idea discovery route", () => {
+	it("announces while a code-split route is loading", () => {
+		renderApp("/ideas");
+
+		expect(screen.getByRole("status")).toHaveTextContent(/loading page/i);
+	});
+
+	it("renders the public idea discovery route", async () => {
 		renderApp("/ideas");
 
 		expect(
-			screen.getByRole("heading", { name: /idea discovery route/i }),
+			await screen.findByRole("heading", { name: /idea discovery route/i }),
 		).toBeInTheDocument();
 	});
 
-	it("renders a public idea detail route", () => {
+	it("renders a public idea detail route", async () => {
 		renderApp("/ideas/clean-air-library");
 
 		expect(
-			screen.getByRole("heading", { name: /idea detail route/i }),
+			await screen.findByRole("heading", { name: /idea detail route/i }),
 		).toBeInTheDocument();
 	});
 
-	it("renders the public profile route", () => {
+	it("renders the public profile route", async () => {
 		renderApp("/profiles/ada-lovelace-11111111");
 
 		expect(
-			screen.getByRole("heading", { name: /public profile route/i }),
+			await screen.findByRole("heading", { name: /public profile route/i }),
 		).toBeInTheDocument();
 	});
 
-	it("renders the auth callback status and a way home", () => {
+	it("renders the auth callback status and a way home", async () => {
 		vi.mocked(useAuth).mockReturnValue({ user: null, isLoading: true });
 		renderApp("/auth/callback");
 
 		expect(
-			screen.getByRole("heading", { name: /completing your sign-in/i }),
+			await screen.findByRole("heading", { name: /completing your sign-in/i }),
 		).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /return home/i })).toHaveAttribute(
 			"href",
