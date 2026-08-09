@@ -127,9 +127,6 @@ values
     '{"full_name":"Other Member"}'::jsonb, now(), now()
   );
 
-insert into public.categories (slug, name, description)
-values ('technology', 'Technology', 'Tools, software, and technical inventions.');
-
 insert into public.ideas (
   id, creator_id, category_id, slug, title, summary, description
 )
@@ -189,7 +186,7 @@ values
 set local role anon;
 select is(
   (select count(*) from public.categories),
-  1::bigint,
+  6::bigint,
   'anonymous visitors can read categories'
 );
 select is(
