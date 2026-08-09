@@ -25,6 +25,14 @@ vi.mock("@/features/ideas/idea-editor-page", () => ({
 	IdeaEditorPage: () => <h1>Idea editor route</h1>,
 }));
 
+vi.mock("@/features/ideas/idea-discovery-page", () => ({
+	IdeaDiscoveryPage: () => <h1>Idea discovery route</h1>,
+}));
+
+vi.mock("@/features/ideas/idea-detail-page", () => ({
+	IdeaDetailPage: () => <h1>Idea detail route</h1>,
+}));
+
 function renderApp(path = "/") {
 	return render(
 		<MemoryRouter initialEntries={[path]}>
@@ -61,6 +69,9 @@ describe("App", () => {
 		expect(
 			screen.getByRole("link", { name: /start an idea/i }),
 		).toHaveAttribute("href", "/ideas/new");
+		expect(
+			screen.getByRole("link", { name: /explore ideas/i }),
+		).toHaveAttribute("href", "/ideas");
 	});
 
 	it("renders the sign-in route", () => {
@@ -112,6 +123,22 @@ describe("App", () => {
 			).toBeInTheDocument();
 		},
 	);
+
+	it("renders the public idea discovery route", () => {
+		renderApp("/ideas");
+
+		expect(
+			screen.getByRole("heading", { name: /idea discovery route/i }),
+		).toBeInTheDocument();
+	});
+
+	it("renders a public idea detail route", () => {
+		renderApp("/ideas/clean-air-library");
+
+		expect(
+			screen.getByRole("heading", { name: /idea detail route/i }),
+		).toBeInTheDocument();
+	});
 
 	it("renders the public profile route", () => {
 		renderApp("/profiles/ada-lovelace-11111111");

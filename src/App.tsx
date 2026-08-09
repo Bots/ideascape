@@ -1,9 +1,11 @@
 import { ArrowRight, Lightbulb, ShieldCheck, Users } from "lucide-react";
 import { Link, Route, Routes } from "react-router-dom";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { AuthCallbackPage } from "@/features/auth/auth-callback-page";
 import { AuthNavigation } from "@/features/auth/auth-navigation";
 import { AuthPage } from "@/features/auth/auth-page";
+import { IdeaDetailPage } from "@/features/ideas/idea-detail-page";
+import { IdeaDiscoveryPage } from "@/features/ideas/idea-discovery-page";
 import { IdeaEditorPage } from "@/features/ideas/idea-editor-page";
 import { ProfilePage } from "@/features/profiles/profile-page";
 
@@ -69,11 +71,14 @@ function HomePage() {
 								Start an idea
 								<ArrowRight aria-hidden="true" />
 							</Link>
-							<Button size="lg" variant="outline" disabled>
+							<Link
+								className={buttonVariants({ size: "lg", variant: "outline" })}
+								to="/ideas"
+							>
 								Explore ideas
-							</Button>
+							</Link>
 							<p className="text-sm text-muted-foreground">
-								The first ideas are taking shape.
+								Fresh launch concepts are ready to explore.
 							</p>
 						</div>
 					</div>
@@ -116,8 +121,10 @@ function App() {
 				element={<AuthPage key="sign-up" mode="sign-up" />}
 			/>
 			<Route path="/profiles/:username" element={<ProfilePage />} />
+			<Route path="/ideas" element={<IdeaDiscoveryPage />} />
 			<Route path="/ideas/new" element={<IdeaEditorPage />} />
 			<Route path="/ideas/:ideaId/edit" element={<IdeaEditorPage />} />
+			<Route path="/ideas/:slug" element={<IdeaDetailPage />} />
 			<Route path="/auth/callback" element={<AuthCallbackPage />} />
 		</Routes>
 	);
