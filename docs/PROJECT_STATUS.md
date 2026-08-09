@@ -21,7 +21,8 @@ Ideascape is in **Exploration mode**. The eight published entries are concept pr
 
 1. Learn which concepts resonate through aggregate, privacy-preserving interest signals.
 2. Improve the authenticated creator workflow while keeping discovery and details public.
-3. Define explicit evidence thresholds before considering any fundraising or payment flow.
+3. Define explicit evidence thresholds before considering a campaign phase.
+4. Research a security-first smart-contract funding model, including custody boundaries, milestone review, multisig governance, dispute/refund paths, audits, and legal gates.
 
 ## Delivered
 
@@ -36,6 +37,7 @@ Ideascape is in **Exploration mode**. The eight published entries are concept pr
 - Fully clickable, keyboard-focusable discovery cards
 - Local SVG concept illustrations with meaningful alternative text
 - Reversible member interest signaling with aggregate-only public counts
+- Landing-page explanation of the live validation flow, planned smart-contract funding, and concrete security threat scenarios
 - Row-level-security and pgTAP coverage for ownership, privacy, lifecycle, and seed behavior
 - Vercel SPA deep-link routing and production deployment
 

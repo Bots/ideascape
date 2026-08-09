@@ -26,4 +26,10 @@ describe("dark theme design tokens", () => {
 		expect(appShell).toContain("prefers-color-scheme: dark");
 		expect(appShell).toContain('classList.add("dark")');
 	});
+
+	it("describes the landing page as a possibility test", () => {
+		expect(appShell).toContain(
+			"<title>Ideascape — Test the possibility</title>",
+		);
+	});
 });

@@ -28,7 +28,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 - Route-level code splitting for non-home pages
 - Supabase row-level security and pgTAP coverage for profiles, ideas, media, categories, and interest signals
 
-There is intentionally no live fundraising, checkout, or payment collection. Stripe packages are reserved for possible later experiments, but no payment flow is active in this product.
+There is intentionally no live fundraising, checkout, crypto wallet connection, custody, or payment collection. The future design explores security-reviewed smart-contract escrow, milestone-based releases, self-custodied signatures, refund paths, and compliant fiat on-ramps. No chain, asset, governance model, or contract implementation has been selected.
 
 ## Demo catalog
 
@@ -125,6 +125,22 @@ The database models categories, creator-owned ideas, ordered media, explicit lif
 - Anonymous and authenticated visitors receive counts through aggregate-only database functions; individual signals are never exposed publicly.
 - Draft and cancelled ideas reject interest writes.
 - Public profiles are readable by everyone, while authenticated members can update only their own profile fields.
+
+## Planned funding and security model
+
+The landing page documents a future architecture rather than an active funding feature. A validated concept could eventually become a campaign with published goals, deadlines, milestones, evidence requirements, fees, and refund/dispute rules. A reviewed smart contract could then hold funds against those terms and release only an approved milestone tranche or follow the published refund path.
+
+The threat-model preview includes concrete failure cases: premature milestone claims, tampered wallet prompts, compromised administrator keys, and post-deployment contract bugs. The proposed baseline includes:
+
+- No automatic release from creator-submitted evidence; use an independent review quorum and dispute window.
+- Human-readable confirmation of chain, asset, amount, fees, and verified contract address before signing.
+- Self-custody: Ideascape never requests wallet seed phrases or private keys.
+- Separated roles, hardware-backed keys, least privilege, and multisig for privileged actions.
+- Independent audits, reproducible deployments, testnet simulations, capped pilots, version pinning, and timelocked changes.
+- Emergency pause and incident runbooks that protect new deposits while preserving release or refund paths.
+- On-chain monitoring plus legal, tax, sanctions, privacy, and consumer-protection review.
+
+These are design requirements, not current guarantees. No custody or smart-contract code is live, and a security claim is not considered real until implementation, deployment configuration, tests, governance, and external review prove it.
 
 ## Quality checks
 

@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -57,7 +57,15 @@ describe("App", () => {
 				name: /great ideas deserve a place to grow/i,
 			}),
 		).toBeInTheDocument();
-		expect(screen.getByText(/community funding platform/i)).toBeInTheDocument();
+		expect(
+			screen.getByText(/concept-validation platform/i),
+		).toBeInTheDocument();
+		expect(screen.getByText("Test the possibility")).toBeInTheDocument();
+		expect(screen.getByText("Community signal")).toBeInTheDocument();
+		expect(screen.getByText(/evidence about demand/i)).toBeInTheDocument();
+		expect(
+			screen.getByText(/if funding is activated later/i),
+		).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /sign in/i })).toHaveAttribute(
 			"href",
 			"/sign-in",
@@ -85,6 +93,86 @@ describe("App", () => {
 		expect(
 			screen.getByText("Concept previews").nextElementSibling,
 		).toHaveTextContent("8");
+	});
+
+	it("explains the current idea-validation flow", () => {
+		renderApp();
+
+		const howItWorks = screen.getByRole("region", {
+			name: /how ideascape works/i,
+		});
+		expect(
+			within(howItWorks).getByRole("heading", { name: /shape the concept/i }),
+		).toBeInTheDocument();
+		expect(
+			within(howItWorks).getByRole("heading", {
+				name: /test public interest/i,
+			}),
+		).toBeInTheDocument();
+		expect(
+			within(howItWorks).getByRole("heading", {
+				name: /turn signals into evidence/i,
+			}),
+		).toBeInTheDocument();
+		expect(howItWorks).toHaveTextContent(/no payment or commitment/i);
+		expect(
+			within(howItWorks).getByRole("link", {
+				name: /explore the live experiment/i,
+			}),
+		).toHaveAttribute("href", "/ideas");
+	});
+
+	it("presents smart-contract funding as a planned, safety-reviewed layer", () => {
+		renderApp();
+
+		const fundingLayer = screen.getByRole("region", {
+			name: /planned smart-contract funding/i,
+		});
+		expect(fundingLayer).toHaveTextContent(/planned, not live/i);
+		expect(fundingLayer).toHaveTextContent(/no funds are accepted today/i);
+		expect(fundingLayer).toHaveTextContent(/milestone-based releases/i);
+		expect(fundingLayer).toHaveTextContent(/release or refund/i);
+		expect(fundingLayer).toHaveTextContent(/independent security review/i);
+		expect(fundingLayer).toHaveTextContent(
+			/chain, asset, and governance design have not been selected/i,
+		);
+	});
+
+	it("explains the planned custody threat model with concrete examples", () => {
+		renderApp();
+
+		const securityModel = screen.getByRole("region", {
+			name: /security before custody/i,
+		});
+		expect(securityModel).toHaveTextContent(/no custody is live/i);
+		expect(
+			within(securityModel).getByRole("heading", {
+				name: /a milestone is claimed too early/i,
+			}),
+		).toBeInTheDocument();
+		expect(
+			within(securityModel).getByRole("heading", {
+				name: /a wallet prompt is tampered with/i,
+			}),
+		).toBeInTheDocument();
+		expect(
+			within(securityModel).getByRole("heading", {
+				name: /an admin key is compromised/i,
+			}),
+		).toBeInTheDocument();
+		expect(
+			within(securityModel).getByRole("heading", {
+				name: /a contract bug is discovered/i,
+			}),
+		).toBeInTheDocument();
+		expect(securityModel).toHaveTextContent(
+			/no single operator controls funds/i,
+		);
+		expect(securityModel).toHaveTextContent(
+			/never requests seed phrases or private keys/i,
+		);
+		expect(securityModel).toHaveTextContent(/independent audit/i);
+		expect(securityModel).toHaveTextContent(/timelocked upgrades/i);
 	});
 
 	it("renders the sign-in route", async () => {
