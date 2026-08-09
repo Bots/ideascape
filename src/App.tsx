@@ -1,9 +1,10 @@
 import { ArrowRight, Lightbulb, ShieldCheck, Users } from "lucide-react";
 import { Link, Route, Routes } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { AuthCallbackPage } from "@/features/auth/auth-callback-page";
 import { AuthNavigation } from "@/features/auth/auth-navigation";
 import { AuthPage } from "@/features/auth/auth-page";
+import { IdeaEditorPage } from "@/features/ideas/idea-editor-page";
 import { ProfilePage } from "@/features/profiles/profile-page";
 
 const principles = [
@@ -64,9 +65,12 @@ function HomePage() {
 							meet the people ready to help make them real.
 						</p>
 						<div className="mt-10 flex flex-wrap items-center gap-4">
-							<Button size="lg" disabled>
-								Explore ideas
+							<Link className={buttonVariants({ size: "lg" })} to="/ideas/new">
+								Start an idea
 								<ArrowRight aria-hidden="true" />
+							</Link>
+							<Button size="lg" variant="outline" disabled>
+								Explore ideas
 							</Button>
 							<p className="text-sm text-muted-foreground">
 								The first ideas are taking shape.
@@ -112,6 +116,8 @@ function App() {
 				element={<AuthPage key="sign-up" mode="sign-up" />}
 			/>
 			<Route path="/profiles/:username" element={<ProfilePage />} />
+			<Route path="/ideas/new" element={<IdeaEditorPage />} />
+			<Route path="/ideas/:ideaId/edit" element={<IdeaEditorPage />} />
 			<Route path="/auth/callback" element={<AuthCallbackPage />} />
 		</Routes>
 	);

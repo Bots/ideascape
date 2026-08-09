@@ -21,6 +21,10 @@ vi.mock("@/features/profiles/profile-page", () => ({
 	ProfilePage: () => <h1>Public profile route</h1>,
 }));
 
+vi.mock("@/features/ideas/idea-editor-page", () => ({
+	IdeaEditorPage: () => <h1>Idea editor route</h1>,
+}));
+
 function renderApp(path = "/") {
 	return render(
 		<MemoryRouter initialEntries={[path]}>
@@ -54,6 +58,9 @@ describe("App", () => {
 			"href",
 			"/sign-up",
 		);
+		expect(
+			screen.getByRole("link", { name: /start an idea/i }),
+		).toHaveAttribute("href", "/ideas/new");
 	});
 
 	it("renders the sign-in route", () => {
@@ -94,6 +101,17 @@ describe("App", () => {
 			screen.queryByRole("heading", { name: /check your email/i }),
 		).not.toBeInTheDocument();
 	});
+
+	it.each(["/ideas/new", "/ideas/aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa/edit"])(
+		"renders the idea editor at %s",
+		(path) => {
+			renderApp(path);
+
+			expect(
+				screen.getByRole("heading", { name: /idea editor route/i }),
+			).toBeInTheDocument();
+		},
+	);
 
 	it("renders the public profile route", () => {
 		renderApp("/profiles/ada-lovelace-11111111");
