@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Skill Swap Saturdays</title>
+  <desc id="desc">Neighbors share repair, gardening, sewing, and computer skills around a community table.</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff8ed"/><stop offset="1" stop-color="#ffd8b3"/></linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff994f"/><stop offset="1" stop-color="#ef501b"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#392119" flood-opacity=".22"/></filter>
+    <pattern id="dots" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.1" fill="#7c402d" opacity=".1"/></pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#wall)"/>
+  <path d="M0 487c226-49 398 25 604-11 221-39 390-19 596 34v165H0Z" fill="#e7bd92"/>
+  <g filter="url(#shadow)">
+    <rect x="84" y="74" width="1032" height="218" rx="30" fill="#fffdf8" stroke="#dbad86" stroke-width="4"/>
+    <g transform="translate(126 111)">
+      <rect width="190" height="142" rx="18" fill="#ffe1c5"/><path d="M57 100l40-68 40 68" fill="none" stroke="#f45d22" stroke-width="14" stroke-linejoin="round"/><path d="M42 102h112" stroke="#3a261f" stroke-width="12" stroke-linecap="round"/>
+      <rect x="232" width="190" height="142" rx="18" fill="#ff9a51"/><path d="M279 103c13-56 33-79 59-79 23 0 40 22 49 79" fill="none" stroke="#fff7eb" stroke-width="13" stroke-linecap="round"/><path d="M334 28v79" stroke="#31443d" stroke-width="9"/><path d="M334 55c-28-3-42-15-45-35M334 70c27-4 41-16 43-36" stroke="#31443d" stroke-width="9" stroke-linecap="round"/>
+      <rect x="464" width="190" height="142" rx="18" fill="#ffe1c5"/><circle cx="559" cy="70" r="42" fill="none" stroke="#f45d22" stroke-width="12"/><path d="M559 25v90M514 70h90" stroke="#f45d22" stroke-width="8"/>
+      <rect x="696" width="190" height="142" rx="18" fill="#ff9a51"/><rect x="747" y="34" width="90" height="64" rx="8" fill="#fffaf3" stroke="#3a261f" stroke-width="8"/><path d="M764 115h57" stroke="#3a261f" stroke-width="11" stroke-linecap="round"/>
+    </g>
+  </g>
+  <ellipse cx="610" cy="511" rx="370" ry="92" fill="#553126" opacity=".18"/>
+  <path d="M306 419h596l-67 158H373Z" fill="url(#orange)" stroke="#3a261f" stroke-width="5" filter="url(#shadow)"/>
+  <g>
+    <circle cx="271" cy="354" r="40" fill="#8c4b35"/><path d="M213 515c8-95 26-132 63-132 40 0 60 43 66 132Z" fill="#29423e"/><path d="M286 420c48 9 89 31 122 65" fill="none" stroke="#8c4b35" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="945" cy="365" r="38" fill="#d78a61"/><path d="M889 517c8-89 25-124 61-124 38 0 57 39 63 124Z" fill="#fff6e9"/><path d="M923 427c-42 11-80 33-112 64" fill="none" stroke="#d78a61" stroke-width="17" stroke-linecap="round"/>
+    <circle cx="493" cy="327" r="34" fill="#d78a61"/><path d="M446 433c8-68 23-98 52-98 32 0 48 32 53 98Z" fill="#f45d22"/>
+    <circle cx="743" cy="325" r="34" fill="#8c4b35"/><path d="M696 434c6-69 23-100 52-100 33 0 49 33 54 100Z" fill="#3a2d42"/>
+  </g>
+  <g fill="#fffaf3" stroke="#3a261f" stroke-width="5"><circle cx="501" cy="472" r="31"/><rect x="690" y="450" width="97" height="57" rx="10"/><rect x="567" y="452" width="78" height="62" rx="8"/></g>
+  <path d="M481 474c13-17 27-17 40 0-13 14-27 14-40 0Z" fill="#f45d22"/><path d="M586 473h42M586 490h28" stroke="#f45d22" stroke-width="8" stroke-linecap="round"/><path d="M711 478h54" stroke="#29423e" stroke-width="8" stroke-linecap="round"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+</svg>

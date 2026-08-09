@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Shade Stop Network</title>
+  <desc id="desc">Neighbors wait beneath a bright modular shade shelter at a sunny bus stop.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd7ad"/><stop offset="1" stop-color="#ff8a43"/></linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff7b32"/><stop offset="1" stop-color="#e84a18"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="17" flood-color="#382018" flood-opacity=".23"/></filter>
+    <pattern id="grain" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="5" cy="7" r="1" fill="#512a1e" opacity=".09"/><circle cx="20" cy="19" r=".8" fill="#fff" opacity=".22"/></pattern>
+  </defs>
+  <rect width="1200" height="675" fill="#fff7ec"/>
+  <rect width="1200" height="430" fill="url(#sky)"/>
+  <circle cx="1008" cy="118" r="74" fill="#fff1c9" opacity=".9"/>
+  <g fill="#6f3a2a" opacity=".18"><rect x="0" y="238" width="180" height="192"/><rect x="202" y="180" width="150" height="250"/><rect x="375" y="264" width="210" height="166"/><rect x="965" y="218" width="235" height="212"/></g>
+  <path d="M0 430h1200v245H0Z" fill="#edc69f"/>
+  <path d="M0 545h1200v130H0Z" fill="#3c2a23"/>
+  <path d="M0 575h1200" stroke="#fff1df" stroke-width="10" stroke-dasharray="62 42" opacity=".8"/>
+  <g filter="url(#shadow)">
+    <path d="M226 186h638l70 88H163Z" fill="url(#shade)" stroke="#3b251e" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M205 274v277M892 274v277" stroke="#3b251e" stroke-width="18"/>
+    <rect x="254" y="378" width="380" height="28" rx="14" fill="#3b251e"/>
+    <rect x="285" y="406" width="22" height="102" rx="10" fill="#3b251e"/><rect x="580" y="406" width="22" height="102" rx="10" fill="#3b251e"/>
+    <rect x="702" y="309" width="133" height="174" rx="15" fill="#fffaf2" stroke="#3b251e" stroke-width="5"/>
+    <circle cx="768" cy="357" r="30" fill="#ff7b32"/><path d="M750 357h36M768 339v36" stroke="#fff7ec" stroke-width="8" stroke-linecap="round"/>
+    <path d="M730 414h77M730 440h54" stroke="#7d4b36" stroke-width="9" stroke-linecap="round" opacity=".7"/>
+  </g>
+  <g>
+    <circle cx="399" cy="332" r="38" fill="#8d4a32"/><path d="M343 500c8-93 27-132 61-132 41 0 60 45 66 132Z" fill="#29423e"/><path d="M385 394c32 20 59 20 85-1" fill="none" stroke="#f45d22" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="539" cy="342" r="34" fill="#d78b62"/><path d="M493 500c8-79 24-115 52-115 35 0 52 39 56 115Z" fill="#fff1df"/><path d="M523 404c-24 16-48 35-72 57" fill="none" stroke="#d78b62" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="1010" cy="412" r="31" fill="#8d4a32"/><path d="M966 532c6-67 22-92 49-92 31 0 47 28 51 92Z" fill="#f45d22"/>
+  </g>
+  <path d="M1063 223c-25 30-38 67-37 109M1085 236c-1 39-19 72-54 98M1045 245c20 30 25 61 15 94" fill="none" stroke="#28423d" stroke-width="18" stroke-linecap="round"/>
+  <rect width="1200" height="675" fill="url(#grain)"/>
+</svg>

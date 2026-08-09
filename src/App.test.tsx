@@ -82,6 +82,9 @@ describe("App", () => {
 			screen.getByRole("link", { name: /join the experiment/i }),
 		).toHaveAttribute("href", "/sign-up");
 		expect(screen.getByText("Concept previews")).toBeInTheDocument();
+		expect(
+			screen.getByText("Concept previews").nextElementSibling,
+		).toHaveTextContent("8");
 	});
 
 	it("renders the sign-in route", async () => {

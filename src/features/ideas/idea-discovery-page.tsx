@@ -45,6 +45,10 @@ function interestLabel(count: number): string {
 	return `${count} people interested`;
 }
 
+function conceptCountLabel(count: number): string {
+	return `${count} demo ${count === 1 ? "concept" : "concepts"}`;
+}
+
 export function IdeaDiscoveryPage() {
 	const ideasQuery = useQuery({
 		queryKey: ["published-ideas"],
@@ -99,7 +103,9 @@ export function IdeaDiscoveryPage() {
 								Now exploring
 							</p>
 							<p className="mt-2 text-3xl font-semibold tracking-tight">
-								4 launch concepts
+								{ideasQuery.data
+									? conceptCountLabel(ideasQuery.data.length)
+									: "Loading concepts"}
 							</p>
 						</div>
 					</div>
@@ -158,21 +164,23 @@ export function IdeaDiscoveryPage() {
 
 								return (
 									<article
-										className="group overflow-hidden rounded-3xl border bg-card/90 shadow-[0_22px_55px_-35px_oklch(0.32_0.08_43_/_0.55)] transition duration-300 hover:-translate-y-1.5 hover:border-primary/35 hover:shadow-[0_30px_65px_-30px_oklch(0.54_0.16_39_/_0.38)]"
+										className="group relative overflow-hidden rounded-3xl border bg-card/90 shadow-[0_22px_55px_-35px_oklch(0.32_0.08_43_/_0.55)] transition duration-300 hover:-translate-y-1.5 hover:border-primary/35 hover:shadow-[0_30px_65px_-30px_oklch(0.54_0.16_39_/_0.38)]"
 										key={idea.id}
 									>
+										<Link
+											aria-label={`View ${idea.title}`}
+											className="absolute inset-0 z-[1] rounded-3xl outline-none focus-visible:ring-3 focus-visible:ring-ring/70"
+											to={`/ideas/${idea.slug}`}
+										/>
 										{cover ? (
-											<Link
-												className="block overflow-hidden"
-												to={`/ideas/${idea.slug}`}
-											>
+											<div className="overflow-hidden">
 												<img
 													alt={cover.alt_text || idea.title}
 													className="aspect-video w-full object-cover transition duration-500 group-hover:scale-[1.035]"
 													loading="lazy"
 													src={cover.url}
 												/>
-											</Link>
+											</div>
 										) : null}
 										<div className="flex min-h-[18rem] flex-col p-7">
 											<div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider">
@@ -186,12 +194,7 @@ export function IdeaDiscoveryPage() {
 												</span>
 											</div>
 											<h2 className="mt-5 text-2xl font-semibold tracking-[-0.025em] sm:text-3xl">
-												<Link
-													className="transition hover:text-primary"
-													to={`/ideas/${idea.slug}`}
-												>
-													{idea.title}
-												</Link>
+												{idea.title}
 											</h2>
 											<p className="mt-3 flex-1 leading-7 text-muted-foreground">
 												{idea.summary}
@@ -200,7 +203,7 @@ export function IdeaDiscoveryPage() {
 												<p>
 													By{" "}
 													<Link
-														className="font-semibold text-foreground underline decoration-primary/40 underline-offset-4"
+														className="relative z-10 font-semibold text-foreground underline decoration-primary/40 underline-offset-4"
 														to={`/profiles/${idea.creator.username}`}
 													>
 														{idea.creator.display_name}

@@ -74,11 +74,14 @@ describe("IdeaDiscoveryPage", () => {
 		expect(
 			await screen.findByRole("heading", { name: /discover ideas/i }),
 		).toBeInTheDocument();
-		const ideaLink = await screen.findByRole("link", { name: idea.title });
-		expect(ideaLink).toHaveAttribute("href", `/ideas/${idea.slug}`);
+		const cardLink = await screen.findByRole("link", {
+			name: `View ${idea.title}`,
+		});
+		expect(cardLink).toHaveAttribute("href", `/ideas/${idea.slug}`);
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getByText("Technology")).toBeInTheDocument();
 		expect(screen.getByText("Concept preview")).toBeInTheDocument();
+		expect(screen.getByText("1 demo concept")).toBeInTheDocument();
 		expect(screen.getByText("4 people interested")).toBeInTheDocument();
 		expect(
 			screen.getByRole("img", { name: /solar desalination prototype/i }),
