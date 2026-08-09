@@ -1,0 +1,1 @@
+-- Intentionally empty until the first domain migration is added.
