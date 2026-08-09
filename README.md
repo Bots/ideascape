@@ -72,6 +72,20 @@ Email/password authentication is implemented and enabled. The application also i
 
 Provider client secrets belong only in Supabase's provider configuration. Never add them to Vite environment variables or commit them to this repository.
 
+### Public profiles
+
+Every new authentication user receives a public profile automatically. Existing users are backfilled when the profile migration is applied. Profiles are available at `/profiles/<username>`, readable by everyone, and protected by row-level security so authenticated members can update only their own profile fields.
+
+Apply and verify profile database changes locally with:
+
+```bash
+npm run supabase:reset
+npx supabase test db supabase/tests/database --local
+npx supabase db lint --local --level warning
+```
+
+Database migrations must be reviewed before running `npx supabase db push` against the linked hosted project.
+
 ## Quality checks
 
 ```bash
