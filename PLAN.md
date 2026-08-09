@@ -17,7 +17,7 @@ Help creators validate and fund promising ideas through transparent campaigns, c
 
 - [x] Add email and OAuth authentication (hosted OAuth providers require dashboard credentials)
 - [x] Create public profiles
-- [ ] Model ideas, categories, media, and lifecycle states
+- [x] Model ideas, categories, media, and lifecycle states
 - [ ] Build idea creation and editing
 - [ ] Build discovery and idea detail pages
 - [ ] Add row-level security policies and policy tests

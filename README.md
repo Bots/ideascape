@@ -86,6 +86,10 @@ npx supabase db lint --local --level warning
 
 Database migrations must be reviewed before running `npx supabase db push` against the linked hosted project.
 
+### Idea domain
+
+The database models curated categories, creator-owned ideas, ordered image/video media, and explicit lifecycle states from `draft` through `completed` or `cancelled`. Draft ideas and their media are visible only to their creator; published lifecycle states are publicly readable. Database tests exercise these visibility and ownership rules under anonymous, owner, and non-owner roles.
+
 ## Quality checks
 
 ```bash
