@@ -161,7 +161,12 @@ select is(
   'new ideas default to draft'
 );
 select is(
-  (select count(*) from public.ideas where status = 'published'),
+  (
+    select count(*)
+    from public.ideas
+    where id = 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb'
+      and status = 'published'
+  ),
   1::bigint,
   'published lifecycle state is stored'
 );
@@ -190,7 +195,14 @@ select is(
   'anonymous visitors can read categories'
 );
 select is(
-  (select count(*) from public.ideas),
+  (
+    select count(*)
+    from public.ideas
+    where id in (
+      'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+      'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb'
+    )
+  ),
   1::bigint,
   'anonymous visitors see published ideas but not drafts'
 );
@@ -204,7 +216,14 @@ reset role;
 set local role authenticated;
 set local "request.jwt.claim.sub" = '11111111-1111-4111-8111-111111111111';
 select is(
-  (select count(*) from public.ideas),
+  (
+    select count(*)
+    from public.ideas
+    where id in (
+      'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+      'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb'
+    )
+  ),
   2::bigint,
   'creators can read their own drafts alongside published ideas'
 );

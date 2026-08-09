@@ -101,7 +101,11 @@ select matches(
 
 set local role anon;
 select is(
-  (select count(*) from public.profiles),
+  (
+    select count(*)
+    from public.profiles
+    where id = '11111111-1111-4111-8111-111111111111'
+  ),
   1::bigint,
   'anonymous visitors can read public profiles'
 );
