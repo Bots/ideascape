@@ -5,6 +5,7 @@ import {
 	signOut,
 	signUpWithEmail,
 } from "@/features/auth/auth-service";
+import { AUTH_RETURN_PATH_STORAGE_KEY } from "@/features/auth/auth-return-path";
 import { getSupabaseClient } from "@/lib/supabase";
 
 vi.mock("@/lib/supabase", () => ({
@@ -26,6 +27,7 @@ const callbackUrl = `${window.location.origin}/auth/callback`;
 
 beforeEach(() => {
 	vi.clearAllMocks();
+	window.sessionStorage.clear();
 	vi.mocked(getSupabaseClient).mockReturnValue({
 		auth,
 	} as unknown as ReturnType<typeof getSupabaseClient>);
@@ -77,6 +79,18 @@ describe("auth service", () => {
 			});
 		},
 	);
+
+	it("stores a safe return path while keeping the OAuth callback URL exact", async () => {
+		await signInWithOAuth("google", "/ideas/clean-air-library");
+
+		expect(window.sessionStorage.getItem(AUTH_RETURN_PATH_STORAGE_KEY)).toBe(
+			"/ideas/clean-air-library",
+		);
+		expect(auth.signInWithOAuth).toHaveBeenCalledWith({
+			provider: "google",
+			options: { redirectTo: callbackUrl },
+		});
+	});
 
 	it("signs out", async () => {
 		await signOut();

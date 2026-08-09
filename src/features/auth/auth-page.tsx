@@ -1,7 +1,8 @@
 import { Lightbulb } from "lucide-react";
 import { type FormEvent, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { authPath, safeReturnPath } from "@/features/auth/auth-return-path";
 import {
 	signInWithEmail,
 	signInWithOAuth,
@@ -15,6 +16,10 @@ export type AuthPageProps = {
 
 export function AuthPage({ mode }: AuthPageProps) {
 	const navigate = useNavigate();
+	const { search } = useLocation();
+	const returnTo = safeReturnPath(new URLSearchParams(search).get("returnTo"));
+	const signInPath = authPath("/sign-in", returnTo);
+	const signUpPath = authPath("/sign-up", returnTo);
 	const [isPending, setIsPending] = useState(false);
 	const [pendingProvider, setPendingProvider] = useState<OAuthProvider | null>(
 		null,
@@ -37,11 +42,11 @@ export function AuthPage({ mode }: AuthPageProps) {
 		try {
 			if (isSignIn) {
 				await signInWithEmail(credentials);
-				navigate("/");
+				navigate(returnTo);
 			} else {
 				const { hasSession } = await signUpWithEmail(credentials);
 				if (hasSession) {
-					navigate("/");
+					navigate(returnTo);
 				} else {
 					setIsSignUpComplete(true);
 				}
@@ -63,7 +68,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 		setErrorMessage(null);
 
 		try {
-			await signInWithOAuth(provider);
+			await signInWithOAuth(provider, returnTo);
 		} catch {
 			const providerName = provider === "github" ? "GitHub" : "Google";
 			setErrorMessage(
@@ -100,7 +105,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 						</p>
 						<Link
 							className="mt-6 inline-block text-sm font-medium underline underline-offset-4"
-							to="/sign-in"
+							to={signInPath}
 						>
 							Back to sign in
 						</Link>
@@ -196,7 +201,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 							{isSignIn ? "New to Ideascape? " : "Already have an account? "}
 							<Link
 								className="font-medium text-foreground underline underline-offset-4"
-								to={isSignIn ? "/sign-up" : "/sign-in"}
+								to={isSignIn ? signUpPath : signInPath}
 							>
 								{isSignIn ? "Sign up" : "Sign in"}
 							</Link>

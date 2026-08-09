@@ -30,7 +30,7 @@ function renderPanel() {
 	});
 
 	return render(
-		<MemoryRouter>
+		<MemoryRouter initialEntries={["/ideas/clean-air-library"]}>
 			<QueryClientProvider client={queryClient}>
 				<IdeaInterestPanel ideaId={ideaId} />
 			</QueryClientProvider>
@@ -65,7 +65,7 @@ describe("IdeaInterestPanel", () => {
 		).toBeInTheDocument();
 		expect(
 			screen.getByRole("link", { name: /sign in to show interest/i }),
-		).toHaveAttribute("href", "/sign-in");
+		).toHaveAttribute("href", "/sign-in?returnTo=%2Fideas%2Fclean-air-library");
 	});
 
 	it("lets a signed-in member signal interest", async () => {

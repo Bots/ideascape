@@ -4,6 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { AuthCallbackPage } from "@/features/auth/auth-callback-page";
 import { useAuth } from "@/features/auth/auth-provider";
+import { AUTH_RETURN_PATH_STORAGE_KEY } from "@/features/auth/auth-return-path";
 
 vi.mock("@/features/auth/auth-provider", () => ({
 	useAuth: vi.fn(),
@@ -21,6 +22,7 @@ function renderCallback(path = "/auth/callback") {
 
 beforeEach(() => {
 	vi.resetAllMocks();
+	window.sessionStorage.clear();
 });
 
 afterEach(cleanup);
@@ -51,6 +53,40 @@ describe("AuthCallbackPage", () => {
 		expect(
 			screen.getByRole("heading", { name: /signed in successfully/i }),
 		).toBeInTheDocument();
+		expect(
+			screen.getByRole("link", { name: /continue home/i }),
+		).toHaveAttribute("href", "/");
+	});
+
+	it("offers to continue to the safely stored pre-auth destination", () => {
+		mockedUseAuth.mockReturnValue({
+			user: { email: "maker@example.com" } as User,
+			isLoading: false,
+		});
+		window.sessionStorage.setItem(
+			AUTH_RETURN_PATH_STORAGE_KEY,
+			"/ideas/clean-air-library",
+		);
+
+		renderCallback();
+
+		expect(
+			screen.getByRole("link", { name: /continue where you left off/i }),
+		).toHaveAttribute("href", "/ideas/clean-air-library");
+	});
+
+	it("rejects an externally stored callback destination", () => {
+		mockedUseAuth.mockReturnValue({
+			user: { email: "maker@example.com" } as User,
+			isLoading: false,
+		});
+		window.sessionStorage.setItem(
+			AUTH_RETURN_PATH_STORAGE_KEY,
+			"https://malicious.example/steal",
+		);
+
+		renderCallback();
+
 		expect(
 			screen.getByRole("link", { name: /continue home/i }),
 		).toHaveAttribute("href", "/");

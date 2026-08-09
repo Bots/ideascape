@@ -20,12 +20,20 @@ const mockedSignInWithEmail = vi.mocked(signInWithEmail);
 const mockedSignUpWithEmail = vi.mocked(signUpWithEmail);
 const mockedSignInWithOAuth = vi.mocked(signInWithOAuth);
 
-function renderAuthPage(mode: "sign-in" | "sign-up") {
+function renderAuthPage(mode: "sign-in" | "sign-up", initialPath = `/${mode}`) {
 	return render(
-		<MemoryRouter initialEntries={[`/${mode}`]}>
+		<MemoryRouter initialEntries={[initialPath]}>
 			<Routes>
-				<Route path={`/${mode}`} element={<AuthPage mode={mode} />} />
+				<Route
+					path="/sign-in"
+					element={<AuthPage key="sign-in" mode="sign-in" />}
+				/>
+				<Route
+					path="/sign-up"
+					element={<AuthPage key="sign-up" mode="sign-up" />}
+				/>
 				<Route path="/" element={<p>Home route</p>} />
+				<Route path="/ideas/:slug" element={<p>Idea route</p>} />
 			</Routes>
 		</MemoryRouter>,
 	);
@@ -51,6 +59,33 @@ describe("AuthPage", () => {
 			email: "maker@example.com",
 			password: "correct horse",
 		});
+		expect(await screen.findByText("Home route")).toBeInTheDocument();
+	});
+
+	it("returns email sign-in visitors to the idea they were viewing", async () => {
+		const user = userEvent.setup();
+		mockedSignInWithEmail.mockResolvedValue();
+		renderAuthPage("sign-in", "/sign-in?returnTo=%2Fideas%2Fclean-air-library");
+
+		await user.type(screen.getByLabelText(/email/i), "maker@example.com");
+		await user.type(screen.getByLabelText(/password/i), "correct horse");
+		await user.click(screen.getByRole("button", { name: /sign in/i }));
+
+		expect(await screen.findByText("Idea route")).toBeInTheDocument();
+	});
+
+	it("rejects external return destinations after email sign-in", async () => {
+		const user = userEvent.setup();
+		mockedSignInWithEmail.mockResolvedValue();
+		renderAuthPage(
+			"sign-in",
+			"/sign-in?returnTo=https%3A%2F%2Fmalicious.example%2Fsteal",
+		);
+
+		await user.type(screen.getByLabelText(/email/i), "maker@example.com");
+		await user.type(screen.getByLabelText(/password/i), "correct horse");
+		await user.click(screen.getByRole("button", { name: /sign in/i }));
+
 		expect(await screen.findByText("Home route")).toBeInTheDocument();
 	});
 
@@ -145,6 +180,36 @@ describe("AuthPage", () => {
 		);
 	});
 
+	it("preserves the idea return path when switching auth modes", async () => {
+		const user = userEvent.setup();
+		renderAuthPage("sign-in", "/sign-in?returnTo=%2Fideas%2Fclean-air-library");
+
+		await user.click(screen.getByRole("link", { name: /sign up/i }));
+
+		expect(
+			screen.getByRole("heading", { name: /create your account/i }),
+		).toBeInTheDocument();
+		expect(screen.getByRole("link", { name: /sign in/i })).toHaveAttribute(
+			"href",
+			"/sign-in?returnTo=%2Fideas%2Fclean-air-library",
+		);
+	});
+
+	it("passes the safe return path into OAuth sign-in", async () => {
+		const user = userEvent.setup();
+		mockedSignInWithOAuth.mockResolvedValue();
+		renderAuthPage("sign-in", "/sign-in?returnTo=%2Fideas%2Fclean-air-library");
+
+		await user.click(
+			screen.getByRole("button", { name: /continue with google/i }),
+		);
+
+		expect(mockedSignInWithOAuth).toHaveBeenCalledWith(
+			"google",
+			"/ideas/clean-air-library",
+		);
+	});
+
 	it.each<[string, OAuthProvider]>([
 		["GitHub", "github"],
 		["Google", "google"],
@@ -161,7 +226,7 @@ describe("AuthPage", () => {
 				}),
 			);
 
-			expect(mockedSignInWithOAuth).toHaveBeenCalledWith(provider);
+			expect(mockedSignInWithOAuth).toHaveBeenCalledWith(provider, "/");
 			expect(
 				screen.queryByText(/signed in successfully/i),
 			).not.toBeInTheDocument();

@@ -1,3 +1,7 @@
+import {
+	clearAuthReturnPath,
+	storeAuthReturnPath,
+} from "@/features/auth/auth-return-path";
 import { getSupabaseClient } from "@/lib/supabase";
 
 export type AuthCredentials = {
@@ -35,7 +39,11 @@ export async function signUpWithEmail(
 	return { hasSession: data.session !== null };
 }
 
-export async function signInWithOAuth(provider: OAuthProvider): Promise<void> {
+export async function signInWithOAuth(
+	provider: OAuthProvider,
+	returnTo = "/",
+): Promise<void> {
+	storeAuthReturnPath(returnTo);
 	const { error } = await getSupabaseClient().auth.signInWithOAuth({
 		provider,
 		options: {
@@ -44,6 +52,7 @@ export async function signInWithOAuth(provider: OAuthProvider): Promise<void> {
 	});
 
 	if (error) {
+		clearAuthReturnPath();
 		throw error;
 	}
 }

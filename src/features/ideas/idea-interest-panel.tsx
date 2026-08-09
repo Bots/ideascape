@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowRight, Heart, LoaderCircle, UsersRound } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { useAuth } from "@/features/auth/auth-provider";
 import {
@@ -12,7 +12,11 @@ import {
 
 export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 	const { user, isLoading: isAuthLoading } = useAuth();
+	const { pathname, search, hash } = useLocation();
 	const queryClient = useQueryClient();
+	const signInPath = `/sign-in?${new URLSearchParams({
+		returnTo: `${pathname}${search}${hash}`,
+	}).toString()}`;
 	const queryKey = ["idea-interest", ideaId, user?.id ?? "anonymous"] as const;
 	const summaryQuery = useQuery({
 		queryKey,
@@ -130,7 +134,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 							) : (
 								<Link
 									className={buttonVariants({ className: "w-full" })}
-									to="/sign-in"
+									to={signInPath}
 								>
 									Sign in to show interest
 									<ArrowRight aria-hidden="true" />

@@ -1,6 +1,11 @@
 import { CheckCircle2, LoaderCircle, XCircle } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/features/auth/auth-provider";
+import {
+	authPath,
+	clearAuthReturnPath,
+	readAuthReturnPath,
+} from "@/features/auth/auth-return-path";
 
 const pageClassName =
 	"relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground";
@@ -12,6 +17,8 @@ const cardClassName =
 export function AuthCallbackPage() {
 	const { user, isLoading } = useAuth();
 	const { search, hash } = useLocation();
+	const returnTo = readAuthReturnPath();
+	const hasReturnDestination = returnTo !== "/";
 	const hasProviderError =
 		new URLSearchParams(search).has("error") ||
 		new URLSearchParams(hash.slice(1)).has("error");
@@ -63,9 +70,12 @@ export function AuthCallbackPage() {
 					</p>
 					<Link
 						className="mt-6 inline-block text-sm font-medium underline underline-offset-4"
-						to="/"
+						to={returnTo}
+						onClick={clearAuthReturnPath}
 					>
-						Continue home
+						{hasReturnDestination
+							? "Continue where you left off"
+							: "Continue home"}
 					</Link>
 				</section>
 			</main>
@@ -92,7 +102,7 @@ export function AuthCallbackPage() {
 				<div className="mt-6 flex justify-center gap-4">
 					<Link
 						className="text-sm font-medium underline underline-offset-4"
-						to="/sign-in"
+						to={authPath("/sign-in", returnTo)}
 					>
 						Sign in
 					</Link>
