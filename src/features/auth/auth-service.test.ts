@@ -30,7 +30,7 @@ beforeEach(() => {
 		auth,
 	} as unknown as ReturnType<typeof getSupabaseClient>);
 	auth.signInWithPassword.mockResolvedValue({ error: null });
-	auth.signUp.mockResolvedValue({ error: null });
+	auth.signUp.mockResolvedValue({ data: { session: null }, error: null });
 	auth.signInWithOAuth.mockResolvedValue({ error: null });
 	auth.signOut.mockResolvedValue({ error: null });
 });
@@ -43,14 +43,26 @@ describe("auth service", () => {
 		expect(auth.signInWithPassword).toHaveBeenCalledWith(credentials);
 	});
 
-	it("signs up with an email callback redirect", async () => {
-		await signUpWithEmail(credentials);
+	it("reports when email sign-up needs confirmation", async () => {
+		const outcome = await signUpWithEmail(credentials);
 
 		expect(getSupabaseClient).toHaveBeenCalledOnce();
 		expect(auth.signUp).toHaveBeenCalledWith({
 			...credentials,
 			options: { emailRedirectTo: callbackUrl },
 		});
+		expect(outcome).toEqual({ hasSession: false });
+	});
+
+	it("reports when email sign-up creates a session immediately", async () => {
+		auth.signUp.mockResolvedValueOnce({
+			data: { session: { access_token: "test-access-token" } },
+			error: null,
+		});
+
+		const outcome = await signUpWithEmail(credentials);
+
+		expect(outcome).toEqual({ hasSession: true });
 	});
 
 	it.each(["github", "google"] as const)(
@@ -70,7 +82,7 @@ describe("auth service", () => {
 		await signOut();
 
 		expect(getSupabaseClient).toHaveBeenCalledOnce();
-		expect(auth.signOut).toHaveBeenCalledOnce();
+		expect(auth.signOut).toHaveBeenCalledWith({ scope: "local" });
 	});
 
 	it("throws every error returned by Supabase", async () => {

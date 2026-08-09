@@ -20,8 +20,8 @@ export async function signInWithEmail(
 
 export async function signUpWithEmail(
 	credentials: AuthCredentials,
-): Promise<void> {
-	const { error } = await getSupabaseClient().auth.signUp({
+): Promise<{ hasSession: boolean }> {
+	const { data, error } = await getSupabaseClient().auth.signUp({
 		...credentials,
 		options: {
 			emailRedirectTo: `${window.location.origin}/auth/callback`,
@@ -31,6 +31,8 @@ export async function signUpWithEmail(
 	if (error) {
 		throw error;
 	}
+
+	return { hasSession: data.session !== null };
 }
 
 export async function signInWithOAuth(provider: OAuthProvider): Promise<void> {
@@ -47,7 +49,7 @@ export async function signInWithOAuth(provider: OAuthProvider): Promise<void> {
 }
 
 export async function signOut(): Promise<void> {
-	const { error } = await getSupabaseClient().auth.signOut();
+	const { error } = await getSupabaseClient().auth.signOut({ scope: "local" });
 
 	if (error) {
 		throw error;

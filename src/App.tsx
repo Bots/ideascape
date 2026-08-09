@@ -1,5 +1,9 @@
 import { ArrowRight, Lightbulb, ShieldCheck, Users } from "lucide-react";
+import { Link, Route, Routes } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { AuthCallbackPage } from "@/features/auth/auth-callback-page";
+import { AuthNavigation } from "@/features/auth/auth-navigation";
+import { AuthPage } from "@/features/auth/auth-page";
 
 const principles = [
 	{
@@ -22,25 +26,28 @@ const principles = [
 	},
 ];
 
-function App() {
+function HomePage() {
 	return (
 		<main className="relative min-h-screen overflow-hidden bg-background text-foreground">
 			<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,oklch(0.84_0.12_155_/_0.3),transparent_34%),radial-gradient(circle_at_80%_10%,oklch(0.82_0.11_250_/_0.22),transparent_30%)]" />
 
 			<div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-8 lg:px-10">
 				<header className="flex items-center justify-between">
-					<a
+					<Link
 						className="flex items-center gap-3 font-semibold tracking-tight"
-						href="/"
+						to="/"
 					>
 						<span className="grid size-9 place-items-center rounded-xl bg-foreground text-background">
 							<Lightbulb className="size-5" aria-hidden="true" />
 						</span>
 						<span className="text-lg">Ideascape</span>
-					</a>
-					<span className="rounded-full border bg-background/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
-						Building in public
-					</span>
+					</Link>
+					<div className="flex items-center gap-3">
+						<span className="hidden rounded-full border bg-background/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur lg:inline-flex">
+							Building in public
+						</span>
+						<AuthNavigation />
+					</div>
 				</header>
 
 				<section className="flex flex-1 flex-col justify-center py-24 lg:py-32">
@@ -88,6 +95,23 @@ function App() {
 				</section>
 			</div>
 		</main>
+	);
+}
+
+function App() {
+	return (
+		<Routes>
+			<Route path="/" element={<HomePage />} />
+			<Route
+				path="/sign-in"
+				element={<AuthPage key="sign-in" mode="sign-in" />}
+			/>
+			<Route
+				path="/sign-up"
+				element={<AuthPage key="sign-up" mode="sign-up" />}
+			/>
+			<Route path="/auth/callback" element={<AuthCallbackPage />} />
+		</Routes>
 	);
 }
 
