@@ -2,11 +2,23 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { useAuth } from "@/features/auth/auth-provider";
 import { IdeaDetailPage } from "@/features/ideas/idea-detail-page";
 import { getPublishedIdea } from "@/features/ideas/idea-discovery-service";
+import { getIdeaInterestSummary } from "@/features/ideas/idea-interest-service";
+
+vi.mock("@/features/auth/auth-provider", () => ({
+	useAuth: vi.fn(),
+}));
 
 vi.mock("@/features/ideas/idea-discovery-service", () => ({
 	getPublishedIdea: vi.fn(),
+}));
+
+vi.mock("@/features/ideas/idea-interest-service", () => ({
+	getIdeaInterestSummary: vi.fn(),
+	signalIdeaInterest: vi.fn(),
+	removeIdeaInterest: vi.fn(),
 }));
 
 const mockedGetPublishedIdea = vi.mocked(getPublishedIdea);
@@ -56,6 +68,11 @@ function renderDetail(slug = idea.slug) {
 
 beforeEach(() => {
 	vi.resetAllMocks();
+	vi.mocked(useAuth).mockReturnValue({ user: null, isLoading: false });
+	vi.mocked(getIdeaInterestSummary).mockResolvedValue({
+		interestCount: 3,
+		viewerHasInterest: false,
+	});
 });
 
 afterEach(cleanup);
@@ -94,6 +111,12 @@ describe("IdeaDetailPage", () => {
 		expect(
 			screen.getByRole("note", { name: /exploration mode/i }),
 		).toHaveTextContent(/testing whether people want a place like this/i);
+		expect(
+			await screen.findByRole("heading", {
+				name: /would you want to see this happen/i,
+			}),
+		).toBeInTheDocument();
+		expect(screen.getByText(/3 people are interested/i)).toBeInTheDocument();
 	});
 
 	it("renders safe video media as an external link", async () => {

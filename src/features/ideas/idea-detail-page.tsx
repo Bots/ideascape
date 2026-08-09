@@ -14,6 +14,7 @@ import {
 	type IdeaMedia,
 	type PublishedIdeaStatus,
 } from "@/features/ideas/idea-discovery-service";
+import { IdeaInterestPanel } from "@/features/ideas/idea-interest-panel";
 
 const statusLabels: Record<PublishedIdeaStatus, string> = {
 	published: "Concept preview",
@@ -209,6 +210,7 @@ export function IdeaDetailPage() {
 								{ideaQuery.data.description}
 							</p>
 						</section>
+						<IdeaInterestPanel ideaId={ideaQuery.data.id} />
 					</article>
 				) : null}
 			</div>
