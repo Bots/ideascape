@@ -1,6 +1,6 @@
 begin;
 
-select plan(11);
+select plan(13);
 
 select ok(
   exists (
@@ -26,6 +26,36 @@ select is(
   ),
   4::bigint,
   'four additional concept previews are seeded'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    join public.categories on categories.id = ideas.category_id
+    where ideas.slug in (
+      'device-liberation-lab',
+      'file-rescue-cooperative',
+      'cloud-exit-toolkit',
+      'private-ai-workbench'
+    )
+      and categories.slug = 'technology'
+      and ideas.status = 'published'
+      and ideas.published_at is not null
+      and char_length(ideas.summary) between 80 and 280
+      and char_length(ideas.description) >= 400
+      and position(E'\\n' in ideas.description) = 0
+      and position(E'\n' in ideas.description) > 0
+      and case ideas.slug
+        when 'device-liberation-lab' then ideas.description ilike '%written authorization%'
+        when 'file-rescue-cooperative' then ideas.description ilike '%written consent%'
+        when 'cloud-exit-toolkit' then ideas.description ilike '%checksum%'
+        when 'private-ai-workbench' then ideas.description ilike '%stays on the device%'
+        else false
+      end
+  ),
+  4::bigint,
+  'four polished permission-first technology concept previews are seeded'
 );
 
 select is(
@@ -178,6 +208,26 @@ select is(
   'every additional concept preview has an accessible hosted cover image'
 );
 
+select is(
+  (
+    select count(*)
+    from public.idea_media
+    join public.ideas on ideas.id = idea_media.idea_id
+    where ideas.slug in (
+      'device-liberation-lab',
+      'file-rescue-cooperative',
+      'cloud-exit-toolkit',
+      'private-ai-workbench'
+    )
+      and idea_media.kind = 'image'
+      and idea_media.sort_order = 0
+      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
+      and char_length(idea_media.alt_text) >= 20
+  ),
+  4::bigint,
+  'every technology concept preview has an accessible hosted cover image'
+);
+
 set local role anon;
 select is(
   (
@@ -191,10 +241,14 @@ select is(
       'shade-stop-network',
       'skill-swap-saturdays',
       'civic-accessibility-lab',
-      'block-ready-kits'
+      'block-ready-kits',
+      'device-liberation-lab',
+      'file-rescue-cooperative',
+      'cloud-exit-toolkit',
+      'private-ai-workbench'
     )
   ),
-  8::bigint,
+  12::bigint,
   'anonymous visitors can discover every demo idea'
 );
 reset role;

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">File Rescue Cooperative</title>
+  <desc id="desc">A read-only recovery station transfers files from damaged storage into an encrypted folder.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff7ed"/><stop offset="1" stop-color="#fed7aa"/></linearGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2" fill="#9a3412" opacity=".12"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#7c2d12" flood-opacity=".22"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+  <rect x="62" y="62" width="1076" height="551" rx="48" fill="#fffaf4" stroke="#fdba74" stroke-width="5" filter="url(#shadow)"/>
+  <rect x="98" y="96" width="1004" height="70" rx="25" fill="#2b1712"/>
+  <text x="140" y="141" fill="#fdba74" font-family="ui-monospace, monospace" font-size="26" font-weight="800">READ-ONLY RECOVERY • CONSENT VERIFIED</text>
+  <g transform="translate(112 218)">
+    <rect width="310" height="288" rx="38" fill="#3a1a11" stroke="#7c2d12" stroke-width="8"/>
+    <circle cx="155" cy="144" r="98" fill="#fff7ed" stroke="#fb923c" stroke-width="12"/>
+    <circle cx="155" cy="144" r="31" fill="#7c2d12"/>
+    <circle cx="155" cy="144" r="12" fill="#fdba74"/>
+    <path d="M155 144l72-55" stroke="#7c2d12" stroke-width="13" stroke-linecap="round"/>
+    <rect x="62" y="245" width="186" height="17" rx="8" fill="#fb923c"/>
+  </g>
+  <g transform="translate(445 246)">
+    <path d="M0 93h174" stroke="#fb923c" stroke-width="18" stroke-linecap="round" stroke-dasharray="20 22"/>
+    <path d="M140 54l52 39-52 39" fill="none" stroke="#fb923c" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="35" y="150" width="154" height="64" rx="18" fill="#ffedd5" stroke="#fdba74" stroke-width="5"/>
+    <text x="58" y="191" fill="#9a3412" font-family="ui-monospace, monospace" font-size="20" font-weight="800">IMAGING 82%</text>
+  </g>
+  <g transform="translate(662 206)">
+    <path d="M32 85h126l34 38h201v264H32z" fill="#ff6b2c" stroke="#9a3412" stroke-width="9" stroke-linejoin="round"/>
+    <rect x="71" y="154" width="281" height="179" rx="25" fill="#fff7ed"/>
+    <path d="M135 224h154M135 267h110" stroke="#7c2d12" stroke-width="15" stroke-linecap="round"/>
+    <g transform="translate(242 266)">
+      <path d="M0 18v-15c0-34 24-58 55-58s55 24 55 58v15" fill="none" stroke="#0f766e" stroke-width="15"/>
+      <rect x="-12" y="14" width="134" height="92" rx="20" fill="#14b8a6"/>
+      <circle cx="55" cy="53" r="15" fill="#fff7ed"/>
+      <path d="M55 66v22" stroke="#0f4c45" stroke-width="10" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g transform="translate(112 535)">
+    <rect width="950" height="42" rx="21" fill="#ffedd5"/>
+    <rect width="704" height="42" rx="21" fill="#fb923c"/>
+    <circle cx="704" cy="21" r="16" fill="#fff7ed"/>
+  </g>
+  <text x="827" y="566" fill="#7c2d12" font-family="system-ui, sans-serif" font-size="21" font-weight="800">RECOVER • VERIFY • WIPE</text>
+</svg>

@@ -15,7 +15,7 @@ This page is the public engineering headquarters for Ideascape. GitHub Issues ar
 
 ## Product mode
 
-Ideascape is in **Exploration mode**. The eight published entries are concept previews, not active fundraisers or operating programs. Public aggregate interest helps test whether people want a place like this before funding is introduced. Signaling interest involves no payment or commitment.
+Ideascape is in **Exploration mode**. The twelve published entries are concept previews, not active fundraisers or operating programs. Public aggregate interest helps test whether people want a place like this before funding is introduced. Signaling interest involves no payment or commitment.
 
 ## Current focus
 
@@ -33,7 +33,7 @@ Ideascape is in **Exploration mode**. The eight published entries are concept pr
 - Public profiles with owner-only updates
 - Idea, category, media, lifecycle, and private interest-signal schema
 - Private draft creation and editing
-- Public idea discovery and detail routes with eight deterministic demo concepts
+- Public idea discovery and detail routes with twelve deterministic demo concepts, including four permission-first technology previews
 - Fully clickable, keyboard-focusable discovery cards
 - Local SVG concept illustrations with meaningful alternative text
 - Reversible member interest signaling with aggregate-only public counts

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Cloud Exit Toolkit</title>
+  <desc id="desc">Verified files move from a cloud export into a user-controlled archive with checksum receipts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1f1411"/><stop offset="1" stop-color="#7c2d12"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#fdba74" stroke-opacity=".1"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#160b08" flood-opacity=".5"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  <rect x="66" y="64" width="1068" height="547" rx="48" fill="#fff7ed" filter="url(#shadow)"/>
+  <g transform="translate(105 168)">
+    <path d="M92 226h245c58 0 100-38 100-91 0-48-35-84-82-90C336 12 301-8 260-8c-58 0-104 39-116 94-55 2-96 38-96 88 0 30 16 52 44 52z" fill="#ff6b2c" stroke="#9a3412" stroke-width="9"/>
+    <text x="124" y="146" fill="#fff7ed" font-family="system-ui, sans-serif" font-size="31" font-weight="900">MY EXPORT</text>
+    <g fill="#fff7ed">
+      <rect x="102" y="260" width="86" height="102" rx="13"/><rect x="215" y="260" width="86" height="102" rx="13"/><rect x="328" y="260" width="86" height="102" rx="13"/>
+    </g>
+    <path d="M122 294h46M122 320h37M235 294h46M235 320h37M348 294h46M348 320h37" stroke="#fb923c" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(520 215)">
+    <path d="M0 96h235" stroke="#fb923c" stroke-width="18" stroke-linecap="round" stroke-dasharray="22 18"/>
+    <path d="M199 54l55 42-55 42" fill="none" stroke="#fb923c" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="37" y="165" width="190" height="104" rx="22" fill="#2b1712"/>
+    <text x="62" y="202" fill="#34d399" font-family="ui-monospace, monospace" font-size="19">FILES 1,842 ✓</text>
+    <text x="62" y="238" fill="#fdba74" font-family="ui-monospace, monospace" font-size="19">HASHES OK ✓</text>
+  </g>
+  <g transform="translate(802 142)">
+    <rect width="252" height="346" rx="34" fill="#2b1712" stroke="#7c2d12" stroke-width="9"/>
+    <rect x="30" y="35" width="192" height="203" rx="20" fill="#fffaf4"/>
+    <path d="M65 82h122M65 123h95M65 164h122M65 205h72" stroke="#fb923c" stroke-width="13" stroke-linecap="round"/>
+    <rect x="43" y="269" width="166" height="44" rx="22" fill="#14b8a6"/>
+    <text x="71" y="298" fill="#073b36" font-family="ui-monospace, monospace" font-size="19" font-weight="900">USER-OWNED</text>
+  </g>
+  <rect x="105" y="531" width="949" height="43" rx="21" fill="#ffedd5"/>
+  <text x="139" y="560" fill="#9a3412" font-family="ui-monospace, monospace" font-size="21" font-weight="800">OFFICIAL EXPORT → CHECKSUM MANIFEST → PORTABLE ARCHIVE</text>
+</svg>

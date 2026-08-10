@@ -17,7 +17,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 ## Current product
 
 - Public, unauthenticated idea discovery at `/ideas` and detail pages at `/ideas/:slug`
-- Eight deterministic demo concepts, seeded through versioned Supabase migrations
+- Twelve deterministic demo concepts, seeded through versioned Supabase migrations
 - Fully clickable discovery cards with concise accessible link names and visible keyboard focus
 - Public aggregate interest counts without exposing individual member signals
 - Authenticated, reversible interest signaling with duplicate prevention and eligibility checks
@@ -42,8 +42,12 @@ Fresh databases contain these published concept previews:
 6. [Skill Swap Saturdays](https://ideascape-gamma.vercel.app/ideas/skill-swap-saturdays)
 7. [Civic Accessibility Lab](https://ideascape-gamma.vercel.app/ideas/civic-accessibility-lab)
 8. [Block-Ready Kits](https://ideascape-gamma.vercel.app/ideas/block-ready-kits)
+9. [Device Liberation Lab](https://ideascape-gamma.vercel.app/ideas/device-liberation-lab)
+10. [File Rescue Cooperative](https://ideascape-gamma.vercel.app/ideas/file-rescue-cooperative)
+11. [Cloud Exit Toolkit](https://ideascape-gamma.vercel.app/ideas/cloud-exit-toolkit)
+12. [Private AI Workbench](https://ideascape-gamma.vercel.app/ideas/private-ai-workbench)
 
-Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible.
+Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. The technology previews are deliberately permission-first: device work requires ownership or written authorization, file recovery requires consent and chain of custody, cloud exports use official access paths and checksums, and local-AI documents stay on the user's device.
 
 ## Stack
 

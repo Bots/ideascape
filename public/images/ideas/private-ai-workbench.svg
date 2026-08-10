@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Private AI Workbench</title>
+  <desc id="desc">A local AI workstation indexes private documents inside a shielded offline workspace.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff7ed"/><stop offset="1" stop-color="#fed7aa"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#7c2d12" flood-opacity=".24"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1022" cy="78" r="226" fill="#ff6b2c" opacity=".15"/>
+  <circle cx="120" cy="610" r="205" fill="#14b8a6" opacity=".09"/>
+  <rect x="62" y="60" width="1076" height="555" rx="48" fill="#fffaf4" stroke="#fdba74" stroke-width="5" filter="url(#shadow)"/>
+  <rect x="95" y="92" width="1010" height="58" rx="23" fill="#2b1712"/>
+  <circle cx="133" cy="121" r="9" fill="#fb923c"/><circle cx="162" cy="121" r="9" fill="#fdba74"/>
+  <text x="205" y="132" fill="#fdba74" font-family="ui-monospace, monospace" font-size="24" font-weight="800">LOCAL AI • NETWORK OFF • SOURCES ATTACHED</text>
+  <g transform="translate(108 206)">
+    <rect width="282" height="282" rx="34" fill="#ffedd5" stroke="#fb923c" stroke-width="7"/>
+    <rect x="34" y="40" width="214" height="58" rx="12" fill="#fffaf4"/>
+    <rect x="34" y="115" width="214" height="58" rx="12" fill="#fffaf4"/>
+    <rect x="34" y="190" width="214" height="58" rx="12" fill="#fffaf4"/>
+    <path d="M65 69h118M65 144h143M65 219h98" stroke="#9a3412" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="223" cy="69" r="12" fill="#14b8a6"/><circle cx="223" cy="144" r="12" fill="#14b8a6"/><circle cx="223" cy="219" r="12" fill="#14b8a6"/>
+  </g>
+  <g transform="translate(455 190)">
+    <rect width="372" height="304" rx="34" fill="#2b1712" stroke="#7c2d12" stroke-width="8"/>
+    <g stroke="#fb923c" stroke-width="8">
+      <path d="M87 84l77 56 86-68M164 140l-36 83M164 140l88 86"/>
+    </g>
+    <g fill="#fdba74" stroke="#fff7ed" stroke-width="6">
+      <circle cx="87" cy="84" r="24"/><circle cx="250" cy="72" r="24"/><circle cx="164" cy="140" r="30"/><circle cx="128" cy="223" r="24"/><circle cx="252" cy="226" r="24"/>
+    </g>
+    <rect x="67" y="260" width="238" height="18" rx="9" fill="#14b8a6"/>
+  </g>
+  <g transform="translate(864 198)">
+    <path d="M108 0c43 30 84 39 108 42v110c0 82-50 126-108 153C50 278 0 234 0 152V42C24 39 65 30 108 0z" fill="#ff6b2c" stroke="#9a3412" stroke-width="8"/>
+    <path d="M56 142l35 35 72-86" fill="none" stroke="#fff7ed" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <rect x="108" y="529" width="719" height="48" rx="24" fill="#ffedd5"/>
+  <text x="143" y="561" fill="#7c2d12" font-family="ui-monospace, monospace" font-size="22" font-weight="800">PRIVATE FILES STAY ON THIS DEVICE</text>
+  <rect x="864" y="529" width="218" height="48" rx="24" fill="#14b8a6"/>
+  <text x="905" y="561" fill="#073b36" font-family="ui-monospace, monospace" font-size="22" font-weight="900">OFFLINE ✓</text>
+</svg>

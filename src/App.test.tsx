@@ -92,7 +92,7 @@ describe("App", () => {
 		expect(screen.getByText("Concept previews")).toBeInTheDocument();
 		expect(
 			screen.getByText("Concept previews").nextElementSibling,
-		).toHaveTextContent("8");
+		).toHaveTextContent("12");
 	});
 
 	it("explains the current idea-validation flow", () => {
