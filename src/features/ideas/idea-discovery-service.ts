@@ -54,20 +54,29 @@ export type PublishedIdeaDetail = PublishedIdeaBase & {
 	media: IdeaMedia[];
 };
 
-const summaryColumns = `
+const legacySummaryColumns = `
 	id,
 	slug,
 	title,
 	summary,
-	threat_scenario,
-	control_boundary,
-	proof_required,
 	status,
 	published_at,
 	created_at,
 	category:categories(id, slug, name),
 	creator:profiles!ideas_creator_id_fkey(id, username, display_name, avatar_url),
 	media:idea_media(id, kind, url, alt_text, sort_order)
+`;
+
+const summaryColumns = `
+	${legacySummaryColumns},
+	threat_scenario,
+	control_boundary,
+	proof_required
+`;
+
+const legacyDetailColumns = `
+	${legacySummaryColumns},
+	description
 `;
 
 const detailColumns = `
@@ -81,13 +90,37 @@ function throwIfError(error: unknown): void {
 	}
 }
 
+function isMissingSecurityColumnError(error: unknown): boolean {
+	if (!error || typeof error !== "object") {
+		return false;
+	}
+
+	const { code, message } = error as { code?: unknown; message?: unknown };
+	return (
+		(code === "42703" || code === "PGRST204") &&
+		typeof message === "string" &&
+		/(?:threat_scenario|control_boundary|proof_required)/.test(message)
+	);
+}
+
 export async function listPublishedIdeas(): Promise<PublishedIdeaSummary[]> {
 	const client = getSupabaseClient();
-	const { data, error } = await client
+	const initialResult = await client
 		.from("ideas")
 		.select(summaryColumns)
 		.neq("status", "draft")
 		.order("published_at", { ascending: false, nullsFirst: false });
+	let data: unknown = initialResult.data;
+	let error: unknown = initialResult.error;
+	if (isMissingSecurityColumnError(error)) {
+		const fallbackResult = await client
+			.from("ideas")
+			.select(legacySummaryColumns)
+			.neq("status", "draft")
+			.order("published_at", { ascending: false, nullsFirst: false });
+		data = fallbackResult.data;
+		error = fallbackResult.error;
+	}
 
 	throwIfError(error);
 	const ideas = (data ?? []) as unknown as PublishedIdeaBase[];
@@ -108,6 +141,9 @@ export async function listPublishedIdeas(): Promise<PublishedIdeaSummary[]> {
 
 	return ideas.map((idea) => ({
 		...idea,
+		threat_scenario: idea.threat_scenario ?? null,
+		control_boundary: idea.control_boundary ?? null,
+		proof_required: idea.proof_required ?? null,
 		interestCount: countByIdeaId.get(idea.id) ?? 0,
 		media: [...(idea.media ?? [])].sort(
 			(left, right) => left.sort_order - right.sort_order,
@@ -118,12 +154,25 @@ export async function listPublishedIdeas(): Promise<PublishedIdeaSummary[]> {
 export async function getPublishedIdea(
 	slug: string,
 ): Promise<PublishedIdeaDetail | null> {
-	const { data, error } = await getSupabaseClient()
+	const client = getSupabaseClient();
+	const initialResult = await client
 		.from("ideas")
 		.select(detailColumns)
 		.eq("slug", slug)
 		.neq("status", "draft")
 		.maybeSingle();
+	let data: unknown = initialResult.data;
+	let error: unknown = initialResult.error;
+	if (isMissingSecurityColumnError(error)) {
+		const fallbackResult = await client
+			.from("ideas")
+			.select(legacyDetailColumns)
+			.eq("slug", slug)
+			.neq("status", "draft")
+			.maybeSingle();
+		data = fallbackResult.data;
+		error = fallbackResult.error;
+	}
 
 	throwIfError(error);
 	if (!data) {
@@ -133,6 +182,9 @@ export async function getPublishedIdea(
 	const idea = data as unknown as PublishedIdeaDetail;
 	return {
 		...idea,
+		threat_scenario: idea.threat_scenario ?? null,
+		control_boundary: idea.control_boundary ?? null,
+		proof_required: idea.proof_required ?? null,
 		media: [...(idea.media ?? [])].sort(
 			(left, right) => left.sort_order - right.sort_order,
 		),
