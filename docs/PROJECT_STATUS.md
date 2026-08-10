@@ -20,9 +20,9 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 ## Current focus
 
 1. Learn which concepts produce practical participation intent, not only passive curiosity.
-2. Use the Project Time Capsule pilot question and creator-only aggregate evidence to test whether suitable projects and rebuild testers exist.
-3. Use the private readiness dashboard to compare aggregate evidence with the published continue, revise, and archive thresholds.
-4. Complete the first capped pilot intake UI, then add operating guidance and measurable rebuild outcomes without introducing payments or custody.
+2. Use focused private-answer questions across six bounded concepts to test practical demand, permissions, and pilot capability through aggregate evidence.
+3. Use the Project Time Capsule readiness dashboard to compare aggregate evidence with the published continue, revise, and archive thresholds.
+4. Complete the first capped Project Time Capsule intake UI, then add operating guidance and measurable rebuild outcomes without introducing payments or custody.
 
 ## Delivered
 
@@ -40,7 +40,7 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 - Fully clickable, keyboard-focusable discovery cards
 - Local SVG concept illustrations with meaningful alternative text
 - Reversible member participation intent—use, build, pilot, expertise, or updates—with aggregate-only public counts
-- Focused Project Time Capsule pilot question with private, reversible answers and creator-only aggregate evidence
+- Focused pilot questions across six bounded concepts with private, reversible answers and creator-only aggregate evidence
 - Public Project Time Capsule pilot plan with a fixed evidence window, capacity, safety boundaries, and precommitted decision thresholds
 - Creator/operator-only aggregate readiness dashboard with practical-signal, participant, suitable-project, application, and remaining-capacity evidence
 - Deterministic pending, continue, revise, or archive previews without exposing respondent or applicant identities

@@ -111,9 +111,8 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 						{question.prompt}
 					</h2>
 					<p className="mt-4 max-w-xl leading-7 text-muted-foreground">
-						Choose the closest fit. This helps determine whether a small,
-						authorized preservation pilot has the right projects and people to
-						proceed.
+						Choose the closest fit. This helps test whether a small, authorized
+						pilot has the right demand, permissions, and people to proceed.
 					</p>
 					<p className="mt-5 flex items-start gap-2 text-sm leading-6 text-muted-foreground">
 						<LockKeyhole
@@ -198,9 +197,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 						</div>
 					) : (
 						<div>
-							<p className="text-sm font-semibold">
-								Possible pilot contributions
-							</p>
+							<p className="text-sm font-semibold">Possible answers</p>
 							<ul className="mt-3 grid gap-2">
 								{question.options.map((option) => (
 									<li

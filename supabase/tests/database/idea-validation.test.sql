@@ -1,6 +1,6 @@
 begin;
 
-select plan(37);
+select plan(40);
 
 select has_type('public', 'validation_question_status', 'validation question status enum exists');
 select enum_has_labels(
@@ -94,6 +94,78 @@ select is(
   'the pilot question has five deterministic action-oriented options'
 );
 
+select results_eq(
+  $$
+    select id, idea_id, prompt, status::text
+    from public.idea_validation_questions
+    where id in (
+      '00000000-0000-4000-8000-000000000402',
+      '00000000-0000-4000-8000-000000000403',
+      '00000000-0000-4000-8000-000000000404',
+      '00000000-0000-4000-8000-000000000405',
+      '00000000-0000-4000-8000-000000000406'
+    )
+    order by id
+  $$,
+  $$
+    values
+      (
+        '00000000-0000-4000-8000-000000000402'::uuid,
+        '00000000-0000-4000-8000-000000000203'::uuid,
+        'Which real signal could you provide for a 30-day essential-trip trial?'::text,
+        'active'::text
+      ),
+      (
+        '00000000-0000-4000-8000-000000000403'::uuid,
+        '00000000-0000-4000-8000-000000000206'::uuid,
+        'What could you commit to during a three-Saturday repair teach-back?'::text,
+        'active'::text
+      ),
+      (
+        '00000000-0000-4000-8000-000000000404'::uuid,
+        '00000000-0000-4000-8000-000000000204'::uuid,
+        'Which prerequisite could you provide for a three-window evening test?'::text,
+        'active'::text
+      ),
+      (
+        '00000000-0000-4000-8000-000000000405'::uuid,
+        '00000000-0000-4000-8000-000000000208'::uuid,
+        'Which role could you realistically take in a one-building outage drill?'::text,
+        'active'::text
+      ),
+      (
+        '00000000-0000-4000-8000-000000000406'::uuid,
+        '00000000-0000-4000-8000-000000000201'::uuid,
+        'During a smoke alert, what could you reliably support within two hours?'::text,
+        'active'::text
+      )
+  $$,
+  'five bounded concepts have deterministic active risk-first questions'
+);
+
+select is(
+  (
+    select count(*)
+    from (
+      select question_id
+      from public.idea_validation_options
+      where question_id in (
+        '00000000-0000-4000-8000-000000000402',
+        '00000000-0000-4000-8000-000000000403',
+        '00000000-0000-4000-8000-000000000404',
+        '00000000-0000-4000-8000-000000000405',
+        '00000000-0000-4000-8000-000000000406'
+      )
+      group by question_id
+      having count(*) = 5
+        and min(sort_order) = 0
+        and max(sort_order) = 4
+    ) as complete_questions
+  ),
+  5::bigint,
+  'each new focused question has five deterministic ordered options'
+);
+
 insert into auth.users (
   id, instance_id, aud, role, email, encrypted_password, email_confirmed_at,
   raw_app_meta_data, raw_user_meta_data, created_at, updated_at
@@ -122,6 +194,23 @@ select is(
   ),
   5::bigint,
   'anonymous visitors can read every active pilot-question option'
+);
+select is(
+  (
+    select count(*)
+    from (
+      values
+        ('00000000-0000-4000-8000-000000000203'::uuid),
+        ('00000000-0000-4000-8000-000000000206'::uuid),
+        ('00000000-0000-4000-8000-000000000204'::uuid),
+        ('00000000-0000-4000-8000-000000000208'::uuid),
+        ('00000000-0000-4000-8000-000000000201'::uuid)
+    ) as target_ideas(idea_id)
+    cross join lateral public.get_idea_validation_question(target_ideas.idea_id) as question
+    where question.viewer_option_id is null
+  ),
+  25::bigint,
+  'anonymous visitors can read every new option without receiving a private choice'
 );
 select is(
   (

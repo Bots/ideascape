@@ -23,7 +23,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 - Fully clickable discovery cards with concise accessible link names and visible keyboard focus
 - Public aggregate interest counts without exposing individual member signals
 - Authenticated, reversible participation intent—use, build, pilot, expertise, or updates—with duplicate prevention and eligibility checks
-- A focused Project Time Capsule pilot-readiness question with private, reversible member answers
+- Focused pilot-readiness questions for six bounded concepts, with private, reversible member answers
 - Creator-only aggregate response evidence that never includes member identities
 - A public Project Time Capsule pilot plan with precommitted continue, revise, and archive thresholds
 - A creator/operator-only readiness dashboard for practical signals, pilot responses, private application totals, capacity, and a threshold-based decision preview
@@ -62,7 +62,7 @@ Fresh databases contain these published concept previews:
 20. [Model Commons Lab](https://ideascape-gamma.vercel.app/ideas/model-commons-lab)
 21. [Glass Box Sensor Network](https://ideascape-gamma.vercel.app/ideas/glass-box-sensor-network)
 
-Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. The earliest five broad previews now define bounded first tests, required permissions, privacy limits, measurable continuation evidence, and explicit stop conditions instead of assuming that backing or an operating program already exists. Technology-forward previews are deliberately permission-first: device and home-lab work stays inside written scope, compute jobs follow transparent acceptable-use controls, mesh nodes use legal spectrum and opt-in relays, repair documentation has lawful provenance, accessibility prototypes require participant consent, software archives preserve license provenance, heat recovery fails back to the original cooling path, local-model comparisons use approved task packs, and public sensors make their collection and retention boundaries visible.
+Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. The earliest five broad previews now define bounded first tests, required permissions, privacy limits, measurable continuation evidence, and explicit stop conditions instead of assuming that backing or an operating program already exists. Those five concepts and Project Time Capsule also ask one focused, private-answer validation question so practical demand, permissions, and pilot capability can be evaluated as aggregate evidence rather than public member activity. Technology-forward previews are deliberately permission-first: device and home-lab work stays inside written scope, compute jobs follow transparent acceptable-use controls, mesh nodes use legal spectrum and opt-in relays, repair documentation has lawful provenance, accessibility prototypes require participant consent, software archives preserve license provenance, heat recovery fails back to the original cooling path, local-model comparisons use approved task packs, and public sensors make their collection and retention boundaries visible.
 
 ## Stack
 
