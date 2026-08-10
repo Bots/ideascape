@@ -34,6 +34,7 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 - Idea, category, media, lifecycle, and private interest-signal schema
 - Private draft creation and editing
 - Public idea discovery and detail routes with twenty-one deterministic demo concepts, including thirteen permission-first or technology-forward previews
+- Five early previews refined into bounded, permissioned tests with measurable continue, revise, and stop evidence
 - Shareable, URL-persistent discovery search and category filters with useful zero-result recovery
 - Same-category recommendations that connect detail pages to related concept previews and filtered discovery
 - Fully clickable, keyboard-focusable discovery cards
