@@ -26,7 +26,7 @@ export function IdeaValidationEvidencePanel({
 	if (evidenceQuery.isError) {
 		return (
 			<p
-				className="mt-8 rounded-2xl border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive"
+				className="mt-8 border border-destructive/20 border-l-4 border-l-destructive bg-destructive/5 p-4 text-sm text-destructive"
 				role="alert"
 			>
 				Private pilot evidence is unavailable right now. Please try again later.
@@ -47,7 +47,7 @@ export function IdeaValidationEvidencePanel({
 	return (
 		<section
 			aria-label="Private pilot evidence"
-			className="mt-8 rounded-3xl border border-primary/20 bg-card/90 p-6 shadow-sm sm:p-8"
+			className="field-panel mt-8 border-l-4 border-l-primary p-6 sm:p-8"
 		>
 			<div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 				<div>
@@ -63,13 +63,13 @@ export function IdeaValidationEvidencePanel({
 						never included.
 					</p>
 				</div>
-				<div className="rounded-2xl border bg-background px-4 py-3 text-sm font-semibold">
+				<div className="border border-border bg-background px-4 py-3 font-mono text-sm font-semibold">
 					{evidence.totalResponses} total responses
 				</div>
 			</div>
 
 			{evidence.totalResponses === 0 ? (
-				<p className="mt-6 rounded-2xl border border-dashed p-5 text-sm text-muted-foreground">
+				<p className="mt-6 border border-dashed p-5 text-sm text-muted-foreground">
 					No pilot responses yet. Keep the question open until there is enough
 					evidence for a continue, revise, or pause decision.
 				</p>

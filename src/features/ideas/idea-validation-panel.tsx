@@ -79,7 +79,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 	if (questionQuery.isError) {
 		return (
 			<p
-				className="mt-12 rounded-2xl border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive"
+				className="mt-12 border border-destructive/20 border-l-4 border-l-destructive bg-destructive/5 p-4 text-sm text-destructive"
 				role="alert"
 			>
 				The pilot question is unavailable right now. Please try again later.
@@ -95,9 +95,8 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 	return (
 		<section
 			aria-labelledby="pilot-question-heading"
-			className="relative mt-12 overflow-hidden rounded-3xl border border-primary/25 bg-[linear-gradient(135deg,var(--card),color-mix(in_oklch,var(--primary)_8%,var(--card)))] p-7 shadow-[0_24px_70px_-42px_oklch(0.44_0.14_43_/_0.65)] sm:p-10"
+			className="field-panel relative mt-12 overflow-hidden border-t-4 border-t-primary p-7 sm:p-10"
 		>
-			<div className="pointer-events-none absolute -right-24 -top-28 size-64 rounded-full bg-primary/12 blur-3xl" />
 			<div className="relative grid gap-7 lg:grid-cols-[minmax(0,0.82fr)_minmax(25rem,1.18fr)] lg:items-start">
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
@@ -105,7 +104,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 						Pilot readiness question
 					</p>
 					<h2
-						className="mt-3 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl"
+						className="mt-3 text-3xl font-light tracking-[-0.025em] sm:text-4xl"
 						id="pilot-question-heading"
 					>
 						{question.prompt}
@@ -125,7 +124,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 					</p>
 				</div>
 
-				<div className="rounded-2xl border bg-background/70 p-4 shadow-sm backdrop-blur-sm sm:p-5">
+				<div className="border border-border bg-background/70 p-4 sm:p-5">
 					{user ? (
 						<div>
 							<fieldset>
@@ -140,9 +139,9 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 											<button
 												aria-pressed={isSelected}
 												className={cn(
-													"flex min-h-12 w-full items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/60 disabled:pointer-events-none disabled:opacity-60",
+													"flex min-h-12 w-full items-center gap-3 rounded-sm border px-4 py-3 text-left text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 disabled:pointer-events-none disabled:opacity-60",
 													isSelected
-														? "border-primary bg-primary text-primary-foreground shadow-[0_12px_26px_-18px_oklch(0.58_0.21_39)]"
+														? "border-primary bg-primary text-primary-foreground"
 														: "border-border bg-card text-foreground hover:border-primary/35 hover:bg-primary/5",
 												)}
 												disabled={responseMutation.isPending}
@@ -201,7 +200,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 							<ul className="mt-3 grid gap-2">
 								{question.options.map((option) => (
 									<li
-										className="flex min-h-11 items-center gap-3 rounded-xl border bg-card px-4 py-2.5 text-sm font-medium"
+										className="flex min-h-11 items-center gap-3 rounded-sm border bg-card px-4 py-2.5 text-sm font-medium"
 										key={option.id}
 									>
 										<span

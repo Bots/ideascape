@@ -53,7 +53,7 @@ export function PilotReadinessPanel({ pilotId }: { pilotId: string }) {
 	if (readinessQuery.isError) {
 		return (
 			<p
-				className="mt-12 rounded-2xl border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive"
+				className="mt-12 border border-destructive/20 border-l-4 border-l-destructive bg-destructive/5 p-4 text-sm text-destructive"
 				role="alert"
 			>
 				Private readiness evidence is unavailable right now. Please try again
@@ -72,7 +72,7 @@ export function PilotReadinessPanel({ pilotId }: { pilotId: string }) {
 	return (
 		<section
 			aria-label="Private readiness dashboard"
-			className="mt-12 rounded-[2rem] border border-primary/25 bg-card/90 p-7 shadow-[0_28px_75px_-48px_oklch(0.32_0.08_43_/_0.6)] sm:p-10"
+			className="field-panel mt-12 border-t-4 border-t-primary p-7 sm:p-10"
 		>
 			<div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 				<div>
@@ -109,7 +109,7 @@ export function PilotReadinessPanel({ pilotId }: { pilotId: string }) {
 				/>
 			</dl>
 
-			<div className="mt-4 grid gap-3 rounded-2xl border bg-background/70 p-5 text-sm sm:grid-cols-3">
+			<div className="mt-4 grid gap-3 border bg-background/70 p-5 text-sm sm:grid-cols-3">
 				<p>
 					<span className="font-semibold">
 						{readiness.activeApplicationCount} active
@@ -136,7 +136,7 @@ export function PilotReadinessPanel({ pilotId }: { pilotId: string }) {
 				</p>
 			</div>
 
-			<div className="mt-6 rounded-2xl border border-primary/20 bg-primary/7 p-5">
+			<div className="mt-6 border border-primary/20 border-l-4 border-l-primary bg-primary/7 p-5">
 				<p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
 					Threshold preview
 				</p>
@@ -157,7 +157,7 @@ export function PilotReadinessPanel({ pilotId }: { pilotId: string }) {
 
 function Metric({ value, label }: { value: number; label: string }) {
 	return (
-		<div className="rounded-2xl border bg-background/70 p-5">
+		<div className="border border-border bg-background/70 p-5">
 			<dd className="text-3xl font-semibold tracking-tight text-primary">
 				{value}
 			</dd>

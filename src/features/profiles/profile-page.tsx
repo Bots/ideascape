@@ -1,20 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { Globe2, Lightbulb, LoaderCircle } from "lucide-react";
+import { Globe2, LoaderCircle, MapPinned } from "lucide-react";
 import type { ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getPublicProfile } from "@/features/profiles/profile-service";
 
 function ProfileShell({ children }: { children: ReactNode }) {
 	return (
-		<main className="relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground">
-			<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,oklch(0.84_0.12_155_/_0.3),transparent_34%),radial-gradient(circle_at_80%_10%,oklch(0.82_0.11_250_/_0.22),transparent_30%)]" />
-			<section className="relative w-full max-w-2xl rounded-2xl border bg-background/90 p-8 shadow-sm backdrop-blur sm:p-10">
+		<main className="field-grid contour-field relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground">
+			<section className="field-panel relative w-full max-w-2xl border-t-4 border-t-primary p-8 sm:p-10">
 				<Link
 					to="/"
 					className="mb-10 flex items-center gap-3 font-semibold tracking-tight"
 				>
-					<span className="grid size-9 place-items-center rounded-xl bg-foreground text-background">
-						<Lightbulb className="size-5" aria-hidden="true" />
+					<span className="grid size-10 place-items-center bg-primary text-primary-foreground">
+						<MapPinned className="size-5" aria-hidden="true" />
 					</span>
 					<span className="text-lg">Ideascape</span>
 				</Link>
