@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Waste Heat Works</title>
+  <desc id="desc">An instrumented compute rack routes measured exhaust heat through a recovery skid into a greenhouse bench.</desc>
+  <rect width="870" height="580" rx="32" fill="#2b130d"/>
+  <rect x="40" y="38" width="790" height="504" rx="30" fill="#fff7ed"/>
+  <rect x="40" y="38" width="790" height="72" rx="30" fill="#3b1d15"/>
+  <text x="435" y="83" font-family="monospace" font-size="25" font-weight="700" text-anchor="middle" fill="#ff8a4c">SERVER HEAT → USEFUL HEAT</text>
+  <g transform="translate(92 154)">
+    <rect width="220" height="304" rx="24" fill="#3b1d15" stroke="#9a3412" stroke-width="8"/>
+    <text x="110" y="40" font-family="monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#fff7ed">COMPUTE RACK</text>
+    <g fill="#ff6b2c" stroke="#fed7aa" stroke-width="4">
+      <rect x="27" y="63" width="166" height="48" rx="9"/>
+      <rect x="27" y="127" width="166" height="48" rx="9"/>
+      <rect x="27" y="191" width="166" height="48" rx="9"/>
+    </g>
+    <g fill="#2dd4bf"><circle cx="52" cy="87" r="7"/><circle cx="52" cy="151" r="7"/><circle cx="52" cy="215" r="7"/></g>
+    <rect x="31" y="258" width="158" height="24" rx="12" fill="#fff7ed"/>
+    <text x="110" y="275" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#7c2d12">INLET TEMP OK</text>
+  </g>
+  <g fill="none" stroke="#ff6b2c" stroke-width="12" stroke-linecap="round">
+    <path d="M329 236h94"/><path d="m401 212 27 24-27 24"/>
+    <path d="M520 356h70"/><path d="m568 332 27 24-27 24"/>
+  </g>
+  <g transform="translate(401 174)">
+    <rect width="142" height="230" rx="34" fill="#fed7aa" stroke="#fb923c" stroke-width="8"/>
+    <circle cx="71" cy="73" r="39" fill="#fff7ed" stroke="#0f766e" stroke-width="8"/>
+    <path d="M48 73h46M71 50v46" stroke="#0f766e" stroke-width="7" stroke-linecap="round"/>
+    <path d="M35 137h72M35 164h72" stroke="#7c2d12" stroke-width="10" stroke-linecap="round"/>
+    <text x="71" y="204" font-family="monospace" font-size="13" font-weight="700" text-anchor="middle" fill="#7c2d12">METERED SKID</text>
+  </g>
+  <g transform="translate(590 166)">
+    <path d="M0 112 96 23l96 89v196H0z" fill="#d1fae5" stroke="#0f766e" stroke-width="8"/>
+    <path d="M96 23v285M0 112h192" stroke="#0f766e" stroke-width="5" opacity=".55"/>
+    <rect x="20" y="214" width="152" height="56" rx="14" fill="#7c2d12"/>
+    <g fill="#2dd4bf" stroke="#0f766e" stroke-width="4">
+      <path d="M50 214v-56c-26-4-28-32-28-32 28-2 35 18 35 18 6-29 34-32 34-32-1 34-28 46-41 46z"/>
+      <path d="M126 214v-62c-23-7-23-31-23-31 26 0 31 20 31 20 8-25 31-27 31-27-2 31-27 40-39 43z"/>
+    </g>
+    <text x="96" y="293" font-family="monospace" font-size="13" font-weight="700" text-anchor="middle" fill="#0f766e">GROW BENCH</text>
+  </g>
+  <rect x="176" y="487" width="518" height="38" rx="19" fill="#0f766e"/>
+  <text x="435" y="512" font-family="monospace" font-size="15" font-weight="700" text-anchor="middle" fill="#fff7ed">TARGET: ≥50% ELIGIBLE HEAT RECOVERED</text>
+</svg>

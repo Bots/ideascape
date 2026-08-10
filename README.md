@@ -17,7 +17,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 ## Current product
 
 - Public, unauthenticated idea discovery at `/ideas` and detail pages at `/ideas/:slug`
-- Eighteen deterministic demo concepts, seeded through versioned Supabase migrations
+- Twenty-one deterministic demo concepts, seeded through versioned Supabase migrations
 - URL-persistent text search and category filtering, including a direct permission-first technology view at `/ideas?category=technology`
 - Same-category recommendations on detail pages with accessible full-card links back into the catalog
 - Fully clickable discovery cards with concise accessible link names and visible keyboard focus
@@ -58,8 +58,11 @@ Fresh databases contain these published concept previews:
 16. [Open Repair Atlas](https://ideascape-gamma.vercel.app/ideas/open-repair-atlas)
 17. [Accessible Interface Retrofit Lab](https://ideascape-gamma.vercel.app/ideas/accessible-interface-retrofit-lab)
 18. [Project Time Capsule](https://ideascape-gamma.vercel.app/ideas/project-time-capsule)
+19. [Waste Heat Works](https://ideascape-gamma.vercel.app/ideas/waste-heat-works)
+20. [Model Commons Lab](https://ideascape-gamma.vercel.app/ideas/model-commons-lab)
+21. [Glass Box Sensor Network](https://ideascape-gamma.vercel.app/ideas/glass-box-sensor-network)
 
-Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. Technology-forward previews are deliberately permission-first: device and home-lab work stays inside written scope, compute jobs follow transparent acceptable-use controls, mesh nodes use legal spectrum and opt-in relays, repair documentation has lawful provenance, accessibility prototypes require participant consent, and software archives preserve license provenance.
+Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. Technology-forward previews are deliberately permission-first: device and home-lab work stays inside written scope, compute jobs follow transparent acceptable-use controls, mesh nodes use legal spectrum and opt-in relays, repair documentation has lawful provenance, accessibility prototypes require participant consent, software archives preserve license provenance, heat recovery fails back to the original cooling path, local-model comparisons use approved task packs, and public sensors make their collection and retention boundaries visible.
 
 ## Stack
 

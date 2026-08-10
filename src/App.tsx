@@ -250,7 +250,7 @@ function HomePage() {
 									Concept previews
 								</dt>
 								<dd className="mt-1 text-3xl font-semibold tracking-tight">
-									18
+									21
 								</dd>
 							</div>
 							<div>

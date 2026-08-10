@@ -30,6 +30,7 @@ Ideascape is in **Exploration mode**. Published entries are concept previews, no
 - [x] Expose aggregate-only public interest counts
 - [x] Preserve safe internal return paths through authentication
 - [x] Seed deterministic concept previews and local illustrations
+- [x] Expand the catalog with bold, measurable infrastructure concepts and explicit operating boundaries
 - [x] Add persistent light and dark themes
 
 ## Phase 3 — Validation evidence and campaign design

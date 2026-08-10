@@ -1,6 +1,6 @@
 begin;
 
-select plan(15);
+select plan(17);
 
 select ok(
   exists (
@@ -97,6 +97,38 @@ select is(
   ),
   6::bigint,
   'six additional technology-forward concept previews are seeded with explicit safety boundaries'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    join public.categories on categories.id = ideas.category_id
+    where ideas.slug in (
+      'waste-heat-works',
+      'model-commons-lab',
+      'glass-box-sensor-network'
+    )
+      and categories.slug = case ideas.slug
+        when 'waste-heat-works' then 'environment'
+        when 'model-commons-lab' then 'technology'
+        when 'glass-box-sensor-network' then 'community'
+      end
+      and ideas.status = 'published'
+      and ideas.published_at is not null
+      and char_length(ideas.summary) between 80 and 280
+      and char_length(ideas.description) >= 450
+      and position(E'\\n' in ideas.description) = 0
+      and position(E'\n' in ideas.description) > 0
+      and case ideas.slug
+        when 'waste-heat-works' then ideas.description ilike '%licensed engineering review%'
+        when 'model-commons-lab' then ideas.description ilike '%participant-approved material%'
+        when 'glass-box-sensor-network' then ideas.description ilike '%no cameras or stored audio%'
+        else false
+      end
+  ),
+  3::bigint,
+  'three bold infrastructure concepts are seeded with measurable pilots and explicit boundaries'
 );
 
 select is(
@@ -291,6 +323,25 @@ select is(
   'every new concept preview has an accessible hosted cover image'
 );
 
+select is(
+  (
+    select count(*)
+    from public.idea_media
+    join public.ideas on ideas.id = idea_media.idea_id
+    where ideas.slug in (
+      'waste-heat-works',
+      'model-commons-lab',
+      'glass-box-sensor-network'
+    )
+      and idea_media.kind = 'image'
+      and idea_media.sort_order = 0
+      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
+      and char_length(idea_media.alt_text) >= 20
+  ),
+  3::bigint,
+  'every bold infrastructure concept has an accessible hosted cover image'
+);
+
 set local role anon;
 select is(
   (
@@ -314,10 +365,13 @@ select is(
       'offline-mesh-field-kit',
       'open-repair-atlas',
       'accessible-interface-retrofit-lab',
-      'project-time-capsule'
+      'project-time-capsule',
+      'waste-heat-works',
+      'model-commons-lab',
+      'glass-box-sensor-network'
     )
   ),
-  18::bigint,
+  21::bigint,
   'anonymous visitors can discover every demo idea'
 );
 reset role;
