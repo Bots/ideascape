@@ -1,10 +1,13 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useAuth } from "@/features/auth/auth-provider";
 import { IdeaDetailPage } from "@/features/ideas/idea-detail-page";
-import { getPublishedIdea } from "@/features/ideas/idea-discovery-service";
+import {
+	getPublishedIdea,
+	listPublishedIdeas,
+} from "@/features/ideas/idea-discovery-service";
 import { getIdeaInterestSummary } from "@/features/ideas/idea-interest-service";
 
 vi.mock("@/features/auth/auth-provider", () => ({
@@ -13,6 +16,7 @@ vi.mock("@/features/auth/auth-provider", () => ({
 
 vi.mock("@/features/ideas/idea-discovery-service", () => ({
 	getPublishedIdea: vi.fn(),
+	listPublishedIdeas: vi.fn(),
 }));
 
 vi.mock("@/features/ideas/idea-interest-service", () => ({
@@ -22,6 +26,7 @@ vi.mock("@/features/ideas/idea-interest-service", () => ({
 }));
 
 const mockedGetPublishedIdea = vi.mocked(getPublishedIdea);
+const mockedListPublishedIdeas = vi.mocked(listPublishedIdeas);
 const idea = {
 	id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
 	slug: "solar-desalination-aaaaaaaa",
@@ -73,6 +78,7 @@ beforeEach(() => {
 		interestCount: 3,
 		viewerHasInterest: false,
 	});
+	mockedListPublishedIdeas.mockResolvedValue([]);
 });
 
 afterEach(cleanup);
@@ -117,6 +123,50 @@ describe("IdeaDetailPage", () => {
 			}),
 		).toBeInTheDocument();
 		expect(screen.getByText(/3 people are interested/i)).toBeInTheDocument();
+	});
+
+	it("recommends other concepts in the same category without repeating the current idea", async () => {
+		const relatedIdea = {
+			...idea,
+			id: "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+			slug: "private-ai-workbench",
+			title: "Private AI Workbench",
+			summary: "Search sensitive files with a local model.",
+			interestCount: 2,
+		};
+		const unrelatedIdea = {
+			...relatedIdea,
+			id: "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+			slug: "clean-air-library",
+			title: "The Clean Air Library",
+			category: { id: 2, slug: "health", name: "Health" },
+		};
+		mockedGetPublishedIdea.mockResolvedValue(idea);
+		mockedListPublishedIdeas.mockResolvedValue([
+			{ ...idea, interestCount: 3 },
+			relatedIdea,
+			unrelatedIdea,
+		]);
+
+		renderDetail();
+
+		const related = await screen.findByRole("region", {
+			name: /more technology concepts/i,
+		});
+		expect(
+			within(related).getByRole("link", { name: /view private ai workbench/i }),
+		).toHaveAttribute("href", "/ideas/private-ai-workbench");
+		expect(
+			within(related).getByRole("link", {
+				name: /browse all technology concepts/i,
+			}),
+		).toHaveAttribute("href", "/ideas?category=technology");
+		expect(
+			within(related).queryByRole("link", { name: /view solar desalination/i }),
+		).not.toBeInTheDocument();
+		expect(
+			within(related).queryByText("The Clean Air Library"),
+		).not.toBeInTheDocument();
 	});
 
 	it("renders safe video media as an external link", async () => {

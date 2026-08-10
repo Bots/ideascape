@@ -35,6 +35,7 @@ Ideascape is in **Exploration mode**. The twelve published entries are concept p
 - Private draft creation and editing
 - Public idea discovery and detail routes with twelve deterministic demo concepts, including four permission-first technology previews
 - Shareable, URL-persistent discovery search and category filters with useful zero-result recovery
+- Same-category recommendations that connect detail pages to related concept previews and filtered discovery
 - Fully clickable, keyboard-focusable discovery cards
 - Local SVG concept illustrations with meaningful alternative text
 - Reversible member interest signaling with aggregate-only public counts

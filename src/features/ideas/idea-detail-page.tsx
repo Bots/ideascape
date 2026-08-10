@@ -12,6 +12,7 @@ import { buttonVariants } from "@/components/ui/button";
 import {
 	getPublishedIdea,
 	type IdeaMedia,
+	listPublishedIdeas,
 	type PublishedIdeaStatus,
 } from "@/features/ideas/idea-discovery-service";
 import { IdeaInterestPanel } from "@/features/ideas/idea-interest-panel";
@@ -77,6 +78,19 @@ export function IdeaDetailPage() {
 		queryFn: () => (slug ? getPublishedIdea(slug) : Promise.resolve(null)),
 		retry: false,
 	});
+	const relatedIdeasQuery = useQuery({
+		queryKey: ["published-ideas"],
+		queryFn: listPublishedIdeas,
+		enabled: Boolean(ideaQuery.data?.category),
+		retry: false,
+	});
+	const relatedIdeas = (relatedIdeasQuery.data ?? [])
+		.filter(
+			(idea) =>
+				idea.id !== ideaQuery.data?.id &&
+				idea.category?.slug === ideaQuery.data?.category?.slug,
+		)
+		.slice(0, 3);
 
 	return (
 		<main className="relative min-h-screen overflow-hidden text-foreground">
@@ -210,6 +224,79 @@ export function IdeaDetailPage() {
 								{ideaQuery.data.description}
 							</p>
 						</section>
+
+						{ideaQuery.data.category && relatedIdeas.length > 0 ? (
+							<section
+								aria-labelledby="related-concepts-heading"
+								className="mt-12"
+							>
+								<div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+									<div>
+										<p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+											Keep exploring
+										</p>
+										<h2
+											className="mt-2 text-3xl font-semibold tracking-tight"
+											id="related-concepts-heading"
+										>
+											More {ideaQuery.data.category.name} concepts
+										</h2>
+									</div>
+									<Link
+										className={buttonVariants({
+											className: "h-10 px-4",
+											variant: "outline",
+										})}
+										to={`/ideas?category=${encodeURIComponent(ideaQuery.data.category.slug)}`}
+									>
+										Browse all {ideaQuery.data.category.name} concepts
+										<ArrowUpRight aria-hidden="true" />
+									</Link>
+								</div>
+
+								<div className="mt-6 grid gap-5 md:grid-cols-3">
+									{relatedIdeas.map((relatedIdea) => {
+										const cover = relatedIdea.media.find(
+											(media) =>
+												media.kind === "image" && isSafeMediaUrl(media.url),
+										);
+
+										return (
+											<article
+												className="group relative overflow-hidden rounded-2xl border bg-card/90 shadow-[0_20px_48px_-35px_oklch(0.32_0.08_43_/_0.55)] transition duration-300 hover:-translate-y-1 hover:border-primary/35"
+												key={relatedIdea.id}
+											>
+												<Link
+													aria-label={`View ${relatedIdea.title}`}
+													className="absolute inset-0 z-[1] rounded-2xl outline-none focus-visible:ring-3 focus-visible:ring-ring/70"
+													to={`/ideas/${relatedIdea.slug}`}
+												/>
+												{cover ? (
+													<img
+														alt=""
+														className="aspect-video w-full object-cover transition duration-500 group-hover:scale-[1.035]"
+														loading="lazy"
+														src={cover.url}
+													/>
+												) : null}
+												<div className="p-5">
+													<h3 className="text-xl font-semibold tracking-tight">
+														{relatedIdea.title}
+													</h3>
+													<p className="mt-2 line-clamp-3 text-sm leading-6 text-muted-foreground">
+														{relatedIdea.summary}
+													</p>
+													<ArrowUpRight
+														aria-hidden="true"
+														className="mt-4 size-5 text-primary transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+													/>
+												</div>
+											</article>
+										);
+									})}
+								</div>
+							</section>
+						) : null}
 						<IdeaInterestPanel ideaId={ideaQuery.data.id} />
 					</article>
 				) : null}
