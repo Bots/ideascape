@@ -206,6 +206,9 @@ describe("IdeaDetailPage", () => {
 				name: /what could you bring to a first project time capsule pilot/i,
 			}),
 		).toBeInTheDocument();
+		expect(
+			screen.getByRole("link", { name: /view pilot plan/i }),
+		).toHaveAttribute("href", "/pilots/project-time-capsule");
 	});
 
 	it("renders safe video media as an external link", async () => {

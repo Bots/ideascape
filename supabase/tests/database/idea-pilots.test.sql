@@ -1,6 +1,6 @@
 begin;
 
-select plan(47);
+select plan(56);
 
 select has_type('public', 'idea_pilot_status', 'pilot lifecycle enum exists');
 select enum_has_labels(
@@ -559,6 +559,113 @@ select is(
   (select count(*) from public.idea_pilot_applications where applicant_id = auth.uid()),
   1::bigint,
   'withdrawn applications remain privately visible to their owner'
+);
+reset role;
+
+select has_function(
+  'public',
+  'get_pilot_readiness_summary',
+  array['uuid'],
+  'private pilot readiness summary function exists'
+);
+select is(
+  has_function_privilege('anon', 'public.get_pilot_readiness_summary(uuid)', 'EXECUTE'),
+  false,
+  'anonymous visitors cannot execute the private readiness summary'
+);
+select is(
+  has_function_privilege('authenticated', 'public.get_pilot_readiness_summary(uuid)', 'EXECUTE'),
+  true,
+  'authenticated reviewers can request an authorization-scoped readiness summary'
+);
+
+insert into public.idea_interests (idea_id, profile_id, participation_intent)
+values
+  ('00000000-0000-4000-8000-000000000218', '55555555-5555-4555-8555-555555555555', 'pilot'),
+  ('00000000-0000-4000-8000-000000000218', '66666666-6666-4666-8666-666666666666', 'expertise');
+
+insert into public.idea_validation_responses (question_id, option_id, profile_id)
+values
+  ('00000000-0000-4000-8000-000000000401', '00000000-0000-4000-8000-000000000411', '55555555-5555-4555-8555-555555555555'),
+  ('00000000-0000-4000-8000-000000000401', '00000000-0000-4000-8000-000000000415', '66666666-6666-4666-8666-666666666666');
+
+set local role authenticated;
+set local "request.jwt.claim.sub" = '55555555-5555-4555-8555-555555555555';
+set local "request.jwt.claims" = '{"sub":"55555555-5555-4555-8555-555555555555","role":"authenticated","app_metadata":{}}';
+select is(
+  (select count(*) from public.get_pilot_readiness_summary('00000000-0000-4000-8000-000000000501')),
+  0::bigint,
+  'ordinary members cannot read creator readiness evidence'
+);
+
+set local "request.jwt.claim.sub" = '00000000-0000-4000-8000-000000000101';
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000101","role":"authenticated","app_metadata":{}}';
+select is(
+  (
+    select row(
+      meaningful_signal_count,
+      participant_response_count,
+      project_response_count,
+      active_application_count,
+      accepted_application_count,
+      remaining_capacity,
+      recommendation
+    )::text
+    from public.get_pilot_readiness_summary('00000000-0000-4000-8000-000000000501')
+  ),
+  row(2, 2, 1, 1, 1, 2, 'pending')::text,
+  'the creator receives aggregate progress without applicant identities'
+);
+
+set local "request.jwt.claim.sub" = '77777777-7777-4777-8777-777777777777';
+set local "request.jwt.claims" = '{"sub":"77777777-7777-4777-8777-777777777777","role":"authenticated","app_metadata":{"ideascape_role":"operator"}}';
+select is(
+  (select count(*) from public.get_pilot_readiness_summary('00000000-0000-4000-8000-000000000501')),
+  1::bigint,
+  'trusted operators can review the aggregate dashboard'
+);
+reset role;
+
+update public.idea_pilots
+set created_at = timezone('utc', now()) - interval '31 days'
+where id = '00000000-0000-4000-8000-000000000501';
+
+set local role authenticated;
+set local "request.jwt.claim.sub" = '00000000-0000-4000-8000-000000000101';
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000101","role":"authenticated","app_metadata":{}}';
+select is(
+  (select recommendation from public.get_pilot_readiness_summary('00000000-0000-4000-8000-000000000501')),
+  'archive',
+  'expired evidence at the signal ceiling recommends archive'
+);
+reset role;
+
+insert into public.idea_interests (idea_id, profile_id, participation_intent)
+values ('00000000-0000-4000-8000-000000000218', '77777777-7777-4777-8777-777777777777', 'build');
+insert into public.idea_validation_responses (question_id, option_id, profile_id)
+values ('00000000-0000-4000-8000-000000000401', '00000000-0000-4000-8000-000000000412', '77777777-7777-4777-8777-777777777777');
+
+set local role authenticated;
+set local "request.jwt.claim.sub" = '00000000-0000-4000-8000-000000000101';
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000101","role":"authenticated","app_metadata":{}}';
+select is(
+  (select recommendation from public.get_pilot_readiness_summary('00000000-0000-4000-8000-000000000501')),
+  'revise',
+  'expired evidence above the archive ceiling but below continue thresholds recommends revision'
+);
+reset role;
+
+update public.idea_pilots
+set continue_participant_threshold = 3, continue_project_threshold = 2
+where id = '00000000-0000-4000-8000-000000000501';
+
+set local role authenticated;
+set local "request.jwt.claim.sub" = '00000000-0000-4000-8000-000000000101';
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000101","role":"authenticated","app_metadata":{}}';
+select is(
+  (select recommendation from public.get_pilot_readiness_summary('00000000-0000-4000-8000-000000000501')),
+  'continue',
+  'meeting the participant and project thresholds recommends a capped pilot'
 );
 reset role;
 
