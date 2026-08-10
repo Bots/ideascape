@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Offline Mesh Field Kit</title>
+  <desc id="desc">Three opt-in neighborhood radio nodes exchange authenticated messages over legal spectrum during an outage.</desc>
+  <rect width="870" height="580" rx="32" fill="#2b130d"/>
+  <rect x="40" y="38" width="790" height="504" rx="30" fill="#fff7ed"/>
+  <path d="M40 410 196 278l118 82 140-145 126 112 92-91 158 150v156H40z" fill="#fed7aa"/>
+  <rect x="40" y="38" width="790" height="72" rx="30" fill="#ff6b2c"/>
+  <text x="435" y="83" font-family="monospace" font-size="25" font-weight="700" text-anchor="middle" fill="#2b130d">OFFLINE • OPT-IN • LOCAL</text>
+  <g fill="none" stroke="#0f766e" stroke-width="8" stroke-linecap="round" stroke-dasharray="16 14"><path d="M194 294Q435 126 674 292"/><path d="M194 294Q435 420 674 292"/></g>
+  <g>
+    <g transform="translate(119 248)"><rect width="150" height="190" rx="24" fill="#3b1d15" stroke="#9a3412" stroke-width="7"/><path d="M75 47V15M56 43q19-20 38 0M42 31q33-36 66 0" fill="none" stroke="#ff8a4c" stroke-width="7" stroke-linecap="round"/><rect x="27" y="69" width="96" height="71" rx="12" fill="#fff7ed"/><text x="75" y="96" font-family="monospace" font-size="13" font-weight="700" text-anchor="middle" fill="#7c2d12">NODE 01</text><text x="75" y="120" font-family="monospace" font-size="12" text-anchor="middle" fill="#0f766e">SIGNED ✓</text><circle cx="75" cy="160" r="13" fill="#2dd4bf"/></g>
+    <g transform="translate(360 184)"><rect width="150" height="190" rx="24" fill="#3b1d15" stroke="#9a3412" stroke-width="7"/><path d="M75 47V15M56 43q19-20 38 0M42 31q33-36 66 0" fill="none" stroke="#ff8a4c" stroke-width="7" stroke-linecap="round"/><rect x="27" y="69" width="96" height="71" rx="12" fill="#fff7ed"/><text x="75" y="96" font-family="monospace" font-size="13" font-weight="700" text-anchor="middle" fill="#7c2d12">RELAY</text><text x="75" y="120" font-family="monospace" font-size="12" text-anchor="middle" fill="#0f766e">OPT-IN ✓</text><circle cx="75" cy="160" r="13" fill="#2dd4bf"/></g>
+    <g transform="translate(599 248)"><rect width="150" height="190" rx="24" fill="#3b1d15" stroke="#9a3412" stroke-width="7"/><path d="M75 47V15M56 43q19-20 38 0M42 31q33-36 66 0" fill="none" stroke="#ff8a4c" stroke-width="7" stroke-linecap="round"/><rect x="27" y="69" width="96" height="71" rx="12" fill="#fff7ed"/><text x="75" y="96" font-family="monospace" font-size="13" font-weight="700" text-anchor="middle" fill="#7c2d12">NODE 03</text><text x="75" y="120" font-family="monospace" font-size="12" text-anchor="middle" fill="#0f766e">RECEIVED ✓</text><circle cx="75" cy="160" r="13" fill="#2dd4bf"/></g>
+  </g>
+  <rect x="261" y="466" width="348" height="40" rx="20" fill="#3b1d15"/>
+  <text x="435" y="492" font-family="monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#fff7ed">LEGAL CHANNEL • SHORT RETENTION</text>
+</svg>

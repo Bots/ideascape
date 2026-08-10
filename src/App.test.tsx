@@ -92,7 +92,7 @@ describe("App", () => {
 		expect(screen.getByText("Concept previews")).toBeInTheDocument();
 		expect(
 			screen.getByText("Concept previews").nextElementSibling,
-		).toHaveTextContent("12");
+		).toHaveTextContent("18");
 	});
 
 	it("spotlights a permission-first technology pathway", () => {

@@ -17,7 +17,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 ## Current product
 
 - Public, unauthenticated idea discovery at `/ideas` and detail pages at `/ideas/:slug`
-- Twelve deterministic demo concepts, seeded through versioned Supabase migrations
+- Eighteen deterministic demo concepts, seeded through versioned Supabase migrations
 - URL-persistent text search and category filtering, including a direct permission-first technology view at `/ideas?category=technology`
 - Same-category recommendations on detail pages with accessible full-card links back into the catalog
 - Fully clickable discovery cards with concise accessible link names and visible keyboard focus
@@ -48,8 +48,14 @@ Fresh databases contain these published concept previews:
 10. [File Rescue Cooperative](https://ideascape-gamma.vercel.app/ideas/file-rescue-cooperative)
 11. [Cloud Exit Toolkit](https://ideascape-gamma.vercel.app/ideas/cloud-exit-toolkit)
 12. [Private AI Workbench](https://ideascape-gamma.vercel.app/ideas/private-ai-workbench)
+13. [Home Lab Defense Clinic](https://ideascape-gamma.vercel.app/ideas/home-lab-defense-clinic)
+14. [Community Compute Cooperative](https://ideascape-gamma.vercel.app/ideas/community-compute-cooperative)
+15. [Offline Mesh Field Kit](https://ideascape-gamma.vercel.app/ideas/offline-mesh-field-kit)
+16. [Open Repair Atlas](https://ideascape-gamma.vercel.app/ideas/open-repair-atlas)
+17. [Accessible Interface Retrofit Lab](https://ideascape-gamma.vercel.app/ideas/accessible-interface-retrofit-lab)
+18. [Project Time Capsule](https://ideascape-gamma.vercel.app/ideas/project-time-capsule)
 
-Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. The technology previews are deliberately permission-first: device work requires ownership or written authorization, file recovery requires consent and chain of custody, cloud exports use official access paths and checksums, and local-AI documents stay on the user's device.
+Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. Technology-forward previews are deliberately permission-first: device and home-lab work stays inside written scope, compute jobs follow transparent acceptable-use controls, mesh nodes use legal spectrum and opt-in relays, repair documentation has lawful provenance, accessibility prototypes require participant consent, and software archives preserve license provenance.
 
 ## Stack
 

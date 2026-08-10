@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Accessible Interface Retrofit Lab</title>
+  <desc id="desc">A co-designed adaptive console combines a large switch, local voice, haptic alerts, and a physical override.</desc>
+  <rect width="870" height="580" rx="32" fill="#2b130d"/>
+  <circle cx="705" cy="100" r="170" fill="#0f766e" opacity=".35"/>
+  <rect x="40" y="38" width="790" height="504" rx="30" fill="#fff7ed"/>
+  <rect x="40" y="38" width="790" height="70" rx="30" fill="#ff6b2c"/>
+  <text x="435" y="82" font-family="monospace" font-size="24" font-weight="700" text-anchor="middle" fill="#2b130d">CO-DESIGNED • LOCAL • REVERSIBLE</text>
+  <rect x="82" y="143" width="706" height="330" rx="32" fill="#ffedd5" stroke="#fdba74" stroke-width="7"/>
+  <g transform="translate(120 188)">
+    <circle cx="112" cy="112" r="102" fill="#3b1d15" stroke="#9a3412" stroke-width="8"/>
+    <circle cx="112" cy="112" r="70" fill="#ff6b2c"/>
+    <circle cx="112" cy="112" r="43" fill="#fff7ed"/>
+    <text x="112" y="246" font-family="sans-serif" font-size="19" font-weight="800" text-anchor="middle" fill="#3b1d15">LARGE SWITCH</text>
+  </g>
+  <g transform="translate(355 170)">
+    <rect width="180" height="238" rx="26" fill="#3b1d15" stroke="#9a3412" stroke-width="7"/>
+    <text x="90" y="39" font-family="sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#fff7ed">LOCAL VOICE</text>
+    <g fill="none" stroke="#2dd4bf" stroke-width="8" stroke-linecap="round"><path d="M35 110q55-70 110 0"/><path d="M52 119q38-44 76 0"/><path d="M70 128q20-20 40 0"/></g>
+    <circle cx="90" cy="150" r="17" fill="#ff6b2c"/>
+    <rect x="37" y="188" width="106" height="20" rx="10" fill="#fdba74"/>
+  </g>
+  <g transform="translate(572 170)">
+    <rect width="172" height="110" rx="24" fill="#fff7ed" stroke="#fb923c" stroke-width="7"/>
+    <path d="M39 55h20m16-20v40m19-54v68m20-54v40m16-20h20" stroke="#0f766e" stroke-width="8" stroke-linecap="round"/>
+    <text x="86" y="99" font-family="monospace" font-size="13" text-anchor="middle" fill="#7c2d12">HAPTIC ALERT</text>
+    <rect y="138" width="172" height="100" rx="24" fill="#3b1d15" stroke="#9a3412" stroke-width="7"/>
+    <path d="M48 187h76" stroke="#fff7ed" stroke-width="14" stroke-linecap="round"/><circle cx="86" cy="187" r="25" fill="#ff6b2c"/>
+    <text x="86" y="225" font-family="monospace" font-size="13" text-anchor="middle" fill="#fff7ed">OVERRIDE</text>
+  </g>
+  <rect x="180" y="493" width="510" height="28" rx="14" fill="#3b1d15"/>
+  <text x="435" y="513" font-family="monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#fff7ed">PARTICIPANT CONSENT • PHYSICAL FALLBACK</text>
+</svg>

@@ -1,6 +1,6 @@
 begin;
 
-select plan(13);
+select plan(15);
 
 select ok(
   exists (
@@ -56,6 +56,47 @@ select is(
   ),
   4::bigint,
   'four polished permission-first technology concept previews are seeded'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    join public.categories on categories.id = ideas.category_id
+    where ideas.slug in (
+      'home-lab-defense-clinic',
+      'community-compute-cooperative',
+      'offline-mesh-field-kit',
+      'open-repair-atlas',
+      'accessible-interface-retrofit-lab',
+      'project-time-capsule'
+    )
+      and categories.slug = case ideas.slug
+        when 'home-lab-defense-clinic' then 'technology'
+        when 'community-compute-cooperative' then 'technology'
+        when 'offline-mesh-field-kit' then 'community'
+        when 'open-repair-atlas' then 'environment'
+        when 'accessible-interface-retrofit-lab' then 'health'
+        when 'project-time-capsule' then 'education'
+      end
+      and ideas.status = 'published'
+      and ideas.published_at is not null
+      and char_length(ideas.summary) between 80 and 280
+      and char_length(ideas.description) >= 400
+      and position(E'\\n' in ideas.description) = 0
+      and position(E'\n' in ideas.description) > 0
+      and case ideas.slug
+        when 'home-lab-defense-clinic' then ideas.description ilike '%participant-owned systems%'
+        when 'community-compute-cooperative' then ideas.description ilike '%acceptable-use policy%'
+        when 'offline-mesh-field-kit' then ideas.description ilike '%legal spectrum%'
+        when 'open-repair-atlas' then ideas.description ilike '%would not publish leaked%'
+        when 'accessible-interface-retrofit-lab' then ideas.description ilike '%participant consent%'
+        when 'project-time-capsule' then ideas.description ilike '%license provenance%'
+        else false
+      end
+  ),
+  6::bigint,
+  'six additional technology-forward concept previews are seeded with explicit safety boundaries'
 );
 
 select is(
@@ -228,6 +269,28 @@ select is(
   'every technology concept preview has an accessible hosted cover image'
 );
 
+select is(
+  (
+    select count(*)
+    from public.idea_media
+    join public.ideas on ideas.id = idea_media.idea_id
+    where ideas.slug in (
+      'home-lab-defense-clinic',
+      'community-compute-cooperative',
+      'offline-mesh-field-kit',
+      'open-repair-atlas',
+      'accessible-interface-retrofit-lab',
+      'project-time-capsule'
+    )
+      and idea_media.kind = 'image'
+      and idea_media.sort_order = 0
+      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
+      and char_length(idea_media.alt_text) >= 20
+  ),
+  6::bigint,
+  'every new concept preview has an accessible hosted cover image'
+);
+
 set local role anon;
 select is(
   (
@@ -245,10 +308,16 @@ select is(
       'device-liberation-lab',
       'file-rescue-cooperative',
       'cloud-exit-toolkit',
-      'private-ai-workbench'
+      'private-ai-workbench',
+      'home-lab-defense-clinic',
+      'community-compute-cooperative',
+      'offline-mesh-field-kit',
+      'open-repair-atlas',
+      'accessible-interface-retrofit-lab',
+      'project-time-capsule'
     )
   ),
-  12::bigint,
+  18::bigint,
   'anonymous visitors can discover every demo idea'
 );
 reset role;

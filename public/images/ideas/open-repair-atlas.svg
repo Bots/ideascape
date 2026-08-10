@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Open Repair Atlas</title>
+  <desc id="desc">A lawful repair map connects device diagnostics, compatible parts, safety notes, and verified outcomes.</desc>
+  <rect width="870" height="580" rx="32" fill="#32150e"/>
+  <rect x="40" y="38" width="790" height="504" rx="30" fill="#fff7ed"/>
+  <rect x="40" y="38" width="790" height="70" rx="30" fill="#0f766e"/>
+  <text x="435" y="82" font-family="monospace" font-size="24" font-weight="700" text-anchor="middle" fill="#fff7ed">DIAGNOSE • DOCUMENT • REPAIR</text>
+  <rect x="92" y="143" width="440" height="324" rx="25" fill="#3b1d15" stroke="#9a3412" stroke-width="8"/>
+  <rect x="120" y="173" width="384" height="238" rx="16" fill="#ffedd5"/>
+  <g fill="none" stroke="#fb923c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M166 222h82v56h88v-42h112"/><path d="M174 344h96v-48h106v64h76"/>
+  </g>
+  <g fill="#ff6b2c" stroke="#7c2d12" stroke-width="5"><circle cx="166" cy="222" r="16"/><circle cx="336" cy="278" r="16"/><circle cx="448" cy="236" r="16"/><circle cx="174" cy="344" r="16"/><circle cx="376" cy="360" r="16"/><circle cx="452" cy="360" r="16"/></g>
+  <rect x="142" y="430" width="340" height="18" rx="9" fill="#fdba74"/>
+  <g transform="translate(574 144)">
+    <rect width="206" height="148" rx="23" fill="#ffedd5" stroke="#fb923c" stroke-width="7"/>
+    <text x="103" y="35" font-family="sans-serif" font-size="18" font-weight="800" text-anchor="middle" fill="#3b1d15">PART MATCH</text>
+    <path d="M52 82h48l17-19 39 40" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="103" y="129" font-family="monospace" font-size="14" text-anchor="middle" fill="#7c2d12">COMPATIBLE ✓</text>
+  </g>
+  <g transform="translate(574 318)">
+    <rect width="206" height="148" rx="23" fill="#3b1d15" stroke="#9a3412" stroke-width="7"/>
+    <path d="M103 15 140 30v29c0 25-15 41-37 54-22-13-37-29-37-54V30z" fill="#ff6b2c"/>
+    <path d="m82 62 15 15 28-33" fill="none" stroke="#fff7ed" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="103" y="132" font-family="monospace" font-size="13" text-anchor="middle" fill="#fff7ed">SAFETY NOTED</text>
+  </g>
+  <text x="312" y="505" font-family="monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#7c2d12">EVIDENCE-BACKED DEVICE MAP</text>
+</svg>

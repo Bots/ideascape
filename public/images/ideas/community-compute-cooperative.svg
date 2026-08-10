@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Community Compute Cooperative</title>
+  <desc id="desc">Members share an isolated GPU cluster with transparent job, energy, and storage controls.</desc>
+  <rect width="870" height="580" rx="32" fill="#35160e"/>
+  <rect x="38" y="38" width="794" height="504" rx="30" fill="#fff7ed"/>
+  <rect x="38" y="38" width="794" height="70" rx="30" fill="#2b130d"/>
+  <text x="435" y="82" font-family="monospace" font-size="24" font-weight="700" text-anchor="middle" fill="#ff8a4c">MEMBER-OWNED COMPUTE POOL</text>
+  <g transform="translate(80 150)">
+    <rect width="176" height="296" rx="25" fill="#3b1d15" stroke="#9a3412" stroke-width="7"/>
+    <text x="88" y="40" font-family="sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#fff7ed">NODE A</text>
+    <g fill="#ff6b2c"><rect x="25" y="63" width="126" height="48" rx="10"/><rect x="25" y="127" width="126" height="48" rx="10"/><rect x="25" y="191" width="126" height="48" rx="10"/></g>
+    <g fill="#2dd4bf"><circle cx="134" cy="87" r="7"/><circle cx="134" cy="151" r="7"/><circle cx="134" cy="215" r="7"/></g>
+    <rect x="28" y="257" width="120" height="16" rx="8" fill="#fdba74"/>
+  </g>
+  <g transform="translate(287 150)">
+    <rect width="176" height="296" rx="25" fill="#3b1d15" stroke="#9a3412" stroke-width="7"/>
+    <text x="88" y="40" font-family="sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#fff7ed">NODE B</text>
+    <g fill="#ff8a4c"><rect x="25" y="63" width="126" height="48" rx="10"/><rect x="25" y="127" width="126" height="48" rx="10"/><rect x="25" y="191" width="126" height="48" rx="10"/></g>
+    <g fill="#2dd4bf"><circle cx="134" cy="87" r="7"/><circle cx="134" cy="151" r="7"/><circle cx="134" cy="215" r="7"/></g>
+    <rect x="28" y="257" width="86" height="16" rx="8" fill="#fdba74"/>
+  </g>
+  <g transform="translate(510 150)">
+    <rect width="282" height="296" rx="25" fill="#ffedd5" stroke="#fb923c" stroke-width="7"/>
+    <text x="141" y="40" font-family="sans-serif" font-size="20" font-weight="800" text-anchor="middle" fill="#3b1d15">CO-OP DASHBOARD</text>
+    <rect x="28" y="62" width="226" height="68" rx="15" fill="#fff7ed"/><text x="48" y="90" font-family="monospace" font-size="14" fill="#7c2d12">JOB 042</text><text x="48" y="114" font-family="monospace" font-size="15" font-weight="700" fill="#0f766e">ISOLATED ✓</text>
+    <rect x="28" y="145" width="226" height="50" rx="15" fill="#fff7ed"/><text x="48" y="176" font-family="monospace" font-size="15" fill="#7c2d12">ENERGY 1.8 kWh</text>
+    <rect x="28" y="210" width="226" height="50" rx="15" fill="#fff7ed"/><text x="48" y="241" font-family="monospace" font-size="15" fill="#7c2d12">STORAGE EXPIRES 02:00</text>
+    <path d="M224 84v26m-13-13h26" stroke="#ff6b2c" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g fill="#ff6b2c"><circle cx="142" cy="492" r="22"/><circle cx="201" cy="492" r="22"/><circle cx="260" cy="492" r="22"/></g>
+  <path d="M292 492h420" stroke="#7c2d12" stroke-width="18" stroke-linecap="round"/><path d="M292 492h286" stroke="#2dd4bf" stroke-width="18" stroke-linecap="round"/>
+  <text x="700" y="498" font-family="monospace" font-size="14" font-weight="700" text-anchor="end" fill="#fff7ed">QUEUE 68% • CAPACITY SHARED</text>
+</svg>

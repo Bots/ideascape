@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Home Lab Defense Clinic</title>
+  <desc id="desc">An owner-scoped home network map surrounds a shielded router with backup and update checks.</desc>
+  <rect width="870" height="580" rx="32" fill="#2b130d"/>
+  <circle cx="722" cy="110" r="150" fill="#7c2d12" opacity=".45"/>
+  <rect x="42" y="38" width="786" height="504" rx="30" fill="#fff7ed"/>
+  <rect x="42" y="38" width="786" height="72" rx="30" fill="#ff6b2c"/>
+  <circle cx="78" cy="74" r="10" fill="#7c2d12"/><circle cx="108" cy="74" r="10" fill="#fff7ed"/><circle cx="138" cy="74" r="10" fill="#c2410c"/>
+  <text x="184" y="84" font-family="monospace" font-size="25" font-weight="700" fill="#2b130d">OWNER-SCOPED NETWORK MAP</text>
+  <g stroke="#fb923c" stroke-width="8" stroke-linecap="round" stroke-dasharray="13 14" fill="none">
+    <path d="M435 292 240 196"/><path d="M435 292 625 190"/><path d="M435 292 235 405"/><path d="M435 292 640 402"/>
+  </g>
+  <g fill="#3b1d15" stroke="#7c2d12" stroke-width="6">
+    <rect x="146" y="138" width="176" height="116" rx="22"/><rect x="552" y="132" width="176" height="116" rx="22"/>
+    <rect x="145" y="350" width="178" height="114" rx="22"/><rect x="548" y="347" width="186" height="116" rx="22"/>
+  </g>
+  <g fill="#fff7ed" font-family="sans-serif" text-anchor="middle">
+    <text x="234" y="184" font-size="20" font-weight="700">HOME SERVER</text><text x="234" y="218" font-size="15" fill="#fdba74">PATCHED ✓</text>
+    <text x="640" y="178" font-size="20" font-weight="700">STORAGE</text><text x="640" y="213" font-size="15" fill="#5eead4">BACKUP ✓</text>
+    <text x="234" y="396" font-size="20" font-weight="700">IOT ZONE</text><text x="234" y="430" font-size="15" fill="#fdba74">SEGMENTED ✓</text>
+    <text x="641" y="393" font-size="20" font-weight="700">RECOVERY</text><text x="641" y="428" font-size="15" fill="#5eead4">TESTED ✓</text>
+  </g>
+  <path d="M435 181 513 211v72c0 62-33 106-78 131-45-25-78-69-78-131v-72z" fill="#ff6b2c" stroke="#7c2d12" stroke-width="8"/>
+  <rect x="397" y="258" width="76" height="66" rx="14" fill="#2b130d"/>
+  <path d="M414 258v-17c0-29 42-29 42 0v17" fill="none" stroke="#fff7ed" stroke-width="11"/>
+  <path d="m416 292 14 14 27-32" fill="none" stroke="#5eead4" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="187" y="494" width="496" height="28" rx="14" fill="#fed7aa"/>
+  <text x="435" y="514" font-family="monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#7c2d12">INVENTORY • UPDATE • SEGMENT • RECOVER</text>
+</svg>

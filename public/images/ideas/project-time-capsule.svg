@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Project Time Capsule</title>
+  <desc id="desc">Source files, locked dependencies, build notes, and checksums enter an isolated reproducible archive capsule.</desc>
+  <rect width="870" height="580" rx="32" fill="#2b130d"/>
+  <rect x="40" y="38" width="790" height="504" rx="30" fill="#fff7ed"/>
+  <rect x="40" y="38" width="790" height="70" rx="30" fill="#3b1d15"/>
+  <text x="435" y="82" font-family="monospace" font-size="24" font-weight="700" text-anchor="middle" fill="#ff8a4c">REPRODUCIBLE PROJECT ARCHIVE</text>
+  <g transform="translate(92 150)">
+    <path d="M0 42c0-18 14-32 32-32h116l30 30h96c18 0 32 14 32 32v218c0 18-14 32-32 32H32c-18 0-32-14-32-32z" fill="#ffedd5" stroke="#fb923c" stroke-width="8"/>
+    <rect x="34" y="82" width="238" height="48" rx="12" fill="#fff7ed"/><text x="55" y="112" font-family="monospace" font-size="15" fill="#7c2d12">src/</text>
+    <rect x="34" y="145" width="238" height="48" rx="12" fill="#fff7ed"/><text x="55" y="175" font-family="monospace" font-size="15" fill="#7c2d12">dependencies.lock</text>
+    <rect x="34" y="208" width="238" height="48" rx="12" fill="#fff7ed"/><text x="55" y="238" font-family="monospace" font-size="15" fill="#7c2d12">BUILD.md</text>
+    <rect x="34" y="271" width="182" height="22" rx="11" fill="#2dd4bf"/>
+  </g>
+  <path d="M421 300h82" stroke="#ff6b2c" stroke-width="12" stroke-linecap="round"/><path d="m481 276 27 24-27 24" fill="none" stroke="#ff6b2c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(535 141)">
+    <rect width="244" height="350" rx="92" fill="#3b1d15" stroke="#9a3412" stroke-width="9"/>
+    <rect x="31" y="41" width="182" height="214" rx="30" fill="#fff7ed"/>
+    <g fill="#ff6b2c" stroke="#7c2d12" stroke-width="5"><path d="m73 90 49-27 49 27v55l-49 27-49-27z"/><path d="m73 173 49-27 49 27v55l-49 27-49-27z" opacity=".78"/></g>
+    <path d="M122 64v162M73 90l98 55M171 90l-98 55" stroke="#fff7ed" stroke-width="6" opacity=".8"/>
+    <rect x="43" y="279" width="158" height="42" rx="21" fill="#0f766e"/>
+    <text x="122" y="306" font-family="monospace" font-size="14" font-weight="700" text-anchor="middle" fill="#fff7ed">HASHES OK ✓</text>
+  </g>
+  <rect x="153" y="501" width="564" height="24" rx="12" fill="#fed7aa"/>
+  <text x="435" y="519" font-family="monospace" font-size="15" font-weight="700" text-anchor="middle" fill="#7c2d12">LICENSE • BUILD • FIXTURES • CHECKSUMS</text>
+</svg>
