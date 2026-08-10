@@ -34,10 +34,11 @@ Ideascape is in **Exploration mode**. The twelve published entries are concept p
 - Idea, category, media, lifecycle, and private interest-signal schema
 - Private draft creation and editing
 - Public idea discovery and detail routes with twelve deterministic demo concepts, including four permission-first technology previews
+- Shareable, URL-persistent discovery search and category filters with useful zero-result recovery
 - Fully clickable, keyboard-focusable discovery cards
 - Local SVG concept illustrations with meaningful alternative text
 - Reversible member interest signaling with aggregate-only public counts
-- Landing-page explanation of the live validation flow, planned smart-contract funding, and concrete security threat scenarios
+- Technology-forward landing showcase plus explanations of the live validation flow, planned smart-contract funding, and concrete security threat scenarios
 - Row-level-security and pgTAP coverage for ownership, privacy, lifecycle, and seed behavior
 - Vercel SPA deep-link routing and production deployment
 

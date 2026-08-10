@@ -191,6 +191,11 @@ function HomePage() {
 							demand, gather public interest, and learn what deserves deeper
 							work before funding begins.
 						</p>
+						<p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
+							The newest previews explore owner-authorized device work,
+							consent-based file recovery, verified cloud exports, and private
+							local AI.
+						</p>
 						<div className="mt-10 flex flex-wrap items-center gap-3">
 							<Link
 								className={buttonVariants({
@@ -213,6 +218,18 @@ function HomePage() {
 								to="/ideas"
 							>
 								Explore ideas
+							</Link>
+							<Link
+								className={buttonVariants({
+									size: "lg",
+									variant: "ghost",
+									className:
+										"h-12 px-5 text-base text-primary hover:-translate-y-0.5",
+								})}
+								to="/ideas?category=technology"
+							>
+								Explore technology concepts
+								<ArrowRight aria-hidden="true" />
 							</Link>
 						</div>
 
@@ -248,30 +265,27 @@ function HomePage() {
 						<div className="absolute -left-8 top-16 hidden h-[74%] w-[88%] rotate-[-5deg] rounded-[2rem] bg-primary/20 lg:block" />
 						<figure className="relative overflow-hidden rounded-[2rem] border-2 border-card bg-card p-2 shadow-[0_34px_80px_-28px_oklch(0.28_0.08_42_/_0.55)]">
 							<img
-								alt="Neighbors preparing a community clean-air library"
+								alt="Owner-controlled devices, an open padlock, and a terminal share an isolated repair bench"
 								className="aspect-[4/3] w-full rounded-[1.55rem] object-cover"
-								src="/images/ideas/clean-air-library.svg"
+								src="/images/ideas/device-liberation-lab.svg"
 							/>
 							<figcaption className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-xl border border-white/40 bg-card/85 px-4 py-3 text-sm shadow-lg backdrop-blur-md">
-								<span className="font-semibold">The Clean Air Library</span>
+								<span className="font-semibold">Device Liberation Lab</span>
 								<span className="rounded-full bg-primary px-2.5 py-1 text-xs font-semibold text-primary-foreground">
-									Health
+									Technology
 								</span>
 							</figcaption>
 						</figure>
 						<div className="absolute -bottom-5 -left-5 hidden w-[44%] rotate-[-4deg] rounded-2xl border-4 border-card bg-card p-1.5 shadow-2xl sm:block">
 							<img
-								alt="An after-dark storefront gallery"
+								alt="A read-only recovery station transfers files from damaged storage into an encrypted folder"
 								className="aspect-video w-full rounded-xl object-cover"
-								src="/images/ideas/after-dark-storefronts.svg"
+								src="/images/ideas/file-rescue-cooperative.svg"
 							/>
 						</div>
 						<div className="absolute -right-4 top-8 flex items-center gap-2 rounded-xl border bg-card px-4 py-3 text-sm font-semibold shadow-xl">
-							<HeartHandshake
-								className="size-5 text-primary"
-								aria-hidden="true"
-							/>
-							Community signal
+							<ShieldCheck className="size-5 text-primary" aria-hidden="true" />
+							Permission-first technology
 						</div>
 					</div>
 				</section>

@@ -61,7 +61,7 @@ describe("App", () => {
 			screen.getByText(/concept-validation platform/i),
 		).toBeInTheDocument();
 		expect(screen.getByText("Test the possibility")).toBeInTheDocument();
-		expect(screen.getByText("Community signal")).toBeInTheDocument();
+		expect(screen.getByText("Permission-first technology")).toBeInTheDocument();
 		expect(screen.getByText(/evidence about demand/i)).toBeInTheDocument();
 		expect(
 			screen.getByText(/if funding is activated later/i),
@@ -93,6 +93,30 @@ describe("App", () => {
 		expect(
 			screen.getByText("Concept previews").nextElementSibling,
 		).toHaveTextContent("12");
+	});
+
+	it("spotlights a permission-first technology pathway", () => {
+		renderApp();
+
+		expect(
+			screen.getByRole("link", { name: /explore technology concepts/i }),
+		).toHaveAttribute("href", "/ideas?category=technology");
+		expect(
+			screen.getByRole("img", {
+				name: /owner-controlled devices.*isolated repair bench/i,
+			}),
+		).toBeInTheDocument();
+		expect(
+			screen.getByRole("img", {
+				name: /read-only recovery station.*encrypted folder/i,
+			}),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText(/permission-first technology/i),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText(/owner-authorized device work/i),
+		).toBeInTheDocument();
 	});
 
 	it("explains the current idea-validation flow", () => {
