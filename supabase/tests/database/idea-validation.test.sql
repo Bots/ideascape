@@ -1,6 +1,6 @@
 begin;
 
-select plan(36);
+select plan(37);
 
 select has_type('public', 'validation_question_status', 'validation question status enum exists');
 select enum_has_labels(
@@ -57,6 +57,15 @@ select has_function(
   'get_idea_validation_summary',
   array['uuid'],
   'creator-only validation summary function exists'
+);
+select is(
+  has_function_privilege(
+    'anon',
+    'public.get_idea_validation_summary(uuid)',
+    'execute'
+  ),
+  false,
+  'anonymous visitors cannot execute the creator validation summary'
 );
 select is(
   (
