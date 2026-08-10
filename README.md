@@ -2,7 +2,7 @@
 
 Ideascape is an exploration-mode concept-validation platform for learning which community ideas resonate before anyone opens funding or launches a program.
 
-**These are concept previews, not active fundraisers.** Visitors can browse ideas and see aggregate interest without signing in. Members can signal that they would like to see a concept happen, with no payment or commitment.
+**These are concept previews, not active fundraisers.** Visitors can browse ideas and see aggregate interest without signing in. Members can privately indicate whether they would use, build, test, advise, or follow a concept, with no payment or commitment.
 
 - [Production](https://ideascape-gamma.vercel.app)
 - [Browse concept previews](https://ideascape-gamma.vercel.app/ideas)
@@ -22,7 +22,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 - Same-category recommendations on detail pages with accessible full-card links back into the catalog
 - Fully clickable discovery cards with concise accessible link names and visible keyboard focus
 - Public aggregate interest counts without exposing individual member signals
-- Authenticated, reversible interest signaling with duplicate prevention and eligibility checks
+- Authenticated, reversible participation intent—use, build, pilot, expertise, or updates—with duplicate prevention and eligibility checks
 - Email/password, Google, and GitHub OAuth-capable authentication with safe post-auth return paths
 - Public member profiles plus owner-only profile updates
 - Private creator drafts and editing at `/ideas/new` and `/ideas/:id/edit`
@@ -133,8 +133,9 @@ The database models categories, creator-owned ideas, ordered media, explicit lif
 - Published ideas and their media are publicly readable.
 - Draft ideas and draft media are visible only to their creator.
 - Interest writes require authentication and are unique per member and idea.
-- Members can read, add, or remove only their own interest row.
-- Anonymous and authenticated visitors receive counts through aggregate-only database functions; individual signals are never exposed publicly.
+- Members can privately set or change how they would participate, then remove their signal at any time.
+- Members can read, add, update, or remove only their own interest row.
+- Anonymous and authenticated visitors receive counts through aggregate-only database functions; individual signals and participation intent are never exposed publicly.
 - Draft and cancelled ideas reject interest writes.
 - Public profiles are readable by everyone, while authenticated members can update only their own profile fields.
 

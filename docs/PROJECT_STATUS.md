@@ -15,13 +15,13 @@ This page is the public engineering headquarters for Ideascape. GitHub Issues ar
 
 ## Product mode
 
-Ideascape is in **Exploration mode**. The eighteen published entries are concept previews, not active fundraisers or operating programs. Public aggregate interest helps test whether people want a place like this before funding is introduced. Signaling interest involves no payment or commitment.
+Ideascape is in **Exploration mode**. The eighteen published entries are concept previews, not active fundraisers or operating programs. Public aggregate interest helps test whether people want a place like this before funding is introduced. Members can privately distinguish whether they would use, build, test, advise, or follow a concept. Signaling interest involves no payment or commitment.
 
 ## Current focus
 
-1. Learn which concepts resonate through aggregate, privacy-preserving interest signals.
-2. Improve the authenticated creator workflow while keeping discovery and details public.
-3. Define explicit evidence thresholds before considering a campaign phase.
+1. Learn which concepts produce practical participation intent, not only passive curiosity.
+2. Add focused validation questions and a private evidence dashboard while keeping discovery and details public.
+3. Select one low-risk flagship pilot and define explicit continue, revise, pause, or archive thresholds.
 4. Research a security-first smart-contract funding model, including custody boundaries, milestone review, multisig governance, dispute/refund paths, audits, and legal gates.
 
 ## Delivered
@@ -38,7 +38,7 @@ Ideascape is in **Exploration mode**. The eighteen published entries are concept
 - Same-category recommendations that connect detail pages to related concept previews and filtered discovery
 - Fully clickable, keyboard-focusable discovery cards
 - Local SVG concept illustrations with meaningful alternative text
-- Reversible member interest signaling with aggregate-only public counts
+- Reversible member participation intent—use, build, pilot, expertise, or updates—with aggregate-only public counts
 - Technology-forward landing showcase plus explanations of the live validation flow, planned smart-contract funding, and concrete security threat scenarios
 - Row-level-security and pgTAP coverage for ownership, privacy, lifecycle, and seed behavior
 - Vercel SPA deep-link routing and production deployment
@@ -60,7 +60,7 @@ Ideascape is in **Exploration mode**. The eighteen published entries are concept
 - Every behavior change starts with a focused failing test.
 - Database changes require reviewed migrations, explicit RLS, pgTAP tests, and schema lint.
 - Privileged credentials never run in browser code.
-- Individual interest rows remain private; public pages receive aggregate counts only.
+- Individual interest rows and participation intent remain private; public pages receive aggregate counts only.
 - No product copy may imply payment, commitment, active fundraising, or an operating program while Ideascape remains in exploration mode.
 - Commit verified milestones incrementally.
 

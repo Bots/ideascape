@@ -1,12 +1,17 @@
 begin;
 
-select plan(21);
+select plan(26);
 
 select has_table('public', 'idea_interests', 'idea interests table exists');
+select has_type(
+  'public',
+  'idea_participation_intent',
+  'participation intent enum exists'
+);
 select columns_are(
   'public',
   'idea_interests',
-  array['idea_id', 'profile_id', 'created_at'],
+  array['idea_id', 'profile_id', 'participation_intent', 'created_at'],
   'idea interests expose the expected columns'
 );
 select col_is_fk(
@@ -106,10 +111,11 @@ reset role;
 
 set local role authenticated;
 set local "request.jwt.claim.sub" = '33333333-3333-4333-8333-333333333333';
-insert into public.idea_interests (idea_id, profile_id)
+insert into public.idea_interests (idea_id, profile_id, participation_intent)
 values (
   'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
-  '33333333-3333-4333-8333-333333333333'
+  '33333333-3333-4333-8333-333333333333',
+  'pilot'
 );
 select is(
   (select count(*) from public.idea_interests),
@@ -131,6 +137,27 @@ select is(
   ),
   true,
   'the summary identifies the current member interest privately'
+);
+select is(
+  (
+    select viewer_participation_intent
+    from public.get_idea_interest_summary('cccccccc-cccc-4ccc-8ccc-cccccccccccc')
+  ),
+  'pilot'::text,
+  'the summary returns the current member participation intent privately'
+);
+update public.idea_interests
+set participation_intent = 'build'
+where idea_id = 'cccccccc-cccc-4ccc-8ccc-cccccccccccc'
+  and profile_id = '33333333-3333-4333-8333-333333333333';
+select is(
+  (
+    select participation_intent::text
+    from public.idea_interests
+    where idea_id = 'cccccccc-cccc-4ccc-8ccc-cccccccccccc'
+  ),
+  'build'::text,
+  'members can update their own participation intent'
 );
 
 set local "request.jwt.claim.sub" = '44444444-4444-4444-8444-444444444444';
@@ -155,6 +182,18 @@ select is(
   false,
   'other visitors do not inherit someone else interest state'
 );
+select is(
+  (
+    select viewer_participation_intent
+    from public.get_idea_interest_summary('cccccccc-cccc-4ccc-8ccc-cccccccccccc')
+  ),
+  null::text,
+  'other visitors never receive someone else participation intent'
+);
+update public.idea_interests
+set participation_intent = 'updates'
+where idea_id = 'cccccccc-cccc-4ccc-8ccc-cccccccccccc'
+  and profile_id = '33333333-3333-4333-8333-333333333333';
 select is(
   (
     select count(*)
@@ -203,6 +242,15 @@ select throws_ok(
 );
 
 set local "request.jwt.claim.sub" = '33333333-3333-4333-8333-333333333333';
+select is(
+  (
+    select participation_intent::text
+    from public.idea_interests
+    where idea_id = 'cccccccc-cccc-4ccc-8ccc-cccccccccccc'
+  ),
+  'build'::text,
+  'members cannot change another member participation intent'
+);
 delete from public.idea_interests
 where idea_id = 'cccccccc-cccc-4ccc-8ccc-cccccccccccc'
   and profile_id = '33333333-3333-4333-8333-333333333333';

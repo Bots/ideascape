@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -44,6 +44,7 @@ beforeEach(() => {
 	vi.mocked(getIdeaInterestSummary).mockResolvedValue({
 		interestCount: 12,
 		viewerHasInterest: false,
+		viewerIntent: null,
 	});
 	vi.mocked(signalIdeaInterest).mockResolvedValue();
 	vi.mocked(removeIdeaInterest).mockResolvedValue();
@@ -68,7 +69,7 @@ describe("IdeaInterestPanel", () => {
 		).toHaveAttribute("href", "/sign-in?returnTo=%2Fideas%2Fclean-air-library");
 	});
 
-	it("lets a signed-in member signal interest", async () => {
+	it("lets a signed-in member signal how they would participate", async () => {
 		const user = userEvent.setup();
 		vi.mocked(useAuth).mockReturnValue({
 			user: { id: userId } as ReturnType<typeof useAuth>["user"],
@@ -76,17 +77,48 @@ describe("IdeaInterestPanel", () => {
 		});
 		renderPanel();
 
-		const interestButton = await screen.findByRole("button", {
-			name: /i'm interested/i,
+		const intentGroup = await screen.findByRole("group", {
+			name: /how would you participate/i,
 		});
-		expect(interestButton).toHaveAttribute("aria-pressed", "false");
-		await user.click(interestButton);
+		const pilotButton = within(intentGroup).getByRole("button", {
+			name: /i could test a pilot/i,
+		});
+		expect(pilotButton).toHaveAttribute("aria-pressed", "false");
+		await user.click(pilotButton);
 
-		expect(signalIdeaInterest).toHaveBeenCalledWith(ideaId, userId);
+		expect(signalIdeaInterest).toHaveBeenCalledWith(ideaId, userId, "pilot");
 		expect(
 			await screen.findByText(/13 people are interested/i),
 		).toBeInTheDocument();
-		expect(interestButton).toHaveAttribute("aria-pressed", "true");
+		expect(pilotButton).toHaveAttribute("aria-pressed", "true");
+	});
+
+	it("updates participation intent without increasing the public count twice", async () => {
+		const user = userEvent.setup();
+		vi.mocked(useAuth).mockReturnValue({
+			user: { id: userId } as ReturnType<typeof useAuth>["user"],
+			isLoading: false,
+		});
+		vi.mocked(getIdeaInterestSummary).mockResolvedValue({
+			interestCount: 12,
+			viewerHasInterest: true,
+			viewerIntent: "use",
+		});
+		renderPanel();
+
+		const useButton = await screen.findByRole("button", {
+			name: /i would use this/i,
+		});
+		const buildButton = screen.getByRole("button", {
+			name: /i would help build it/i,
+		});
+		expect(useButton).toHaveAttribute("aria-pressed", "true");
+		await user.click(buildButton);
+
+		expect(signalIdeaInterest).toHaveBeenCalledWith(ideaId, userId, "build");
+		expect(screen.getByText(/12 people are interested/i)).toBeInTheDocument();
+		expect(buildButton).toHaveAttribute("aria-pressed", "true");
+		expect(useButton).toHaveAttribute("aria-pressed", "false");
 	});
 
 	it("lets a signed-in member remove their interest", async () => {
@@ -98,6 +130,7 @@ describe("IdeaInterestPanel", () => {
 		vi.mocked(getIdeaInterestSummary).mockResolvedValue({
 			interestCount: 12,
 			viewerHasInterest: true,
+			viewerIntent: "pilot",
 		});
 		renderPanel();
 
@@ -111,7 +144,9 @@ describe("IdeaInterestPanel", () => {
 		expect(
 			await screen.findByText(/11 people are interested/i),
 		).toBeInTheDocument();
-		expect(interestButton).toHaveAttribute("aria-pressed", "false");
+		expect(
+			screen.queryByRole("button", { name: /remove interest/i }),
+		).not.toBeInTheDocument();
 	});
 
 	it("renders a safe failure state", async () => {

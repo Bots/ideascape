@@ -8,7 +8,24 @@ import {
 	removeIdeaInterest,
 	signalIdeaInterest,
 	type IdeaInterestSummary,
+	type ParticipationIntent,
 } from "@/features/ideas/idea-interest-service";
+import { cn } from "@/lib/utils";
+
+const intentOptions: ReadonlyArray<{
+	value: ParticipationIntent;
+	label: string;
+}> = [
+	{ value: "use", label: "I would use this" },
+	{ value: "build", label: "I would help build it" },
+	{ value: "pilot", label: "I could test a pilot" },
+	{ value: "expertise", label: "I have relevant expertise" },
+	{ value: "updates", label: "Keep me updated" },
+];
+
+type InterestAction =
+	| { type: "set-intent"; intent: ParticipationIntent }
+	| { type: "remove" };
 
 export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 	const { user, isLoading: isAuthLoading } = useAuth();
@@ -24,31 +41,40 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 		retry: false,
 	});
 	const interestMutation = useMutation({
-		mutationFn: async () => {
+		mutationFn: async (action: InterestAction) => {
 			if (!user || !summaryQuery.data) {
 				return;
 			}
 
-			if (summaryQuery.data.viewerHasInterest) {
+			if (action.type === "remove") {
 				await removeIdeaInterest(ideaId, user.id);
 				return;
 			}
 
-			await signalIdeaInterest(ideaId, user.id);
+			await signalIdeaInterest(ideaId, user.id, action.intent);
 		},
-		onSuccess: () => {
+		onSuccess: (_, action) => {
 			queryClient.setQueryData<IdeaInterestSummary>(queryKey, (current) => {
 				if (!current || !user) {
 					return current;
 				}
 
-				const nextViewerState = !current.viewerHasInterest;
+				if (action.type === "remove") {
+					return {
+						interestCount: Math.max(
+							0,
+							current.interestCount - (current.viewerHasInterest ? 1 : 0),
+						),
+						viewerHasInterest: false,
+						viewerIntent: null,
+					};
+				}
+
 				return {
-					interestCount: Math.max(
-						0,
-						current.interestCount + (nextViewerState ? 1 : -1),
-					),
-					viewerHasInterest: nextViewerState,
+					interestCount:
+						current.interestCount + (current.viewerHasInterest ? 0 : 1),
+					viewerHasInterest: true,
+					viewerIntent: action.intent,
 				};
 			});
 		},
@@ -66,7 +92,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 			className="relative mt-12 overflow-hidden rounded-3xl border border-foreground/15 bg-foreground p-7 text-background shadow-[0_28px_75px_-35px_oklch(0.22_0.05_43_/_0.75)] sm:p-9"
 		>
 			<div className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-primary/35 blur-3xl" />
-			<div className="relative grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center">
+			<div className="relative grid gap-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(26rem,1.15fr)] lg:items-center">
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
 						<UsersRound className="size-4" aria-hidden="true" />
@@ -79,12 +105,12 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 						Would you want to see this happen?
 					</h2>
 					<p className="mt-3 max-w-2xl leading-7 text-background/70">
-						Signal your interest to help us learn which concepts resonate. No
-						payment or commitment—this only helps us understand demand.
+						Tell us how you might participate so we can distinguish curiosity
+						from practical demand. No payment or commitment.
 					</p>
 				</div>
 
-				<div className="relative min-w-52 rounded-2xl border border-background/15 bg-background/8 p-4 backdrop-blur-sm">
+				<div className="relative rounded-2xl border border-background/15 bg-background/8 p-4 backdrop-blur-sm sm:p-5">
 					{isPending ? (
 						<p
 							className="flex items-center gap-2 text-sm text-background/70"
@@ -114,23 +140,68 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 								{countLabel}
 							</p>
 							{user ? (
-								<Button
-									aria-pressed={summary.viewerHasInterest}
-									className="w-full shadow-[0_12px_28px_-14px_oklch(0.67_0.2_39)]"
-									disabled={interestMutation.isPending}
-									onClick={() => interestMutation.mutate()}
-									type="button"
-								>
-									<Heart
-										className={
-											summary.viewerHasInterest ? "fill-current" : undefined
-										}
-										aria-hidden="true"
-									/>
-									{summary.viewerHasInterest
-										? "Remove interest"
-										: "I'm interested"}
-								</Button>
+								<div>
+									<fieldset>
+										<legend className="text-sm font-semibold text-background">
+											How would you participate?
+										</legend>
+										<p className="mt-1 text-xs leading-5 text-background/60">
+											Your choice is private. Only the total interest count is
+											public.
+										</p>
+										<div className="mt-3 grid gap-2 sm:grid-cols-2">
+											{intentOptions.map((option) => {
+												const isSelected =
+													summary.viewerIntent === option.value;
+
+												return (
+													<button
+														aria-pressed={isSelected}
+														className={cn(
+															"inline-flex min-h-11 items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-primary/50 disabled:pointer-events-none disabled:opacity-60",
+															isSelected
+																? "border-primary bg-primary text-primary-foreground"
+																: "border-background/20 bg-background/5 text-background hover:border-background/35 hover:bg-background/10",
+														)}
+														disabled={interestMutation.isPending}
+														key={option.value}
+														onClick={() =>
+															interestMutation.mutate({
+																type: "set-intent",
+																intent: option.value,
+															})
+														}
+														type="button"
+													>
+														<Heart
+															className={cn(
+																"size-4",
+																isSelected && "fill-current",
+															)}
+															aria-hidden="true"
+														/>
+														{option.label}
+													</button>
+												);
+											})}
+										</div>
+									</fieldset>
+
+									{summary.viewerHasInterest ? (
+										<Button
+											aria-pressed="true"
+											className="mt-3 w-full border-background/20 bg-transparent text-background hover:bg-background/10 hover:text-background"
+											disabled={interestMutation.isPending}
+											onClick={() =>
+												interestMutation.mutate({ type: "remove" })
+											}
+											type="button"
+											variant="outline"
+										>
+											Remove interest
+										</Button>
+									) : null}
+								</div>
 							) : (
 								<Link
 									className={buttonVariants({ className: "w-full" })}

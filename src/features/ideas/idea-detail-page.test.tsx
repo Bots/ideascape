@@ -77,6 +77,7 @@ beforeEach(() => {
 	vi.mocked(getIdeaInterestSummary).mockResolvedValue({
 		interestCount: 3,
 		viewerHasInterest: false,
+		viewerIntent: null,
 	});
 	mockedListPublishedIdeas.mockResolvedValue([]);
 });

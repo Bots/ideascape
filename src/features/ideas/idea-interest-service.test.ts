@@ -28,7 +28,11 @@ beforeEach(() => {
 		from,
 	} as unknown as ReturnType<typeof getSupabaseClient>);
 	summaryMaybeSingle.mockResolvedValue({
-		data: { interest_count: 7, viewer_has_interest: true },
+		data: {
+			interest_count: 7,
+			viewer_has_interest: true,
+			viewer_participation_intent: "pilot",
+		},
 		error: null,
 	});
 	upsert.mockResolvedValue({ error: null });
@@ -40,6 +44,7 @@ describe("idea interest service", () => {
 		await expect(getIdeaInterestSummary(ideaId)).resolves.toEqual({
 			interestCount: 7,
 			viewerHasInterest: true,
+			viewerIntent: "pilot",
 		});
 
 		expect(rpc).toHaveBeenCalledWith("get_idea_interest_summary", {
@@ -53,20 +58,24 @@ describe("idea interest service", () => {
 		await expect(getIdeaInterestSummary(ideaId)).resolves.toEqual({
 			interestCount: 0,
 			viewerHasInterest: false,
+			viewerIntent: null,
 		});
 	});
 
-	it("records interest idempotently for the current member", async () => {
+	it("records participation intent idempotently for the current member", async () => {
 		await expect(
-			signalIdeaInterest(ideaId, profileId),
+			signalIdeaInterest(ideaId, profileId, "pilot"),
 		).resolves.toBeUndefined();
 
 		expect(from).toHaveBeenCalledWith("idea_interests");
 		expect(upsert).toHaveBeenCalledWith(
-			{ idea_id: ideaId, profile_id: profileId },
+			{
+				idea_id: ideaId,
+				profile_id: profileId,
+				participation_intent: "pilot",
+			},
 			{
 				onConflict: "idea_id,profile_id",
-				ignoreDuplicates: true,
 			},
 		);
 	});
@@ -87,7 +96,9 @@ describe("idea interest service", () => {
 		await expect(getIdeaInterestSummary(ideaId)).rejects.toBe(error);
 
 		upsert.mockResolvedValueOnce({ error });
-		await expect(signalIdeaInterest(ideaId, profileId)).rejects.toBe(error);
+		await expect(signalIdeaInterest(ideaId, profileId, "build")).rejects.toBe(
+			error,
+		);
 
 		deleteProfileEq.mockResolvedValueOnce({ error });
 		await expect(removeIdeaInterest(ideaId, profileId)).rejects.toBe(error);

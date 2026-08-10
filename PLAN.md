@@ -32,10 +32,14 @@ Ideascape is in **Exploration mode**. Published entries are concept previews, no
 - [x] Seed deterministic concept previews and local illustrations
 - [x] Add persistent light and dark themes
 
-## Phase 3 — Community and campaign design
+## Phase 3 — Validation evidence and campaign design
 
-- [ ] Add follows, reactions, comments, and creator updates
+- [x] Distinguish practical participation intent—use, build, pilot, expertise, or updates—without exposing individual activity
+- [ ] Add one focused validation question per concept and keep open-ended responses private
+- [ ] Add a private evidence dashboard for views, intent conversion, and concept momentum
 - [ ] Define explicit validation thresholds for moving from a concept preview to a proposed campaign
+- [ ] Add creator updates and public continue, revise, pause, or archive decisions
+- [ ] Defer general comments, social feeds, and broad reactions until moderation needs are defined
 - [ ] Define campaign goals, deadlines, milestones, evidence requirements, fees, disputes, cancellation, and refunds
 - [ ] Add creator and supporter dashboards without exposing private member activity
 - [ ] Define moderation, identity, sanctions, tax, privacy, and consumer-protection requirements
