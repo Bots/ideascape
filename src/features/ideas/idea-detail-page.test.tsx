@@ -9,6 +9,7 @@ import {
 	listPublishedIdeas,
 } from "@/features/ideas/idea-discovery-service";
 import { getIdeaInterestSummary } from "@/features/ideas/idea-interest-service";
+import { getIdeaValidationQuestion } from "@/features/ideas/idea-validation-service";
 
 vi.mock("@/features/auth/auth-provider", () => ({
 	useAuth: vi.fn(),
@@ -23,6 +24,13 @@ vi.mock("@/features/ideas/idea-interest-service", () => ({
 	getIdeaInterestSummary: vi.fn(),
 	signalIdeaInterest: vi.fn(),
 	removeIdeaInterest: vi.fn(),
+}));
+
+vi.mock("@/features/ideas/idea-validation-service", () => ({
+	getIdeaValidationQuestion: vi.fn(),
+	getIdeaValidationSummary: vi.fn(),
+	saveIdeaValidationResponse: vi.fn(),
+	removeIdeaValidationResponse: vi.fn(),
 }));
 
 const mockedGetPublishedIdea = vi.mocked(getPublishedIdea);
@@ -79,6 +87,7 @@ beforeEach(() => {
 		viewerHasInterest: false,
 		viewerIntent: null,
 	});
+	vi.mocked(getIdeaValidationQuestion).mockResolvedValue(null);
 	mockedListPublishedIdeas.mockResolvedValue([]);
 });
 
@@ -168,6 +177,35 @@ describe("IdeaDetailPage", () => {
 		expect(
 			within(related).queryByText("The Clean Air Library"),
 		).not.toBeInTheDocument();
+	});
+
+	it("renders a focused pilot question when the concept has one", async () => {
+		mockedGetPublishedIdea.mockResolvedValue({
+			...idea,
+			id: "00000000-0000-4000-8000-000000000218",
+			slug: "project-time-capsule",
+			title: "Project Time Capsule",
+		});
+		vi.mocked(getIdeaValidationQuestion).mockResolvedValue({
+			id: "00000000-0000-4000-8000-000000000401",
+			prompt: "What could you bring to a first Project Time Capsule pilot?",
+			viewerOptionId: null,
+			options: [
+				{
+					id: "00000000-0000-4000-8000-000000000411",
+					value: "open-source-project",
+					label: "An open-source project I maintain",
+				},
+			],
+		});
+
+		renderDetail("project-time-capsule");
+
+		expect(
+			await screen.findByRole("region", {
+				name: /what could you bring to a first project time capsule pilot/i,
+			}),
+		).toBeInTheDocument();
 	});
 
 	it("renders safe video media as an external link", async () => {

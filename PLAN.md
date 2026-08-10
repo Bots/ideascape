@@ -35,7 +35,8 @@ Ideascape is in **Exploration mode**. Published entries are concept previews, no
 ## Phase 3 — Validation evidence and campaign design
 
 - [x] Distinguish practical participation intent—use, build, pilot, expertise, or updates—without exposing individual activity
-- [ ] Add one focused validation question per concept and keep open-ended responses private
+- [x] Add the first focused Project Time Capsule pilot question with private, reversible responses
+- [ ] Expand focused validation questions to concepts whose riskiest assumption is clearly defined
 - [ ] Add a private evidence dashboard for views, intent conversion, and concept momentum
 - [ ] Define explicit validation thresholds for moving from a concept preview to a proposed campaign
 - [ ] Add creator updates and public continue, revise, pause, or archive decisions
@@ -44,7 +45,9 @@ Ideascape is in **Exploration mode**. Published entries are concept previews, no
 - [ ] Add creator and supporter dashboards without exposing private member activity
 - [ ] Define moderation, identity, sanctions, tax, privacy, and consumer-protection requirements
 
-## Phase 4 — Security-first funding research
+## Deferred — funding research outside the current pilot-readiness mission
+
+No payment, wallet, cryptocurrency, custody, smart-contract, or active fundraising work is planned for the current product phase. Revisit this section only after a separate consequential product decision.
 
 - [ ] Select a chain, asset, governance model, and upgrade policy only after documented evaluation
 - [ ] Specify a minimal milestone-escrow state machine with release, dispute, cancellation, and refund paths

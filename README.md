@@ -23,6 +23,8 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 - Fully clickable discovery cards with concise accessible link names and visible keyboard focus
 - Public aggregate interest counts without exposing individual member signals
 - Authenticated, reversible participation intent—use, build, pilot, expertise, or updates—with duplicate prevention and eligibility checks
+- A focused Project Time Capsule pilot-readiness question with private, reversible member answers
+- Creator-only aggregate response evidence that never includes member identities
 - Email/password, Google, and GitHub OAuth-capable authentication with safe post-auth return paths
 - Public member profiles plus owner-only profile updates
 - Private creator drafts and editing at `/ideas/new` and `/ideas/:id/edit`
@@ -136,6 +138,8 @@ The database models categories, creator-owned ideas, ordered media, explicit lif
 - Members can privately set or change how they would participate, then remove their signal at any time.
 - Members can read, add, update, or remove only their own interest row.
 - Anonymous and authenticated visitors receive counts through aggregate-only database functions; individual signals and participation intent are never exposed publicly.
+- Active validation questions and constrained answer choices are public, while each member's response row is private and reversible.
+- Concept creators receive option totals through a creator-scoped aggregate function; raw respondent identities are never returned.
 - Draft and cancelled ideas reject interest writes.
 - Public profiles are readable by everyone, while authenticated members can update only their own profile fields.
 

@@ -16,6 +16,8 @@ import {
 	type PublishedIdeaStatus,
 } from "@/features/ideas/idea-discovery-service";
 import { IdeaInterestPanel } from "@/features/ideas/idea-interest-panel";
+import { IdeaValidationEvidencePanel } from "@/features/ideas/idea-validation-evidence-panel";
+import { IdeaValidationPanel } from "@/features/ideas/idea-validation-panel";
 
 const statusLabels: Record<PublishedIdeaStatus, string> = {
 	published: "Concept preview",
@@ -224,6 +226,11 @@ export function IdeaDetailPage() {
 								{ideaQuery.data.description}
 							</p>
 						</section>
+						<IdeaValidationPanel ideaId={ideaQuery.data.id} />
+						<IdeaValidationEvidencePanel
+							creatorId={ideaQuery.data.creator.id}
+							ideaId={ideaQuery.data.id}
+						/>
 
 						{ideaQuery.data.category && relatedIdeas.length > 0 ? (
 							<section

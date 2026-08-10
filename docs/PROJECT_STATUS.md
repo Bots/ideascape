@@ -20,9 +20,9 @@ Ideascape is in **Exploration mode**. The eighteen published entries are concept
 ## Current focus
 
 1. Learn which concepts produce practical participation intent, not only passive curiosity.
-2. Add focused validation questions and a private evidence dashboard while keeping discovery and details public.
-3. Select one low-risk flagship pilot and define explicit continue, revise, pause, or archive thresholds.
-4. Research a security-first smart-contract funding model, including custody boundaries, milestone review, multisig governance, dispute/refund paths, audits, and legal gates.
+2. Use the Project Time Capsule pilot question and creator-only aggregate evidence to test whether suitable projects and rebuild testers exist.
+3. Define explicit continue, revise, pause, or archive thresholds, then add the first capped pilot intake workflow.
+4. Add pilot eligibility, authorization confirmations, capacity limits, operating guidance, and measurable rebuild outcomes without introducing payments or custody.
 
 ## Delivered
 
@@ -39,7 +39,8 @@ Ideascape is in **Exploration mode**. The eighteen published entries are concept
 - Fully clickable, keyboard-focusable discovery cards
 - Local SVG concept illustrations with meaningful alternative text
 - Reversible member participation intent—use, build, pilot, expertise, or updates—with aggregate-only public counts
-- Technology-forward landing showcase plus explanations of the live validation flow, planned smart-contract funding, and concrete security threat scenarios
+- Focused Project Time Capsule pilot question with private, reversible answers and creator-only aggregate evidence
+- Technology-forward landing showcase plus clear separation between the live validation flow and hypothetical future funding concepts
 - Row-level-security and pgTAP coverage for ownership, privacy, lifecycle, and seed behavior
 - Vercel SPA deep-link routing and production deployment
 
@@ -61,6 +62,7 @@ Ideascape is in **Exploration mode**. The eighteen published entries are concept
 - Database changes require reviewed migrations, explicit RLS, pgTAP tests, and schema lint.
 - Privileged credentials never run in browser code.
 - Individual interest rows and participation intent remain private; public pages receive aggregate counts only.
+- Individual validation answers remain private; concept creators receive option totals without member identities.
 - No product copy may imply payment, commitment, active fundraising, or an operating program while Ideascape remains in exploration mode.
 - Commit verified milestones incrementally.
 
