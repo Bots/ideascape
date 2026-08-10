@@ -459,9 +459,12 @@ function HomePage() {
 										Security before custody
 									</h2>
 									<p className="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">
-										No custody is live. These examples show the failure paths a
-										real funding design must handle before a contract, wallet
-										connection, or fiat rail can reach production.
+										No custody is live. Every seeded concept applies the same
+										claim policy by naming a threat scenario, control boundary,
+										and proof required before expansion. The examples below show
+										the failure paths a real funding design must handle before a
+										contract, wallet connection, or fiat rail can reach
+										production.
 									</p>
 								</div>
 								<div className="max-w-sm border border-primary/25 bg-primary/6 p-5 text-sm leading-6 text-muted-foreground">

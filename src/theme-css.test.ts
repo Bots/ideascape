@@ -11,6 +11,10 @@ const interestPanelSource = readFileSync(
 	resolve(process.cwd(), "src/features/ideas/idea-interest-panel.tsx"),
 	"utf8",
 );
+const ideaDetailSource = readFileSync(
+	resolve(process.cwd(), "src/features/ideas/idea-detail-page.tsx"),
+	"utf8",
+);
 const pilotPageSource = readFileSync(
 	resolve(process.cwd(), "src/features/pilots/pilot-page.tsx"),
 	"utf8",
@@ -69,6 +73,9 @@ describe("civic field-notebook design system", () => {
 		);
 		expect(interestPanelSource).toContain("border-t-[oklch(0.82_0.15_60)]");
 		expect(interestPanelSource).toContain("dark:border-t-[oklch(0.5_0.18_48)]");
+		expect(ideaDetailSource).toContain(
+			"text-[oklch(0.82_0.15_60)] dark:text-[oklch(0.5_0.18_48)]",
+		);
 	});
 
 	it("sets the saved or system theme before the application loads", () => {

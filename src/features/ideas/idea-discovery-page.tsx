@@ -5,6 +5,7 @@ import {
 	ArrowUpRight,
 	LoaderCircle,
 	Search,
+	ShieldCheck,
 	Sparkles,
 	UsersRound,
 } from "lucide-react";
@@ -322,6 +323,17 @@ export function IdeaDiscoveryPage() {
 														{statusLabels[idea.status]}
 													</span>
 												</div>
+												{idea.threat_scenario &&
+												idea.control_boundary &&
+												idea.proof_required ? (
+													<p className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-primary">
+														<ShieldCheck
+															className="size-4"
+															aria-hidden="true"
+														/>
+														Security case defined
+													</p>
+												) : null}
 												<h2 className="mt-5 text-2xl font-medium tracking-[-0.02em]">
 													{idea.title}
 												</h2>

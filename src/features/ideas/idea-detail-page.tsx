@@ -1,5 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { ArrowUpRight, LoaderCircle, Sparkles } from "lucide-react";
+import {
+	ArrowUpRight,
+	BadgeCheck,
+	LoaderCircle,
+	ShieldCheck,
+	Sparkles,
+	TriangleAlert,
+} from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { InterestModeNotice } from "@/components/interest-mode-notice";
 import { SiteHeader } from "@/components/site-header";
@@ -65,6 +72,74 @@ function IdeaMediaItem({ media }: { media: IdeaMedia }) {
 				src={media.url}
 			/>
 		</div>
+	);
+}
+
+function IdeaSecurityCase({
+	threatScenario,
+	controlBoundary,
+	proofRequired,
+}: {
+	threatScenario: string;
+	controlBoundary: string;
+	proofRequired: string;
+}) {
+	const claims = [
+		{
+			label: "Threat scenario",
+			value: threatScenario,
+			icon: TriangleAlert,
+		},
+		{
+			label: "Control boundary",
+			value: controlBoundary,
+			icon: ShieldCheck,
+		},
+		{
+			label: "Proof required",
+			value: proofRequired,
+			icon: BadgeCheck,
+		},
+	];
+
+	return (
+		<section
+			aria-labelledby="idea-security-case"
+			className="mt-8 overflow-hidden border border-foreground/15 bg-foreground text-background"
+		>
+			<div className="border-b border-background/15 p-6 sm:flex sm:items-end sm:justify-between sm:gap-8 sm:p-8">
+				<div>
+					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[oklch(0.82_0.15_60)] dark:text-[oklch(0.5_0.18_48)]">
+						<ShieldCheck className="size-4" aria-hidden="true" />
+						Security case
+					</p>
+					<h2
+						className="mt-3 text-3xl font-light tracking-[-0.025em] sm:text-4xl"
+						id="idea-security-case"
+					>
+						Security case: what must be true before this expands
+					</h2>
+				</div>
+				<p className="mt-4 max-w-md text-sm leading-6 text-background/70 sm:mt-0">
+					A proposed control is not a guarantee. This preview names the failure
+					path, the operating boundary, and the evidence needed to earn a larger
+					test.
+				</p>
+			</div>
+			<div className="grid gap-px bg-background/15 lg:grid-cols-3">
+				{claims.map(({ label, value, icon: Icon }) => (
+					<article className="bg-foreground p-6 sm:p-8" key={label}>
+						<div className="flex items-center gap-3 text-[oklch(0.82_0.15_60)] dark:text-[oklch(0.5_0.18_48)]">
+							<Icon className="size-5" aria-hidden="true" />
+							<h3 className="text-xs font-bold uppercase tracking-[0.16em]">
+								{label}
+							</h3>
+						</div>
+						<p className="mt-4 text-sm leading-7 text-background/82">{value}</p>
+					</article>
+				))}
+			</div>
+		</section>
 	);
 }
 
@@ -197,6 +272,15 @@ export function IdeaDetailPage() {
 									{ideaQuery.data.description}
 								</p>
 							</section>
+							{ideaQuery.data.threat_scenario &&
+							ideaQuery.data.control_boundary &&
+							ideaQuery.data.proof_required ? (
+								<IdeaSecurityCase
+									controlBoundary={ideaQuery.data.control_boundary}
+									proofRequired={ideaQuery.data.proof_required}
+									threatScenario={ideaQuery.data.threat_scenario}
+								/>
+							) : null}
 							<IdeaValidationPanel ideaId={ideaQuery.data.id} />
 							<IdeaValidationEvidencePanel
 								creatorId={ideaQuery.data.creator.id}

@@ -39,7 +39,10 @@ select columns_are(
     'status',
     'published_at',
     'created_at',
-    'updated_at'
+    'updated_at',
+    'threat_scenario',
+    'control_boundary',
+    'proof_required'
   ],
   'ideas exposes the expected columns'
 );

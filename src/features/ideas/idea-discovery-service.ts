@@ -26,6 +26,9 @@ type PublishedIdeaBase = {
 	slug: string;
 	title: string;
 	summary: string;
+	threat_scenario: string | null;
+	control_boundary: string | null;
+	proof_required: string | null;
 	status: PublishedIdeaStatus;
 	published_at: string | null;
 	created_at: string;
@@ -56,6 +59,9 @@ const summaryColumns = `
 	slug,
 	title,
 	summary,
+	threat_scenario,
+	control_boundary,
+	proof_required,
 	status,
 	published_at,
 	created_at,

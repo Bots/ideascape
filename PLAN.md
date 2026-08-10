@@ -33,6 +33,7 @@ Ideascape is in **Exploration mode**. Published entries are concept previews, no
 - [x] Expand the catalog with bold, measurable infrastructure concepts and explicit operating boundaries
 - [x] Refine broad launch previews into bounded tests with decision-grade evidence
 - [x] Replace generic previews with issue-driven Colorado Springs civic campaigns
+- [x] Give every demo a threat scenario, control boundary, and proof requirement consistent with the security claim policy
 - [x] Add persistent light and dark themes
 
 ## Phase 3 — Validation evidence and campaign design
