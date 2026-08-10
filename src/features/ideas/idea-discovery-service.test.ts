@@ -55,6 +55,12 @@ const detail = {
 	...summary,
 	description:
 		"A modular desalination system designed for coastal communities.",
+	threat_scenario:
+		"Source water or maintenance failures could expose residents to unsafe output.",
+	control_boundary:
+		"The pilot stays isolated from drinking-water service and requires independent water-quality review.",
+	proof_required:
+		"Advance only after repeated lab results meet the published water-quality and shutdown thresholds.",
 	media: [
 		{
 			id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
@@ -129,6 +135,12 @@ describe("idea discovery service", () => {
 		expect(detailEq).toHaveBeenCalledWith("slug", summary.slug);
 		expect(detailNeq).toHaveBeenCalledWith("status", "draft");
 		expect(detail.media.map((item) => item.sort_order)).toEqual([0]);
+		const detailSelect = select.mock.calls.find(([columns]) =>
+			columns.includes("description"),
+		)?.[0];
+		expect(detailSelect).toContain("threat_scenario");
+		expect(detailSelect).toContain("control_boundary");
+		expect(detailSelect).toContain("proof_required");
 	});
 
 	it("sorts returned media defensively", async () => {

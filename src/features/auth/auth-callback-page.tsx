@@ -58,7 +58,7 @@ export function AuthCallbackPage() {
 				<div className={backdropClassName} />
 				<section className={cardClassName}>
 					<CheckCircle2
-						className="mx-auto size-8 text-emerald-600"
+						className="mx-auto size-8 text-signal"
 						aria-hidden="true"
 					/>
 					<h1 className="mt-6 text-3xl font-semibold tracking-tight">

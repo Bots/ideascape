@@ -19,7 +19,7 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 
 ## Current focus
 
-1. Learn which concepts produce practical participation intent, not only passive curiosity.
+1. Learn which concepts produce practical participation intent, not only passive curiosity, while testing each one inside a published security case.
 2. Use focused private-answer questions across six bounded concepts to test practical demand, permissions, and pilot capability through aggregate evidence.
 3. Use the Project Time Capsule readiness dashboard to compare aggregate evidence with the published continue, revise, and archive thresholds.
 4. Use the private operations dashboard to watch aggregate membership, concepts, validation, pilot intake, and published-concept activity without opening respondent-level records.
@@ -28,13 +28,15 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 ## Delivered
 
 - React/TypeScript/Vite application foundation, CI, and route-level code splitting
-- Responsive orange visual system with persistent system-aware light and dark themes
+- Responsive light/dark visual system restricted to black, white, neutral grays,
+  and `#ff5a1f` bright orange
 - Supabase authentication with email, Google, and GitHub-capable OAuth flows
 - Safe internal return paths across email authentication, OAuth, and callback failures
 - Public profiles with owner-only updates
 - Idea, category, media, lifecycle, and private interest-signal schema
 - Private draft creation and editing
 - Public idea discovery and detail routes with twenty-one deterministic demo concepts, including thirteen permission-first or technology-forward previews
+- Catalog badges and detail-page security cases connecting all twenty-one demos to a concrete threat scenario, control boundary, and proof requirement
 - Three localized Colorado Springs campaigns with explicit demands, public-record evidence, permitted field tests, and anti-tampering boundaries
 - Five early previews refined into bounded, permissioned tests with measurable continue, revise, and stop evidence
 - Shareable, URL-persistent discovery search and category filters with useful zero-result recovery

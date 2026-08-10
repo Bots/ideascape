@@ -42,6 +42,12 @@ const idea = {
 	summary: "Affordable clean water powered directly by sunlight.",
 	description:
 		"A modular desalination system designed for coastal communities.",
+	threat_scenario:
+		"Source water or maintenance failures could expose residents to unsafe output.",
+	control_boundary:
+		"The pilot stays isolated from drinking-water service and requires independent water-quality review.",
+	proof_required:
+		"Advance only after repeated lab results meet the published water-quality and shutdown thresholds.",
 	status: "published" as const,
 	published_at: "2026-08-09T00:00:00.000Z",
 	created_at: "2026-08-08T00:00:00.000Z",
@@ -112,6 +118,27 @@ describe("IdeaDetailPage", () => {
 		).toBeInTheDocument();
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getByText(idea.description)).toBeInTheDocument();
+		const securityCase = screen.getByRole("region", {
+			name: /security case/i,
+		});
+		expect(
+			within(securityCase).getByText("Threat scenario"),
+		).toBeInTheDocument();
+		expect(
+			within(securityCase).getByText(idea.threat_scenario),
+		).toBeInTheDocument();
+		expect(
+			within(securityCase).getByText("Control boundary"),
+		).toBeInTheDocument();
+		expect(
+			within(securityCase).getByText(idea.control_boundary),
+		).toBeInTheDocument();
+		expect(
+			within(securityCase).getByText("Proof required"),
+		).toBeInTheDocument();
+		expect(
+			within(securityCase).getByText(idea.proof_required),
+		).toBeInTheDocument();
 		expect(screen.getByText("Technology")).toBeInTheDocument();
 		expect(screen.getByText("Concept preview")).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /idea creator/i })).toHaveAttribute(
@@ -133,6 +160,24 @@ describe("IdeaDetailPage", () => {
 			}),
 		).toBeInTheDocument();
 		expect(screen.getByText(/3 people are interested/i)).toBeInTheDocument();
+	});
+
+	it("omits the security case when a creator has not defined one", async () => {
+		mockedGetPublishedIdea.mockResolvedValue({
+			...idea,
+			threat_scenario: null,
+			control_boundary: null,
+			proof_required: null,
+		});
+
+		renderDetail();
+
+		expect(
+			await screen.findByRole("heading", { name: idea.title }),
+		).toBeInTheDocument();
+		expect(
+			screen.queryByRole("region", { name: /security case/i }),
+		).not.toBeInTheDocument();
 	});
 
 	it("recommends other concepts in the same category without repeating the current idea", async () => {

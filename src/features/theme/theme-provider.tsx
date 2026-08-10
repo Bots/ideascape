@@ -50,7 +50,7 @@ export function ThemeProvider({ children }: PropsWithChildren) {
 		document.documentElement.style.colorScheme = theme;
 		document
 			.querySelector('meta[name="theme-color"]')
-			?.setAttribute("content", theme === "dark" ? "#211815" : "#fff8ef");
+			?.setAttribute("content", theme === "dark" ? "#050505" : "#ffffff");
 	}, [theme]);
 
 	const value = useMemo(

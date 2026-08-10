@@ -200,6 +200,9 @@ describe("App", () => {
 			name: /security before custody/i,
 		});
 		expect(securityModel).toHaveTextContent(/no custody is live/i);
+		expect(securityModel).toHaveTextContent(
+			/every seeded concept.*threat scenario.*control boundary.*proof required/i,
+		);
 		expect(
 			within(securityModel).getByRole("heading", {
 				name: /a milestone is claimed too early/i,

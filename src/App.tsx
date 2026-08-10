@@ -265,11 +265,11 @@ function HomePage() {
 							<figure className="relative overflow-hidden border border-foreground/20 bg-card p-2">
 								<div className="mb-2 flex items-center justify-between border-b border-border px-1 pb-2 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-muted-foreground">
 									<span>Field sample / 021</span>
-									<span className="text-signal">Permission checked</span>
+									<span className="text-foreground">Permission checked</span>
 								</div>
 								<img
 									alt="Owner-controlled devices, an open padlock, and a terminal share an isolated repair bench"
-									className="aspect-[4/3] w-full object-cover"
+									className="editorial-image aspect-[4/3] w-full object-cover"
 									src="/images/ideas/device-liberation-lab.svg"
 								/>
 								<figcaption className="absolute bottom-4 left-4 right-4 flex items-center justify-between border border-border bg-card px-4 py-3 text-sm">
@@ -282,7 +282,7 @@ function HomePage() {
 							<div className="absolute -bottom-5 -left-5 hidden w-[44%] border border-border bg-card p-1.5 sm:block">
 								<img
 									alt="A read-only recovery station transfers files from damaged storage into an encrypted folder"
-									className="aspect-video w-full object-cover"
+									className="editorial-image aspect-video w-full object-cover"
 									src="/images/ideas/file-rescue-cooperative.svg"
 								/>
 							</div>
@@ -352,10 +352,10 @@ function HomePage() {
 					</section>
 
 					<section aria-labelledby="planned-funding-heading" className="pb-20">
-						<div className="relative overflow-hidden border border-primary/45 bg-[oklch(0.18_0.04_252)] text-[oklch(0.96_0.012_248)] dark:bg-[oklch(0.11_0.035_252)]">
+						<div className="relative overflow-hidden border border-neutral-500 bg-black text-white">
 							<div className="relative grid gap-8 border-b border-white/10 p-7 sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:p-12">
 								<div>
-									<div className="inline-flex items-center gap-2 border-l-2 border-l-[oklch(0.82_0.15_60)] pl-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[oklch(0.82_0.15_60)]">
+									<div className="inline-flex items-center gap-2 border-l-2 border-l-signal pl-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-signal">
 										<Sparkles className="size-4" aria-hidden="true" />
 										Planned, not live
 									</div>
@@ -365,17 +365,17 @@ function HomePage() {
 									>
 										Planned smart-contract funding
 									</h2>
-									<p className="mt-5 max-w-3xl text-lg leading-8 text-[oklch(0.84_0.018_70)]">
+									<p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-300">
 										If a concept earns a campaign phase, the goal is to move
 										from social proof to explicit, inspectable funding terms. No
 										funds are accepted today.
 									</p>
 								</div>
 								<aside className="border border-white/15 bg-white/5 p-6">
-									<p className="text-xs font-bold uppercase tracking-[0.18em] text-[oklch(0.82_0.15_60)]">
+									<p className="text-xs font-bold uppercase tracking-[0.18em] text-signal">
 										Design status
 									</p>
-									<p className="mt-3 text-base leading-7 text-[oklch(0.9_0.012_72)]">
+									<p className="mt-3 text-base leading-7 text-neutral-200">
 										Chain, asset, and governance design have not been selected.
 										Any funding system would require security, legal, and pilot
 										review before launch.
@@ -391,15 +391,15 @@ function HomePage() {
 											key={title}
 										>
 											<div className="flex items-center justify-between">
-												<span className="grid size-10 place-items-center rounded-xl border border-white/10 bg-white/7 text-[oklch(0.82_0.15_60)]">
+												<span className="grid size-10 place-items-center rounded-xl border border-white/10 bg-white/7 text-signal">
 													<Icon className="size-5" aria-hidden="true" />
 												</span>
-												<span className="font-mono text-xs text-white/40">
+												<span className="font-mono text-xs text-neutral-400">
 													{number}
 												</span>
 											</div>
 											<h3 className="mt-7 text-lg font-semibold">{title}</h3>
-											<p className="mt-3 text-sm leading-7 text-[oklch(0.78_0.015_70)]">
+											<p className="mt-3 text-sm leading-7 text-neutral-300">
 												{description}
 											</p>
 										</article>
@@ -409,17 +409,17 @@ function HomePage() {
 
 							<div className="relative grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.85fr_1.15fr] lg:p-12">
 								<div>
-									<p className="text-xs font-bold uppercase tracking-[0.18em] text-[oklch(0.82_0.15_60)]">
+									<p className="text-xs font-bold uppercase tracking-[0.18em] text-signal">
 										What the contract can—and cannot—do
 									</p>
-									<p className="mt-4 text-lg leading-8 text-[oklch(0.9_0.012_72)]">
+									<p className="mt-4 text-lg leading-8 text-neutral-200">
 										Smart contracts can make agreed rules and fund movements
 										easier to inspect. They do not replace identity, moderation,
 										real-world milestone review, dispute handling, or legal
 										responsibility.
 									</p>
 								</div>
-								<ul className="grid gap-3 text-sm leading-6 text-[oklch(0.84_0.018_70)] sm:grid-cols-2">
+								<ul className="grid gap-3 text-sm leading-6 text-neutral-300 sm:grid-cols-2">
 									{[
 										"Independent security review before any contract can hold funds",
 										"Published source, addresses, release rules, and upgrade controls",
@@ -433,7 +433,7 @@ function HomePage() {
 											key={guardrail}
 										>
 											<ShieldCheck
-												className="mt-0.5 size-4 shrink-0 text-[oklch(0.82_0.15_60)]"
+												className="mt-0.5 size-4 shrink-0 text-signal"
 												aria-hidden="true"
 											/>
 											<span>{guardrail}</span>
@@ -459,9 +459,12 @@ function HomePage() {
 										Security before custody
 									</h2>
 									<p className="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">
-										No custody is live. These examples show the failure paths a
-										real funding design must handle before a contract, wallet
-										connection, or fiat rail can reach production.
+										No custody is live. Every seeded concept applies the same
+										claim policy by naming a threat scenario, control boundary,
+										and proof required before expansion. The examples below show
+										the failure paths a real funding design must handle before a
+										contract, wallet connection, or fiat rail can reach
+										production.
 									</p>
 								</div>
 								<div className="max-w-sm border border-primary/25 bg-primary/6 p-5 text-sm leading-6 text-muted-foreground">

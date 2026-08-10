@@ -130,7 +130,7 @@ export function IdeaEditorPage() {
 						Category
 					</label>
 					<select
-						className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+						className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
 						id="category"
 						name="category"
 						defaultValue={idea?.category_id ?? ""}
@@ -152,7 +152,7 @@ export function IdeaEditorPage() {
 						Title
 					</label>
 					<input
-						className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+						className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
 						id="title"
 						name="title"
 						defaultValue={idea?.title ?? ""}
@@ -167,7 +167,7 @@ export function IdeaEditorPage() {
 						Summary
 					</label>
 					<textarea
-						className="min-h-24 w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+						className="min-h-24 w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
 						id="summary"
 						name="summary"
 						defaultValue={idea?.summary ?? ""}
@@ -182,7 +182,7 @@ export function IdeaEditorPage() {
 						Description
 					</label>
 					<textarea
-						className="min-h-56 w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+						className="min-h-56 w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
 						id="description"
 						name="description"
 						defaultValue={idea?.description ?? ""}
@@ -198,7 +198,10 @@ export function IdeaEditorPage() {
 					</p>
 				) : null}
 				{saveMessage ? (
-					<p className="text-sm text-emerald-700" role="status">
+					<p
+						className="border-l-2 border-signal pl-3 text-sm text-foreground"
+						role="status"
+					>
 						{saveMessage}
 					</p>
 				) : null}

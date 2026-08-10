@@ -16,6 +16,12 @@ const idea = {
 	slug: "solar-desalination-aaaaaaaa",
 	title: "Solar desalination",
 	summary: "Affordable clean water powered directly by sunlight.",
+	threat_scenario:
+		"Source water or maintenance failures could expose residents to unsafe output.",
+	control_boundary:
+		"The pilot stays isolated from drinking-water service and requires independent water-quality review.",
+	proof_required:
+		"Advance only after repeated lab results meet the published water-quality and shutdown thresholds.",
 	status: "published" as const,
 	published_at: "2026-08-09T00:00:00.000Z",
 	created_at: "2026-08-08T00:00:00.000Z",
@@ -99,6 +105,7 @@ describe("IdeaDiscoveryPage", () => {
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getAllByText("Technology").length).toBeGreaterThan(0);
 		expect(screen.getByText("Concept preview")).toBeInTheDocument();
+		expect(screen.getByText("Security case defined")).toBeInTheDocument();
 		expect(screen.getByText("1 demo concept")).toBeInTheDocument();
 		expect(screen.getByText("4 people interested")).toBeInTheDocument();
 		expect(
@@ -111,6 +118,24 @@ describe("IdeaDiscoveryPage", () => {
 		expect(
 			screen.getByRole("note", { name: /exploration mode/i }),
 		).toHaveTextContent(/concept previews, not active fundraisers/i);
+	});
+
+	it("does not claim a security case for concepts without all three fields", async () => {
+		mockedListPublishedIdeas.mockResolvedValue([
+			{
+				...idea,
+				threat_scenario: null,
+				control_boundary: null,
+				proof_required: null,
+			},
+		]);
+
+		renderDiscovery();
+
+		expect(
+			await screen.findByRole("link", { name: `View ${idea.title}` }),
+		).toBeInTheDocument();
+		expect(screen.queryByText("Security case defined")).not.toBeInTheDocument();
 	});
 
 	it("restores a category filter from the URL and only shows matching concepts", async () => {
