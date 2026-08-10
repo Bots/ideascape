@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Model Commons Lab</title>
+  <desc id="desc">An offline evaluation rack runs one approved task pack across local AI models and produces a reproducible scorecard.</desc>
+  <rect width="870" height="580" rx="32" fill="#2b130d"/>
+  <rect x="40" y="38" width="790" height="504" rx="30" fill="#fff7ed"/>
+  <rect x="40" y="38" width="790" height="72" rx="30" fill="#ff6b2c"/>
+  <text x="435" y="83" font-family="monospace" font-size="25" font-weight="700" text-anchor="middle" fill="#2b130d">LOCAL MODEL EVALUATION</text>
+  <g transform="translate(88 157)">
+    <rect width="230" height="292" rx="24" fill="#3b1d15" stroke="#9a3412" stroke-width="8"/>
+    <text x="115" y="39" font-family="monospace" font-size="15" font-weight="700" text-anchor="middle" fill="#ff8a4c">APPROVED TASK PACK</text>
+    <g fill="#fff7ed">
+      <rect x="26" y="61" width="178" height="46" rx="10"/>
+      <rect x="26" y="121" width="178" height="46" rx="10"/>
+      <rect x="26" y="181" width="178" height="46" rx="10"/>
+    </g>
+    <g font-family="monospace" font-size="13" font-weight="700" fill="#7c2d12">
+      <text x="43" y="90">01  CITE SOURCES</text>
+      <text x="43" y="150">02  EXTRACT FACTS</text>
+      <text x="43" y="210">03  FLAG UNKNOWN</text>
+    </g>
+    <rect x="34" y="248" width="162" height="24" rx="12" fill="#0f766e"/>
+    <text x="115" y="265" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#fff7ed">OFFLINE • PINNED</text>
+  </g>
+  <path d="M338 302h74" stroke="#ff6b2c" stroke-width="12" stroke-linecap="round"/><path d="m390 278 27 24-27 24" fill="none" stroke="#ff6b2c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(420 145)">
+    <g font-family="monospace" font-size="13" font-weight="700" text-anchor="middle">
+      <rect width="130" height="86" rx="20" fill="#fed7aa" stroke="#fb923c" stroke-width="7"/><text x="65" y="38" fill="#7c2d12">MODEL A</text><text x="65" y="62" fill="#0f766e">LOCAL ✓</text>
+      <rect y="105" width="130" height="86" rx="20" fill="#fed7aa" stroke="#fb923c" stroke-width="7"/><text x="65" y="143" fill="#7c2d12">MODEL B</text><text x="65" y="167" fill="#0f766e">LOCAL ✓</text>
+      <rect y="210" width="130" height="86" rx="20" fill="#fed7aa" stroke="#fb923c" stroke-width="7"/><text x="65" y="248" fill="#7c2d12">MODEL C</text><text x="65" y="272" fill="#0f766e">LOCAL ✓</text>
+    </g>
+  </g>
+  <path d="M570 302h56" stroke="#ff6b2c" stroke-width="12" stroke-linecap="round"/><path d="m604 278 27 24-27 24" fill="none" stroke="#ff6b2c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(630 164)">
+    <rect width="160" height="270" rx="24" fill="#3b1d15" stroke="#9a3412" stroke-width="8"/>
+    <text x="80" y="39" font-family="monospace" font-size="15" font-weight="700" text-anchor="middle" fill="#fff7ed">SCORECARD</text>
+    <g font-family="monospace" font-size="11" fill="#fed7aa"><text x="20" y="76">CITATIONS</text><text x="20" y="126">ERRORS</text><text x="20" y="176">ENERGY</text><text x="20" y="226">REPEAT</text></g>
+    <g><rect x="20" y="87" width="116" height="12" rx="6" fill="#7c2d12"/><rect x="20" y="87" width="98" height="12" rx="6" fill="#2dd4bf"/><rect x="20" y="137" width="116" height="12" rx="6" fill="#7c2d12"/><rect x="20" y="137" width="43" height="12" rx="6" fill="#ff6b2c"/><rect x="20" y="187" width="116" height="12" rx="6" fill="#7c2d12"/><rect x="20" y="187" width="72" height="12" rx="6" fill="#ff8a4c"/><rect x="20" y="237" width="116" height="12" rx="6" fill="#7c2d12"/><rect x="20" y="237" width="108" height="12" rx="6" fill="#2dd4bf"/></g>
+  </g>
+  <rect x="212" y="487" width="446" height="38" rx="19" fill="#0f766e"/>
+  <text x="435" y="512" font-family="monospace" font-size="15" font-weight="700" text-anchor="middle" fill="#fff7ed">SAME TASKS • PINNED MODELS • REPEATABLE RUN</text>
+</svg>

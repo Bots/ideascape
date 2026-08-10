@@ -96,7 +96,7 @@ describe("App", () => {
 		expect(screen.getByText("Concept previews")).toBeInTheDocument();
 		expect(
 			screen.getByText("Concept previews").nextElementSibling,
-		).toHaveTextContent("18");
+		).toHaveTextContent("21");
 	});
 
 	it("hides the join-the-experiment action from signed-in members", () => {
