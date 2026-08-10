@@ -97,6 +97,11 @@ describe("IdeaValidationPanel", () => {
 			"/sign-in?returnTo=%2Fideas%2Fproject-time-capsule",
 		);
 		expect(region).toHaveTextContent(/concept team sees totals only/i);
+		expect(region).toHaveTextContent(
+			/right demand, permissions, and people to proceed/i,
+		);
+		expect(region).toHaveTextContent(/possible answers/i);
+		expect(region).not.toHaveTextContent(/preservation pilot/i);
 	});
 
 	it("lets a signed-in member save one private pilot answer", async () => {
