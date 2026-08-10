@@ -10,6 +10,7 @@ import { lazy, Suspense } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import { InterestModeNotice } from "@/components/interest-mode-notice";
 import { buttonVariants } from "@/components/ui/button";
+import { useAuth } from "@/features/auth/auth-provider";
 import { AuthNavigation } from "@/features/auth/auth-navigation";
 
 const AuthCallbackPage = lazy(() =>
@@ -151,6 +152,8 @@ const securityExamples = [
 ];
 
 function HomePage() {
+	const { user, isLoading: isAuthLoading } = useAuth();
+
 	return (
 		<main className="relative min-h-screen overflow-hidden text-foreground">
 			<div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,oklch(0.76_0.08_65_/_0.12)_1px,transparent_1px),linear-gradient(to_bottom,oklch(0.76_0.08_65_/_0.12)_1px,transparent_1px)] bg-[size:46px_46px] [mask-image:linear-gradient(to_bottom,black,transparent_72%)]" />
@@ -174,7 +177,10 @@ function HomePage() {
 						<AuthNavigation />
 					</div>
 				</header>
-				<InterestModeNotice className="mt-5" showAction />
+				<InterestModeNotice
+					className="mt-5"
+					showAction={!isAuthLoading && !user}
+				/>
 
 				<section className="grid flex-1 items-center gap-16 py-16 lg:grid-cols-[1.03fr_0.97fr] lg:gap-12 lg:py-20">
 					<div className="relative z-10">

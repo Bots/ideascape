@@ -95,6 +95,22 @@ describe("App", () => {
 		).toHaveTextContent("18");
 	});
 
+	it("hides the join-the-experiment action from signed-in members", () => {
+		vi.mocked(useAuth).mockReturnValue({
+			user: {
+				id: "55555555-5555-4555-8555-555555555555",
+				email: "member@example.com",
+			} as ReturnType<typeof useAuth>["user"],
+			isLoading: false,
+		});
+
+		renderApp();
+
+		expect(
+			screen.queryByRole("link", { name: /join the experiment/i }),
+		).not.toBeInTheDocument();
+	});
+
 	it("spotlights a permission-first technology pathway", () => {
 		renderApp();
 
