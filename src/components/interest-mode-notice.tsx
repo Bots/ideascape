@@ -16,15 +16,14 @@ export function InterestModeNotice({
 		<div
 			aria-label="Exploration mode"
 			className={cn(
-				"relative overflow-hidden rounded-2xl border border-primary/25 bg-[linear-gradient(115deg,oklch(0.97_0.045_70),oklch(0.99_0.012_78))] p-4 shadow-[0_18px_45px_-35px_oklch(0.49_0.14_39_/_0.5)] dark:border-primary/35 dark:bg-[linear-gradient(115deg,oklch(0.245_0.05_49),oklch(0.205_0.028_44))] dark:shadow-[0_18px_45px_-30px_oklch(0.1_0.025_43_/_0.9)] sm:p-5",
+				"relative overflow-hidden border border-primary/30 border-l-4 border-l-primary bg-primary/6 p-4 sm:p-5",
 				className,
 			)}
 			role="note"
 		>
-			<div className="absolute inset-y-0 left-0 w-1 bg-primary" />
 			<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 				<div className="flex items-start gap-3">
-					<span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm">
+					<span className="grid size-10 shrink-0 place-items-center border border-primary/35 text-primary">
 						<FlaskConical className="size-5" aria-hidden="true" />
 					</span>
 					<div>
@@ -40,8 +39,7 @@ export function InterestModeNotice({
 					<Link
 						className={buttonVariants({
 							variant: "outline",
-							className:
-								"h-10 shrink-0 bg-card/80 px-4 shadow-sm hover:-translate-y-0.5",
+							className: "shrink-0 bg-card px-4",
 						})}
 						to="/sign-up"
 					>

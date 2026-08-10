@@ -89,9 +89,8 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 	return (
 		<section
 			aria-labelledby="idea-interest-heading"
-			className="relative mt-12 overflow-hidden rounded-3xl border border-foreground/15 bg-foreground p-7 text-background shadow-[0_28px_75px_-35px_oklch(0.22_0.05_43_/_0.75)] sm:p-9"
+			className="relative mt-12 overflow-hidden border border-foreground/15 border-t-4 border-t-signal bg-foreground p-7 text-background sm:p-9"
 		>
-			<div className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-primary/35 blur-3xl" />
 			<div className="relative grid gap-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(26rem,1.15fr)] lg:items-center">
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
@@ -99,7 +98,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 						Help shape what comes next
 					</p>
 					<h2
-						className="mt-3 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl"
+						className="mt-3 text-3xl font-light tracking-[-0.025em] sm:text-4xl"
 						id="idea-interest-heading"
 					>
 						Would you want to see this happen?
@@ -110,7 +109,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 					</p>
 				</div>
 
-				<div className="relative rounded-2xl border border-background/15 bg-background/8 p-4 backdrop-blur-sm sm:p-5">
+				<div className="relative border border-background/15 bg-background/8 p-4 sm:p-5">
 					{isPending ? (
 						<p
 							className="flex items-center gap-2 text-sm text-background/70"
@@ -158,7 +157,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 													<button
 														aria-pressed={isSelected}
 														className={cn(
-															"inline-flex min-h-11 items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-primary/50 disabled:pointer-events-none disabled:opacity-60",
+															"inline-flex min-h-11 items-center gap-2 rounded-sm border px-3 py-2 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 disabled:pointer-events-none disabled:opacity-60",
 															isSelected
 																? "border-primary bg-primary text-primary-foreground"
 																: "border-background/20 bg-background/5 text-background hover:border-background/35 hover:bg-background/10",

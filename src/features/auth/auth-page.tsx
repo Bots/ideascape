@@ -1,4 +1,4 @@
-import { Lightbulb } from "lucide-react";
+import { MapPinned } from "lucide-react";
 import { type FormEvent, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -81,15 +81,14 @@ export function AuthPage({ mode }: AuthPageProps) {
 	}
 
 	return (
-		<main className="relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground">
-			<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,oklch(0.84_0.12_155_/_0.3),transparent_34%),radial-gradient(circle_at_80%_10%,oklch(0.82_0.11_250_/_0.22),transparent_30%)]" />
-			<section className="relative w-full max-w-md rounded-2xl border bg-background/90 p-8 shadow-sm backdrop-blur">
+		<main className="field-grid contour-field relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground">
+			<section className="field-panel relative w-full max-w-md border-t-4 border-t-primary p-8">
 				<Link
 					to="/"
 					className="mb-8 flex items-center gap-3 font-semibold tracking-tight"
 				>
-					<span className="grid size-9 place-items-center rounded-xl bg-foreground text-background">
-						<Lightbulb className="size-5" aria-hidden="true" />
+					<span className="grid size-10 place-items-center bg-primary text-primary-foreground">
+						<MapPinned className="size-5" aria-hidden="true" />
 					</span>
 					<span className="text-lg">Ideascape</span>
 				</Link>

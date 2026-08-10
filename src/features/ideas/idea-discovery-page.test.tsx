@@ -48,10 +48,14 @@ const healthIdea = {
 	media: [],
 };
 
-function renderDiscovery(initialEntry = "/ideas") {
+function renderDiscovery(
+	initialEntry = "/ideas",
+	configureQueryClient?: (queryClient: QueryClient) => void,
+) {
 	const queryClient = new QueryClient({
 		defaultOptions: { queries: { retry: false } },
 	});
+	configureQueryClient?.(queryClient);
 
 	return render(
 		<MemoryRouter initialEntries={[initialEntry]}>
@@ -85,6 +89,9 @@ describe("IdeaDiscoveryPage", () => {
 		expect(
 			await screen.findByRole("heading", { name: /discover ideas/i }),
 		).toBeInTheDocument();
+		expect(
+			screen.queryByRole("link", { name: /^explore ideas$/i }),
+		).not.toBeInTheDocument();
 		const cardLink = await screen.findByRole("link", {
 			name: `View ${idea.title}`,
 		});
@@ -191,6 +198,26 @@ describe("IdeaDiscoveryPage", () => {
 		expect(await screen.findByRole("alert")).toHaveTextContent(
 			"Unable to load ideas. Please try again.",
 		);
+		expect(screen.getByText("Catalog unavailable")).toBeInTheDocument();
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
+	});
+
+	it("keeps a stale catalog coherent when a refresh fails", async () => {
+		mockedListPublishedIdeas.mockRejectedValue(
+			new Error("network unavailable"),
+		);
+
+		renderDiscovery("/ideas", (queryClient) => {
+			queryClient.setQueryData(["published-ideas"], [idea]);
+		});
+
+		expect(await screen.findByRole("alert")).toHaveTextContent(
+			"Unable to refresh ideas. Showing the latest available catalog.",
+		);
+		expect(screen.getByText("1 demo concept")).toBeInTheDocument();
+		expect(
+			screen.getByRole("link", { name: `View ${idea.title}` }),
+		).toBeInTheDocument();
+		expect(screen.queryByText("Catalog unavailable")).not.toBeInTheDocument();
 	});
 });

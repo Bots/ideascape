@@ -63,6 +63,9 @@ beforeEach(() => {
 describe("App", () => {
 	it("introduces the Ideascape mission at the home route", () => {
 		renderApp();
+		const main = screen.getByRole("main");
+		const banner = screen.getByRole("banner");
+		expect(main).not.toContainElement(banner);
 
 		expect(
 			screen.getByRole("heading", {

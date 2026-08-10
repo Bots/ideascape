@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, Lightbulb, LoaderCircle } from "lucide-react";
+import { ArrowLeft, LoaderCircle, MapPinned } from "lucide-react";
 import { type FormEvent, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -213,15 +213,14 @@ export function IdeaEditorPage() {
 
 function EditorShell({ children }: { children: React.ReactNode }) {
 	return (
-		<main className="relative min-h-screen overflow-hidden bg-background px-6 py-12 text-foreground">
-			<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,oklch(0.84_0.12_155_/_0.3),transparent_34%),radial-gradient(circle_at_80%_10%,oklch(0.82_0.11_250_/_0.22),transparent_30%)]" />
-			<section className="relative mx-auto w-full max-w-3xl rounded-2xl border bg-background/90 p-8 shadow-sm backdrop-blur sm:p-10">
+		<main className="field-grid contour-field relative min-h-screen overflow-hidden bg-background px-6 py-12 text-foreground">
+			<section className="field-panel relative mx-auto w-full max-w-3xl border-t-4 border-t-primary p-8 sm:p-10">
 				<Link
 					to="/"
 					className="mb-10 flex items-center gap-3 font-semibold tracking-tight"
 				>
-					<span className="grid size-9 place-items-center rounded-xl bg-foreground text-background">
-						<Lightbulb className="size-5" aria-hidden="true" />
+					<span className="grid size-10 place-items-center bg-primary text-primary-foreground">
+						<MapPinned className="size-5" aria-hidden="true" />
 					</span>
 					<span className="text-lg">Ideascape</span>
 				</Link>

@@ -8,11 +8,10 @@ import {
 } from "@/features/auth/auth-return-path";
 
 const pageClassName =
-	"relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground";
-const backdropClassName =
-	"pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,oklch(0.84_0.12_155_/_0.3),transparent_34%),radial-gradient(circle_at_80%_10%,oklch(0.82_0.11_250_/_0.22),transparent_30%)]";
+	"field-grid contour-field relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground";
+const backdropClassName = "hidden";
 const cardClassName =
-	"relative w-full max-w-md rounded-2xl border bg-background/90 p-8 text-center shadow-sm backdrop-blur";
+	"field-panel relative w-full max-w-md border-t-4 border-t-primary p-8 text-center";
 
 export function AuthCallbackPage() {
 	const { user, isLoading } = useAuth();
