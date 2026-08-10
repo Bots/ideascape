@@ -18,6 +18,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 
 - Public, unauthenticated idea discovery at `/ideas` and detail pages at `/ideas/:slug`
 - Twenty-one deterministic demo concepts, seeded through versioned Supabase migrations
+- Three issue-driven Colorado Springs campaigns covering plate-reader surveillance, dangerous crossings, and inaccessible transit stops
 - URL-persistent text search and category filtering, including a direct permission-first technology view at `/ideas?category=technology`
 - Same-category recommendations on detail pages with accessible full-card links back into the catalog
 - Fully clickable discovery cards with concise accessible link names and visible keyboard focus
@@ -44,9 +45,9 @@ Fresh databases contain these published concept previews:
 2. [Repair Commons on Wheels](https://ideascape-gamma.vercel.app/ideas/repair-commons)
 3. [Neighbor Ride Credits](https://ideascape-gamma.vercel.app/ideas/neighbor-ride-credits)
 4. [After-Dark Storefronts](https://ideascape-gamma.vercel.app/ideas/after-dark-storefronts)
-5. [Shade Stop Network](https://ideascape-gamma.vercel.app/ideas/shade-stop-network)
+5. [Shade Every Mountain Metro Stop](https://ideascape-gamma.vercel.app/ideas/shade-stop-network)
 6. [Skill Swap Saturdays](https://ideascape-gamma.vercel.app/ideas/skill-swap-saturdays)
-7. [Civic Accessibility Lab](https://ideascape-gamma.vercel.app/ideas/civic-accessibility-lab)
+7. [Cross Academy Alive](https://ideascape-gamma.vercel.app/ideas/civic-accessibility-lab)
 8. [Block-Ready Kits](https://ideascape-gamma.vercel.app/ideas/block-ready-kits)
 9. [Device Liberation Lab](https://ideascape-gamma.vercel.app/ideas/device-liberation-lab)
 10. [File Rescue Cooperative](https://ideascape-gamma.vercel.app/ideas/file-rescue-cooperative)
@@ -60,9 +61,9 @@ Fresh databases contain these published concept previews:
 18. [Project Time Capsule](https://ideascape-gamma.vercel.app/ideas/project-time-capsule)
 19. [Waste Heat Works](https://ideascape-gamma.vercel.app/ideas/waste-heat-works)
 20. [Model Commons Lab](https://ideascape-gamma.vercel.app/ideas/model-commons-lab)
-21. [Glass Box Sensor Network](https://ideascape-gamma.vercel.app/ideas/glass-box-sensor-network)
+21. [Flock Off Colorado Springs](https://ideascape-gamma.vercel.app/ideas/glass-box-sensor-network)
 
-Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. The earliest five broad previews now define bounded first tests, required permissions, privacy limits, measurable continuation evidence, and explicit stop conditions instead of assuming that backing or an operating program already exists. Those five concepts and Project Time Capsule also ask one focused, private-answer validation question so practical demand, permissions, and pilot capability can be evaluated as aggregate evidence rather than public member activity. Technology-forward previews are deliberately permission-first: device and home-lab work stays inside written scope, compute jobs follow transparent acceptable-use controls, mesh nodes use legal spectrum and opt-in relays, repair documentation has lawful provenance, accessibility prototypes require participant consent, software archives preserve license provenance, heat recovery fails back to the original cooling path, local-model comparisons use approved task packs, and public sensors make their collection and retention boundaries visible.
+Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. The earliest five broad previews now define bounded first tests, required permissions, privacy limits, measurable continuation evidence, and explicit stop conditions instead of assuming that backing or an operating program already exists. Those five concepts and Project Time Capsule also ask one focused, private-answer validation question so practical demand, permissions, and pilot capability can be evaluated as aggregate evidence rather than public member activity. Three previously generic previews are now sharp Colorado Springs campaigns: challenge the plate-reader dragnet through public records and lawful organizing, force a dangerous Academy Boulevard crossing into the engineering record, and turn Mountain Metro's own accessibility findings into five concrete stop fixes. Technology-forward previews remain permission-first: device and home-lab work stays inside written scope, compute jobs follow transparent acceptable-use controls, mesh nodes use legal spectrum and opt-in relays, repair documentation has lawful provenance, software archives preserve license provenance, heat recovery fails back to the original cooling path, and local-model comparisons use approved task packs.
 
 ## Stack
 

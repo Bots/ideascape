@@ -1,6 +1,6 @@
 begin;
 
-select plan(18);
+select plan(20);
 
 select ok(
   exists (
@@ -123,12 +123,81 @@ select is(
       and case ideas.slug
         when 'waste-heat-works' then ideas.description ilike '%licensed engineering review%'
         when 'model-commons-lab' then ideas.description ilike '%participant-approved material%'
-        when 'glass-box-sensor-network' then ideas.description ilike '%no cameras or stored audio%'
+        when 'glass-box-sensor-network' then ideas.description ilike '%no physical interference%'
         else false
       end
   ),
   3::bigint,
   'three bold infrastructure concepts are seeded with measurable pilots and explicit boundaries'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    where slug in (
+      'shade-stop-network',
+      'civic-accessibility-lab',
+      'glass-box-sensor-network'
+    )
+      and status = 'published'
+      and char_length(summary) between 80 and 280
+      and char_length(description) >= 500
+      and position(E'\\n' in description) = 0
+      and position(E'\n' in description) > 0
+      and case slug
+        when 'shade-stop-network' then
+          title = 'Shade Every Mountain Metro Stop'
+          and description ilike '%2025 Mountain Metro bus-stop self-evaluation%'
+          and description ilike '%116%'
+          and description ilike '%178%'
+          and description ilike '%written approval%'
+        when 'civic-accessibility-lab' then
+          title = 'Cross Academy Alive'
+          and description ilike '%written city authorization%'
+          and description ilike '%without capturing faces or license plates%'
+        when 'glass-box-sensor-network' then
+          title = 'Flock Off Colorado Springs'
+          and description ilike '%Colorado Open Records Act%'
+          and description ilike '%no physical interference%'
+          and description ilike '%private license plates%'
+        else false
+      end
+  ),
+  3::bigint,
+  'three current demos become provocative Colorado Springs campaigns with lawful evidence boundaries'
+);
+
+select results_eq(
+  $$
+    select ideas.slug, idea_media.alt_text
+    from public.ideas
+    join public.idea_media on idea_media.idea_id = ideas.id
+    where ideas.slug in (
+      'shade-stop-network',
+      'civic-accessibility-lab',
+      'glass-box-sensor-network'
+    )
+      and idea_media.kind = 'image'
+      and idea_media.sort_order = 0
+    order by ideas.slug
+  $$,
+  $$
+    values
+      (
+        'civic-accessibility-lab'::text,
+        'A wheelchair user times a permitted crossing demonstration on Academy Boulevard while observers record safety evidence.'::text
+      ),
+      (
+        'glass-box-sensor-network'::text,
+        'A networked license plate reader is crossed out above a public records map of Colorado Springs.'::text
+      ),
+      (
+        'shade-stop-network'::text,
+        'A bare Mountain Metro bus stop is transformed with accessible pavement, seating, and engineered shade.'::text
+      )
+  $$,
+  'the three localized campaigns have concept-specific accessible cover descriptions'
 );
 
 select is(

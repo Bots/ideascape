@@ -1,33 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
-  <title id="title">Shade Stop Network</title>
-  <desc id="desc">Neighbors wait beneath a bright modular shade shelter at a sunny bus stop.</desc>
+  <title id="title">Shade Every Mountain Metro Stop</title>
+  <desc id="desc">A bare Mountain Metro bus stop is transformed with accessible pavement, seating, and engineered shade.</desc>
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd7ad"/><stop offset="1" stop-color="#ff8a43"/></linearGradient>
-    <linearGradient id="shade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff7b32"/><stop offset="1" stop-color="#e84a18"/></linearGradient>
-    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="17" flood-color="#382018" flood-opacity=".23"/></filter>
-    <pattern id="grain" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="5" cy="7" r="1" fill="#512a1e" opacity=".09"/><circle cx="20" cy="19" r=".8" fill="#fff" opacity=".22"/></pattern>
+    <linearGradient id="heat" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe0b5"/><stop offset="1" stop-color="#ff6b2c"/></linearGradient>
+    <linearGradient id="canopy" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f97316"/><stop offset="1" stop-color="#c2410c"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="14" stdDeviation="17" flood-color="#2e160f" flood-opacity=".32"/></filter>
+    <pattern id="grain" width="31" height="31" patternUnits="userSpaceOnUse"><circle cx="6" cy="7" r="1" fill="#5b2518" opacity=".1"/><circle cx="24" cy="23" r="1" fill="#fff" opacity=".2"/></pattern>
   </defs>
-  <rect width="1200" height="675" fill="#fff7ec"/>
-  <rect width="1200" height="430" fill="url(#sky)"/>
-  <circle cx="1008" cy="118" r="74" fill="#fff1c9" opacity=".9"/>
-  <g fill="#6f3a2a" opacity=".18"><rect x="0" y="238" width="180" height="192"/><rect x="202" y="180" width="150" height="250"/><rect x="375" y="264" width="210" height="166"/><rect x="965" y="218" width="235" height="212"/></g>
-  <path d="M0 430h1200v245H0Z" fill="#edc69f"/>
-  <path d="M0 545h1200v130H0Z" fill="#3c2a23"/>
-  <path d="M0 575h1200" stroke="#fff1df" stroke-width="10" stroke-dasharray="62 42" opacity=".8"/>
-  <g filter="url(#shadow)">
-    <path d="M226 186h638l70 88H163Z" fill="url(#shade)" stroke="#3b251e" stroke-width="5" stroke-linejoin="round"/>
-    <path d="M205 274v277M892 274v277" stroke="#3b251e" stroke-width="18"/>
-    <rect x="254" y="378" width="380" height="28" rx="14" fill="#3b251e"/>
-    <rect x="285" y="406" width="22" height="102" rx="10" fill="#3b251e"/><rect x="580" y="406" width="22" height="102" rx="10" fill="#3b251e"/>
-    <rect x="702" y="309" width="133" height="174" rx="15" fill="#fffaf2" stroke="#3b251e" stroke-width="5"/>
-    <circle cx="768" cy="357" r="30" fill="#ff7b32"/><path d="M750 357h36M768 339v36" stroke="#fff7ec" stroke-width="8" stroke-linecap="round"/>
-    <path d="M730 414h77M730 440h54" stroke="#7d4b36" stroke-width="9" stroke-linecap="round" opacity=".7"/>
+  <rect width="1200" height="675" fill="url(#heat)"/>
+  <circle cx="1050" cy="100" r="73" fill="#fff7d6"/>
+  <path d="M0 236 145 140l98 65 146-123 142 119 151-134 134 117 137-83 147 94 100-51v198H0Z" fill="#7c3a27" opacity=".3"/>
+  <text x="62" y="74" font-family="Arial, sans-serif" font-size="45" font-weight="900" fill="#2e160f">SHADE EVERY MOUNTAIN METRO STOP</text>
+  <text x="65" y="111" font-family="monospace" font-size="20" font-weight="800" fill="#7c2d12">TURN THE CITY'S OWN DATA INTO FIVE REAL FIXES</text>
+  <path d="M0 342h1200v333H0Z" fill="#e9bd90"/>
+  <path d="M0 558h1200v117H0Z" fill="#342720"/>
+  <path d="M0 610h1200" stroke="#fff7ed" stroke-width="9" stroke-dasharray="54 40" opacity=".8"/>
+  <g transform="translate(52 165)" filter="url(#shadow)">
+    <rect width="310" height="150" rx="27" fill="#fff7ed" stroke="#f97316" stroke-width="8"/>
+    <text x="155" y="42" font-family="monospace" font-size="17" font-weight="900" text-anchor="middle" fill="#7c2d12">2025 CITY SELF-EVALUATION</text>
+    <text x="75" y="104" font-family="Arial, sans-serif" font-size="47" font-weight="900" text-anchor="middle" fill="#ea580c">116</text>
+    <text x="235" y="104" font-family="Arial, sans-serif" font-size="47" font-weight="900" text-anchor="middle" fill="#ea580c">178</text>
+    <text x="75" y="130" font-family="monospace" font-size="14" font-weight="800" text-anchor="middle" fill="#7c2d12">RATING 1</text>
+    <text x="235" y="130" font-family="monospace" font-size="14" font-weight="800" text-anchor="middle" fill="#7c2d12">RATING 2</text>
   </g>
-  <g>
-    <circle cx="399" cy="332" r="38" fill="#8d4a32"/><path d="M343 500c8-93 27-132 61-132 41 0 60 45 66 132Z" fill="#29423e"/><path d="M385 394c32 20 59 20 85-1" fill="none" stroke="#f45d22" stroke-width="18" stroke-linecap="round"/>
-    <circle cx="539" cy="342" r="34" fill="#d78b62"/><path d="M493 500c8-79 24-115 52-115 35 0 52 39 56 115Z" fill="#fff1df"/><path d="M523 404c-24 16-48 35-72 57" fill="none" stroke="#d78b62" stroke-width="16" stroke-linecap="round"/>
-    <circle cx="1010" cy="412" r="31" fill="#8d4a32"/><path d="M966 532c6-67 22-92 49-92 31 0 47 28 51 92Z" fill="#f45d22"/>
+  <g transform="translate(420 203)" filter="url(#shadow)">
+    <path d="M38 72h596l66 83H0Z" fill="url(#canopy)" stroke="#2e160f" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M50 154v391M650 154v391" stroke="#2e160f" stroke-width="18"/>
+    <rect x="110" y="341" width="315" height="31" rx="15" fill="#2e160f"/>
+    <path d="M145 372v113M390 372v113" stroke="#2e160f" stroke-width="18"/>
+    <rect x="484" y="205" width="116" height="193" rx="16" fill="#fff7ed" stroke="#2e160f" stroke-width="6"/>
+    <circle cx="542" cy="253" r="31" fill="#f97316"/>
+    <text x="542" y="262" font-family="Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#fff7ed">MM</text>
+    <path d="M510 319h64M510 349h44" stroke="#7c2d12" stroke-width="10" stroke-linecap="round"/>
+    <path d="M80 498h550" stroke="#fff7ed" stroke-width="28" stroke-linecap="round"/>
   </g>
-  <path d="M1063 223c-25 30-38 67-37 109M1085 236c-1 39-19 72-54 98M1045 245c20 30 25 61 15 94" fill="none" stroke="#28423d" stroke-width="18" stroke-linecap="round"/>
+  <g transform="translate(535 370)">
+    <circle cx="58" cy="44" r="35" fill="#985036"/>
+    <path d="M50 87v104l72 52" fill="none" stroke="#fff7ed" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="111" cy="204" r="66" fill="none" stroke="#0f766e" stroke-width="17"/>
+    <circle cx="111" cy="204" r="10" fill="#0f766e"/>
+  </g>
+  <rect x="58" y="581" width="392" height="51" rx="25" fill="#f97316"/>
+  <text x="254" y="614" font-family="Arial, sans-serif" font-size="20" font-weight="900" text-anchor="middle" fill="#2e160f">MEASURE 50 • FIX THE WORST 5</text>
   <rect width="1200" height="675" fill="url(#grain)"/>
 </svg>
