@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { getAdminAccess } from "@/features/admin/admin-service";
 import { useAuth } from "@/features/auth/auth-provider";
 import { signOut } from "@/features/auth/auth-service";
 import { cn } from "@/lib/utils";
@@ -9,6 +10,39 @@ export function AuthNavigation() {
 	const { user, isLoading } = useAuth();
 	const [isSigningOut, setIsSigningOut] = useState(false);
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
+	const [adminCapability, setAdminCapability] = useState<{
+		userId: string;
+		hasAccess: boolean;
+	} | null>(null);
+	const userId = user?.id;
+	const hasAdminAccess =
+		adminCapability?.userId === userId && adminCapability?.hasAccess === true;
+
+	useEffect(() => {
+		let isCurrent = true;
+
+		if (!userId) {
+			return () => {
+				isCurrent = false;
+			};
+		}
+
+		void getAdminAccess()
+			.then((isAdmin) => {
+				if (isCurrent) {
+					setAdminCapability({ userId, hasAccess: isAdmin });
+				}
+			})
+			.catch(() => {
+				if (isCurrent) {
+					setAdminCapability({ userId, hasAccess: false });
+				}
+			});
+
+		return () => {
+			isCurrent = false;
+		};
+	}, [userId]);
 
 	async function handleSignOut() {
 		setIsSigningOut(true);
@@ -52,6 +86,15 @@ export function AuthNavigation() {
 			className="flex flex-wrap items-center justify-end gap-3"
 			aria-label="Account"
 		>
+			{hasAdminAccess ? (
+				<Link
+					aria-label="Operations dashboard"
+					className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}
+					to="/admin"
+				>
+					Operations
+				</Link>
+			) : null}
 			<span className="max-w-48 truncate text-sm text-muted-foreground">
 				{user.email ?? "Signed in"}
 			</span>

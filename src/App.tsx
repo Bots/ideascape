@@ -13,6 +13,11 @@ import { buttonVariants } from "@/components/ui/button";
 import { useAuth } from "@/features/auth/auth-provider";
 import { AuthNavigation } from "@/features/auth/auth-navigation";
 
+const AdminPage = lazy(() =>
+	import("@/features/admin/admin-page").then((module) => ({
+		default: module.AdminPage,
+	})),
+);
 const AuthCallbackPage = lazy(() =>
 	import("@/features/auth/auth-callback-page").then((module) => ({
 		default: module.AuthCallbackPage,
@@ -606,6 +611,7 @@ function App() {
 				<Route path="/ideas/:ideaId/edit" element={<IdeaEditorPage />} />
 				<Route path="/ideas/:slug" element={<IdeaDetailPage />} />
 				<Route path="/pilots/:pilotSlug" element={<PilotPage />} />
+				<Route path="/admin" element={<AdminPage />} />
 				<Route path="/auth/callback" element={<AuthCallbackPage />} />
 			</Routes>
 		</Suspense>
