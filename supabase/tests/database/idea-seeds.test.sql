@@ -1,6 +1,6 @@
 begin;
 
-select plan(17);
+select plan(18);
 
 select ok(
   exists (
@@ -129,6 +129,43 @@ select is(
   ),
   3::bigint,
   'three bold infrastructure concepts are seeded with measurable pilots and explicit boundaries'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    where slug in (
+      'neighbor-ride-credits',
+      'skill-swap-saturdays',
+      'after-dark-storefronts',
+      'block-ready-kits',
+      'clean-air-library'
+    )
+      and char_length(summary) between 80 and 280
+      and char_length(description) >= 450
+      and summary not ilike '%fund%'
+      and description not ilike '%backers%'
+      and description not ilike '%backing would%'
+      and description not ilike '%launch budget%'
+      and description not ilike '%early resources would%'
+      and case slug
+        when 'neighbor-ride-credits' then
+          description ilike '%licensed accessible transport partner%'
+          and description ilike '%maximum of 20%'
+        when 'skill-swap-saturdays' then
+          description ilike '%twelve successful teach-backs%'
+        when 'after-dark-storefronts' then
+          description ilike '%two weeks of baseline%'
+        when 'block-ready-kits' then
+          description ilike '%within 20 minutes%'
+        when 'clean-air-library' then
+          description ilike '%non-ozone-generating%'
+        else false
+      end
+  ),
+  5::bigint,
+  'five legacy previews use bounded pilots, measurable thresholds, and exploration-safe language'
 );
 
 select is(
