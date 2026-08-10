@@ -32,6 +32,7 @@ Ideascape is in **Exploration mode**. Published entries are concept previews, no
 - [x] Seed deterministic concept previews and local illustrations
 - [x] Expand the catalog with bold, measurable infrastructure concepts and explicit operating boundaries
 - [x] Refine broad launch previews into bounded tests with decision-grade evidence
+- [x] Replace generic previews with issue-driven Colorado Springs civic campaigns
 - [x] Add persistent light and dark themes
 
 ## Phase 3 — Validation evidence and campaign design

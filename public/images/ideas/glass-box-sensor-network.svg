@@ -1,43 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
-  <title id="title">Glass Box Sensor Network</title>
-  <desc id="desc">Transparent neighborhood sensor pods display active measurements, calibration state, and raw-data expiry in public.</desc>
-  <rect width="870" height="580" rx="32" fill="#2b130d"/>
-  <rect x="40" y="38" width="790" height="504" rx="30" fill="#fff7ed"/>
-  <rect x="40" y="38" width="790" height="72" rx="30" fill="#0f766e"/>
-  <text x="435" y="83" font-family="monospace" font-size="24" font-weight="700" text-anchor="middle" fill="#fff7ed">VISIBLE SENSORS • EXPIRING DATA</text>
-  <path d="M40 430h790v112H40z" fill="#fed7aa"/>
-  <path d="M40 430h790" stroke="#fb923c" stroke-width="10"/>
-  <g fill="#3b1d15" opacity=".14"><rect x="72" y="148" width="150" height="282"/><rect x="648" y="174" width="142" height="256"/><path d="M278 430V215l82-64 82 64v215z"/></g>
-  <g fill="none" stroke="#ff6b2c" stroke-width="6" stroke-dasharray="12 12"><path d="M205 310Q435 156 664 310"/><path d="M205 310Q435 448 664 310"/></g>
-  <g font-family="monospace" text-anchor="middle">
-    <g transform="translate(119 215)">
-      <rect width="172" height="245" rx="28" fill="#3b1d15" stroke="#9a3412" stroke-width="8"/>
-      <rect x="23" y="30" width="126" height="126" rx="16" fill="#fff7ed"/>
-      <text x="86" y="57" font-size="12" font-weight="700" fill="#7c2d12">MEASURING</text>
-      <text x="86" y="86" font-size="18" font-weight="700" fill="#ff6b2c">PM  8</text>
-      <text x="86" y="113" font-size="18" font-weight="700" fill="#0f766e">TEMP 31°</text>
-      <text x="86" y="140" font-size="12" font-weight="700" fill="#7c2d12">AUDIO: NONE</text>
-      <circle cx="86" cy="188" r="20" fill="#2dd4bf"/>
-      <text x="86" y="227" font-size="11" font-weight="700" fill="#fff7ed">CALIBRATED ✓</text>
-    </g>
-    <g transform="translate(578 215)">
-      <rect width="172" height="245" rx="28" fill="#3b1d15" stroke="#9a3412" stroke-width="8"/>
-      <rect x="23" y="30" width="126" height="126" rx="16" fill="#fff7ed"/>
-      <text x="86" y="57" font-size="12" font-weight="700" fill="#7c2d12">DATA CONTRACT</text>
-      <text x="86" y="86" font-size="13" font-weight="700" fill="#0f766e">NO CAMERA</text>
-      <text x="86" y="113" font-size="13" font-weight="700" fill="#0f766e">NO DEVICE IDs</text>
-      <text x="86" y="140" font-size="12" font-weight="700" fill="#ff6b2c">EXPIRES 7 DAYS</text>
-      <path d="M68 186a20 20 0 1 1 11 18" fill="none" stroke="#2dd4bf" stroke-width="7" stroke-linecap="round"/><path d="m66 176 2 14 14-3" fill="none" stroke="#2dd4bf" stroke-width="6"/>
-      <text x="86" y="227" font-size="11" font-weight="700" fill="#fff7ed">DELETION AUDIT ✓</text>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Flock Off Colorado Springs</title>
+  <desc id="desc">A networked license plate reader is crossed out above a public records map of Colorado Springs.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#24100d"/><stop offset="1" stop-color="#482016"/></linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff7ed"/><stop offset="1" stop-color="#fed7aa"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#120806" flood-opacity=".45"/></filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0v44" fill="none" stroke="#fb923c" stroke-width="1" opacity=".14"/></pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#sky)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  <path d="M0 205 160 110l115 68 170-124 138 105 140-94 157 113 136-74 204 116v85H0Z" fill="#7c2d12" opacity=".72"/>
+  <text x="72" y="86" font-family="Arial, sans-serif" font-size="54" font-weight="900" fill="#fff7ed">FLOCK OFF</text>
+  <text x="74" y="130" font-family="monospace" font-size="23" font-weight="700" fill="#fb923c">COLORADO SPRINGS • RECORDS, NOT RUMORS</text>
+  <g filter="url(#shadow)">
+    <rect x="74" y="226" width="600" height="366" rx="30" fill="url(#paper)" stroke="#f97316" stroke-width="7"/>
+    <text x="112" y="276" font-family="monospace" font-size="20" font-weight="800" fill="#7c2d12">PUBLIC RECORDS MAP</text>
+    <path d="M118 322c105-61 178 42 277-14 79-45 142 10 223-36M132 430c112-68 194 44 304-16 67-37 121-9 174-48M174 300v248M296 302v254M436 292v264M558 276v268" fill="none" stroke="#c2410c" stroke-width="9" opacity=".34"/>
+    <g fill="#f97316" stroke="#7c2d12" stroke-width="5"><circle cx="202" cy="352" r="14"/><circle cx="362" cy="390" r="14"/><circle cx="506" cy="330" r="14"/><circle cx="252" cy="490" r="14"/><circle cx="540" cy="478" r="14"/></g>
+    <rect x="112" y="528" width="520" height="38" rx="19" fill="#431407"/>
+    <text x="372" y="553" font-family="monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#fed7aa">CONTRACTS • RETENTION • SHARING • AUDITS</text>
   </g>
-  <g transform="translate(345 238)">
-    <path d="M0 40 90 0l90 40v122l-90 40-90-40z" fill="#d1fae5" stroke="#0f766e" stroke-width="8"/>
-    <circle cx="90" cy="79" r="34" fill="#ff6b2c"/>
-    <path d="M90 57v23l18 12" fill="none" stroke="#fff7ed" stroke-width="7" stroke-linecap="round"/>
-    <text x="90" y="142" font-family="monospace" font-size="13" font-weight="700" text-anchor="middle" fill="#0f766e">PUBLIC STATUS</text>
-    <text x="90" y="164" font-family="monospace" font-size="12" text-anchor="middle" fill="#7c2d12">SIGNED FIRMWARE</text>
+  <g transform="translate(744 184)" filter="url(#shadow)">
+    <path d="M176 376V158" stroke="#fff7ed" stroke-width="25" stroke-linecap="round"/>
+    <path d="M176 174h146" stroke="#fff7ed" stroke-width="21" stroke-linecap="round"/>
+    <g transform="translate(275 102)">
+      <path d="M0 28 104 0l61 56-112 46-60-34Z" fill="#1c1917" stroke="#fdba74" stroke-width="8"/>
+      <circle cx="105" cy="50" r="29" fill="#fdba74" stroke="#431407" stroke-width="8"/>
+      <circle cx="105" cy="50" r="11" fill="#ef4444"/>
+    </g>
+    <rect x="111" y="260" width="130" height="75" rx="13" fill="#fff7ed" stroke="#f97316" stroke-width="8"/>
+    <text x="176" y="293" font-family="monospace" font-size="15" font-weight="800" text-anchor="middle" fill="#7c2d12">PLATE</text>
+    <text x="176" y="316" font-family="monospace" font-size="15" font-weight="800" text-anchor="middle" fill="#7c2d12">READER</text>
+    <circle cx="176" cy="210" r="172" fill="none" stroke="#ff3b30" stroke-width="25"/>
+    <path d="M53 90 304 335" stroke="#ff3b30" stroke-width="31" stroke-linecap="round"/>
   </g>
-  <rect x="210" y="486" width="450" height="38" rx="19" fill="#ff6b2c"/>
-  <text x="435" y="511" font-family="monospace" font-size="15" font-weight="700" text-anchor="middle" fill="#2b130d">PEOPLE CAN SEE THE COLLECTION BOUNDARY</text>
+  <rect x="730" y="570" width="405" height="54" rx="27" fill="#f97316"/>
+  <text x="932" y="605" font-family="Arial, sans-serif" font-size="21" font-weight="900" text-anchor="middle" fill="#2b110b">REMOVE IT OR PROVE EVERY SEARCH</text>
 </svg>
