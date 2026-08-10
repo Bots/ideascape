@@ -22,7 +22,8 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 1. Learn which concepts produce practical participation intent, not only passive curiosity.
 2. Use focused private-answer questions across six bounded concepts to test practical demand, permissions, and pilot capability through aggregate evidence.
 3. Use the Project Time Capsule readiness dashboard to compare aggregate evidence with the published continue, revise, and archive thresholds.
-4. Complete the first capped Project Time Capsule intake UI, then add operating guidance and measurable rebuild outcomes without introducing payments or custody.
+4. Use the private operations dashboard to watch aggregate membership, concepts, validation, pilot intake, and published-concept activity without opening respondent-level records.
+5. Complete the first capped Project Time Capsule intake UI, then add operating guidance and measurable rebuild outcomes without introducing payments or custody.
 
 ## Delivered
 
@@ -44,6 +45,7 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 - Focused pilot questions across six bounded concepts with private, reversible answers and creator-only aggregate evidence
 - Public Project Time Capsule pilot plan with a fixed evidence window, capacity, safety boundaries, and precommitted decision thresholds
 - Creator/operator-only aggregate readiness dashboard with practical-signal, participant, suitable-project, application, and remaining-capacity evidence
+- Database-authorized `/admin` operations dashboard with live aggregate counts, published-concept activity, explicit unauthorized and error states, and no respondent, draft, or application-detail access
 - Deterministic pending, continue, revise, or archive previews without exposing respondent or applicant identities
 - Technology-forward landing showcase plus clear separation between the live validation flow and hypothetical future funding concepts
 - Row-level-security and pgTAP coverage for ownership, privacy, lifecycle, and seed behavior
@@ -69,6 +71,7 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 - Individual interest rows and participation intent remain private; public pages receive aggregate counts only.
 - Individual validation answers remain private; concept creators receive option totals without member identities.
 - Private pilot dashboards expose aggregate counts only to the concept creator or a trusted operator; ordinary members receive no dashboard row.
+- Administrator access is enforced by a private database allowlist or trusted operator claim; the admin dashboard receives aggregate RPC results rather than direct table access.
 - No product copy may imply payment, commitment, active fundraising, or an operating program while Ideascape remains in exploration mode.
 - Commit verified milestones incrementally.
 

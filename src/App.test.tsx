@@ -17,6 +17,10 @@ vi.mock("@/features/auth/auth-service", () => ({
 	signOut: vi.fn(),
 }));
 
+vi.mock("@/features/admin/admin-service", () => ({
+	getAdminAccess: vi.fn().mockResolvedValue(false),
+}));
+
 vi.mock("@/features/profiles/profile-page", () => ({
 	ProfilePage: () => <h1>Public profile route</h1>,
 }));
@@ -35,6 +39,10 @@ vi.mock("@/features/ideas/idea-detail-page", () => ({
 
 vi.mock("@/features/pilots/pilot-page", () => ({
 	PilotPage: () => <h1>Pilot plan route</h1>,
+}));
+
+vi.mock("@/features/admin/admin-page", () => ({
+	AdminPage: () => <h1>Admin dashboard route</h1>,
 }));
 
 function renderApp(path = "/") {
@@ -299,6 +307,14 @@ describe("App", () => {
 
 		expect(
 			await screen.findByRole("heading", { name: /pilot plan route/i }),
+		).toBeInTheDocument();
+	});
+
+	it("renders the private admin dashboard route", async () => {
+		renderApp("/admin");
+
+		expect(
+			await screen.findByRole("heading", { name: /admin dashboard route/i }),
 		).toBeInTheDocument();
 	});
 

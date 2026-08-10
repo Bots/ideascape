@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import type { User } from "@supabase/supabase-js";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { getAdminAccess } from "@/features/admin/admin-service";
 import { useAuth } from "@/features/auth/auth-provider";
 import { AuthNavigation } from "@/features/auth/auth-navigation";
 import { signOut } from "@/features/auth/auth-service";
@@ -15,8 +16,13 @@ vi.mock("@/features/auth/auth-service", () => ({
 	signOut: vi.fn(),
 }));
 
+vi.mock("@/features/admin/admin-service", () => ({
+	getAdminAccess: vi.fn(),
+}));
+
 const mockedUseAuth = vi.mocked(useAuth);
 const mockedSignOut = vi.mocked(signOut);
+const mockedGetAdminAccess = vi.mocked(getAdminAccess);
 
 function renderNavigation() {
 	return render(
@@ -28,6 +34,7 @@ function renderNavigation() {
 
 beforeEach(() => {
 	vi.resetAllMocks();
+	mockedGetAdminAccess.mockResolvedValue(false);
 });
 
 afterEach(cleanup);
@@ -60,6 +67,58 @@ describe("AuthNavigation", () => {
 		).toBeInTheDocument();
 		expect(
 			screen.queryByRole("link", { name: /sign in/i }),
+		).not.toBeInTheDocument();
+		expect(
+			screen.queryByRole("link", { name: /operations dashboard/i }),
+		).not.toBeInTheDocument();
+	});
+
+	it("shows the operations dashboard link after server authorization", async () => {
+		mockedUseAuth.mockReturnValue({
+			user: {
+				id: "88888888-8888-4888-8888-888888888888",
+				email: "admin@example.com",
+			} as User,
+			isLoading: false,
+		});
+		mockedGetAdminAccess.mockResolvedValue(true);
+		renderNavigation();
+
+		expect(
+			await screen.findByRole("link", { name: /operations dashboard/i }),
+		).toHaveAttribute("href", "/admin");
+	});
+
+	it("does not flash the previous admin capability after identity changes", async () => {
+		mockedUseAuth.mockReturnValue({
+			user: {
+				id: "88888888-8888-4888-8888-888888888888",
+				email: "admin@example.com",
+			} as User,
+			isLoading: false,
+		});
+		mockedGetAdminAccess.mockResolvedValueOnce(true);
+		const navigation = renderNavigation();
+		expect(
+			await screen.findByRole("link", { name: /operations dashboard/i }),
+		).toBeInTheDocument();
+
+		mockedUseAuth.mockReturnValue({
+			user: {
+				id: "99999999-9999-4999-8999-999999999999",
+				email: "member@example.com",
+			} as User,
+			isLoading: false,
+		});
+		mockedGetAdminAccess.mockReturnValueOnce(new Promise(() => {}));
+		navigation.rerender(
+			<MemoryRouter>
+				<AuthNavigation />
+			</MemoryRouter>,
+		);
+
+		expect(
+			screen.queryByRole("link", { name: /operations dashboard/i }),
 		).not.toBeInTheDocument();
 	});
 

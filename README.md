@@ -28,6 +28,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 - Creator-only aggregate response evidence that never includes member identities
 - A public Project Time Capsule pilot plan with precommitted continue, revise, and archive thresholds
 - A creator/operator-only readiness dashboard for practical signals, pilot responses, private application totals, capacity, and a threshold-based decision preview
+- A private `/admin` operations dashboard for allowlisted administrators, with live aggregate member, idea, interest, validation, pilot, and application counts plus published-concept activity
 - Email/password, Google, and GitHub OAuth-capable authentication with safe post-auth return paths
 - Public member profiles plus owner-only profile updates
 - Private creator drafts and editing at `/ideas/new` and `/ideas/:id/edit`

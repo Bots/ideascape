@@ -41,6 +41,7 @@ Ideascape is in **Exploration mode**. Published entries are concept previews, no
 - [x] Add the first focused Project Time Capsule pilot question with private, reversible responses
 - [x] Publish Project Time Capsule pilot thresholds and a creator/operator-only aggregate readiness dashboard
 - [x] Expand focused validation questions to concepts whose riskiest assumption is clearly defined
+- [x] Add a database-authorized, aggregate-only administrator operations dashboard without exposing respondent identities, draft content, or application details
 - [ ] Add a private evidence dashboard for views, intent conversion, and concept momentum
 - [ ] Define explicit validation thresholds for moving from a concept preview to a proposed campaign
 - [ ] Add creator updates and public continue, revise, pause, or archive decisions
