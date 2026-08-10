@@ -231,6 +231,29 @@ export function IdeaDetailPage() {
 							creatorId={ideaQuery.data.creator.id}
 							ideaId={ideaQuery.data.id}
 						/>
+						{ideaQuery.data.slug === "project-time-capsule" ? (
+							<section className="mt-8 rounded-3xl border border-primary/25 bg-primary/7 p-6 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-8">
+								<div>
+									<p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+										Evidence before commitment
+									</p>
+									<h2 className="mt-2 text-2xl font-semibold">
+										See the precommitted pilot rules
+									</h2>
+									<p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
+										Review the evidence window, capacity, safety boundaries, and
+										continue, revise, or archive thresholds before intake opens.
+									</p>
+								</div>
+								<Link
+									className={buttonVariants({ className: "mt-5 sm:mt-0" })}
+									to="/pilots/project-time-capsule"
+								>
+									View pilot plan
+									<ArrowUpRight aria-hidden="true" />
+								</Link>
+							</section>
+						) : null}
 
 						{ideaQuery.data.category && relatedIdeas.length > 0 ? (
 							<section

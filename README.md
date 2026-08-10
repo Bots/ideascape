@@ -25,6 +25,8 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 - Authenticated, reversible participation intent—use, build, pilot, expertise, or updates—with duplicate prevention and eligibility checks
 - A focused Project Time Capsule pilot-readiness question with private, reversible member answers
 - Creator-only aggregate response evidence that never includes member identities
+- A public Project Time Capsule pilot plan with precommitted continue, revise, and archive thresholds
+- A creator/operator-only readiness dashboard for practical signals, pilot responses, private application totals, capacity, and a threshold-based decision preview
 - Email/password, Google, and GitHub OAuth-capable authentication with safe post-auth return paths
 - Public member profiles plus owner-only profile updates
 - Private creator drafts and editing at `/ideas/new` and `/ideas/:id/edit`
@@ -140,6 +142,7 @@ The database models categories, creator-owned ideas, ordered media, explicit lif
 - Anonymous and authenticated visitors receive counts through aggregate-only database functions; individual signals and participation intent are never exposed publicly.
 - Active validation questions and constrained answer choices are public, while each member's response row is private and reversible.
 - Concept creators receive option totals through a creator-scoped aggregate function; raw respondent identities are never returned.
+- Concept creators and trusted pilot operators receive aggregate readiness counts and a deterministic threshold preview; applicant and respondent identities are never returned by the dashboard function.
 - Draft and cancelled ideas reject interest writes.
 - Public profiles are readable by everyone, while authenticated members can update only their own profile fields.
 
@@ -183,6 +186,7 @@ src/
 ├── features/
 │   ├── auth/            # Authentication, callback, and safe return routing
 │   ├── ideas/           # Discovery, detail, editor, and interest signaling
+│   ├── pilots/          # Public pilot plans and private aggregate readiness evidence
 │   ├── profiles/        # Public profile pages
 │   └── theme/           # Persistent light/dark theme support
 ├── lib/                 # Environment, Supabase client, and shared utilities

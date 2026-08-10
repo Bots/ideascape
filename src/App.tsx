@@ -43,6 +43,11 @@ const ProfilePage = lazy(() =>
 		default: module.ProfilePage,
 	})),
 );
+const PilotPage = lazy(() =>
+	import("@/features/pilots/pilot-page").then((module) => ({
+		default: module.PilotPage,
+	})),
+);
 
 const principles = [
 	{
@@ -600,6 +605,7 @@ function App() {
 				<Route path="/ideas/new" element={<IdeaEditorPage />} />
 				<Route path="/ideas/:ideaId/edit" element={<IdeaEditorPage />} />
 				<Route path="/ideas/:slug" element={<IdeaDetailPage />} />
+				<Route path="/pilots/:pilotSlug" element={<PilotPage />} />
 				<Route path="/auth/callback" element={<AuthCallbackPage />} />
 			</Routes>
 		</Suspense>

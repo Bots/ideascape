@@ -21,8 +21,8 @@ Ideascape is in **Exploration mode**. The eighteen published entries are concept
 
 1. Learn which concepts produce practical participation intent, not only passive curiosity.
 2. Use the Project Time Capsule pilot question and creator-only aggregate evidence to test whether suitable projects and rebuild testers exist.
-3. Define explicit continue, revise, pause, or archive thresholds, then add the first capped pilot intake workflow.
-4. Add pilot eligibility, authorization confirmations, capacity limits, operating guidance, and measurable rebuild outcomes without introducing payments or custody.
+3. Use the private readiness dashboard to compare aggregate evidence with the published continue, revise, and archive thresholds.
+4. Complete the first capped pilot intake UI, then add operating guidance and measurable rebuild outcomes without introducing payments or custody.
 
 ## Delivered
 
@@ -40,6 +40,9 @@ Ideascape is in **Exploration mode**. The eighteen published entries are concept
 - Local SVG concept illustrations with meaningful alternative text
 - Reversible member participation intent—use, build, pilot, expertise, or updates—with aggregate-only public counts
 - Focused Project Time Capsule pilot question with private, reversible answers and creator-only aggregate evidence
+- Public Project Time Capsule pilot plan with a fixed evidence window, capacity, safety boundaries, and precommitted decision thresholds
+- Creator/operator-only aggregate readiness dashboard with practical-signal, participant, suitable-project, application, and remaining-capacity evidence
+- Deterministic pending, continue, revise, or archive previews without exposing respondent or applicant identities
 - Technology-forward landing showcase plus clear separation between the live validation flow and hypothetical future funding concepts
 - Row-level-security and pgTAP coverage for ownership, privacy, lifecycle, and seed behavior
 - Vercel SPA deep-link routing and production deployment
@@ -63,6 +66,7 @@ Ideascape is in **Exploration mode**. The eighteen published entries are concept
 - Privileged credentials never run in browser code.
 - Individual interest rows and participation intent remain private; public pages receive aggregate counts only.
 - Individual validation answers remain private; concept creators receive option totals without member identities.
+- Private pilot dashboards expose aggregate counts only to the concept creator or a trusted operator; ordinary members receive no dashboard row.
 - No product copy may imply payment, commitment, active fundraising, or an operating program while Ideascape remains in exploration mode.
 - Commit verified milestones incrementally.
 

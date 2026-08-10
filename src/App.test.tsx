@@ -33,6 +33,10 @@ vi.mock("@/features/ideas/idea-detail-page", () => ({
 	IdeaDetailPage: () => <h1>Idea detail route</h1>,
 }));
 
+vi.mock("@/features/pilots/pilot-page", () => ({
+	PilotPage: () => <h1>Pilot plan route</h1>,
+}));
+
 function renderApp(path = "/") {
 	return render(
 		<MemoryRouter initialEntries={[path]}>
@@ -287,6 +291,14 @@ describe("App", () => {
 
 		expect(
 			await screen.findByRole("heading", { name: /idea detail route/i }),
+		).toBeInTheDocument();
+	});
+
+	it("renders the public pilot plan route", async () => {
+		renderApp("/pilots/project-time-capsule");
+
+		expect(
+			await screen.findByRole("heading", { name: /pilot plan route/i }),
 		).toBeInTheDocument();
 	});
 
