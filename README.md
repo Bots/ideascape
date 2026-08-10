@@ -38,7 +38,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 - Route-level code splitting for non-home pages
 - Supabase row-level security and pgTAP coverage for profiles, ideas, media, categories, and interest signals
 
-There is intentionally no live fundraising, checkout, crypto wallet connection, custody, or payment collection. The future design explores security-reviewed smart-contract escrow, milestone-based releases, self-custodied signatures, refund paths, and compliant fiat on-ramps. No chain, asset, governance model, or contract implementation has been selected.
+There is intentionally no live fundraising, checkout, custody, or payment collection. Funding research is deferred and is not part of the current landing page, catalog, or pilot-readiness mission.
 
 ## Demo catalog
 
@@ -66,7 +66,7 @@ Fresh databases contain these published concept previews:
 20. [Model Commons Lab](https://ideascape-gamma.vercel.app/ideas/model-commons-lab)
 21. [Flock Off Colorado Springs](https://ideascape-gamma.vercel.app/ideas/glass-box-sensor-network)
 
-Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. Every demo now uses the landing page's security-claim discipline: it names a concrete threat scenario, an authorization, privacy, safety, provenance, or fail-safe control boundary, and measurable proof required before the concept earns a larger test. The earliest five broad previews define bounded first tests, required permissions, privacy limits, measurable continuation evidence, and explicit stop conditions instead of assuming that backing or an operating program already exists. Those five concepts and Project Time Capsule also ask one focused, private-answer validation question so practical demand, permissions, and pilot capability can be evaluated as aggregate evidence rather than public member activity. Three previously generic previews are now sharp Colorado Springs campaigns: challenge the plate-reader dragnet through public records and lawful organizing, force a dangerous Academy Boulevard crossing into the engineering record, and turn Mountain Metro's own accessibility findings into five concrete stop fixes.
+Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. Every demo uses the same permission-first discipline: it names a concrete threat scenario, an authorization, privacy, safety, provenance, or fail-safe control boundary, and measurable proof required before the concept earns a larger test. The earliest five broad previews define bounded first tests, required permissions, privacy limits, measurable continuation evidence, and explicit stop conditions instead of assuming that backing or an operating program already exists. Those five concepts and Project Time Capsule also ask one focused, private-answer validation question so practical demand, permissions, and pilot capability can be evaluated as aggregate evidence rather than public member activity. Three previously generic previews are now sharp Colorado Springs campaigns: challenge the plate-reader dragnet through public records and lawful organizing, force a dangerous Academy Boulevard crossing into the engineering record, and turn Mountain Metro's own accessibility findings into five concrete stop fixes.
 
 ## Stack
 
@@ -153,21 +153,11 @@ The database models categories, creator-owned ideas, ordered media, explicit lif
 - Draft and cancelled ideas reject interest writes.
 - Public profiles are readable by everyone, while authenticated members can update only their own profile fields.
 
-## Planned funding and security model
+## Landing-page product story
 
-The landing page documents a future architecture rather than an active funding feature. A validated concept could eventually become a campaign with published goals, deadlines, milestones, evidence requirements, fees, and refund/dispute rules. A reviewed smart contract could then hold funds against those terms and release only an approved milestone tranche or follow the published refund path.
+The landing page presents Ideascape as a public workshop for early ideas rather than a transaction product. It introduces all six catalog categories, explains the concept-validation flow, offers concrete ways to participate, and asks four proof questions before any idea expands: whose problem it is, what the smallest useful test is, what must stay protected, and what evidence would change the plan.
 
-The threat-model preview includes concrete failure cases: premature milestone claims, tampered wallet prompts, compromised administrator keys, and post-deployment contract bugs. The proposed baseline includes:
-
-- No automatic release from creator-submitted evidence; use an independent review quorum and dispute window.
-- Human-readable confirmation of chain, asset, amount, fees, and verified contract address before signing.
-- Self-custody: Ideascape never requests wallet seed phrases or private keys.
-- Separated roles, hardware-backed keys, least privilege, and multisig for privileged actions.
-- Independent audits, reproducible deployments, testnet simulations, capped pilots, version pinning, and timelocked changes.
-- Emergency pause and incident runbooks that protect new deposits while preserving release or refund paths.
-- On-chain monitoring plus legal, tax, sanctions, privacy, and consumer-protection review.
-
-These are design requirements, not current guarantees. No custody or smart-contract code is live, and a security claim is not considered real until implementation, deployment configuration, tests, governance, and external review prove it.
+The current experience accepts no payments or fundraising. Interest is a reversible signal, not a purchase, vote, or permission grant. Deferred funding research remains isolated in `PLAN.md` and requires a separate consequential product decision before implementation.
 
 ## Quality checks
 

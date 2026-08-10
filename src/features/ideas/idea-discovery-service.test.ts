@@ -36,6 +36,9 @@ const summary = {
 	slug: "solar-desalination-aaaaaaaa",
 	title: "Solar desalination",
 	summary: "Affordable clean water powered directly by sunlight.",
+	threat_scenario: null,
+	control_boundary: null,
+	proof_required: null,
 	status: "published" as const,
 	published_at: "2026-08-09T00:00:00.000Z",
 	created_at: "2026-08-08T00:00:00.000Z",
@@ -74,6 +77,9 @@ const detail = {
 
 beforeEach(() => {
 	vi.clearAllMocks();
+	listOrder.mockReset();
+	detailMaybeSingle.mockReset();
+	rpc.mockReset();
 	vi.mocked(getSupabaseClient).mockReturnValue({
 		from,
 		rpc,
@@ -160,10 +166,65 @@ describe("idea discovery service", () => {
 		expect(result?.media.map((item) => item.id)).toEqual(["first", "second"]);
 	});
 
+	it("falls back to the legacy detail projection while security columns are unavailable", async () => {
+		const legacyDetail = Object.fromEntries(
+			Object.entries(detail).filter(
+				([key]) =>
+					!["threat_scenario", "control_boundary", "proof_required"].includes(
+						key,
+					),
+			),
+		);
+		detailMaybeSingle
+			.mockResolvedValueOnce({
+				data: null,
+				error: {
+					code: "42703",
+					message: "column ideas.control_boundary does not exist",
+				},
+			})
+			.mockResolvedValueOnce({ data: legacyDetail, error: null });
+
+		await expect(getPublishedIdea(summary.slug)).resolves.toEqual({
+			...legacyDetail,
+			threat_scenario: null,
+			control_boundary: null,
+			proof_required: null,
+		});
+		expect(select).toHaveBeenCalledTimes(2);
+		expect(select.mock.calls[0]?.[0]).toContain("control_boundary");
+		expect(select.mock.calls[1]?.[0]).not.toContain("control_boundary");
+	});
+
 	it("returns null when a public idea does not exist", async () => {
 		detailMaybeSingle.mockResolvedValueOnce({ data: null, error: null });
 
 		await expect(getPublishedIdea("missing-idea")).resolves.toBeNull();
+	});
+
+	it("falls back to the legacy catalog projection while security columns are unavailable", async () => {
+		listOrder
+			.mockResolvedValueOnce({
+				data: null,
+				error: {
+					code: "42703",
+					message: "column ideas.threat_scenario does not exist",
+				},
+			})
+			.mockResolvedValueOnce({ data: [summary], error: null });
+
+		await expect(listPublishedIdeas()).resolves.toEqual([
+			{
+				...summary,
+				threat_scenario: null,
+				control_boundary: null,
+				proof_required: null,
+				interestCount: 4,
+			},
+		]);
+		expect(select).toHaveBeenCalledTimes(2);
+		expect(select.mock.calls[0]?.[0]).toContain("threat_scenario");
+		expect(select.mock.calls[1]?.[0]).not.toContain("threat_scenario");
 	});
 
 	it("throws Supabase errors", async () => {
