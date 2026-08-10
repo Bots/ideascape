@@ -67,7 +67,7 @@ function IdeaMediaItem({ media }: { media: IdeaMedia }) {
 		<div className="overflow-hidden border border-foreground/20 bg-card p-2">
 			<img
 				alt={accessibleName}
-				className="aspect-video w-full object-cover"
+				className="editorial-image aspect-video w-full object-cover"
 				loading="lazy"
 				src={media.url}
 			/>
@@ -105,11 +105,11 @@ function IdeaSecurityCase({
 	return (
 		<section
 			aria-labelledby="idea-security-case"
-			className="mt-8 overflow-hidden border border-foreground/15 bg-foreground text-background"
+			className="mt-8 overflow-hidden border border-neutral-500 bg-black text-white"
 		>
-			<div className="border-b border-background/15 p-6 sm:flex sm:items-end sm:justify-between sm:gap-8 sm:p-8">
+			<div className="border-b border-white/15 p-6 sm:flex sm:items-end sm:justify-between sm:gap-8 sm:p-8">
 				<div>
-					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[oklch(0.82_0.15_60)] dark:text-[oklch(0.5_0.18_48)]">
+					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-signal">
 						<ShieldCheck className="size-4" aria-hidden="true" />
 						Security case
 					</p>
@@ -120,22 +120,22 @@ function IdeaSecurityCase({
 						Security case: what must be true before this expands
 					</h2>
 				</div>
-				<p className="mt-4 max-w-md text-sm leading-6 text-background/70 sm:mt-0">
+				<p className="mt-4 max-w-md text-sm leading-6 text-neutral-300 sm:mt-0">
 					A proposed control is not a guarantee. This preview names the failure
 					path, the operating boundary, and the evidence needed to earn a larger
 					test.
 				</p>
 			</div>
-			<div className="grid gap-px bg-background/15 lg:grid-cols-3">
+			<div className="grid gap-px bg-neutral-700 lg:grid-cols-3">
 				{claims.map(({ label, value, icon: Icon }) => (
-					<article className="bg-foreground p-6 sm:p-8" key={label}>
-						<div className="flex items-center gap-3 text-[oklch(0.82_0.15_60)] dark:text-[oklch(0.5_0.18_48)]">
+					<article className="bg-black p-6 sm:p-8" key={label}>
+						<div className="flex items-center gap-3 text-signal">
 							<Icon className="size-5" aria-hidden="true" />
 							<h3 className="text-xs font-bold uppercase tracking-[0.16em]">
 								{label}
 							</h3>
 						</div>
-						<p className="mt-4 text-sm leading-7 text-background/82">{value}</p>
+						<p className="mt-4 text-sm leading-7 text-neutral-200">{value}</p>
 					</article>
 				))}
 			</div>
@@ -354,13 +354,13 @@ export function IdeaDetailPage() {
 												>
 													<Link
 														aria-label={`View ${relatedIdea.title}`}
-														className="absolute inset-0 z-[1] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/70"
+														className="absolute inset-0 z-[1] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
 														to={`/ideas/${relatedIdea.slug}`}
 													/>
 													{cover ? (
 														<img
 															alt=""
-															className="aspect-video w-full object-cover transition duration-500 group-hover:scale-[1.035]"
+															className="editorial-image aspect-video w-full object-cover transition duration-500 group-hover:scale-[1.035]"
 															loading="lazy"
 															src={cover.url}
 														/>

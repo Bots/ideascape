@@ -35,6 +35,7 @@ Ideascape is in **Exploration mode**. Published entries are concept previews, no
 - [x] Replace generic previews with issue-driven Colorado Springs civic campaigns
 - [x] Give every demo a threat scenario, control boundary, and proof requirement consistent with the security claim policy
 - [x] Add persistent light and dark themes
+- [x] Restrict the rendered palette to black, white, neutral grays, and bright orange
 
 ## Phase 3 — Validation evidence and campaign design
 

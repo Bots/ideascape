@@ -58,7 +58,7 @@ describe("theme controls", () => {
 		expect(window.localStorage.getItem("ideascape.theme")).toBe("dark");
 		expect(document.querySelector('meta[name="theme-color"]')).toHaveAttribute(
 			"content",
-			"#211815",
+			"#050505",
 		);
 	});
 

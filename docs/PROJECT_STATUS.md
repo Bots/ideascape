@@ -28,7 +28,8 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 ## Delivered
 
 - React/TypeScript/Vite application foundation, CI, and route-level code splitting
-- Responsive orange visual system with persistent system-aware light and dark themes
+- Responsive light/dark visual system restricted to black, white, neutral grays,
+  and `#ff5a1f` bright orange
 - Supabase authentication with email, Google, and GitHub-capable OAuth flows
 - Safe internal return paths across email authentication, OAuth, and callback failures
 - Public profiles with owner-only updates

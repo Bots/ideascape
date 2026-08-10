@@ -139,7 +139,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 											<button
 												aria-pressed={isSelected}
 												className={cn(
-													"flex min-h-12 w-full items-center gap-3 rounded-sm border px-4 py-3 text-left text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 disabled:pointer-events-none disabled:opacity-60",
+													"flex min-h-12 w-full items-center gap-3 rounded-sm border px-4 py-3 text-left text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-60",
 													isSelected
 														? "border-primary bg-primary text-primary-foreground"
 														: "border-border bg-card text-foreground hover:border-primary/35 hover:bg-primary/5",

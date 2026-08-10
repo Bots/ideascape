@@ -157,7 +157,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 									Email
 								</label>
 								<input
-									className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+									className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
 									id="email"
 									name="email"
 									type="email"
@@ -170,7 +170,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 									Password
 								</label>
 								<input
-									className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+									className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
 									id="password"
 									name="password"
 									type="password"

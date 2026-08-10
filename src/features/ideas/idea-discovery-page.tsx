@@ -174,7 +174,7 @@ export function IdeaDiscoveryPage() {
 											className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
 										/>
 										<input
-											className="h-11 w-full rounded-sm border bg-background pl-10 pr-3 text-base font-normal text-foreground outline-none transition placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
+											className="h-11 w-full rounded-sm border bg-background pl-10 pr-3 text-base font-normal text-foreground outline-none transition placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring"
 											id="concept-search"
 											onChange={(event) => updateSearch(event.target.value)}
 											placeholder="Try files, firmware, or local AI"
@@ -189,7 +189,7 @@ export function IdeaDiscoveryPage() {
 								>
 									Category
 									<select
-										className="h-11 w-full rounded-sm border bg-background px-3 text-base font-normal text-foreground outline-none transition focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
+										className="h-11 w-full rounded-sm border bg-background px-3 text-base font-normal text-foreground outline-none transition focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring"
 										id="category-filter"
 										onChange={(event) => updateCategory(event.target.value)}
 										value={selectedCategory}
@@ -299,14 +299,14 @@ export function IdeaDiscoveryPage() {
 										>
 											<Link
 												aria-label={`View ${idea.title}`}
-												className="absolute inset-0 z-[1] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/70"
+												className="absolute inset-0 z-[1] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
 												to={`/ideas/${idea.slug}`}
 											/>
 											{cover ? (
 												<div className="overflow-hidden">
 													<img
 														alt={cover.alt_text || idea.title}
-														className="aspect-[5/3] w-full object-cover transition duration-500 group-hover:scale-[1.025]"
+														className="editorial-image aspect-[5/3] w-full object-cover transition duration-500 group-hover:scale-[1.025]"
 														loading="lazy"
 														src={cover.url}
 													/>

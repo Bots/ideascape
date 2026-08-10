@@ -33,7 +33,8 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 - Email/password, Google, and GitHub OAuth-capable authentication with safe post-auth return paths
 - Public member profiles plus owner-only profile updates
 - Private creator drafts and editing at `/ideas/new` and `/ideas/:id/edit`
-- Persistent, system-aware light and dark themes using the warm orange visual system
+- Persistent, system-aware light and dark themes restricted to black, white,
+  neutral grays, and `#ff5a1f` bright orange
 - Route-level code splitting for non-home pages
 - Supabase row-level security and pgTAP coverage for profiles, ideas, media, categories, and interest signals
 

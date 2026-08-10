@@ -89,11 +89,11 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 	return (
 		<section
 			aria-labelledby="idea-interest-heading"
-			className="relative mt-12 overflow-hidden border border-foreground/15 border-t-4 border-t-[oklch(0.82_0.15_60)] bg-foreground p-7 text-background dark:border-t-[oklch(0.5_0.18_48)] sm:p-9"
+			className="relative mt-12 overflow-hidden border border-neutral-500 border-t-4 border-t-signal bg-black p-7 text-white sm:p-9"
 		>
 			<div className="relative grid gap-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(26rem,1.15fr)] lg:items-center">
 				<div>
-					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[oklch(0.82_0.15_60)] dark:text-[oklch(0.5_0.18_48)]">
+					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-signal">
 						<UsersRound className="size-4" aria-hidden="true" />
 						Help shape what comes next
 					</p>
@@ -103,16 +103,16 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 					>
 						Would you want to see this happen?
 					</h2>
-					<p className="mt-3 max-w-2xl leading-7 text-background/70">
+					<p className="mt-3 max-w-2xl leading-7 text-neutral-300">
 						Tell us how you might participate so we can distinguish curiosity
 						from practical demand. No payment or commitment.
 					</p>
 				</div>
 
-				<div className="relative border border-background/15 bg-background/8 p-4 sm:p-5">
+				<div className="relative border border-white/15 bg-white/8 p-4 sm:p-5">
 					{isPending ? (
 						<p
-							className="flex items-center gap-2 text-sm text-background/70"
+							className="flex items-center gap-2 text-sm text-neutral-300"
 							role="status"
 						>
 							<LoaderCircle
@@ -124,7 +124,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 					) : null}
 
 					{summaryQuery.isError ? (
-						<p className="text-sm text-background/80" role="alert">
+						<p className="text-sm text-neutral-200" role="alert">
 							Interest signals are unavailable right now. Please try again
 							later.
 						</p>
@@ -133,7 +133,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 					{summary ? (
 						<>
 							<p
-								className="mb-3 text-sm font-semibold text-background/75"
+								className="mb-3 text-sm font-semibold text-neutral-200"
 								aria-live="polite"
 							>
 								{countLabel}
@@ -141,10 +141,10 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 							{user ? (
 								<div>
 									<fieldset>
-										<legend className="text-sm font-semibold text-background">
+										<legend className="text-sm font-semibold text-white">
 											How would you participate?
 										</legend>
-										<p className="mt-1 text-xs leading-5 text-background/60">
+										<p className="mt-1 text-xs leading-5 text-neutral-400">
 											Your choice is private. Only the total interest count is
 											public.
 										</p>
@@ -157,10 +157,10 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 													<button
 														aria-pressed={isSelected}
 														className={cn(
-															"inline-flex min-h-11 items-center gap-2 rounded-sm border px-3 py-2 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 disabled:pointer-events-none disabled:opacity-60",
+															"inline-flex min-h-11 items-center gap-2 rounded-sm border px-3 py-2 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal disabled:pointer-events-none disabled:opacity-60",
 															isSelected
-																? "border-primary bg-primary text-primary-foreground"
-																: "border-background/20 bg-background/5 text-background hover:border-background/35 hover:bg-background/10",
+																? "border-signal bg-signal text-black"
+																: "border-neutral-500 bg-white/5 text-white hover:border-white/40 hover:bg-white/10",
 														)}
 														disabled={interestMutation.isPending}
 														key={option.value}
@@ -189,7 +189,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 									{summary.viewerHasInterest ? (
 										<Button
 											aria-pressed="true"
-											className="mt-3 w-full border-background/20 bg-transparent text-background hover:bg-background/10 hover:text-background"
+											className="mt-3 w-full border-neutral-500 bg-transparent text-white hover:bg-white/10 hover:text-white"
 											disabled={interestMutation.isPending}
 											onClick={() =>
 												interestMutation.mutate({ type: "remove" })
@@ -203,7 +203,10 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 								</div>
 							) : (
 								<Link
-									className={buttonVariants({ className: "w-full" })}
+									className={buttonVariants({
+										className:
+											"w-full bg-white text-black hover:bg-neutral-200",
+									})}
 									to={signInPath}
 								>
 									Sign in to show interest
@@ -214,7 +217,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 					) : null}
 
 					{interestMutation.isError ? (
-						<p className="mt-3 text-sm text-background/80" role="alert">
+						<p className="mt-3 text-sm text-neutral-200" role="alert">
 							We could not update your interest. Please try again.
 						</p>
 					) : null}
