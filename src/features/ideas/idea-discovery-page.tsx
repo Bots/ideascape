@@ -1,13 +1,15 @@
+import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
 	ArrowRight,
 	ArrowUpRight,
 	Lightbulb,
 	LoaderCircle,
+	Search,
 	Sparkles,
 	UsersRound,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { InterestModeNotice } from "@/components/interest-mode-notice";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -50,11 +52,76 @@ function conceptCountLabel(count: number): string {
 }
 
 export function IdeaDiscoveryPage() {
+	const [searchParams, setSearchParams] = useSearchParams();
 	const ideasQuery = useQuery({
 		queryKey: ["published-ideas"],
 		queryFn: listPublishedIdeas,
 		retry: false,
 	});
+	const categories = useMemo(() => {
+		const uniqueCategories = new Map<string, string>();
+		for (const idea of ideasQuery.data ?? []) {
+			if (idea.category) {
+				uniqueCategories.set(idea.category.slug, idea.category.name);
+			}
+		}
+
+		return [...uniqueCategories.entries()]
+			.map(([slug, name]) => ({ slug, name }))
+			.sort((left, right) => left.name.localeCompare(right.name));
+	}, [ideasQuery.data]);
+	const requestedCategory = searchParams.get("category") ?? "all";
+	const searchTerm = searchParams.get("q") ?? "";
+	const normalizedSearchTerm = searchTerm.trim().toLocaleLowerCase();
+	const selectedCategory =
+		requestedCategory === "all" ||
+		categories.some((category) => category.slug === requestedCategory)
+			? requestedCategory
+			: "all";
+	const visibleIdeas = useMemo(
+		() =>
+			(ideasQuery.data ?? []).filter(
+				(idea) =>
+					(selectedCategory === "all" ||
+						idea.category?.slug === selectedCategory) &&
+					(normalizedSearchTerm.length === 0 ||
+						[
+							idea.title,
+							idea.summary,
+							idea.category?.name,
+							idea.creator.display_name,
+						]
+							.filter(Boolean)
+							.join(" ")
+							.toLocaleLowerCase()
+							.includes(normalizedSearchTerm)),
+			),
+		[ideasQuery.data, normalizedSearchTerm, selectedCategory],
+	);
+
+	function updateCategory(category: string) {
+		const nextParams = new URLSearchParams(searchParams);
+		if (category === "all") {
+			nextParams.delete("category");
+		} else {
+			nextParams.set("category", category);
+		}
+		setSearchParams(nextParams, { replace: true });
+	}
+
+	function updateSearch(search: string) {
+		const nextParams = new URLSearchParams(searchParams);
+		if (search.length === 0) {
+			nextParams.delete("q");
+		} else {
+			nextParams.set("q", search);
+		}
+		setSearchParams(nextParams, { replace: true });
+	}
+
+	function clearFilters() {
+		setSearchParams(new URLSearchParams(), { replace: true });
+	}
 
 	return (
 		<main className="relative min-h-screen overflow-hidden text-foreground">
@@ -111,6 +178,58 @@ export function IdeaDiscoveryPage() {
 					</div>
 					<InterestModeNotice className="mt-8" />
 
+					{ideasQuery.data && ideasQuery.data.length > 0 ? (
+						<fieldset className="mt-8 grid gap-4 rounded-2xl border bg-card/80 p-5 pr-16 shadow-sm lg:grid-cols-[1fr_17rem_auto] lg:items-end lg:pr-5">
+							<legend className="sr-only">Filter concepts</legend>
+							<label
+								className="grid gap-2 text-sm font-semibold"
+								htmlFor="concept-search"
+							>
+								Search concept previews
+								<span className="relative block">
+									<Search
+										aria-hidden="true"
+										className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+									/>
+									<input
+										className="h-11 w-full rounded-xl border bg-background pl-10 pr-3 text-base font-normal text-foreground outline-none transition placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+										id="concept-search"
+										onChange={(event) => updateSearch(event.target.value)}
+										placeholder="Try files, firmware, or local AI"
+										type="search"
+										value={searchTerm}
+									/>
+								</span>
+							</label>
+							<label
+								className="grid gap-2 text-sm font-semibold"
+								htmlFor="category-filter"
+							>
+								Category
+								<select
+									className="h-11 w-full rounded-xl border bg-background px-3 text-base font-normal text-foreground outline-none transition focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+									id="category-filter"
+									onChange={(event) => updateCategory(event.target.value)}
+									value={selectedCategory}
+								>
+									<option value="all">All categories</option>
+									{categories.map((category) => (
+										<option key={category.slug} value={category.slug}>
+											{category.name}
+										</option>
+									))}
+								</select>
+							</label>
+							<p
+								className="pb-3 text-sm font-medium text-muted-foreground"
+								role="status"
+							>
+								Showing {visibleIdeas.length} of {ideasQuery.data.length}{" "}
+								concepts
+							</p>
+						</fieldset>
+					) : null}
+
 					{ideasQuery.isPending ? (
 						<div
 							className="mt-16 flex items-center gap-3 rounded-2xl border bg-card/75 p-7 text-muted-foreground shadow-sm"
@@ -154,9 +273,36 @@ export function IdeaDiscoveryPage() {
 						</div>
 					) : null}
 
-					{ideasQuery.data && ideasQuery.data.length > 0 ? (
+					{ideasQuery.data &&
+					ideasQuery.data.length > 0 &&
+					visibleIdeas.length === 0 ? (
+						<div className="mt-12 rounded-3xl border bg-card/85 p-8 shadow-[0_24px_70px_-40px_oklch(0.35_0.09_43_/_0.45)] sm:p-12">
+							<span className="grid size-12 place-items-center rounded-xl bg-primary/10 text-primary">
+								<Search className="size-6" aria-hidden="true" />
+							</span>
+							<h2 className="mt-5 text-3xl font-semibold tracking-tight">
+								No concepts match these filters
+							</h2>
+							<p className="mt-3 max-w-xl leading-7 text-muted-foreground">
+								Try a broader search, choose another category, or reset the
+								catalog.
+							</p>
+							<button
+								className={buttonVariants({
+									className: "mt-6 h-10 px-4",
+									variant: "outline",
+								})}
+								onClick={clearFilters}
+								type="button"
+							>
+								Clear filters
+							</button>
+						</div>
+					) : null}
+
+					{ideasQuery.data && visibleIdeas.length > 0 ? (
 						<div className="mt-12 grid gap-7 md:grid-cols-2">
-							{ideasQuery.data.map((idea) => {
+							{visibleIdeas.map((idea) => {
 								const cover = idea.media.find(
 									(media) =>
 										media.kind === "image" && isSafeImageUrl(media.url),

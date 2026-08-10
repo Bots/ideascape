@@ -24,6 +24,7 @@ Ideascape is in **Exploration mode**. Published entries are concept previews, no
 - [x] Model ideas, categories, media, and lifecycle states
 - [x] Build private idea creation and editing
 - [x] Build public discovery and idea-detail pages
+- [x] Add shareable text search and category filters to public discovery
 - [x] Add row-level-security policies and policy tests
 - [x] Add private, reversible member interest signals
 - [x] Expose aggregate-only public interest counts

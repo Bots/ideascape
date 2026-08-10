@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { cleanup, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { IdeaDiscoveryPage } from "@/features/ideas/idea-discovery-page";
@@ -37,13 +38,23 @@ const idea = {
 	],
 };
 
-function renderDiscovery() {
+const healthIdea = {
+	...idea,
+	id: "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+	slug: "neighborhood-cooling-lab",
+	title: "Neighborhood Cooling Lab",
+	summary: "Shared shade and heat-relief equipment for hotter neighborhoods.",
+	category: { id: 2, slug: "health", name: "Health" },
+	media: [],
+};
+
+function renderDiscovery(initialEntry = "/ideas") {
 	const queryClient = new QueryClient({
 		defaultOptions: { queries: { retry: false } },
 	});
 
 	return render(
-		<MemoryRouter>
+		<MemoryRouter initialEntries={[initialEntry]}>
 			<QueryClientProvider client={queryClient}>
 				<IdeaDiscoveryPage />
 			</QueryClientProvider>
@@ -79,7 +90,7 @@ describe("IdeaDiscoveryPage", () => {
 		});
 		expect(cardLink).toHaveAttribute("href", `/ideas/${idea.slug}`);
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
-		expect(screen.getByText("Technology")).toBeInTheDocument();
+		expect(screen.getAllByText("Technology").length).toBeGreaterThan(0);
 		expect(screen.getByText("Concept preview")).toBeInTheDocument();
 		expect(screen.getByText("1 demo concept")).toBeInTheDocument();
 		expect(screen.getByText("4 people interested")).toBeInTheDocument();
@@ -93,6 +104,51 @@ describe("IdeaDiscoveryPage", () => {
 		expect(
 			screen.getByRole("note", { name: /exploration mode/i }),
 		).toHaveTextContent(/concept previews, not active fundraisers/i);
+	});
+
+	it("restores a category filter from the URL and only shows matching concepts", async () => {
+		mockedListPublishedIdeas.mockResolvedValue([idea, healthIdea]);
+
+		renderDiscovery("/ideas?category=technology");
+
+		expect(
+			await screen.findByRole("combobox", { name: /category/i }),
+		).toHaveValue("technology");
+		expect(
+			screen.getByRole("link", { name: `View ${idea.title}` }),
+		).toBeInTheDocument();
+		expect(
+			screen.queryByRole("link", { name: `View ${healthIdea.title}` }),
+		).not.toBeInTheDocument();
+		expect(screen.getByText("Showing 1 of 2 concepts")).toBeInTheDocument();
+	});
+
+	it("restores search from the URL and offers a clear path when no concepts match", async () => {
+		const user = userEvent.setup();
+		mockedListPublishedIdeas.mockResolvedValue([idea, healthIdea]);
+
+		renderDiscovery("/ideas?q=heat");
+
+		const search = await screen.findByRole("searchbox", {
+			name: /search concept previews/i,
+		});
+		expect(search).toHaveValue("heat");
+		expect(
+			screen.getByRole("link", { name: `View ${healthIdea.title}` }),
+		).toBeInTheDocument();
+		expect(
+			screen.queryByRole("link", { name: `View ${idea.title}` }),
+		).not.toBeInTheDocument();
+
+		await user.clear(search);
+		await user.type(search, "unmatched phrase");
+
+		expect(
+			screen.getByRole("heading", { name: /no concepts match these filters/i }),
+		).toBeInTheDocument();
+		await user.click(screen.getByRole("button", { name: /clear filters/i }));
+		expect(search).toHaveValue("");
+		expect(screen.getAllByRole("article")).toHaveLength(2);
 	});
 
 	it("encourages the first interest signal without implying funding", async () => {

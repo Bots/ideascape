@@ -18,6 +18,7 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 
 - Public, unauthenticated idea discovery at `/ideas` and detail pages at `/ideas/:slug`
 - Twelve deterministic demo concepts, seeded through versioned Supabase migrations
+- URL-persistent text search and category filtering, including a direct permission-first technology view at `/ideas?category=technology`
 - Fully clickable discovery cards with concise accessible link names and visible keyboard focus
 - Public aggregate interest counts without exposing individual member signals
 - Authenticated, reversible interest signaling with duplicate prevention and eligibility checks
