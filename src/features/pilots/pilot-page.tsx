@@ -161,8 +161,11 @@ export function PilotPage() {
 						aria-labelledby="pilot-boundaries-heading"
 						className="mt-12 grid gap-6 lg:grid-cols-[0.82fr_1.18fr]"
 					>
-						<div className="border border-primary/40 border-t-4 border-t-signal bg-[oklch(0.18_0.04_252)] p-8 text-white sm:p-10">
-							<ShieldCheck className="size-10 text-signal" aria-hidden="true" />
+						<div className="border border-primary/40 border-t-4 border-t-[oklch(0.82_0.15_60)] bg-[oklch(0.18_0.04_252)] p-8 text-white sm:p-10">
+							<ShieldCheck
+								className="size-10 text-[oklch(0.82_0.15_60)]"
+								aria-hidden="true"
+							/>
 							<h2
 								className="mt-5 text-3xl font-semibold"
 								id="pilot-boundaries-heading"

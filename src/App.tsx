@@ -355,7 +355,7 @@ function HomePage() {
 						<div className="relative overflow-hidden border border-primary/45 bg-[oklch(0.18_0.04_252)] text-[oklch(0.96_0.012_248)] dark:bg-[oklch(0.11_0.035_252)]">
 							<div className="relative grid gap-8 border-b border-white/10 p-7 sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:p-12">
 								<div>
-									<div className="inline-flex items-center gap-2 border-l-2 border-signal pl-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-signal">
+									<div className="inline-flex items-center gap-2 border-l-2 border-l-[oklch(0.82_0.15_60)] pl-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[oklch(0.82_0.15_60)]">
 										<Sparkles className="size-4" aria-hidden="true" />
 										Planned, not live
 									</div>

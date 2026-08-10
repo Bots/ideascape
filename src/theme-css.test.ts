@@ -6,6 +6,15 @@ const stylesheet = readFileSync(
 	resolve(process.cwd(), "src/index.css"),
 	"utf8",
 );
+const appSource = readFileSync(resolve(process.cwd(), "src/App.tsx"), "utf8");
+const interestPanelSource = readFileSync(
+	resolve(process.cwd(), "src/features/ideas/idea-interest-panel.tsx"),
+	"utf8",
+);
+const pilotPageSource = readFileSync(
+	resolve(process.cwd(), "src/features/pilots/pilot-page.tsx"),
+	"utf8",
+);
 const appShell = readFileSync(resolve(process.cwd(), "index.html"), "utf8");
 const rootTheme = stylesheet.match(/:root\s*\{([\s\S]*?)\n\}/)?.[1] ?? "";
 const darkTheme = stylesheet.match(/\.dark\s*\{([\s\S]*?)\n\}/)?.[1] ?? "";
@@ -48,6 +57,18 @@ describe("civic field-notebook design system", () => {
 		expect(stylesheet).toMatch(
 			/@media \(prefers-reduced-motion: reduce\)\s*\{[\s\S]*animation-duration:/,
 		);
+	});
+
+	it("uses high-contrast signal colors on inverse and fixed-dark surfaces", () => {
+		expect(appSource).toContain("border-l-[oklch(0.82_0.15_60)]");
+		expect(appSource).toContain("text-[oklch(0.82_0.15_60)]");
+		expect(pilotPageSource).toContain("border-t-[oklch(0.82_0.15_60)]");
+		expect(pilotPageSource).toContain("text-[oklch(0.82_0.15_60)]");
+		expect(interestPanelSource).toContain(
+			"text-[oklch(0.82_0.15_60)] dark:text-[oklch(0.5_0.18_48)]",
+		);
+		expect(interestPanelSource).toContain("border-t-[oklch(0.82_0.15_60)]");
+		expect(interestPanelSource).toContain("dark:border-t-[oklch(0.5_0.18_48)]");
 	});
 
 	it("sets the saved or system theme before the application loads", () => {

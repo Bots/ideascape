@@ -89,11 +89,11 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 	return (
 		<section
 			aria-labelledby="idea-interest-heading"
-			className="relative mt-12 overflow-hidden border border-foreground/15 border-t-4 border-t-signal bg-foreground p-7 text-background sm:p-9"
+			className="relative mt-12 overflow-hidden border border-foreground/15 border-t-4 border-t-[oklch(0.82_0.15_60)] bg-foreground p-7 text-background dark:border-t-[oklch(0.5_0.18_48)] sm:p-9"
 		>
 			<div className="relative grid gap-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(26rem,1.15fr)] lg:items-center">
 				<div>
-					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
+					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[oklch(0.82_0.15_60)] dark:text-[oklch(0.5_0.18_48)]">
 						<UsersRound className="size-4" aria-hidden="true" />
 						Help shape what comes next
 					</p>
