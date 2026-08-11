@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Clinic Device Privacy Check</title>
+  <desc id="desc">A connected health device is checked on an isolated network for telemetry, deletion, and offline behavior.</desc>
+  <rect width="870" height="580" fill="#000000"/>
+  <rect x="38" y="36" width="794" height="508" fill="#ffffff" stroke="#737373" stroke-width="6"/>
+  <rect x="38" y="36" width="794" height="74" fill="#ff5a1f"/>
+  <text x="72" y="82" font-family="monospace" font-size="23" font-weight="700" fill="#000000">PATIENT-CONTROLLED DEVICE PRIVACY CHECK</text>
+  <g transform="translate(82 152)">
+    <rect width="250" height="302" rx="32" fill="#000000"/>
+    <rect x="24" y="28" width="202" height="190" rx="18" fill="#ffffff"/>
+    <path d="M58 130h32l20-48 32 94 24-62h29" fill="none" stroke="#ff5a1f" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="125" cy="260" r="18" fill="#737373"/>
+  </g>
+  <path d="M355 296h92" stroke="#737373" stroke-width="12" stroke-dasharray="14 12"/>
+  <g transform="translate(450 144) scale(.88)">
+    <path d="M145 10 270 58v116c0 99-53 168-125 208C73 342 20 273 20 174V58z" fill="#e5e5e5" stroke="#000000" stroke-width="8"/>
+    <rect x="92" y="136" width="106" height="92" rx="16" fill="#000000"/>
+    <path d="M116 136v-24c0-42 58-42 58 0v24" fill="none" stroke="#000000" stroke-width="14"/>
+    <path d="m112 276 28 28 62-72" fill="none" stroke="#ff5a1f" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <rect x="82" y="486" width="665" height="28" fill="#e5e5e5"/>
+  <text x="414" y="506" text-anchor="middle" font-family="monospace" font-size="15" font-weight="700">TELEMETRY • DELETION • OFFLINE • MANUAL FALLBACK</text>
+</svg>

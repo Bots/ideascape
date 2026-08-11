@@ -104,8 +104,14 @@ describe("IdeaDiscoveryPage", () => {
 		expect(cardLink).toHaveAttribute("href", `/ideas/${idea.slug}`);
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getAllByText("Technology").length).toBeGreaterThan(0);
+		expect(
+			screen.getByText(
+				/every concept preview names a threat scenario, control boundary, and proof required/i,
+			),
+		).toBeInTheDocument();
 		expect(screen.getByText("Concept preview")).toBeInTheDocument();
-		expect(screen.getByText("Security case defined")).toBeInTheDocument();
+		expect(screen.getByText("Security focus")).toBeInTheDocument();
+		expect(screen.getByText(idea.threat_scenario)).toBeInTheDocument();
 		expect(screen.getByText("1 demo concept")).toBeInTheDocument();
 		expect(screen.getByText("4 people interested")).toBeInTheDocument();
 		expect(
@@ -135,7 +141,7 @@ describe("IdeaDiscoveryPage", () => {
 		expect(
 			await screen.findByRole("link", { name: `View ${idea.title}` }),
 		).toBeInTheDocument();
-		expect(screen.queryByText("Security case defined")).not.toBeInTheDocument();
+		expect(screen.queryByText("Security focus")).not.toBeInTheDocument();
 	});
 
 	it("restores a category filter from the URL and only shows matching concepts", async () => {

@@ -115,7 +115,12 @@ describe("App", () => {
 		expect(screen.getByText("Concept previews")).toBeInTheDocument();
 		expect(
 			screen.getByText("Concept previews").nextElementSibling,
-		).toHaveTextContent("21");
+		).toHaveTextContent("27");
+		expect(
+			screen.getByText(
+				/every preview names a threat scenario, control boundary, and proof required/i,
+			),
+		).toBeInTheDocument();
 	});
 
 	it("hides the join-the-experiment action from signed-in members", () => {
@@ -196,34 +201,26 @@ describe("App", () => {
 			name: /how ideascape works/i,
 		});
 		const timelineItems = within(howItWorks).getAllByRole("article");
-		expect(timelineItems).toHaveLength(8);
+		expect(timelineItems).toHaveLength(10);
 		expect(timelineItems[0].parentElement).toHaveClass(
 			"md:grid-cols-2",
-			"xl:grid-cols-4",
+			"xl:grid-cols-5",
 		);
 		for (const [index, item] of timelineItems.entries()) {
 			expect(item).toHaveTextContent(String(index + 1).padStart(2, "0"));
 			expect(item).toHaveClass("md:even:border-r-0");
-			expect(item).toHaveClass("xl:[&:nth-child(4n)]:border-r-0");
+			expect(item).toHaveClass("xl:[&:nth-child(5n)]:border-r-0");
 		}
-		expect(
-			within(howItWorks).getByRole("heading", { name: /shape the concept/i }),
-		).toBeInTheDocument();
-		expect(
-			within(howItWorks).getByRole("heading", {
-				name: /test public interest/i,
-			}),
-		).toBeInTheDocument();
-		expect(
-			within(howItWorks).getByRole("heading", {
-				name: /turn signals into evidence/i,
-			}),
-		).toBeInTheDocument();
 		for (const nextStep of [
+			"Shape the concept",
+			"Map the threat scenario",
+			"Set the control boundary",
+			"Test public interest",
+			"Turn signals into evidence",
 			"Design a bounded pilot",
+			"Challenge the security case",
 			"Publish what happened",
-			"Choose the next move",
-			"Repeat with intention",
+			"Choose, repeat, or stop",
 			"Leave a useful record",
 		]) {
 			expect(

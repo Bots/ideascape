@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Software Supply Chain Clinic</title>
+  <desc id="desc">A software artifact moves through dependency inventory, signature, checksum, clean-build, and rollback checks.</desc>
+  <rect width="870" height="580" fill="#000000"/>
+  <rect x="38" y="36" width="794" height="508" fill="#ffffff" stroke="#737373" stroke-width="6"/>
+  <rect x="38" y="36" width="794" height="74" fill="#ff5a1f"/>
+  <text x="72" y="82" font-family="monospace" font-size="23" font-weight="700" fill="#000000">DEPENDENCIES → BUILD → VERIFIED ARTIFACT</text>
+  <g transform="translate(70 164)" stroke="#000000" stroke-width="6">
+    <path d="M0 0h204l40 40v264H0z" fill="#f5f5f5"/>
+    <path d="M204 0v40h40" fill="none"/>
+    <rect x="30" y="76" width="184" height="28" fill="#737373" stroke="none"/>
+    <rect x="30" y="124" width="150" height="28" fill="#737373" stroke="none"/>
+    <rect x="30" y="172" width="184" height="28" fill="#737373" stroke="none"/>
+    <text x="30" y="244" font-family="monospace" font-size="17" font-weight="700" stroke="none">SBOM + LOCKFILE</text>
+  </g>
+  <path d="M336 316h90" stroke="#ff5a1f" stroke-width="12"/>
+  <path d="m404 291 28 25-28 25" fill="none" stroke="#ff5a1f" stroke-width="12"/>
+  <g transform="translate(450 164)">
+    <path d="m145 0 136 70v162l-136 72L9 232V70z" fill="#e5e5e5" stroke="#000000" stroke-width="8"/>
+    <path d="m9 70 136 72 136-72M145 142v162" fill="none" stroke="#737373" stroke-width="8"/>
+    <path d="m83 202 38 38 88-104" fill="none" stroke="#ff5a1f" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <rect x="70" y="492" width="661" height="28" fill="#000000"/>
+  <text x="400" y="512" text-anchor="middle" font-family="monospace" font-size="15" font-weight="700" fill="#ffffff">SIGNATURE • CHECKSUM • CLEAN BUILD • ROLLBACK</text>
+</svg>

@@ -1,6 +1,6 @@
 begin;
 
-select plan(20);
+select plan(22);
 
 select ok(
   exists (
@@ -448,6 +448,63 @@ select is(
   'every bold infrastructure concept has an accessible hosted cover image'
 );
 
+select is(
+  (
+    select count(*)
+    from public.ideas
+    join public.categories on categories.id = ideas.category_id
+    where ideas.slug in (
+      'oral-history-provenance-lab',
+      'neighborhood-incident-relay',
+      'phishing-drill-library',
+      'water-sensor-integrity-watch',
+      'clinic-device-privacy-check',
+      'software-supply-chain-clinic'
+    )
+      and categories.slug = case ideas.slug
+        when 'oral-history-provenance-lab' then 'arts-culture'
+        when 'neighborhood-incident-relay' then 'community'
+        when 'phishing-drill-library' then 'education'
+        when 'water-sensor-integrity-watch' then 'environment'
+        when 'clinic-device-privacy-check' then 'health'
+        when 'software-supply-chain-clinic' then 'technology'
+      end
+      and ideas.status = 'published'
+      and ideas.published_at is not null
+      and char_length(ideas.summary) between 80 and 280
+      and char_length(ideas.description) >= 450
+      and char_length(ideas.threat_scenario) between 40 and 500
+      and char_length(ideas.control_boundary) between 40 and 500
+      and char_length(ideas.proof_required) between 40 and 500
+      and position(E'\\n' in ideas.description) = 0
+      and position(E'\n' in ideas.description) > 0
+  ),
+  6::bigint,
+  'six security-first concept previews span every catalog category'
+);
+
+select is(
+  (
+    select count(*)
+    from public.idea_media
+    join public.ideas on ideas.id = idea_media.idea_id
+    where ideas.slug in (
+      'oral-history-provenance-lab',
+      'neighborhood-incident-relay',
+      'phishing-drill-library',
+      'water-sensor-integrity-watch',
+      'clinic-device-privacy-check',
+      'software-supply-chain-clinic'
+    )
+      and idea_media.kind = 'image'
+      and idea_media.sort_order = 0
+      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
+      and char_length(idea_media.alt_text) >= 20
+  ),
+  6::bigint,
+  'every security-first preview has an accessible hosted cover image'
+);
+
 set local role anon;
 select is(
   (
@@ -474,10 +531,16 @@ select is(
       'project-time-capsule',
       'waste-heat-works',
       'model-commons-lab',
-      'glass-box-sensor-network'
+      'glass-box-sensor-network',
+      'oral-history-provenance-lab',
+      'neighborhood-incident-relay',
+      'phishing-drill-library',
+      'water-sensor-integrity-watch',
+      'clinic-device-privacy-check',
+      'software-supply-chain-clinic'
     )
   ),
-  21::bigint,
+  27::bigint,
   'anonymous visitors can discover every demo idea'
 );
 reset role;

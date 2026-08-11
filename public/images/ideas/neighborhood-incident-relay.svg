@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Neighborhood Incident Relay</title>
+  <desc id="desc">A protected report moves through private triage to a named responder without exposing a person.</desc>
+  <rect width="870" height="580" fill="#000000"/>
+  <rect x="38" y="36" width="794" height="508" fill="#ffffff" stroke="#737373" stroke-width="6"/>
+  <rect x="38" y="36" width="794" height="74" fill="#ff5a1f"/>
+  <text x="72" y="82" font-family="monospace" font-size="23" font-weight="700" fill="#000000">MINIMUM-DATA INCIDENT RELAY</text>
+  <g transform="translate(68 150)">
+    <rect width="226" height="260" fill="#f5f5f5" stroke="#000000" stroke-width="6"/>
+    <path d="M45 64h136v104H45z" fill="#ffffff" stroke="#000000" stroke-width="7"/>
+    <path d="m48 69 65 58 65-58" fill="none" stroke="#737373" stroke-width="8"/>
+    <rect x="62" y="190" width="102" height="25" fill="#000000"/>
+    <text x="113" y="242" text-anchor="middle" font-family="monospace" font-size="16" font-weight="700">IDENTITY HIDDEN</text>
+  </g>
+  <path d="M316 280h94" stroke="#ff5a1f" stroke-width="12"/>
+  <path d="m388 255 28 25-28 25" fill="none" stroke="#ff5a1f" stroke-width="12"/>
+  <g transform="translate(410 150)">
+    <path d="M105 18 194 52v82c0 71-38 120-89 148-51-28-89-77-89-148V52z" fill="#000000"/>
+    <path d="m65 137 28 28 58-70" fill="none" stroke="#ff5a1f" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="105" y="228" text-anchor="middle" font-family="monospace" font-size="17" font-weight="700" fill="#ffffff">DUAL REVIEW</text>
+  </g>
+  <path d="M624 280h74" stroke="#ff5a1f" stroke-width="12"/>
+  <g transform="translate(696 176)">
+    <circle cx="54" cy="54" r="44" fill="#737373"/>
+    <path d="M8 168c7-54 85-54 92 0" fill="#000000"/>
+    <text x="54" y="208" text-anchor="middle" font-family="monospace" font-size="15" font-weight="700">RESPONDER</text>
+  </g>
+  <rect x="68" y="454" width="734" height="52" fill="#e5e5e5"/>
+  <text x="435" y="487" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700">NO DOXXING • EXPIRING RAW REPORTS • CORRECTION PATH</text>
+</svg>

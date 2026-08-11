@@ -17,8 +17,8 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 ## Current product
 
 - Public, unauthenticated idea discovery at `/ideas` and detail pages at `/ideas/:slug`
-- Twenty-one deterministic demo concepts, seeded through versioned Supabase migrations
-- A concept-specific security case on every demo: threat scenario, control boundary, and proof required before expansion
+- Twenty-seven deterministic demo concepts, seeded through versioned Supabase migrations
+- A visible concept-specific security focus on every demo: threat scenario, control boundary, and proof required before expansion
 - Three issue-driven Colorado Springs campaigns covering plate-reader surveillance, dangerous crossings, and inaccessible transit stops
 - URL-persistent text search and category filtering, including a direct permission-first technology view at `/ideas?category=technology`
 - Same-category recommendations on detail pages with accessible full-card links back into the catalog
@@ -65,6 +65,12 @@ Fresh databases contain these published concept previews:
 19. [Waste Heat Works](https://ideascape-gamma.vercel.app/ideas/waste-heat-works)
 20. [Model Commons Lab](https://ideascape-gamma.vercel.app/ideas/model-commons-lab)
 21. [Flock Off Colorado Springs](https://ideascape-gamma.vercel.app/ideas/glass-box-sensor-network)
+22. [Oral History Provenance Lab](https://ideascape-gamma.vercel.app/ideas/oral-history-provenance-lab)
+23. [Neighborhood Incident Relay](https://ideascape-gamma.vercel.app/ideas/neighborhood-incident-relay)
+24. [Phishing Drill Library](https://ideascape-gamma.vercel.app/ideas/phishing-drill-library)
+25. [Water Sensor Integrity Watch](https://ideascape-gamma.vercel.app/ideas/water-sensor-integrity-watch)
+26. [Clinic Device Privacy Check](https://ideascape-gamma.vercel.app/ideas/clinic-device-privacy-check)
+27. [Software Supply Chain Clinic](https://ideascape-gamma.vercel.app/ideas/software-supply-chain-clinic)
 
 Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. Every demo uses the same permission-first discipline: it names a concrete threat scenario, an authorization, privacy, safety, provenance, or fail-safe control boundary, and measurable proof required before the concept earns a larger test. The earliest five broad previews define bounded first tests, required permissions, privacy limits, measurable continuation evidence, and explicit stop conditions instead of assuming that backing or an operating program already exists. Those five concepts and Project Time Capsule also ask one focused, private-answer validation question so practical demand, permissions, and pilot capability can be evaluated as aggregate evidence rather than public member activity. Three previously generic previews are now sharp Colorado Springs campaigns: challenge the plate-reader dragnet through public records and lawful organizing, force a dangerous Academy Boulevard crossing into the engineering record, and turn Mountain Metro's own accessibility findings into five concrete stop fixes.
 
