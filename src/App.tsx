@@ -105,6 +105,27 @@ const validationSteps = [
 		description:
 			"Use aggregate demand—not private member activity—to decide whether to refine, pause, or prepare a small, permission-based pilot.",
 	},
+	{
+		icon: Wrench,
+		number: "04",
+		title: "Design a bounded pilot",
+		description:
+			"Define the participants, permissions, safeguards, measures, and stop conditions before testing the idea in the real world.",
+	},
+	{
+		icon: BookOpen,
+		number: "05",
+		title: "Publish what happened",
+		description:
+			"Share outcomes, limits, surprises, and participant feedback without exposing private member activity or sensitive data.",
+	},
+	{
+		icon: ArrowRight,
+		number: "06",
+		title: "Choose the next move",
+		description:
+			"Use the evidence to refine, repeat, pause, or archive the concept. Nothing advances automatically and every decision stays explainable.",
+	},
 ];
 
 const ideaTerrains = [
@@ -216,7 +237,7 @@ function HomePage() {
 				showExplore={false}
 				showStartIdea={false}
 			/>
-			<main className="field-grid contour-field min-h-screen overflow-hidden text-foreground">
+			<main className="min-h-screen overflow-hidden text-foreground">
 				<div className="site-shell flex min-h-screen flex-col">
 					<InterestModeNotice
 						className="mt-5"
@@ -425,16 +446,22 @@ function HomePage() {
 								{validationSteps.map(
 									({ icon: Icon, number, title, description }) => (
 										<article
-											className="relative border-border p-7 md:border-r md:last:border-r-0 sm:p-9"
+											className="relative border-b border-border p-7 last:border-b-0 sm:p-9 md:border-r md:[&:nth-child(3n)]:border-r-0 md:[&:nth-last-child(-n+3)]:border-b-0"
 											key={title}
 										>
 											<div className="flex items-center justify-between">
 												<span className="grid size-10 place-items-center border border-primary/30 text-primary">
 													<Icon className="size-5" aria-hidden="true" />
 												</span>
-												<span className="font-mono text-xs font-semibold text-primary/55">
-													{number}
-												</span>
+												<div className="flex items-center gap-3">
+													<span
+														className="size-2 bg-signal"
+														aria-hidden="true"
+													/>
+													<span className="font-mono text-xs font-semibold text-primary/55">
+														{number}
+													</span>
+												</div>
 											</div>
 											<h3 className="mt-8 text-xl font-semibold tracking-tight">
 												{title}

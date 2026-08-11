@@ -81,7 +81,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 	}
 
 	return (
-		<main className="field-grid contour-field relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground">
+		<main className="relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground">
 			<section className="field-panel relative w-full max-w-md border-t-4 border-t-primary p-8">
 				<Link
 					to="/"
