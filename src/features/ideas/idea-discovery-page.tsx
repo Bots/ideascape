@@ -139,8 +139,8 @@ export function IdeaDiscoveryPage() {
 									Discover <span className="text-signal">ideas</span>
 								</h1>
 								<p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-									Meet creators testing ambitious solutions and follow their
-									progress from first proposal to real-world impact.
+									Every concept preview names a threat scenario, control
+									boundary, and proof required before it earns a larger test.
 								</p>
 							</div>
 							<div className="field-panel hidden min-w-52 border-t-4 border-t-primary px-6 py-5 lg:block">
@@ -303,7 +303,7 @@ export function IdeaDiscoveryPage() {
 												to={`/ideas/${idea.slug}`}
 											/>
 											{cover ? (
-												<div className="overflow-hidden">
+												<div className="editorial-image-frame overflow-hidden">
 													<img
 														alt={cover.alt_text || idea.title}
 														className="editorial-image aspect-[5/3] w-full object-cover transition duration-500 group-hover:scale-[1.025]"
@@ -315,7 +315,7 @@ export function IdeaDiscoveryPage() {
 											<div className="flex min-h-[20rem] flex-col p-6">
 												<div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider">
 													{idea.category ? (
-														<span className="border-l-2 border-primary pl-2 font-mono text-[0.6875rem] tracking-[0.12em] text-primary">
+														<span className="bg-signal px-2 py-1 font-mono text-[0.6875rem] tracking-[0.12em] text-black">
 															{idea.category.name}
 														</span>
 													) : null}
@@ -323,23 +323,31 @@ export function IdeaDiscoveryPage() {
 														{statusLabels[idea.status]}
 													</span>
 												</div>
-												{idea.threat_scenario &&
-												idea.control_boundary &&
-												idea.proof_required ? (
-													<p className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-primary">
-														<ShieldCheck
-															className="size-4"
-															aria-hidden="true"
-														/>
-														Security case defined
-													</p>
-												) : null}
 												<h2 className="mt-5 text-2xl font-medium tracking-[-0.02em]">
 													{idea.title}
 												</h2>
 												<p className="mt-3 flex-1 leading-7 text-muted-foreground">
 													{idea.summary}
 												</p>
+												{idea.threat_scenario &&
+												idea.control_boundary &&
+												idea.proof_required ? (
+													<section
+														aria-label={`Security focus for ${idea.title}`}
+														className="mt-5 border-l-2 border-signal bg-muted p-4"
+													>
+														<p className="inline-flex items-center gap-2 font-mono text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-foreground">
+															<ShieldCheck
+																className="size-4"
+																aria-hidden="true"
+															/>
+															Security focus
+														</p>
+														<p className="mt-2 line-clamp-3 text-sm leading-6 text-muted-foreground">
+															{idea.threat_scenario}
+														</p>
+													</section>
+												) : null}
 												<div className="mt-7 flex items-center justify-between border-t border-primary/15 pt-5 text-sm text-muted-foreground">
 													<p>
 														By{" "}

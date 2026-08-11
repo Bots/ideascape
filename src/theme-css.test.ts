@@ -386,15 +386,30 @@ describe("civic field-notebook design system", () => {
 		expect(darkTheme).toContain("--border: #737373");
 	});
 
-	it("renders editorial imagery in grayscale so only the interface signal stays orange", () => {
+	it("anchors grayscale editorial imagery with an exact orange rule", () => {
 		expect(stylesheet).not.toMatch(/\n\s*img\s*\{/);
 		expect(stylesheet).toMatch(
 			/\.editorial-image\s*\{[\s\S]*filter:\s*grayscale\(1\)/,
 		);
-		expect(appSource).toContain("editorial-image");
-		expect(ideaDetailSource).toContain("editorial-image");
-		expect(ideaDiscoverySource).toContain("editorial-image");
+		expect(stylesheet).toMatch(
+			/\.editorial-image-frame\s*\{[\s\S]*border-bottom:\s*0\.375rem solid var\(--signal\)/,
+		);
+		const editorialImageRule = stylesheet.match(
+			/\.editorial-image\s*\{([^}]*)\}/,
+		)?.[1];
+		expect(editorialImageRule).not.toContain("border");
+		for (const source of [appSource, ideaDetailSource, ideaDiscoverySource]) {
+			const editorialImageCount = source.match(
+				/className="editorial-image(?:\s[^"]*)?"/g,
+			)?.length;
+			const framedEditorialImageCount = source.match(
+				/<div className="editorial-image-frame[^"]*">\s*<img[\s\S]*?className="editorial-image(?:\s[^"]*)?"[\s\S]*?\/>\s*<\/div>/g,
+			)?.length;
+			expect(editorialImageCount).toBeGreaterThan(0);
+			expect(framedEditorialImageCount).toBe(editorialImageCount);
+		}
 		expect(profilePageSource).not.toContain("editorial-image");
+		expect(profilePageSource).not.toContain("editorial-image-frame");
 	});
 
 	it("uses orange as decoration rather than low-contrast small text on white", () => {

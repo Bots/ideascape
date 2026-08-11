@@ -15,7 +15,7 @@ This page is the public engineering headquarters for Ideascape. GitHub Issues ar
 
 ## Product mode
 
-Ideascape is in **Exploration mode**. The twenty-one published entries are concept previews, not active fundraisers or operating programs. Public aggregate interest helps test whether people want a place like this before funding is introduced. Members can privately distinguish whether they would use, build, test, advise, or follow a concept. Signaling interest involves no payment or commitment.
+Ideascape is in **Exploration mode**. The twenty-seven published entries are concept previews, not active fundraisers or operating programs. Public aggregate interest helps test whether people want a place like this before funding is introduced. Members can privately distinguish whether they would use, build, test, advise, or follow a concept. Signaling interest involves no payment or commitment.
 
 ## Current focus
 
@@ -35,8 +35,8 @@ Ideascape is in **Exploration mode**. The twenty-one published entries are conce
 - Public profiles with owner-only updates
 - Idea, category, media, lifecycle, and private interest-signal schema
 - Private draft creation and editing
-- Public idea discovery and detail routes with twenty-one deterministic demo concepts, including thirteen permission-first or technology-forward previews
-- Catalog badges and detail-page security cases connecting all twenty-one demos to a concrete threat scenario, control boundary, and proof requirement
+- Public idea discovery and detail routes with twenty-seven deterministic demo concepts, including nineteen permission-first or security-forward previews
+- Visible catalog security focuses and detail-page security cases connecting all twenty-seven demos to a concrete threat scenario, control boundary, and proof requirement
 - Three localized Colorado Springs campaigns with explicit demands, public-record evidence, permitted field tests, and anti-tampering boundaries
 - Five early previews refined into bounded, permissioned tests with measurable continue, revise, and stop evidence
 - Shareable, URL-persistent discovery search and category filters with useful zero-result recovery

@@ -64,9 +64,14 @@ describe("IdeaInterestPanel", () => {
 		expect(
 			await screen.findByText(/12 people are interested/i),
 		).toBeInTheDocument();
-		expect(
-			screen.getByRole("link", { name: /sign in to show interest/i }),
-		).toHaveAttribute("href", "/sign-in?returnTo=%2Fideas%2Fclean-air-library");
+		const signInLink = screen.getByRole("link", {
+			name: /sign in to show interest/i,
+		});
+		expect(signInLink).toHaveAttribute(
+			"href",
+			"/sign-in?returnTo=%2Fideas%2Fclean-air-library",
+		);
+		expect(signInLink).toHaveClass("bg-signal", "text-black");
 	});
 
 	it("lets a signed-in member signal how they would participate", async () => {
@@ -91,6 +96,8 @@ describe("IdeaInterestPanel", () => {
 			await screen.findByText(/13 people are interested/i),
 		).toBeInTheDocument();
 		expect(pilotButton).toHaveAttribute("aria-pressed", "true");
+		expect(pilotButton).toHaveClass("bg-signal", "text-black");
+		expect(pilotButton.querySelector("svg")).toHaveClass("fill-current");
 	});
 
 	it("updates participation intent without increasing the public count twice", async () => {

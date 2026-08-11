@@ -87,8 +87,8 @@ select is(
       and control_boundary not like '%' || chr(10) || '%'
       and proof_required not like '%' || chr(10) || '%'
   ),
-  21::bigint,
-  'all 21 demo concepts carry concise, complete security cases'
+  27::bigint,
+  'all 27 demo concepts carry concise, complete security cases'
 );
 
 select is(
@@ -98,7 +98,7 @@ select is(
     where creator_id = '00000000-0000-4000-8000-000000000101'
       and status = 'published'
   ),
-  21::bigint,
+  27::bigint,
   'every demo has a concept-specific threat scenario'
 );
 select is(
@@ -108,7 +108,7 @@ select is(
     where creator_id = '00000000-0000-4000-8000-000000000101'
       and status = 'published'
   ),
-  21::bigint,
+  27::bigint,
   'every demo has a concept-specific control boundary'
 );
 select is(
@@ -118,7 +118,7 @@ select is(
     where creator_id = '00000000-0000-4000-8000-000000000101'
       and status = 'published'
   ),
-  21::bigint,
+  27::bigint,
   'every demo has concept-specific proof requirements'
 );
 
@@ -133,7 +133,7 @@ select is(
       and control_boundary is not null
       and proof_required is not null
   ),
-  21::bigint,
+  27::bigint,
   'anonymous visitors can inspect every demo security case'
 );
 reset role;

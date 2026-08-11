@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Phishing Drill Library</title>
+  <desc id="desc">An inert training message is verified through a safe reporting path without collecting a password.</desc>
+  <rect width="870" height="580" fill="#000000"/>
+  <rect x="38" y="36" width="794" height="508" fill="#ffffff" stroke="#737373" stroke-width="6"/>
+  <rect x="38" y="36" width="794" height="74" fill="#ff5a1f"/>
+  <text x="72" y="82" font-family="monospace" font-size="23" font-weight="700" fill="#000000">INERT MESSAGE • REAL VERIFICATION HABIT</text>
+  <g transform="translate(76 150)">
+    <rect width="430" height="284" fill="#f5f5f5" stroke="#000000" stroke-width="6"/>
+    <rect x="28" y="28" width="374" height="52" fill="#000000"/>
+    <text x="48" y="61" font-family="monospace" font-size="17" font-weight="700" fill="#ffffff">TRAINING@EXAMPLE.INVALID</text>
+    <rect x="38" y="110" width="270" height="16" fill="#737373"/>
+    <rect x="38" y="146" width="332" height="16" fill="#737373"/>
+    <rect x="38" y="182" width="196" height="16" fill="#737373"/>
+    <rect x="38" y="226" width="190" height="38" fill="#ff5a1f"/>
+    <text x="133" y="251" text-anchor="middle" font-family="monospace" font-size="16" font-weight="700" fill="#000000">DO NOT SIGN IN</text>
+  </g>
+  <g transform="translate(560 156)">
+    <path d="M112 0 216 40v96c0 83-44 141-104 174C52 277 8 219 8 136V40z" fill="#000000"/>
+    <path d="m57 142 34 34 73-88" fill="none" stroke="#ff5a1f" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="112" y="236" text-anchor="middle" font-family="monospace" font-size="17" font-weight="700" fill="#ffffff">REPORT SAFELY</text>
+  </g>
+  <rect x="76" y="470" width="718" height="40" fill="#e5e5e5"/>
+  <text x="435" y="496" text-anchor="middle" font-family="monospace" font-size="17" font-weight="700">NO CREDENTIALS • NO SHAME • AGGREGATE LEARNING</text>
+</svg>

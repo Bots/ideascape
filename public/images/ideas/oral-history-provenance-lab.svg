@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Oral History Provenance Lab</title>
+  <desc id="desc">A recorded voice passes through consent, edit history, checksum, and publication checkpoints.</desc>
+  <rect width="870" height="580" fill="#000000"/>
+  <rect x="38" y="36" width="794" height="508" fill="#ffffff" stroke="#737373" stroke-width="6"/>
+  <rect x="38" y="36" width="794" height="74" fill="#ff5a1f"/>
+  <text x="72" y="82" font-family="monospace" font-size="23" font-weight="700" fill="#000000">VOICE → CONSENT → PROVENANCE</text>
+  <g transform="translate(76 150)">
+    <rect width="250" height="260" fill="#f5f5f5" stroke="#000000" stroke-width="6"/>
+    <circle cx="125" cy="92" r="50" fill="#000000"/>
+    <path d="M104 90v26c0 29 42 29 42 0V90M87 116c0 50 76 50 76 0M125 164v34M91 198h68" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+    <text x="125" y="232" text-anchor="middle" font-family="monospace" font-size="17" font-weight="700" fill="#000000">SOURCE 01</text>
+  </g>
+  <g fill="none" stroke="#ff5a1f" stroke-width="9" stroke-linecap="round">
+    <path d="M350 280h42l14-36 20 74 22-96 22 70 18-34 18 22h40"/>
+  </g>
+  <g transform="translate(565 150)">
+    <rect width="228" height="260" fill="#000000"/>
+    <path d="M50 70h128M50 112h92M50 154h128" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <path d="m56 207 24 24 48-56" fill="none" stroke="#ff5a1f" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="154" y="220" text-anchor="middle" font-family="monospace" font-size="15" font-weight="700" fill="#ffffff">CONSENT OK</text>
+  </g>
+  <rect x="76" y="452" width="717" height="54" fill="#e5e5e5"/>
+  <text x="435" y="486" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700" fill="#000000">HASHED • EDITS VISIBLE • WITHDRAWAL TESTED</text>
+</svg>

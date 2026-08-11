@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 580" role="img" aria-labelledby="title desc">
+  <title id="title">Water Sensor Integrity Watch</title>
+  <desc id="desc">A community water sensor signs readings and displays calibration, fault, and reference-sample evidence.</desc>
+  <rect width="870" height="580" fill="#000000"/>
+  <rect x="38" y="36" width="794" height="508" fill="#ffffff" stroke="#737373" stroke-width="6"/>
+  <rect x="38" y="36" width="794" height="74" fill="#ff5a1f"/>
+  <text x="72" y="82" font-family="monospace" font-size="23" font-weight="700" fill="#000000">SIGNED READING • VISIBLE UNCERTAINTY</text>
+  <g transform="translate(86 146)">
+    <path d="M150 4C120 58 54 126 54 202c0 61 43 106 96 106s96-45 96-106C246 126 180 58 150 4z" fill="#e5e5e5" stroke="#000000" stroke-width="8"/>
+    <path d="M108 210c11 31 52 39 76 17" fill="none" stroke="#ff5a1f" stroke-width="14" stroke-linecap="round"/>
+    <text x="150" y="325" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700">STATION 04</text>
+  </g>
+  <g transform="translate(405 148)">
+    <rect width="350" height="306" fill="#f5f5f5" stroke="#000000" stroke-width="6"/>
+    <text x="28" y="48" font-family="monospace" font-size="18" font-weight="700">INTEGRITY RECORD</text>
+    <g font-family="monospace" font-size="16" font-weight="700">
+      <rect x="28" y="76" width="294" height="46" fill="#000000"/><text x="47" y="105" fill="#ffffff">CALIBRATION  PASS</text>
+      <rect x="28" y="137" width="294" height="46" fill="#737373"/><text x="47" y="166" fill="#ffffff">SIGNATURE    PASS</text>
+      <rect x="28" y="198" width="294" height="46" fill="#ff5a1f"/><text x="47" y="227" fill="#000000">REFERENCE    PENDING</text>
+    </g>
+    <text x="28" y="282" font-family="monospace" font-size="14" font-weight="700">SCREENING DATA ≠ POTABILITY</text>
+  </g>
+  <rect x="86" y="486" width="669" height="28" fill="#e5e5e5"/>
+  <text x="420" y="506" text-anchor="middle" font-family="monospace" font-size="15" font-weight="700">TAMPER • REPLAY • DRIFT • DISCONNECT • EXPORT</text>
+</svg>

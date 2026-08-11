@@ -65,12 +65,14 @@ function IdeaMediaItem({ media }: { media: IdeaMedia }) {
 
 	return (
 		<div className="overflow-hidden border border-foreground/20 bg-card p-2">
-			<img
-				alt={accessibleName}
-				className="editorial-image aspect-video w-full object-cover"
-				loading="lazy"
-				src={media.url}
-			/>
+			<div className="editorial-image-frame">
+				<img
+					alt={accessibleName}
+					className="editorial-image aspect-video w-full object-cover"
+					loading="lazy"
+					src={media.url}
+				/>
+			</div>
 		</div>
 	);
 }
@@ -358,12 +360,14 @@ export function IdeaDetailPage() {
 														to={`/ideas/${relatedIdea.slug}`}
 													/>
 													{cover ? (
-														<img
-															alt=""
-															className="editorial-image aspect-video w-full object-cover transition duration-500 group-hover:scale-[1.035]"
-															loading="lazy"
-															src={cover.url}
-														/>
+														<div className="editorial-image-frame overflow-hidden">
+															<img
+																alt=""
+																className="editorial-image aspect-video w-full object-cover transition duration-500 group-hover:scale-[1.035]"
+																loading="lazy"
+																src={cover.url}
+															/>
+														</div>
 													) : null}
 													<div className="p-5">
 														<h3 className="text-xl font-semibold tracking-tight">

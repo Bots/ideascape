@@ -57,10 +57,7 @@ export function SiteHeader({
 						) : null}
 						{showStartIdea ? (
 							<Link
-								className={cn(
-									buttonVariants({ variant: "outline", size: "sm" }),
-									"px-3",
-								)}
+								className={cn(buttonVariants({ size: "sm" }), "px-3")}
 								to="/ideas/new"
 							>
 								Start an idea
