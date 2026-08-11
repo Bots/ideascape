@@ -21,12 +21,12 @@ import {
 } from "@/features/pilots/pilot-service";
 
 const statusLabels: Record<PilotStatus, string> = {
-	validating: "Validation underway",
-	recruiting: "Recruiting a small pilot",
-	active: "Pilot in progress",
-	completed: "Pilot completed",
-	paused: "Pilot paused",
-	archived: "Pilot archived",
+	validating: "Security validation underway",
+	recruiting: "Recruiting a bounded exercise",
+	active: "Security exercise active",
+	completed: "Security exercise completed",
+	paused: "Security exercise paused",
+	archived: "Security exercise archived",
 };
 
 export function PilotPage() {
@@ -68,7 +68,7 @@ export function PilotPage() {
 	return (
 		<>
 			<SiteHeader
-				exploreLabel="Concept preview"
+				exploreLabel="Security brief"
 				exploreTo="/ideas/project-time-capsule"
 			/>
 			<main className="min-h-screen overflow-hidden text-foreground">
@@ -85,7 +85,7 @@ export function PilotPage() {
 							<p className="mt-7 max-w-3xl text-xl leading-9 text-muted-foreground">
 								Test whether authorized software projects can be preserved and
 								rebuilt reproducibly on a clean machine—before treating the
-								concept as an operating program.
+								control as an operating program.
 							</p>
 							<div className="mt-8 inline-flex items-center gap-2 border-l-2 border-primary pl-3 text-sm font-semibold">
 								<ClipboardCheck
@@ -107,11 +107,11 @@ export function PilotPage() {
 						/>
 						<EvidenceTarget
 							value={String(pilot.signal_goal)}
-							label="meaningful signals"
+							label="validation signals"
 						/>
 						<EvidenceTarget
 							value={String(pilot.interview_goal)}
-							label="participant interviews"
+							label="operator interviews"
 						/>
 						<EvidenceTarget
 							value={`${pilot.project_capacity}-project`}
@@ -152,7 +152,7 @@ export function PilotPage() {
 							<DecisionCard
 								icon={Archive}
 								title="Archive"
-								description={`${pilot.archive_signal_ceiling} or fewer meaningful signals remain after deliberate outreach, so the concept should not absorb more work.`}
+								description={`${pilot.archive_signal_ceiling} or fewer meaningful signals remain after deliberate outreach, so the security brief should not absorb more work.`}
 							/>
 						</div>
 					</section>
@@ -167,7 +167,7 @@ export function PilotPage() {
 								className="mt-5 text-3xl font-semibold"
 								id="pilot-boundaries-heading"
 							>
-								Pilot boundaries
+								Security exercise boundaries
 							</h2>
 							<p className="mt-4 leading-7 text-white/70">
 								Participant-authorized projects only. No credential bypass,
@@ -205,15 +205,15 @@ export function PilotPage() {
 								</p>
 								<h2 className="mt-3 text-3xl font-semibold tracking-tight">
 									{pilot.status === "validating"
-										? "Pilot intake is not open yet"
+										? "Security exercise intake is not open yet"
 										: pilot.status === "recruiting"
-											? "Private pilot applications are open"
+											? "Private exercise applications are open"
 											: statusLabels[pilot.status]}
 								</h2>
 								<p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
 									{pilot.status === "validating"
-										? "Ideascape is collecting practical participation signals before inviting project applications."
-										: "One strong, authorized project per member. Intake remains capped and reversible."}
+										? "Ideascape is collecting scoped security-validation signals before inviting exercise applications."
+										: "One strong, authorized project per applicant. Intake remains capped and reversible."}
 								</p>
 							</div>
 							{pilot.status === "recruiting" && !user ? (

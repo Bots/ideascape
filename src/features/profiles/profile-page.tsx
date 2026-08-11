@@ -107,7 +107,8 @@ export function ProfilePage() {
 					Profile not found
 				</h1>
 				<p className="mt-3 text-muted-foreground">
-					We couldn&apos;t find an Ideascape member with that username.
+					We couldn&apos;t find an Ideascape security operator with that
+					username.
 				</p>
 				<Link
 					className="mt-6 inline-block font-medium underline underline-offset-4"
@@ -152,7 +153,7 @@ export function ProfilePage() {
 						<p className="mt-5 whitespace-pre-wrap leading-7">{profile.bio}</p>
 					) : (
 						<p className="mt-5 text-muted-foreground">
-							This member hasn&apos;t added a bio yet.
+							This security operator hasn&apos;t added a bio yet.
 						</p>
 					)}
 					{websiteUrl ? (

@@ -121,7 +121,8 @@ insert into private.ideascape_admins (email)
 values ('dashboard-admin@example.invalid');
 
 insert into public.ideas (
-  id, creator_id, category_id, slug, title, summary, description, status
+  id, creator_id, category_id, slug, title, summary, description, status,
+  threat_scenario, control_boundary, proof_required
 )
 values (
   'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaa90',
@@ -131,7 +132,10 @@ values (
   'Private dashboard fixture',
   'A private draft used to prove the admin dashboard counts drafts without exposing their content.',
   'This draft must contribute to the private aggregate count but must never appear in the published idea activity rows returned by the admin dashboard.',
-  'draft'
+  'draft',
+  'An unauthorized reader could infer private operational details from aggregate dashboard fixtures.',
+  'The fixture remains owner-scoped and excluded from all published security brief activity.',
+  'The test must prove only aggregate draft counts change and no private content is returned.'
 );
 
 insert into public.idea_interests (idea_id, profile_id, participation_intent)

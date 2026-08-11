@@ -69,21 +69,21 @@ describe("App", () => {
 
 		expect(
 			screen.getByRole("heading", {
-				name: /great ideas deserve a place to grow/i,
+				name: /pressure-test security before it ships/i,
 			}),
 		).toBeInTheDocument();
 		expect(
-			screen.getByText(/public workshop for early ideas/i),
+			screen.getByText(/security validation lab for early systems/i),
 		).toBeInTheDocument();
-		expect(screen.getByText("Test the possibility")).toBeInTheDocument();
+		expect(screen.getByText("Threats before trust")).toBeInTheDocument();
 		expect(
-			screen.getByText("Practical ideas, clearer next steps"),
-		).toBeInTheDocument();
-		expect(
-			screen.getByText(/public interest and practical feedback/i),
+			screen.getByText("Threats mapped. Controls bounded."),
 		).toBeInTheDocument();
 		expect(
-			screen.getByText(/assumptions, permissions, boundaries/i),
+			screen.getByText(/state what is authorized, excluded/i),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText(/precommit tests, stop conditions/i),
 		).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /sign in/i })).toHaveAttribute(
 			"href",
@@ -95,35 +95,37 @@ describe("App", () => {
 		);
 		expect(
 			screen
-				.getAllByRole("link", { name: /start an idea/i })
+				.getAllByRole("link", { name: /draft a security brief/i })
 				.some((link) => link.getAttribute("href") === "/ideas/new"),
 		).toBe(true);
 		expect(
-			screen.getByRole("link", { name: /explore ideas/i }),
-		).toHaveAttribute("href", "/ideas");
+			screen
+				.getAllByRole("link", { name: /review security briefs/i })
+				.every((link) => link.getAttribute("href") === "/ideas"),
+		).toBe(true);
 		const explorationNote = screen.getByRole("note", {
-			name: /exploration mode/i,
+			name: /security review mode/i,
 		});
 		expect(explorationNote).toHaveTextContent(
-			/testing whether people want a place like this/i,
+			/security briefs, not deployment approvals/i,
 		);
 		expect(
 			screen
-				.getAllByRole("link", { name: /join the experiment/i })
+				.getAllByRole("link", { name: /join the security review/i })
 				.every((link) => link.getAttribute("href") === "/sign-up"),
 		).toBe(true);
-		expect(screen.getByText("Concept previews")).toBeInTheDocument();
+		expect(screen.getByText("Security briefs")).toBeInTheDocument();
 		expect(
-			screen.getByText("Concept previews").nextElementSibling,
+			screen.getByText("Security briefs").nextElementSibling,
 		).toHaveTextContent("27");
 		expect(
 			screen.getByText(
-				/every preview names a threat scenario, control boundary, and proof required/i,
+				/every brief names a threat scenario, control boundary, and proof required/i,
 			),
 		).toBeInTheDocument();
 	});
 
-	it("hides the join-the-experiment action from signed-in members", () => {
+	it("hides the join-security-review action from signed-in operators", () => {
 		vi.mocked(useAuth).mockReturnValue({
 			user: {
 				id: "55555555-5555-4555-8555-555555555555",
@@ -135,60 +137,62 @@ describe("App", () => {
 		renderApp();
 
 		expect(
-			screen.queryByRole("link", { name: /join the experiment/i }),
+			screen.queryByRole("link", { name: /join the security review/i }),
 		).not.toBeInTheDocument();
 	});
 
-	it("spotlights a mix of practical community ideas", () => {
+	it("spotlights concrete security controls", () => {
 		renderApp();
 
 		expect(
-			screen.getByRole("link", { name: /browse by category/i }),
+			screen.getByRole("link", { name: /browse security domains/i }),
 		).toHaveAttribute("href", "#idea-terrain-heading");
 		expect(
 			screen.getByRole("img", {
-				name: /library room with portable air cleaners/i,
+				name: /verifies signed dependencies/i,
 			}),
 		).toBeInTheDocument();
 		expect(
 			screen.getByRole("img", {
-				name: /storefront becomes an evening gallery/i,
+				name: /contained phishing drill/i,
 			}),
 		).toBeInTheDocument();
 		expect(
-			screen.getByText(/practical ideas, clearer next steps/i),
+			screen.getByText(/threats mapped. controls bounded/i),
 		).toBeInTheDocument();
 		expect(
-			screen.getByText(/cleaner air, safer streets, shared repair/i),
+			screen.getByText(/software, infrastructure, identity, human-risk/i),
 		).toBeInTheDocument();
 	});
 
-	it("presents broad community use cases without crypto-first framing", () => {
+	it("presents six security domains without transaction framing", () => {
 		renderApp();
 
 		const main = screen.getByRole("main");
 		expect(
-			within(main).getByRole("heading", { name: /ideas for everyday life/i }),
+			within(main).getByRole("heading", {
+				name: /security domains under review/i,
+			}),
 		).toBeInTheDocument();
 		expect(
-			within(main).getByRole("heading", { name: /ways to take part/i }),
+			within(main).getByRole("heading", { name: /ways to challenge a brief/i }),
 		).toBeInTheDocument();
 		expect(
 			within(main).getByRole("heading", { name: /proof before scale/i }),
 		).toBeInTheDocument();
 		for (const category of [
-			"Arts & Culture",
-			"Community",
-			"Education",
-			"Environment",
-			"Health",
-			"Technology",
+			"Provenance & Authenticity",
+			"Resilience & Response",
+			"Human Risk",
+			"Infrastructure Integrity",
+			"Privacy & Safety",
+			"Software & Systems",
 		]) {
 			expect(
 				within(main).getByRole("heading", { name: category }),
 			).toBeInTheDocument();
 		}
-		expect(main).toHaveTextContent(/no payments or fundraising/i);
+		expect(main).toHaveTextContent(/never grants production access/i);
 		expect(main).not.toHaveTextContent(
 			/smart.contract|crypto wallet|multisig|on.chain|seed phrase|funding rail/i,
 		);
@@ -198,7 +202,7 @@ describe("App", () => {
 		renderApp();
 
 		const howItWorks = screen.getByRole("region", {
-			name: /how ideascape works/i,
+			name: /the security validation path/i,
 		});
 		const timelineItems = within(howItWorks).getAllByRole("article");
 		expect(timelineItems).toHaveLength(10);
@@ -212,11 +216,11 @@ describe("App", () => {
 			expect(item).toHaveClass("xl:[&:nth-child(5n)]:border-r-0");
 		}
 		for (const nextStep of [
-			"Shape the concept",
+			"Frame the system",
 			"Map the threat scenario",
 			"Set the control boundary",
-			"Test public interest",
-			"Turn signals into evidence",
+			"Publish the security brief",
+			"Collect validation signals",
 			"Design a bounded pilot",
 			"Challenge the security case",
 			"Publish what happened",
@@ -227,26 +231,26 @@ describe("App", () => {
 				within(howItWorks).getByRole("heading", { name: nextStep }),
 			).toBeInTheDocument();
 		}
-		expect(howItWorks).toHaveTextContent(/no payment or commitment/i);
+		expect(howItWorks).toHaveTextContent(/deployment authority/i);
 		expect(
 			within(howItWorks).getByRole("link", {
-				name: /explore the live experiment/i,
+				name: /review the security catalog/i,
 			}),
 		).toHaveAttribute("href", "/ideas");
 	});
 
-	it("shows concrete participation paths without implying transactions", () => {
+	it("shows concrete security-review paths without implying authority", () => {
 		renderApp();
 
 		const participation = screen.getByRole("region", {
-			name: /ways to take part/i,
+			name: /ways to challenge a brief/i,
 		});
-		expect(participation).toHaveTextContent(/current invitation/i);
-		expect(participation).toHaveTextContent(/no payments or fundraising/i);
+		expect(participation).toHaveTextContent(/current security review/i);
+		expect(participation).toHaveTextContent(/never grants production access/i);
 		for (const path of [
-			"Bring a question",
-			"Signal what matters",
-			"Add grounded context",
+			"Submit a system",
+			"Challenge a control",
+			"Contribute evidence",
 		]) {
 			expect(
 				within(participation).getByRole("heading", { name: path }),
@@ -260,20 +264,22 @@ describe("App", () => {
 		const proof = screen.getByRole("region", {
 			name: /proof before scale/i,
 		});
-		expect(proof).toHaveTextContent(/interest is a starting signal/i);
+		expect(proof).toHaveTextContent(
+			/validation signal is not permission to deploy/i,
+		);
 		for (const question of [
-			"Whose problem is this?",
-			"What is the smallest useful test?",
-			"What must stay protected?",
-			"What result changes the plan?",
+			"What can fail or be abused?",
+			"What authority is excluded?",
+			"How does the control fail safely?",
+			"What evidence earns trust?",
 		]) {
 			expect(
 				within(proof).getByRole("heading", { name: question }),
 			).toBeInTheDocument();
 		}
-		expect(proof).toHaveTextContent(/nothing graduates automatically/i);
+		expect(proof).toHaveTextContent(/nothing advances automatically/i);
 		expect(proof).toHaveTextContent(
-			/never grants permission to use private data, property, accounts, or community identity/i,
+			/never grants permission to use private data, property, accounts, or production systems/i,
 		);
 	});
 

@@ -82,7 +82,8 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 				className="mt-12 border border-destructive/20 border-l-4 border-l-destructive bg-destructive/5 p-4 text-sm text-destructive"
 				role="alert"
 			>
-				The pilot question is unavailable right now. Please try again later.
+				The security review question is unavailable right now. Please try again
+				later.
 			</p>
 		);
 	}
@@ -101,7 +102,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
 						<ClipboardCheck className="size-4" aria-hidden="true" />
-						Pilot readiness question
+						Security exercise readiness
 					</p>
 					<h2
 						className="mt-3 text-3xl font-light tracking-[-0.025em] sm:text-4xl"
@@ -110,8 +111,9 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 						{question.prompt}
 					</h2>
 					<p className="mt-4 max-w-xl leading-7 text-muted-foreground">
-						Choose the closest fit. This helps test whether a small, authorized
-						pilot has the right demand, permissions, and people to proceed.
+						Choose the closest fit. This tests whether a bounded exercise has
+						the control boundary, proof threshold, and authorized operators to
+						proceed.
 					</p>
 					<p className="mt-5 flex items-start gap-2 text-sm leading-6 text-muted-foreground">
 						<LockKeyhole
@@ -119,7 +121,8 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 							aria-hidden="true"
 						/>
 						<span>
-							Your choice stays private. The concept team sees totals only.
+							Your choice stays private. The security brief author sees
+							aggregate totals only.
 						</span>
 					</p>
 				</div>

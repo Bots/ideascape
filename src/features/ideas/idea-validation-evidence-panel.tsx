@@ -29,7 +29,8 @@ export function IdeaValidationEvidencePanel({
 				className="mt-8 border border-destructive/20 border-l-4 border-l-destructive bg-destructive/5 p-4 text-sm text-destructive"
 				role="alert"
 			>
-				Private pilot evidence is unavailable right now. Please try again later.
+				Private security evidence is unavailable right now. Please try again
+				later.
 			</p>
 		);
 	}
@@ -46,20 +47,20 @@ export function IdeaValidationEvidencePanel({
 
 	return (
 		<section
-			aria-label="Private pilot evidence"
+			aria-label="Private security evidence"
 			className="field-panel mt-8 border-l-4 border-l-primary p-6 sm:p-8"
 		>
 			<div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
 						<BarChart3 className="size-4" aria-hidden="true" />
-						Private pilot evidence
+						Private security evidence
 					</p>
 					<h2 className="mt-2 text-2xl font-semibold tracking-tight">
-						Creator response summary
+						Security brief response summary
 					</h2>
 					<p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-						Aggregate evidence for “{evidence.prompt}” Member identities are
+						Aggregate evidence for “{evidence.prompt}” Respondent identities are
 						never included.
 					</p>
 				</div>
@@ -70,8 +71,8 @@ export function IdeaValidationEvidencePanel({
 
 			{evidence.totalResponses === 0 ? (
 				<p className="mt-6 border border-dashed p-5 text-sm text-muted-foreground">
-					No pilot responses yet. Keep the question open until there is enough
-					evidence for a continue, revise, or pause decision.
+					No security review responses yet. Keep the question open until there
+					is enough evidence for a continue, revise, or pause decision.
 				</p>
 			) : (
 				<div className="mt-6 grid gap-4">
@@ -102,8 +103,8 @@ export function IdeaValidationEvidencePanel({
 
 			<p className="mt-6 flex items-start gap-2 border-t pt-4 text-xs leading-5 text-muted-foreground">
 				<LockKeyhole className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-				Only aggregate option counts are displayed. Raw member responses remain
-				protected by row-level security.
+				Only aggregate option counts are displayed. Raw respondent records
+				remain protected by row-level security.
 			</p>
 		</section>
 	);

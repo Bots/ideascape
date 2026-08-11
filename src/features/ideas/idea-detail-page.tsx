@@ -22,12 +22,12 @@ import { IdeaValidationEvidencePanel } from "@/features/ideas/idea-validation-ev
 import { IdeaValidationPanel } from "@/features/ideas/idea-validation-panel";
 
 const statusLabels: Record<PublishedIdeaStatus, string> = {
-	published: "Concept preview",
-	funding: "Funding",
-	funded: "Funded",
-	in_progress: "In progress",
-	completed: "Completed",
-	cancelled: "Cancelled",
+	published: "Security brief",
+	funding: "Control review",
+	funded: "Pilot approved",
+	in_progress: "Exercise active",
+	completed: "Evidence published",
+	cancelled: "Closed",
 };
 
 function isSafeMediaUrl(value: string): boolean {
@@ -44,7 +44,7 @@ function IdeaMediaItem({ media }: { media: IdeaMedia }) {
 		return null;
 	}
 
-	const accessibleName = media.alt_text || "Idea media";
+	const accessibleName = media.alt_text || "Security brief media";
 
 	if (media.kind === "video") {
 		return (
@@ -123,7 +123,7 @@ function IdeaSecurityCase({
 					</h2>
 				</div>
 				<p className="mt-4 max-w-md text-sm leading-6 text-neutral-300 sm:mt-0">
-					A proposed control is not a guarantee. This preview names the failure
+					A proposed control is not a guarantee. This brief names the failure
 					path, the operating boundary, and the evidence needed to earn a larger
 					test.
 				</p>
@@ -168,7 +168,7 @@ export function IdeaDetailPage() {
 
 	return (
 		<>
-			<SiteHeader exploreLabel="Back to ideas" />
+			<SiteHeader exploreLabel="Back to security briefs" />
 			<main className="min-h-screen overflow-hidden text-foreground">
 				<div className="site-shell min-h-screen">
 					{ideaQuery.isPending ? (
@@ -180,7 +180,7 @@ export function IdeaDetailPage() {
 								className="size-5 animate-spin text-primary"
 								aria-hidden="true"
 							/>
-							Loading idea…
+							Loading security brief…
 						</div>
 					) : null}
 
@@ -190,7 +190,7 @@ export function IdeaDetailPage() {
 								Something went wrong
 							</h1>
 							<p className="mt-4 text-destructive" role="alert">
-								Unable to load this idea. Please try again.
+								Unable to load this security brief. Please try again.
 							</p>
 						</section>
 					) : null}
@@ -201,16 +201,17 @@ export function IdeaDetailPage() {
 								<Sparkles className="size-6" aria-hidden="true" />
 							</span>
 							<h1 className="mt-5 text-3xl font-semibold tracking-tight">
-								Idea not found
+								Security brief not found
 							</h1>
 							<p className="mt-4 leading-7 text-muted-foreground">
-								This idea may be private, unpublished, or no longer available.
+								This security brief may be private, unpublished, or no longer
+								available.
 							</p>
 							<Link
 								className={buttonVariants({ className: "mt-6 h-10 px-4" })}
 								to="/ideas"
 							>
-								Browse ideas
+								Review security briefs
 							</Link>
 						</section>
 					) : null}
@@ -236,7 +237,7 @@ export function IdeaDetailPage() {
 									{ideaQuery.data.summary}
 								</p>
 								<p className="mt-8 inline-flex items-center gap-2 border-l-2 border-signal pl-3 text-sm text-muted-foreground">
-									Created by{" "}
+									Brief owner{" "}
 									<Link
 										className="font-semibold text-foreground underline decoration-primary/45 underline-offset-4"
 										to={`/profiles/${ideaQuery.data.creator.username}`}
@@ -248,7 +249,10 @@ export function IdeaDetailPage() {
 							<InterestModeNotice className="mt-10" />
 
 							{ideaQuery.data.media.length > 0 ? (
-								<section className="mt-12 grid gap-6" aria-label="Idea media">
+								<section
+									className="mt-12 grid gap-6"
+									aria-label="Security brief media"
+								>
 									{ideaQuery.data.media.map((media) => (
 										<IdeaMediaItem key={media.id} media={media} />
 									))}
@@ -267,7 +271,7 @@ export function IdeaDetailPage() {
 										className="text-2xl font-semibold tracking-tight"
 										id="about-idea"
 									>
-										About this idea
+										System description
 									</h2>
 								</div>
 								<p className="mt-7 max-w-3xl whitespace-pre-wrap text-lg leading-8 text-muted-foreground">
@@ -321,13 +325,13 @@ export function IdeaDetailPage() {
 									<div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
 										<div>
 											<p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
-												Keep exploring
+												Continue the review
 											</p>
 											<h2
 												className="mt-2 text-3xl font-semibold tracking-tight"
 												id="related-concepts-heading"
 											>
-												More {ideaQuery.data.category.name} concepts
+												More {ideaQuery.data.category.name} security briefs
 											</h2>
 										</div>
 										<Link
@@ -337,7 +341,7 @@ export function IdeaDetailPage() {
 											})}
 											to={`/ideas?category=${encodeURIComponent(ideaQuery.data.category.slug)}`}
 										>
-											Browse all {ideaQuery.data.category.name} concepts
+											Review all {ideaQuery.data.category.name} briefs
 											<ArrowUpRight aria-hidden="true" />
 										</Link>
 									</div>

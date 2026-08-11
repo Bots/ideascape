@@ -48,7 +48,13 @@ const idea = {
 	title: "Solar desalination",
 	summary: "Affordable clean water powered directly by sunlight.",
 	description:
-		"A modular desalination system designed for coastal communities.",
+		"A bounded desalination security review with explicit authority and shutdown conditions.",
+	threat_scenario:
+		"A poisoned source or failed control could expose downstream systems.",
+	control_boundary:
+		"Testing stays isolated from production and requires written authorization.",
+	proof_required:
+		"Independent results must meet the published safety and shutdown thresholds.",
 	status: "draft" as const,
 	published_at: null,
 	created_at: "2026-08-09T00:00:00.000Z",
@@ -60,6 +66,9 @@ const values = {
 	title: idea.title,
 	summary: idea.summary,
 	description: idea.description,
+	threatScenario: idea.threat_scenario,
+	controlBoundary: idea.control_boundary,
+	proofRequired: idea.proof_required,
 };
 
 beforeEach(() => {
@@ -97,6 +106,9 @@ describe("idea service", () => {
 			title: idea.title,
 			summary: idea.summary,
 			description: idea.description,
+			threat_scenario: idea.threat_scenario,
+			control_boundary: idea.control_boundary,
+			proof_required: idea.proof_required,
 		});
 	});
 
@@ -115,6 +127,9 @@ describe("idea service", () => {
 			title: idea.title,
 			summary: idea.summary,
 			description: idea.description,
+			threat_scenario: idea.threat_scenario,
+			control_boundary: idea.control_boundary,
+			proof_required: idea.proof_required,
 		});
 		expect(ideaEqAfterUpdate).toHaveBeenCalledWith("id", idea.id);
 	});

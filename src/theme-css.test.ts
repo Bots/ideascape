@@ -459,9 +459,9 @@ describe("civic field-notebook design system", () => {
 		expect(appShell).toContain('classList.add("dark")');
 	});
 
-	it("describes the landing page as a possibility test", () => {
+	it("describes the landing page as security validation fieldwork", () => {
 		expect(appShell).toContain(
-			"<title>Ideascape — Test the possibility</title>",
+			"<title>Ideascape — Security validation fieldwork</title>",
 		);
 	});
 });

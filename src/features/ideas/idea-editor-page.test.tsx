@@ -37,8 +37,9 @@ const creator = {
 const category = {
 	id: 1,
 	slug: "technology",
-	name: "Technology",
-	description: "Tools and technical inventions.",
+	name: "Software & Systems",
+	description:
+		"Security controls for software, hardware, and operational systems.",
 };
 const idea = {
 	id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
@@ -48,7 +49,13 @@ const idea = {
 	title: "Solar desalination",
 	summary: "Affordable clean water powered directly by sunlight.",
 	description:
-		"A modular desalination system designed for coastal communities.",
+		"A bounded system review with explicit authorization and rollback conditions.",
+	threat_scenario:
+		"A poisoned update could enter a trusted release path and expose production systems.",
+	control_boundary:
+		"Testing stays inside an isolated owner-authorized environment with synthetic data.",
+	proof_required:
+		"Advance only after independent reviewers reproduce detection, rollback, and recovery.",
 	status: "draft" as const,
 	published_at: null,
 	created_at: "2026-08-09T00:00:00.000Z",
@@ -74,12 +81,24 @@ function renderEditor(path = "/ideas/new") {
 
 async function completeForm(user: ReturnType<typeof userEvent.setup>) {
 	await user.selectOptions(
-		screen.getByLabelText(/category/i),
+		screen.getByLabelText(/security domain/i),
 		String(category.id),
 	);
 	await user.type(screen.getByLabelText(/title/i), idea.title);
 	await user.type(screen.getByLabelText(/summary/i), idea.summary);
-	await user.type(screen.getByLabelText(/description/i), idea.description);
+	await user.type(screen.getByLabelText(/^description$/i), idea.description);
+	await user.type(
+		screen.getByLabelText(/threat scenario/i),
+		idea.threat_scenario,
+	);
+	await user.type(
+		screen.getByLabelText(/control boundary/i),
+		idea.control_boundary,
+	);
+	await user.type(
+		screen.getByLabelText(/proof required/i),
+		idea.proof_required,
+	);
 }
 
 beforeEach(() => {
@@ -100,7 +119,9 @@ describe("IdeaEditorPage", () => {
 		renderEditor();
 
 		expect(
-			screen.getByRole("heading", { name: /sign in to create an idea/i }),
+			screen.getByRole("heading", {
+				name: /sign in to draft a security brief/i,
+			}),
 		).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /sign in/i })).toHaveAttribute(
 			"href",
@@ -113,7 +134,7 @@ describe("IdeaEditorPage", () => {
 		const user = userEvent.setup();
 		renderEditor();
 
-		await screen.findByRole("heading", { name: /start a new idea/i });
+		await screen.findByRole("heading", { name: /draft a security brief/i });
 		await completeForm(user);
 		await user.click(screen.getByRole("button", { name: /save draft/i }));
 
@@ -122,26 +143,39 @@ describe("IdeaEditorPage", () => {
 			title: idea.title,
 			summary: idea.summary,
 			description: idea.description,
+			threatScenario: idea.threat_scenario,
+			controlBoundary: idea.control_boundary,
+			proofRequired: idea.proof_required,
 		});
 		expect(
-			await screen.findByRole("heading", { name: /edit your idea/i }),
+			await screen.findByRole("heading", { name: /edit security brief/i }),
 		).toBeInTheDocument();
 	});
 
 	it("uses browser constraints for required field lengths", async () => {
 		renderEditor();
 
-		await screen.findByRole("heading", { name: /start a new idea/i });
-		expect(screen.getByLabelText(/category/i)).toBeRequired();
+		await screen.findByRole("heading", { name: /draft a security brief/i });
+		expect(screen.getByLabelText(/security domain/i)).toBeRequired();
 		expect(screen.getByLabelText(/title/i)).toHaveAttribute("maxlength", "120");
 		expect(screen.getByLabelText(/summary/i)).toHaveAttribute(
 			"maxlength",
 			"280",
 		);
-		expect(screen.getByLabelText(/description/i)).toHaveAttribute(
+		expect(screen.getByLabelText(/^description$/i)).toHaveAttribute(
 			"maxlength",
 			"20000",
 		);
+		for (const label of [
+			/threat scenario/i,
+			/control boundary/i,
+			/proof required/i,
+		]) {
+			expect(screen.getByLabelText(label)).toBeRequired();
+			expect(screen.getByLabelText(label)).toHaveAttribute("minlength", "40");
+			expect(screen.getByLabelText(label)).toHaveAttribute("maxlength", "500");
+			expect(screen.getByLabelText(label)).toHaveAccessibleDescription();
+		}
 	});
 
 	it("loads and updates an existing draft", async () => {
@@ -149,7 +183,7 @@ describe("IdeaEditorPage", () => {
 		renderEditor(`/ideas/${idea.id}/edit`);
 
 		expect(
-			await screen.findByRole("heading", { name: /edit your idea/i }),
+			await screen.findByRole("heading", { name: /edit security brief/i }),
 		).toBeInTheDocument();
 		expect(screen.getByLabelText(/title/i)).toHaveValue(idea.title);
 		await user.clear(screen.getByLabelText(/title/i));
@@ -165,6 +199,9 @@ describe("IdeaEditorPage", () => {
 			title: "Updated solar desalination",
 			summary: idea.summary,
 			description: idea.description,
+			threatScenario: idea.threat_scenario,
+			controlBoundary: idea.control_boundary,
+			proofRequired: idea.proof_required,
 		});
 		expect(await screen.findByRole("status")).toHaveTextContent(/draft saved/i);
 	});
@@ -176,7 +213,7 @@ describe("IdeaEditorPage", () => {
 		);
 		renderEditor();
 
-		await screen.findByRole("heading", { name: /start a new idea/i });
+		await screen.findByRole("heading", { name: /draft a security brief/i });
 		await completeForm(user);
 		await user.click(screen.getByRole("button", { name: /save draft/i }));
 

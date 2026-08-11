@@ -69,21 +69,21 @@ const PilotPage = lazy(() =>
 const principles = [
 	{
 		icon: Lightbulb,
-		title: "Ideas worth testing",
+		title: "Threats made explicit",
 		description:
-			"Turn an early thought into a clear concept that other people can understand, question, and improve.",
+			"Define the asset, actor, abuse path, and consequence before proposing a control.",
 	},
 	{
 		icon: Users,
-		title: "People-powered learning",
+		title: "Controls with boundaries",
 		description:
-			"Use public interest and practical feedback to learn who cares, what is missing, and what deserves a first test.",
+			"State what is authorized, excluded, access-scoped, reversible, and owned.",
 	},
 	{
 		icon: ShieldCheck,
-		title: "Transparent by design",
+		title: "Proof over confidence",
 		description:
-			"Keep assumptions, permissions, boundaries, evidence, and updates visible from the first draft through any future pilot.",
+			"Precommit tests, stop conditions, independent checks, and residual risk before trust is earned.",
 	},
 ];
 
@@ -91,44 +91,44 @@ const validationSteps = [
 	{
 		icon: Lightbulb,
 		number: "01",
-		title: "Shape the concept",
+		title: "Frame the system",
 		description:
-			"Start with a private draft that explains who the idea helps, what it would change, and how a first experiment could be measured.",
+			"Start with a private security brief that names the system, assets, operators, dependencies, and authority model.",
 	},
 	{
 		icon: ShieldAlert,
 		number: "02",
 		title: "Map the threat scenario",
 		description:
-			"Name who or what could be harmed, how the concept could fail or be abused, and which assumptions deserve the hardest questions.",
+			"Name who or what could be harmed, how the system could fail or be abused, and which assumptions deserve the hardest questions.",
 	},
 	{
 		icon: LockKeyhole,
 		number: "03",
 		title: "Set the control boundary",
 		description:
-			"Define consent, access, data, safety, ownership, rollback, and stop conditions before asking anyone to trust a public preview.",
+			"Define consent, access, data, safety, ownership, rollback, and stop conditions before asking anyone to trust the control.",
 	},
 	{
 		icon: Users,
 		number: "04",
-		title: "Test public interest",
+		title: "Publish the security brief",
 		description:
-			"Publish a concept preview so people can explore it and signal interest. There is no payment or commitment at this stage.",
+			"Expose the threat scenario, control boundary, and proof standard for scoped review without granting access or deployment authority.",
 	},
 	{
 		icon: ShieldCheck,
 		number: "05",
-		title: "Turn signals into evidence",
+		title: "Collect validation signals",
 		description:
-			"Use aggregate demand—not private member activity—to decide whether to refine, pause, or prepare a small, permission-based pilot.",
+			"Use private reviewer intent and public aggregates to decide whether the security case deserves a bounded exercise.",
 	},
 	{
 		icon: Wrench,
 		number: "06",
 		title: "Design a bounded pilot",
 		description:
-			"Define the participants, permissions, safeguards, measures, and stop conditions before testing the idea in the real world.",
+			"Define authorized participants, isolated assets, safeguards, measures, rollback, and stop conditions before any live exercise.",
 	},
 	{
 		icon: ShieldAlert,
@@ -142,14 +142,14 @@ const validationSteps = [
 		number: "08",
 		title: "Publish what happened",
 		description:
-			"Share outcomes, limits, surprises, and participant feedback without exposing private member activity or sensitive data.",
+			"Share outcomes, limits, control failures, and residual risk without exposing reviewer activity or sensitive data.",
 	},
 	{
 		icon: RefreshCw,
 		number: "09",
 		title: "Choose, repeat, or stop",
 		description:
-			"Use the evidence to refine one meaningful assumption, repeat within the same boundary, pause, or close the concept without automatic promotion.",
+			"Use the evidence to refine one control, repeat inside the same authority boundary, pause, or close the brief without automatic promotion.",
 	},
 	{
 		icon: Archive,
@@ -163,44 +163,44 @@ const validationSteps = [
 const ideaTerrains = [
 	{
 		icon: Palette,
-		title: "Arts & Culture",
+		title: "Provenance & Authenticity",
 		description:
-			"Creative uses for overlooked spaces, shared stories, and neighborhood events.",
+			"Source integrity, consent, authenticity, and controlled reuse.",
 		href: "/ideas?category=arts-culture",
 	},
 	{
 		icon: Users,
-		title: "Community",
+		title: "Resilience & Response",
 		description:
-			"Practical ways for neighbors to move, prepare, connect, and care for a place.",
+			"Private reporting, bounded authority, tested fallback, and incident recovery.",
 		href: "/ideas?category=community",
 	},
 	{
 		icon: GraduationCap,
-		title: "Education",
+		title: "Human Risk",
 		description:
-			"Hands-on learning, skill sharing, and tools that make knowledge easier to keep.",
+			"Adversarial training without credential capture, shame, or hidden surveillance.",
 		href: "/ideas?category=education",
 	},
 	{
 		icon: Leaf,
-		title: "Environment",
+		title: "Infrastructure Integrity",
 		description:
-			"Repair, reuse, cleaner infrastructure, and measurable local resilience.",
+			"Fail-safe controls for sensors, utilities, repair, and physical systems.",
 		href: "/ideas?category=environment",
 	},
 	{
 		icon: HeartPulse,
-		title: "Health",
+		title: "Privacy & Safety",
 		description:
-			"Accessible, preventive ideas shaped around consent and everyday wellbeing.",
+			"Privacy-preserving controls for health, accessibility, and environmental safety.",
 		href: "/ideas?category=health",
 	},
 	{
 		icon: Cpu,
-		title: "Technology",
+		title: "Software & Systems",
 		description:
-			"Useful systems that respect ownership, privacy, safety, and human control.",
+			"Supply chains, devices, recovery, compute, and model operations.",
 		href: "/ideas?category=technology",
 	},
 ];
@@ -208,26 +208,26 @@ const ideaTerrains = [
 const participationPaths = [
 	{
 		icon: Lightbulb,
-		title: "Bring a question",
+		title: "Submit a system",
 		description:
-			"Draft a problem worth understanding. You do not need a finished plan, a pitch deck, or an organization behind you.",
-		action: "Start an idea",
+			"Draft the assets, trust boundaries, abuse paths, and authority assumptions that need review.",
+		action: "Draft a security brief",
 		href: "/ideas/new",
 	},
 	{
 		icon: HeartHandshake,
-		title: "Signal what matters",
+		title: "Challenge a control",
 		description:
-			"Explore concept previews and save the ones you would follow, use, support, or help test.",
-		action: "Explore concepts",
+			"Review threat models, identify bypasses, and state whether you can test or operate the control.",
+		action: "Review security briefs",
 		href: "/ideas",
 	},
 	{
 		icon: BookOpen,
-		title: "Add grounded context",
+		title: "Contribute evidence",
 		description:
-			"Help creators spot prior work, affected groups, practical constraints, and better ways to measure progress.",
-		action: "Join the experiment",
+			"Add standards, incident patterns, reproducible test methods, and explicit stop conditions.",
+		action: "Join the security review",
 		href: "/sign-up",
 	},
 ];
@@ -235,27 +235,27 @@ const participationPaths = [
 const proofQuestions = [
 	{
 		number: "01",
-		title: "Whose problem is this?",
+		title: "What can fail or be abused?",
 		description:
-			"Name the people affected and involve them before treating assumptions as needs.",
+			"Name the asset, actor, entry point, trust violation, and credible consequence.",
 	},
 	{
 		number: "02",
-		title: "What is the smallest useful test?",
+		title: "What authority is excluded?",
 		description:
-			"Define a reversible first step that can teach something without pretending to be a finished program.",
+			"Make production access, data collection, custody, payment, and deployment authority explicit.",
 	},
 	{
 		number: "03",
-		title: "What must stay protected?",
+		title: "How does the control fail safely?",
 		description:
-			"Make consent, privacy, access, ownership, safety, and stop conditions explicit before testing.",
+			"Define isolation, least privilege, rollback, recovery, and the condition that stops the exercise.",
 	},
 	{
 		number: "04",
-		title: "What result changes the plan?",
+		title: "What evidence earns trust?",
 		description:
-			"Publish the evidence that would justify refining, expanding, pausing, or retiring the concept.",
+			"Precommit reproducible checks and residual-risk criteria before a control can advance.",
 	},
 ];
 
@@ -279,21 +279,21 @@ function HomePage() {
 					<section className="grid flex-1 items-center gap-12 border-x border-b border-border bg-background/92 px-6 py-12 sm:px-10 sm:py-16 lg:grid-cols-[1.08fr_0.92fr] lg:px-12 lg:py-20">
 						<div className="relative z-10">
 							<p className="signal-label mb-6 border-l-2 border-signal pl-3">
-								Test the possibility
+								Threats before trust
 							</p>
 							<h1 className="max-w-3xl text-balance text-5xl font-light leading-[0.98] tracking-[-0.04em] sm:text-7xl lg:text-[5.25rem]">
-								Great ideas deserve a place to{" "}
-								<span className="text-signal">grow.</span>
+								Pressure-test security{" "}
+								<span className="text-signal">before it ships.</span>
 							</h1>
 							<p className="mt-8 max-w-xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl">
-								Ideascape is a public workshop for early ideas. Creators make
-								their thinking clear, neighbors signal what matters, and useful
-								feedback shapes the next small step.
+								Ideascape is a security validation lab for early systems.
+								Operators publish a concrete threat scenario, control boundary,
+								and proof standard before any pilot earns trust.
 							</p>
 							<p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
-								Explore cleaner air, safer streets, shared repair, practical
-								learning, accessible tools, local culture, and technology that
-								keeps people in control.
+								Review software, infrastructure, identity, human-risk, privacy,
+								and provenance briefs built to expose failure paths—not collect
+								applause.
 							</p>
 							<div className="mt-10 flex flex-wrap items-center gap-3">
 								<Link
@@ -303,7 +303,7 @@ function HomePage() {
 									})}
 									to="/ideas/new"
 								>
-									Start an idea
+									Draft a security brief
 									<ArrowRight aria-hidden="true" />
 								</Link>
 								<Link
@@ -314,7 +314,7 @@ function HomePage() {
 									})}
 									to="/ideas"
 								>
-									Explore ideas
+									Review security briefs
 								</Link>
 								<a
 									className={buttonVariants({
@@ -324,7 +324,7 @@ function HomePage() {
 									})}
 									href="#idea-terrain-heading"
 								>
-									Browse by category
+									Browse security domains
 									<ArrowRight aria-hidden="true" />
 								</a>
 							</div>
@@ -332,7 +332,7 @@ function HomePage() {
 							<dl className="mt-12 grid max-w-2xl grid-cols-2 border border-border bg-muted/65 sm:grid-cols-[1fr_1fr_1.35fr]">
 								<div className="border-b border-r border-border p-4 sm:border-b-0">
 									<dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-										Concept previews
+										Security briefs
 									</dt>
 									<dd className="mt-1 text-3xl font-semibold tracking-tight">
 										27
@@ -340,7 +340,7 @@ function HomePage() {
 								</div>
 								<div className="border-b border-border p-4 sm:border-b-0 sm:border-r">
 									<dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-										Categories
+										Security domains
 									</dt>
 									<dd className="mt-1 text-3xl font-semibold tracking-tight">
 										6
@@ -348,10 +348,10 @@ function HomePage() {
 								</div>
 								<div className="col-span-2 p-4 sm:col-span-1">
 									<dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-										Momentum
+										Method
 									</dt>
 									<dd className="mt-2 text-sm font-medium">
-										Local questions. Practical first tests.
+										Threat. Control. Proof.
 									</dd>
 								</div>
 							</dl>
@@ -366,24 +366,26 @@ function HomePage() {
 								</div>
 								<div className="editorial-image-frame">
 									<img
-										alt="Neighbors prepare a library room with portable air cleaners"
+										alt="A software maintainer verifies signed dependencies in an isolated build environment"
 										className="editorial-image aspect-[4/3] w-full object-cover"
-										src="/images/ideas/clean-air-library.svg"
+										src="/images/ideas/software-supply-chain-clinic.svg"
 									/>
 								</div>
 								<figcaption className="absolute bottom-4 left-4 right-4 flex items-center justify-between border border-border bg-card px-4 py-3 text-sm">
-									<span className="font-semibold">The Clean Air Library</span>
+									<span className="font-semibold">
+										Software Supply Chain Clinic
+									</span>
 									<span className="bg-signal px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-wider text-black">
-										Health
+										Software &amp; Systems
 									</span>
 								</figcaption>
 							</figure>
 							<div className="absolute -bottom-5 -left-5 hidden w-[44%] border border-border bg-card p-1.5 sm:block">
 								<div className="editorial-image-frame">
 									<img
-										alt="A storefront becomes an evening gallery while neighbors gather outside"
+										alt="An operator reviews a contained phishing drill with credential capture disabled"
 										className="editorial-image aspect-video w-full object-cover"
-										src="/images/ideas/after-dark-storefronts.svg"
+										src="/images/ideas/phishing-drill-library.svg"
 									/>
 								</div>
 							</div>
@@ -392,7 +394,7 @@ function HomePage() {
 									className="size-5 text-primary"
 									aria-hidden="true"
 								/>
-								Practical ideas, clearer next steps
+								Threats mapped. Controls bounded.
 							</div>
 						</div>
 					</section>
@@ -400,25 +402,24 @@ function HomePage() {
 					<section aria-labelledby="idea-terrain-heading" className="py-20">
 						<div className="grid gap-8 border-x border-b border-border bg-background p-7 sm:p-10 lg:grid-cols-[0.72fr_1.28fr] lg:p-12">
 							<div>
-								<p className="field-label">A wider field of view</p>
+								<p className="field-label">Six attack surfaces</p>
 								<h2
 									className="mt-4 max-w-xl text-4xl font-light tracking-[-0.025em] sm:text-5xl"
 									id="idea-terrain-heading"
 								>
-									Ideas for everyday life
+									Security domains under review
 								</h2>
 								<p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">
-									Ideascape is not built around one industry or one kind of
-									creator. It is a place to make a local problem legible,
-									compare possible approaches, and find the people who care
-									enough to keep learning.
+									Ideascape covers digital and physical systems where weak
+									authority boundaries, unverifiable claims, or unsafe failure
+									modes can create real harm.
 								</p>
 								<div className="mt-8 border-l-2 border-signal pl-4">
 									<p className="font-semibold">
-										27 concepts across 6 categories
+										27 security briefs across 6 domains
 									</p>
 									<p className="mt-1 text-sm leading-6 text-muted-foreground">
-										Every preview names a threat scenario, control boundary, and
+										Every brief names a threat scenario, control boundary, and
 										proof required before a larger test.
 									</p>
 								</div>
@@ -455,16 +456,16 @@ function HomePage() {
 						<div className="field-panel overflow-hidden">
 							<div className="grid gap-6 border-b border-border p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-end">
 								<div>
-									<p className="field-label">From idea to evidence</p>
+									<p className="field-label">From threat to evidence</p>
 									<h2
 										className="mt-3 text-4xl font-light tracking-[-0.025em] sm:text-5xl"
 										id="how-it-works-heading"
 									>
-										How Ideascape works
+										The security validation path
 									</h2>
 									<p className="mt-4 max-w-2xl text-lg leading-8 text-muted-foreground">
-										Start with a clear question, not a polished pitch. The live
-										product is focused on learning what people actually want.
+										Start with a credible threat, not a confidence claim. Every
+										control advances through explicit authority and proof gates.
 									</p>
 								</div>
 								<Link
@@ -474,7 +475,7 @@ function HomePage() {
 									})}
 									to="/ideas"
 								>
-									Explore the live experiment
+									Review the security catalog
 									<ArrowRight aria-hidden="true" />
 								</Link>
 							</div>
@@ -514,29 +515,28 @@ function HomePage() {
 								<div>
 									<div className="inline-flex items-center gap-2 border-l-2 border-l-signal pl-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-signal">
 										<Sparkles className="size-4" aria-hidden="true" />
-										Current invitation
+										Current security review
 									</div>
 									<h2
 										className="mt-5 max-w-3xl text-4xl font-light tracking-[-0.025em] sm:text-6xl"
 										id="participation-heading"
 									>
-										Ways to take part
+										Ways to challenge a brief
 									</h2>
 									<p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-300">
-										The live product is for learning together: drafting
-										concepts, discovering shared interest, and improving the
-										quality of a possible first test. There are no payments or
-										fundraising.
+										Draft a threat model, challenge a control boundary, or add
+										reproducible evidence. Review never grants production
+										access, deployment authority, payment, or custody.
 									</p>
 								</div>
 								<aside className="border border-neutral-500 bg-neutral-950 p-6">
 									<p className="text-xs font-bold uppercase tracking-[0.18em] text-signal">
-										Good participation looks like
+										Good security review looks like
 									</p>
 									<p className="mt-3 text-base leading-7 text-neutral-200">
-										Ask a useful question. Share relevant experience. Name a
-										constraint. Introduce someone affected. Help make the next
-										decision more informed—not merely more popular.
+										Name a bypass. Challenge an assumption. Cite a standard.
+										Define a reproducible check. Make the next decision
+										safer—not merely more confident.
 									</p>
 								</aside>
 							</div>
@@ -556,7 +556,7 @@ function HomePage() {
 											</p>
 											{href === "/sign-up" && user ? (
 												<span className="mt-7 inline-flex min-h-11 items-center border border-neutral-500 px-4 text-sm font-semibold text-neutral-200">
-													You&apos;re participating
+													You&apos;re reviewing
 												</span>
 											) : (
 												<Link
@@ -580,7 +580,7 @@ function HomePage() {
 								<div>
 									<p className="field-label inline-flex items-center gap-2 border-l-2 border-primary pl-3">
 										<ShieldCheck className="size-4" aria-hidden="true" />A
-										stronger concept
+										stronger security case
 									</p>
 									<h2
 										className="mt-5 max-w-3xl text-4xl font-light tracking-[-0.025em] sm:text-6xl"
@@ -589,9 +589,9 @@ function HomePage() {
 										Proof before scale
 									</h2>
 									<p className="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">
-										Interest is a starting signal, not permission to expand.
-										Every concept should become more specific about people,
-										evidence, boundaries, and stop conditions as it develops.
+										A validation signal is not permission to deploy. Every
+										security brief must tighten its evidence, authority
+										boundary, recovery path, and stop conditions as it advances.
 									</p>
 								</div>
 								<Link
@@ -634,10 +634,10 @@ function HomePage() {
 									<ShieldCheck className="size-5" aria-hidden="true" />
 								</span>
 								<p className="max-w-4xl text-sm leading-7 text-foreground">
-									A concept can stop, change direction, or remain a useful
-									public record. Nothing graduates automatically, and
-									participation never grants permission to use private data,
-									property, accounts, or community identity.
+									A security brief can stop, change direction, or remain a
+									useful review record. Nothing advances automatically, and
+									validation never grants permission to use private data,
+									property, accounts, or production systems.
 								</p>
 							</div>
 						</div>
@@ -647,13 +647,13 @@ function HomePage() {
 						<div className="mb-6 flex items-end justify-between gap-4 border-t border-primary/20 pt-10">
 							<div>
 								<p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-									Built for momentum
+									Security operating principles
 								</p>
 								<h2
 									id="principles-heading"
 									className="mt-2 text-3xl font-semibold tracking-tight"
 								>
-									From possibility to progress
+									From threat model to trusted control
 								</h2>
 							</div>
 						</div>

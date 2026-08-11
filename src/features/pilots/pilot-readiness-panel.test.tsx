@@ -90,7 +90,7 @@ describe("PilotReadinessPanel", () => {
 			within(dashboard).getByText(/continue threshold met/i),
 		).toBeInTheDocument();
 		expect(dashboard).toHaveTextContent(
-			/member identities are never included/i,
+			/respondent identities are never included/i,
 		);
 	});
 
