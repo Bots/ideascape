@@ -8,7 +8,7 @@ import {
 } from "@/features/auth/auth-return-path";
 
 const pageClassName =
-	"field-grid contour-field relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground";
+	"relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground";
 const backdropClassName = "hidden";
 const cardClassName =
 	"field-panel relative w-full max-w-md border-t-4 border-t-primary p-8 text-center";

@@ -127,7 +127,7 @@ export function IdeaDiscoveryPage() {
 	return (
 		<>
 			<SiteHeader showExplore={false} />
-			<main className="field-grid contour-field min-h-screen overflow-hidden text-foreground">
+			<main className="min-h-screen overflow-hidden text-foreground">
 				<div className="site-shell min-h-screen">
 					<section className="border-x border-b border-border bg-background/94 px-6 py-12 sm:px-10 sm:py-16 lg:px-12 lg:py-20">
 						<div className="grid items-end gap-8 border-b border-border pb-10 lg:grid-cols-[1fr_auto]">

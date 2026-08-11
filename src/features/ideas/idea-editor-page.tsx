@@ -216,7 +216,7 @@ export function IdeaEditorPage() {
 
 function EditorShell({ children }: { children: React.ReactNode }) {
 	return (
-		<main className="field-grid contour-field relative min-h-screen overflow-hidden bg-background px-6 py-12 text-foreground">
+		<main className="relative min-h-screen overflow-hidden bg-background px-6 py-12 text-foreground">
 			<section className="field-panel relative mx-auto w-full max-w-3xl border-t-4 border-t-primary p-8 sm:p-10">
 				<Link
 					to="/"

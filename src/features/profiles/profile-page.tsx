@@ -6,7 +6,7 @@ import { getPublicProfile } from "@/features/profiles/profile-service";
 
 function ProfileShell({ children }: { children: ReactNode }) {
 	return (
-		<main className="field-grid contour-field relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground">
+		<main className="relative grid min-h-screen place-items-center overflow-hidden bg-background px-6 py-12 text-foreground">
 			<section className="field-panel relative w-full max-w-2xl border-t-4 border-t-primary p-8 sm:p-10">
 				<Link
 					to="/"

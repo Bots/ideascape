@@ -294,6 +294,9 @@ describe("civic field-notebook design system", () => {
 
 	it("uses only black, white, grayscale, and one bright orange signal", () => {
 		expect(rootTheme).toContain("--background: #ffffff");
+		expect(rootTheme).toContain("--card: #ffffff");
+		expect(rootTheme).toContain("--popover: #ffffff");
+		expect(rootTheme).toContain("--sidebar: #ffffff");
 		expect(rootTheme).toContain("--foreground: #0a0a0a");
 		expect(rootTheme).toContain("--primary: #0a0a0a");
 		expect(rootTheme).toContain("--signal: #ff5a1f");
@@ -302,7 +305,10 @@ describe("civic field-notebook design system", () => {
 		expect(rootTheme).toContain("--border: #737373");
 		expect(rootTheme).toContain("--input: #737373");
 		expect(rootTheme).toContain("--radius: 0.375rem");
-		expect(darkTheme).toContain("--background: #050505");
+		expect(darkTheme).toContain("--background: #000000");
+		expect(darkTheme).toContain("--card: #000000");
+		expect(darkTheme).toContain("--popover: #000000");
+		expect(darkTheme).toContain("--sidebar: #000000");
 		expect(darkTheme).toContain("--foreground: #fafafa");
 		expect(darkTheme).toContain("--primary: #fafafa");
 		expect(darkTheme).toContain("--signal: #ff5a1f");
@@ -398,10 +404,15 @@ describe("civic field-notebook design system", () => {
 		);
 	});
 
-	it("provides map-grid and contour-field composition primitives", () => {
-		expect(stylesheet).toMatch(/\.field-grid\s*\{[\s\S]*background-image:/);
-		expect(stylesheet).toMatch(
-			/\.contour-field::before\s*\{[\s\S]*background-image:/,
+	it("uses flat pure canvases without grid or contour backgrounds", () => {
+		const productionSources = listVisualSourceFiles(
+			resolve(process.cwd(), "src"),
+		).map((file) => readFileSync(file, "utf8"));
+		expect(stylesheet).not.toContain("background-image:");
+		expect(stylesheet).not.toContain(".field-grid");
+		expect(stylesheet).not.toContain(".contour-field");
+		expect(productionSources.join("\n")).not.toMatch(
+			/\b(?:field-grid|contour-field)\b/,
 		);
 	});
 

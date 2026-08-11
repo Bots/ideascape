@@ -208,6 +208,15 @@ describe("App", () => {
 				name: /turn signals into evidence/i,
 			}),
 		).toBeInTheDocument();
+		for (const nextStep of [
+			"Design a bounded pilot",
+			"Publish what happened",
+			"Choose the next move",
+		]) {
+			expect(
+				within(howItWorks).getByRole("heading", { name: nextStep }),
+			).toBeInTheDocument();
+		}
 		expect(howItWorks).toHaveTextContent(/no payment or commitment/i);
 		expect(
 			within(howItWorks).getByRole("link", {

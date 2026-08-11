@@ -129,7 +129,7 @@ function AdminDashboard({
 	return (
 		<>
 			<SiteHeader exploreLabel="Concept catalog" />
-			<main className="field-grid contour-field min-h-screen overflow-hidden bg-background text-foreground">
+			<main className="min-h-screen overflow-hidden bg-background text-foreground">
 				<div className="site-shell">
 					<section className="border-x border-b border-border bg-background/94 px-6 pb-12 pt-12 sm:px-10 sm:pb-16 sm:pt-16 lg:px-12 lg:pt-20">
 						<div className="max-w-4xl">

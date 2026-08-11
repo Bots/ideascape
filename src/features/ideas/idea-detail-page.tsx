@@ -167,7 +167,7 @@ export function IdeaDetailPage() {
 	return (
 		<>
 			<SiteHeader exploreLabel="Back to ideas" />
-			<main className="field-grid contour-field min-h-screen overflow-hidden text-foreground">
+			<main className="min-h-screen overflow-hidden text-foreground">
 				<div className="site-shell min-h-screen">
 					{ideaQuery.isPending ? (
 						<div
