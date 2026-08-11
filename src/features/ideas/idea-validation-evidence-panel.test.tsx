@@ -60,11 +60,11 @@ describe("IdeaValidationEvidencePanel", () => {
 
 		expect(getIdeaValidationSummary).not.toHaveBeenCalled();
 		expect(
-			screen.queryByText(/private pilot evidence/i),
+			screen.queryByText(/private security evidence/i),
 		).not.toBeInTheDocument();
 	});
 
-	it("shows aggregate answer totals only to the concept creator", async () => {
+	it("shows aggregate answer totals only to the security brief author", async () => {
 		vi.mocked(useAuth).mockReturnValue({
 			user: { id: creatorId } as ReturnType<typeof useAuth>["user"],
 			isLoading: false,
@@ -72,13 +72,13 @@ describe("IdeaValidationEvidencePanel", () => {
 		renderPanel();
 
 		expect(
-			await screen.findByRole("region", { name: /private pilot evidence/i }),
+			await screen.findByRole("region", { name: /private security evidence/i }),
 		).toBeInTheDocument();
 		expect(screen.getByText("5 total responses")).toBeInTheDocument();
 		expect(screen.getByText("3 responses")).toBeInTheDocument();
 		expect(screen.getByText("2 responses")).toBeInTheDocument();
 		expect(
-			screen.getByText(/member identities are never included/i),
+			screen.getByText(/respondent identities are never included/i),
 		).toBeInTheDocument();
 		expect(getIdeaValidationSummary).toHaveBeenCalledWith(ideaId);
 	});
@@ -97,7 +97,7 @@ describe("IdeaValidationEvidencePanel", () => {
 		renderPanel();
 
 		expect(
-			await screen.findByText(/no pilot responses yet/i),
+			await screen.findByText(/no security review responses yet/i),
 		).toBeInTheDocument();
 	});
 
@@ -112,7 +112,7 @@ describe("IdeaValidationEvidencePanel", () => {
 		renderPanel();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			/private pilot evidence is unavailable right now/i,
+			/private security evidence is unavailable right now/i,
 		);
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
 	});

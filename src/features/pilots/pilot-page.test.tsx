@@ -74,10 +74,8 @@ describe("PilotPage", () => {
 		).toBeInTheDocument();
 		expect(screen.getByText(/validation underway/i)).toBeInTheDocument();
 		expect(screen.getByLabelText("30-day evidence window")).toBeInTheDocument();
-		expect(screen.getByLabelText("15 meaningful signals")).toBeInTheDocument();
-		expect(
-			screen.getByLabelText("5 participant interviews"),
-		).toBeInTheDocument();
+		expect(screen.getByLabelText("15 validation signals")).toBeInTheDocument();
+		expect(screen.getByLabelText("5 operator interviews")).toBeInTheDocument();
 		expect(
 			screen.getByLabelText("3-project pilot capacity"),
 		).toBeInTheDocument();
@@ -91,7 +89,7 @@ describe("PilotPage", () => {
 		expect(decisions).toHaveTextContent(/2 or fewer meaningful signals/i);
 
 		const boundaries = screen.getByRole("region", {
-			name: /pilot boundaries/i,
+			name: /security exercise boundaries/i,
 		});
 		expect(boundaries).toHaveTextContent(
 			/participant-authorized projects only/i,
@@ -106,7 +104,7 @@ describe("PilotPage", () => {
 		renderPage();
 
 		expect(
-			await screen.findByText(/pilot intake is not open yet/i),
+			await screen.findByText(/security exercise intake is not open yet/i),
 		).toBeInTheDocument();
 		expect(
 			screen.queryByRole("link", { name: /sign in to apply/i }),

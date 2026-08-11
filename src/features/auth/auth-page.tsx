@@ -116,8 +116,8 @@ export function AuthPage({ mode }: AuthPageProps) {
 						</h1>
 						<p className="mt-2 text-sm text-muted-foreground">
 							{isSignIn
-								? "Welcome back. Continue building ideas with your community."
-								: "Join the community bringing ambitious ideas to life."}
+								? "Welcome back. Continue reviewing threats, controls, and evidence."
+								: "Create an operator account to draft and challenge security briefs."}
 						</p>
 
 						<div className="mt-8 grid gap-3 sm:grid-cols-2">

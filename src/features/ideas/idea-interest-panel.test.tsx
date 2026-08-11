@@ -58,14 +58,17 @@ describe("IdeaInterestPanel", () => {
 
 		expect(
 			await screen.findByRole("heading", {
-				name: /would you want to see this happen/i,
+				name: /how are you interested in this security brief/i,
 			}),
 		).toBeInTheDocument();
 		expect(
-			await screen.findByText(/12 people are interested/i),
+			screen.getByText(/does not claim security expertise/i),
+		).toBeInTheDocument();
+		expect(
+			await screen.findByText(/12 validation signals/i),
 		).toBeInTheDocument();
 		const signInLink = screen.getByRole("link", {
-			name: /sign in to show interest/i,
+			name: /sign in to share private interest/i,
 		});
 		expect(signInLink).toHaveAttribute(
 			"href",
@@ -74,7 +77,7 @@ describe("IdeaInterestPanel", () => {
 		expect(signInLink).toHaveClass("bg-signal", "text-black");
 	});
 
-	it("lets a signed-in member signal how they would participate", async () => {
+	it("preserves the established meaning of stored private intent values", async () => {
 		const user = userEvent.setup();
 		vi.mocked(useAuth).mockReturnValue({
 			user: { id: userId } as ReturnType<typeof useAuth>["user"],
@@ -83,7 +86,7 @@ describe("IdeaInterestPanel", () => {
 		renderPanel();
 
 		const intentGroup = await screen.findByRole("group", {
-			name: /how would you participate/i,
+			name: /choose your private interest/i,
 		});
 		const pilotButton = within(intentGroup).getByRole("button", {
 			name: /i could test a pilot/i,
@@ -93,7 +96,7 @@ describe("IdeaInterestPanel", () => {
 
 		expect(signalIdeaInterest).toHaveBeenCalledWith(ideaId, userId, "pilot");
 		expect(
-			await screen.findByText(/13 people are interested/i),
+			await screen.findByText(/13 validation signals/i),
 		).toBeInTheDocument();
 		expect(pilotButton).toHaveAttribute("aria-pressed", "true");
 		expect(pilotButton).toHaveClass("bg-signal", "text-black");
@@ -123,7 +126,7 @@ describe("IdeaInterestPanel", () => {
 		await user.click(buildButton);
 
 		expect(signalIdeaInterest).toHaveBeenCalledWith(ideaId, userId, "build");
-		expect(screen.getByText(/12 people are interested/i)).toBeInTheDocument();
+		expect(screen.getByText(/12 validation signals/i)).toBeInTheDocument();
 		expect(buildButton).toHaveAttribute("aria-pressed", "true");
 		expect(useButton).toHaveAttribute("aria-pressed", "false");
 	});
@@ -142,17 +145,17 @@ describe("IdeaInterestPanel", () => {
 		renderPanel();
 
 		const interestButton = await screen.findByRole("button", {
-			name: /remove interest/i,
+			name: /remove validation signal/i,
 		});
 		expect(interestButton).toHaveAttribute("aria-pressed", "true");
 		await user.click(interestButton);
 
 		expect(removeIdeaInterest).toHaveBeenCalledWith(ideaId, userId);
 		expect(
-			await screen.findByText(/11 people are interested/i),
+			await screen.findByText(/11 validation signals/i),
 		).toBeInTheDocument();
 		expect(
-			screen.queryByRole("button", { name: /remove interest/i }),
+			screen.queryByRole("button", { name: /remove validation signal/i }),
 		).not.toBeInTheDocument();
 	});
 
@@ -163,7 +166,7 @@ describe("IdeaInterestPanel", () => {
 		renderPanel();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			/interest signals are unavailable right now/i,
+			/validation signals are unavailable right now/i,
 		);
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
 	});

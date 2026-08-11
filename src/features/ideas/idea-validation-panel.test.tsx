@@ -80,7 +80,7 @@ describe("IdeaValidationPanel", () => {
 			name: question.prompt,
 		});
 		expect(
-			within(region).getByText(/pilot readiness question/i),
+			within(region).getByText(/security exercise readiness/i),
 		).toBeInTheDocument();
 		expect(
 			within(region).getByText("An open-source project I maintain"),
@@ -96,9 +96,11 @@ describe("IdeaValidationPanel", () => {
 			"href",
 			"/sign-in?returnTo=%2Fideas%2Fproject-time-capsule",
 		);
-		expect(region).toHaveTextContent(/concept team sees totals only/i);
 		expect(region).toHaveTextContent(
-			/right demand, permissions, and people to proceed/i,
+			/security brief author sees aggregate totals only/i,
+		);
+		expect(region).toHaveTextContent(
+			/control boundary, proof threshold, and authorized operators/i,
 		);
 		expect(region).toHaveTextContent(/possible answers/i);
 		expect(region).not.toHaveTextContent(/preservation pilot/i);
@@ -195,7 +197,7 @@ describe("IdeaValidationPanel", () => {
 		renderPanel();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			/pilot question is unavailable right now/i,
+			/security review question is unavailable right now/i,
 		);
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
 	});

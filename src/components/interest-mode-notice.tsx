@@ -14,7 +14,7 @@ export function InterestModeNotice({
 }: InterestModeNoticeProps) {
 	return (
 		<div
-			aria-label="Exploration mode"
+			aria-label="Security review mode"
 			className={cn(
 				"relative overflow-hidden border border-primary/30 border-l-4 border-l-primary bg-primary/6 p-4 sm:p-5",
 				className,
@@ -27,11 +27,12 @@ export function InterestModeNotice({
 						<FlaskConical className="size-5" aria-hidden="true" />
 					</span>
 					<div>
-						<p className="font-semibold tracking-tight">Exploration mode</p>
+						<p className="font-semibold tracking-tight">Security review mode</p>
 						<p className="mt-1 max-w-3xl text-sm leading-6 text-muted-foreground">
-							These are concept previews, not active fundraisers. We&apos;re
-							testing whether people want a place like this before opening
-							funding.
+							These are security briefs, not deployment approvals. Every brief
+							states a threat scenario, control boundary, and proof standard. No
+							payment, production access, or operational authority changes
+							hands.
 						</p>
 					</div>
 				</div>
@@ -43,7 +44,7 @@ export function InterestModeNotice({
 						})}
 						to="/sign-up"
 					>
-						Join the experiment
+						Join the security review
 						<ArrowRight aria-hidden="true" />
 					</Link>
 				) : null}

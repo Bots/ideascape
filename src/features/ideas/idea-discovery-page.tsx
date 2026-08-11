@@ -19,12 +19,12 @@ import {
 } from "@/features/ideas/idea-discovery-service";
 
 const statusLabels: Record<PublishedIdeaStatus, string> = {
-	published: "Concept preview",
-	funding: "Funding",
-	funded: "Funded",
-	in_progress: "In progress",
-	completed: "Completed",
-	cancelled: "Cancelled",
+	published: "Security brief",
+	funding: "Control review",
+	funded: "Pilot approved",
+	in_progress: "Exercise active",
+	completed: "Evidence published",
+	cancelled: "Closed",
 };
 
 function isSafeImageUrl(value: string): boolean {
@@ -38,18 +38,18 @@ function isSafeImageUrl(value: string): boolean {
 
 function interestLabel(count: number): string {
 	if (count === 0) {
-		return "Be first to signal interest";
+		return "Be first to add a validation signal";
 	}
 
 	if (count === 1) {
-		return "1 person interested";
+		return "1 validation signal";
 	}
 
-	return `${count} people interested`;
+	return `${count} validation signals`;
 }
 
 function conceptCountLabel(count: number): string {
-	return `${count} demo ${count === 1 ? "concept" : "concepts"}`;
+	return `${count} security ${count === 1 ? "brief" : "briefs"}`;
 }
 
 export function IdeaDiscoveryPage() {
@@ -133,28 +133,28 @@ export function IdeaDiscoveryPage() {
 						<div className="grid items-end gap-8 border-b border-border pb-10 lg:grid-cols-[1fr_auto]">
 							<div>
 								<p className="signal-label mb-5 border-l-2 border-signal pl-3">
-									Community possibilities
+									Security validation catalog
 								</p>
 								<h1 className="text-5xl font-light tracking-[-0.035em] sm:text-7xl">
-									Discover <span className="text-signal">ideas</span>
+									Review <span className="text-signal">security briefs</span>
 								</h1>
 								<p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-									Every concept preview names a threat scenario, control
-									boundary, and proof required before it earns a larger test.
+									Every brief names a threat scenario, control boundary, and
+									proof required before it can advance to a bounded exercise.
 								</p>
 							</div>
 							<div className="field-panel hidden min-w-52 border-t-4 border-t-primary px-6 py-5 lg:block">
 								<p className="field-label">
 									{ideasQuery.isError && ideasQuery.data === undefined
 										? "Catalog status"
-										: "Now exploring"}
+										: "Under review"}
 								</p>
 								<p className="mt-2 text-3xl font-semibold tracking-tight">
 									{ideasQuery.isError && ideasQuery.data === undefined
 										? "Catalog unavailable"
 										: ideasQuery.data
 											? conceptCountLabel(ideasQuery.data.length)
-											: "Loading concepts"}
+											: "Loading security briefs"}
 								</p>
 							</div>
 						</div>
@@ -162,12 +162,12 @@ export function IdeaDiscoveryPage() {
 
 						{ideasQuery.data && ideasQuery.data.length > 0 ? (
 							<fieldset className="field-panel mt-8 grid gap-4 border-l-4 border-l-primary p-5 pr-16 lg:grid-cols-[1fr_17rem_auto] lg:items-end lg:pr-5">
-								<legend className="sr-only">Filter concepts</legend>
+								<legend className="sr-only">Filter security briefs</legend>
 								<label
 									className="grid gap-2 text-sm font-semibold"
-									htmlFor="concept-search"
+									htmlFor="brief-search"
 								>
-									Search concept previews
+									Search security briefs
 									<span className="relative block">
 										<Search
 											aria-hidden="true"
@@ -175,7 +175,7 @@ export function IdeaDiscoveryPage() {
 										/>
 										<input
 											className="h-11 w-full rounded-sm border bg-background pl-10 pr-3 text-base font-normal text-foreground outline-none transition placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring"
-											id="concept-search"
+											id="brief-search"
 											onChange={(event) => updateSearch(event.target.value)}
 											placeholder="Try files, firmware, or local AI"
 											type="search"
@@ -187,14 +187,14 @@ export function IdeaDiscoveryPage() {
 									className="grid gap-2 text-sm font-semibold"
 									htmlFor="category-filter"
 								>
-									Category
+									Security domain
 									<select
 										className="h-11 w-full rounded-sm border bg-background px-3 text-base font-normal text-foreground outline-none transition focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring"
 										id="category-filter"
 										onChange={(event) => updateCategory(event.target.value)}
 										value={selectedCategory}
 									>
-										<option value="all">All categories</option>
+										<option value="all">All security domains</option>
 										{categories.map((category) => (
 											<option key={category.slug} value={category.slug}>
 												{category.name}
@@ -207,7 +207,7 @@ export function IdeaDiscoveryPage() {
 									role="status"
 								>
 									Showing {visibleIdeas.length} of {ideasQuery.data.length}{" "}
-									concepts
+									security briefs
 								</p>
 							</fieldset>
 						) : null}
@@ -221,7 +221,7 @@ export function IdeaDiscoveryPage() {
 									className="size-5 animate-spin text-primary"
 									aria-hidden="true"
 								/>
-								Loading ideas…
+								Loading security briefs…
 							</div>
 						) : null}
 
@@ -229,8 +229,8 @@ export function IdeaDiscoveryPage() {
 							<div className="field-panel mt-16 border-l-4 border-l-destructive p-8">
 								<p className="text-destructive" role="alert">
 									{ideasQuery.data === undefined
-										? "Unable to load ideas. Please try again."
-										: "Unable to refresh ideas. Showing the latest available catalog."}
+										? "Unable to load security briefs. Please try again."
+										: "Unable to refresh security briefs. Showing the latest available catalog."}
 								</p>
 							</div>
 						) : null}
@@ -241,17 +241,17 @@ export function IdeaDiscoveryPage() {
 									<Sparkles className="size-6" aria-hidden="true" />
 								</span>
 								<h2 className="mt-5 text-3xl font-semibold tracking-tight">
-									The first ideas are taking shape
+									The first security briefs are taking shape
 								</h2>
 								<p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-									Be the first creator to share a proposal with the Ideascape
-									community.
+									Be the first operator to publish a threat scenario, bounded
+									control, and reproducible proof standard.
 								</p>
 								<Link
 									className={buttonVariants({ className: "mt-6 h-10 px-4" })}
 									to="/ideas/new"
 								>
-									Start an idea
+									Draft a security brief
 									<ArrowRight aria-hidden="true" />
 								</Link>
 							</div>
@@ -265,11 +265,11 @@ export function IdeaDiscoveryPage() {
 									<Search className="size-6" aria-hidden="true" />
 								</span>
 								<h2 className="mt-5 text-3xl font-semibold tracking-tight">
-									No concepts match these filters
+									No security briefs match these filters
 								</h2>
 								<p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-									Try a broader search, choose another category, or reset the
-									catalog.
+									Try a broader search, choose another security domain, or reset
+									the catalog.
 								</p>
 								<button
 									className={buttonVariants({

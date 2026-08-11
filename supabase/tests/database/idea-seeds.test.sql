@@ -147,17 +147,17 @@ select is(
       and position(E'\n' in description) > 0
       and case slug
         when 'shade-stop-network' then
-          title = 'Shade Every Mountain Metro Stop'
+          title = 'Transit Stop Hazard Audit'
           and description ilike '%2025 Mountain Metro bus-stop self-evaluation%'
           and description ilike '%116%'
           and description ilike '%178%'
           and description ilike '%written approval%'
         when 'civic-accessibility-lab' then
-          title = 'Cross Academy Alive'
+          title = 'Crossing Safety Evidence Audit'
           and description ilike '%written city authorization%'
           and description ilike '%without capturing faces or license plates%'
         when 'glass-box-sensor-network' then
-          title = 'Flock Off Colorado Springs'
+          title = 'Plate Reader Privacy Audit'
           and description ilike '%Colorado Open Records Act%'
           and description ilike '%no physical interference%'
           and description ilike '%private license plates%'
@@ -165,7 +165,7 @@ select is(
       end
   ),
   3::bigint,
-  'three current demos become provocative Colorado Springs campaigns with lawful evidence boundaries'
+  'three current demos become Colorado Springs security audits with lawful evidence boundaries'
 );
 
 select results_eq(

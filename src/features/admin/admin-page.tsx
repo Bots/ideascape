@@ -128,7 +128,7 @@ function AdminDashboard({
 
 	return (
 		<>
-			<SiteHeader exploreLabel="Concept catalog" />
+			<SiteHeader exploreLabel="Security catalog" />
 			<main className="min-h-screen overflow-hidden bg-background text-foreground">
 				<div className="site-shell">
 					<section className="border-x border-b border-border bg-background/94 px-6 pb-12 pt-12 sm:px-10 sm:pb-16 sm:pt-16 lg:px-12 lg:pt-20">
@@ -141,8 +141,9 @@ function AdminDashboard({
 								Operations dashboard
 							</h1>
 							<p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">
-								A privacy-preserving view of IdeaScape activity, validation, and
-								pilot readiness. Counts are live at request time.
+								A privacy-preserving view of security briefs, validation
+								evidence, and bounded-exercise readiness. Counts are live at
+								request time.
 							</p>
 							<p className="mt-4 text-sm text-muted-foreground">
 								Generated{" "}
@@ -158,20 +159,20 @@ function AdminDashboard({
 						<MetricCard
 							icon={Users}
 							value={summary.memberCount}
-							label="Members"
-							detail="Public member profiles"
+							label="Operators"
+							detail="Public security operator profiles"
 						/>
 						<MetricCard
 							icon={FileStack}
 							value={summary.ideaCount}
-							label="Ideas"
+							label="Security briefs"
 							detail={`${summary.publishedIdeaCount} published · ${summary.draftIdeaCount} private drafts · ${otherIdeaCount} other states`}
 						/>
 						<MetricCard
 							icon={HeartHandshake}
 							value={summary.interestSignalCount}
-							label="Interest signals"
-							detail={`${summary.meaningfulSignalCount} include practical participation intent`}
+							label="Validation signals"
+							detail={`${summary.meaningfulSignalCount} include practical review intent`}
 						/>
 						<MetricCard
 							icon={ClipboardCheck}
@@ -182,13 +183,13 @@ function AdminDashboard({
 						<MetricCard
 							icon={Activity}
 							value={summary.openApplicationCount}
-							label="Open pilot applications"
+							label="Open exercise applications"
 							detail={`${summary.acceptedApplicationCount} accepted · ${summary.pilotCount} pilot plans`}
 						/>
 						<MetricCard
 							icon={ShieldCheck}
 							value={summary.pilotCount}
-							label="Pilots"
+							label="Security exercises"
 							detail="Published threshold-based plans"
 						/>
 					</section>
@@ -197,32 +198,32 @@ function AdminDashboard({
 						<div className="flex flex-wrap items-end justify-between gap-4">
 							<div>
 								<p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-									Published concepts only
+									Published security briefs only
 								</p>
 								<h2 className="mt-2 text-3xl font-semibold tracking-[-0.04em]">
-									Idea activity
+									Security brief activity
 								</h2>
 							</div>
 							<p className="max-w-xl text-sm leading-6 text-muted-foreground">
-								Sorted by combined interest, validation responses, and pilot
-								applications.
+								Sorted by combined validation signals, review responses, and
+								exercise applications.
 							</p>
 						</div>
 
 						{isActivityLoading ? (
 							<p className="mt-8 text-sm text-muted-foreground" role="status">
-								Loading concept activity…
+								Loading security brief activity…
 							</p>
 						) : null}
 						{isActivityError ? (
 							<p className="mt-8 text-sm text-destructive" role="alert">
-								Unable to load concept activity. The dashboard summary is still
-								available.
+								Unable to load security brief activity. The dashboard summary is
+								still available.
 							</p>
 						) : null}
 						{!isActivityLoading && !isActivityError && activity.length === 0 ? (
 							<p className="mt-8 border border-dashed p-6 text-sm text-muted-foreground">
-								No published concept activity yet.
+								No published security brief activity yet.
 							</p>
 						) : null}
 						{activity.length > 0 ? (
@@ -231,10 +232,10 @@ function AdminDashboard({
 									<thead>
 										<tr className="text-xs uppercase tracking-wider text-muted-foreground">
 											<th className="border-b px-3 py-3 font-semibold">
-												Concept
+												Security brief
 											</th>
 											<th className="border-b px-3 py-3 text-right font-semibold">
-												Interest
+												Validation signals
 											</th>
 											<th className="border-b px-3 py-3 text-right font-semibold">
 												Validation

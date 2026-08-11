@@ -21,6 +21,9 @@ export type IdeaEditorValues = {
 	title: string;
 	summary: string;
 	description: string;
+	threatScenario: string;
+	controlBoundary: string;
+	proofRequired: string;
 };
 
 export type IdeaRecord = {
@@ -31,6 +34,9 @@ export type IdeaRecord = {
 	title: string;
 	summary: string;
 	description: string;
+	threat_scenario: string | null;
+	control_boundary: string | null;
+	proof_required: string | null;
 	status: IdeaStatus;
 	published_at: string | null;
 	created_at: string;
@@ -38,7 +44,7 @@ export type IdeaRecord = {
 };
 
 const ideaColumns =
-	"id, creator_id, category_id, slug, title, summary, description, status, published_at, created_at, updated_at";
+	"id, creator_id, category_id, slug, title, summary, description, threat_scenario, control_boundary, proof_required, status, published_at, created_at, updated_at";
 
 function throwIfError(error: unknown): void {
 	if (error) {
@@ -86,6 +92,9 @@ export async function createIdeaDraft(
 			title: values.title,
 			summary: values.summary,
 			description: values.description,
+			threat_scenario: values.threatScenario,
+			control_boundary: values.controlBoundary,
+			proof_required: values.proofRequired,
 		})
 		.select(ideaColumns)
 		.single();
@@ -116,6 +125,9 @@ export async function updateIdeaDraft(
 			title: values.title,
 			summary: values.summary,
 			description: values.description,
+			threat_scenario: values.threatScenario,
+			control_boundary: values.controlBoundary,
+			proof_required: values.proofRequired,
 		})
 		.eq("id", id)
 		.select(ideaColumns)

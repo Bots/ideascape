@@ -41,7 +41,7 @@ const idea = {
 	title: "Solar desalination",
 	summary: "Affordable clean water powered directly by sunlight.",
 	description:
-		"A modular desalination system designed for coastal communities.",
+		"A bounded desalination security review with explicit authority and shutdown conditions.",
 	threat_scenario:
 		"Source water or maintenance failures could expose residents to unsafe output.",
 	control_boundary:
@@ -51,7 +51,7 @@ const idea = {
 	status: "published" as const,
 	published_at: "2026-08-09T00:00:00.000Z",
 	created_at: "2026-08-08T00:00:00.000Z",
-	category: { id: 1, slug: "technology", name: "Technology" },
+	category: { id: 1, slug: "technology", name: "Software & Systems" },
 	creator: {
 		id: "11111111-1111-4111-8111-111111111111",
 		username: "idea-creator-11111111",
@@ -105,7 +105,9 @@ describe("IdeaDetailPage", () => {
 
 		renderDetail();
 
-		expect(screen.getByRole("status")).toHaveTextContent(/loading idea/i);
+		expect(screen.getByRole("status")).toHaveTextContent(
+			/loading security brief/i,
+		);
 	});
 
 	it("renders the complete public idea and its media", async () => {
@@ -119,7 +121,7 @@ describe("IdeaDetailPage", () => {
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getByText(idea.description)).toBeInTheDocument();
 		const securityCase = screen.getByRole("region", {
-			name: /security case/i,
+			name: /^security case: what must be true before this expands$/i,
 		});
 		expect(
 			within(securityCase).getByText("Threat scenario"),
@@ -139,8 +141,8 @@ describe("IdeaDetailPage", () => {
 		expect(
 			within(securityCase).getByText(idea.proof_required),
 		).toBeInTheDocument();
-		expect(screen.getByText("Technology")).toBeInTheDocument();
-		expect(screen.getByText("Concept preview")).toBeInTheDocument();
+		expect(screen.getByText("Software & Systems")).toBeInTheDocument();
+		expect(screen.getByText("Security brief")).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /idea creator/i })).toHaveAttribute(
 			"href",
 			`/profiles/${idea.creator.username}`,
@@ -149,17 +151,17 @@ describe("IdeaDetailPage", () => {
 			screen.getByRole("img", { name: /solar desalination prototype/i }),
 		).toHaveAttribute("src", idea.media[0].url);
 		expect(
-			screen.getByRole("link", { name: /back to ideas/i }),
+			screen.getByRole("link", { name: /back to security briefs/i }),
 		).toHaveAttribute("href", "/ideas");
 		expect(
-			screen.getByRole("note", { name: /exploration mode/i }),
-		).toHaveTextContent(/testing whether people want a place like this/i);
+			screen.getByRole("note", { name: /security review mode/i }),
+		).toHaveTextContent(/security briefs, not deployment approvals/i);
 		expect(
 			await screen.findByRole("heading", {
-				name: /would you want to see this happen/i,
+				name: /how are you interested in this security brief/i,
 			}),
 		).toBeInTheDocument();
-		expect(screen.getByText(/3 people are interested/i)).toBeInTheDocument();
+		expect(screen.getByText(/3 validation signals/i)).toBeInTheDocument();
 	});
 
 	it("omits the security case when a creator has not defined one", async () => {
@@ -176,7 +178,9 @@ describe("IdeaDetailPage", () => {
 			await screen.findByRole("heading", { name: idea.title }),
 		).toBeInTheDocument();
 		expect(
-			screen.queryByRole("region", { name: /security case/i }),
+			screen.queryByRole("region", {
+				name: /^security case: what must be true before this expands$/i,
+			}),
 		).not.toBeInTheDocument();
 	});
 
@@ -206,14 +210,14 @@ describe("IdeaDetailPage", () => {
 		renderDetail();
 
 		const related = await screen.findByRole("region", {
-			name: /more technology concepts/i,
+			name: /more software & systems security briefs/i,
 		});
 		expect(
 			within(related).getByRole("link", { name: /view private ai workbench/i }),
 		).toHaveAttribute("href", "/ideas/private-ai-workbench");
 		expect(
 			within(related).getByRole("link", {
-				name: /browse all technology concepts/i,
+				name: /review all software & systems briefs/i,
 			}),
 		).toHaveAttribute("href", "/ideas?category=technology");
 		expect(
@@ -301,12 +305,11 @@ describe("IdeaDetailPage", () => {
 		renderDetail("missing-idea");
 
 		expect(
-			await screen.findByRole("heading", { name: /idea not found/i }),
+			await screen.findByRole("heading", { name: /security brief not found/i }),
 		).toBeInTheDocument();
-		expect(screen.getByRole("link", { name: /browse ideas/i })).toHaveAttribute(
-			"href",
-			"/ideas",
-		);
+		expect(
+			screen.getByRole("link", { name: /review security briefs/i }),
+		).toHaveAttribute("href", "/ideas");
 	});
 
 	it("shows a safe error state", async () => {
@@ -317,7 +320,7 @@ describe("IdeaDetailPage", () => {
 		renderDetail();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			"Unable to load this idea. Please try again.",
+			"Unable to load this security brief. Please try again.",
 		);
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
 	});

@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function SiteHeader({
 	account,
-	exploreLabel = "Explore ideas",
+	exploreLabel = "Review security briefs",
 	exploreTo = "/ideas",
 	showExplore = true,
 	showStartIdea = true,
@@ -34,7 +34,7 @@ export function SiteHeader({
 							Ideascape
 						</span>
 						<span className="mt-1 hidden font-mono text-[0.625rem] uppercase tracking-[0.12em] text-muted-foreground md:block">
-							Public idea fieldwork
+							Security validation fieldwork
 						</span>
 					</span>
 				</Link>
@@ -60,7 +60,7 @@ export function SiteHeader({
 								className={cn(buttonVariants({ size: "sm" }), "px-3")}
 								to="/ideas/new"
 							>
-								Start an idea
+								Draft a security brief
 								<ArrowRight aria-hidden="true" />
 							</Link>
 						) : null}

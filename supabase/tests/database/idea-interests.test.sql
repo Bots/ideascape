@@ -64,7 +64,8 @@ values
   );
 
 insert into public.ideas (
-  id, creator_id, category_id, slug, title, summary, description, status, published_at
+  id, creator_id, category_id, slug, title, summary, description, status, published_at,
+  threat_scenario, control_boundary, proof_required
 )
 values
   (
@@ -76,7 +77,10 @@ values
     'A published idea used to test interest signals.',
     'This deterministic fixture proves public counts and private member signals.',
     'published',
-    now()
+    now(),
+    'A public aggregate could accidentally reveal a respondent private validation intent.',
+    'Only aggregate counts are public while each intent row remains owner-scoped by policy.',
+    'Role-switched tests must prove totals remain public and individual intent remains private.'
   ),
   (
     'dddddddd-dddd-4ddd-8ddd-dddddddddddd',
@@ -87,7 +91,10 @@ values
     'A draft idea whose aggregate must remain private.',
     'This deterministic fixture proves draft counts are not exposed.',
     'draft',
-    null
+    null,
+    'A draft aggregate could expose the existence of private work before the author publishes it.',
+    'Draft records and every related validation aggregate remain visible only to their author.',
+    'Anonymous and unrelated authenticated roles must receive no draft count or intent state.'
   );
 
 set local role anon;

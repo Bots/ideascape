@@ -84,8 +84,8 @@ export function PilotReadinessPanel({ pilotId }: { pilotId: string }) {
 						Evidence against the published thresholds
 					</h2>
 					<p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
-						Aggregate progress for the concept creator and trusted pilot
-						operators. Member identities are never included.
+						Aggregate progress for the security brief author and trusted
+						exercise operators. Respondent identities are never included.
 					</p>
 				</div>
 				<ClipboardCheck

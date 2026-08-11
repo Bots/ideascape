@@ -49,6 +49,9 @@ export function IdeaEditorPage() {
 			title: String(form.get("title")).trim(),
 			summary: String(form.get("summary")).trim(),
 			description: String(form.get("description")).trim(),
+			threatScenario: String(form.get("threatScenario")).trim(),
+			controlBoundary: String(form.get("controlBoundary")).trim(),
+			proofRequired: String(form.get("proofRequired")).trim(),
 		};
 
 		try {
@@ -74,11 +77,11 @@ export function IdeaEditorPage() {
 		return (
 			<EditorShell>
 				<h1 className="text-3xl font-semibold tracking-tight">
-					Sign in to create an idea
+					Sign in to draft a security brief
 				</h1>
 				<p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-					Ideascape connects every idea to a verified creator profile. Sign in
-					before starting your draft.
+					Every security brief is tied to a verified operator profile. Sign in
+					before defining its threat, control boundary, and proof standard.
 				</p>
 				<Link className={buttonVariants({ className: "mt-6" })} to="/sign-in">
 					Sign in
@@ -88,7 +91,7 @@ export function IdeaEditorPage() {
 	}
 
 	if (categoriesQuery.isPending || (isEditing && ideaQuery.isPending)) {
-		return <EditorStatus message="Loading idea editor…" />;
+		return <EditorStatus message="Loading security brief editor…" />;
 	}
 
 	if (categoriesQuery.isError || (isEditing && ideaQuery.isError)) {
@@ -98,7 +101,7 @@ export function IdeaEditorPage() {
 					Editor unavailable
 				</h1>
 				<p className="mt-3 text-muted-foreground" role="alert">
-					Unable to load the idea editor. Please try again.
+					Unable to load the security brief editor. Please try again.
 				</p>
 			</EditorShell>
 		);
@@ -117,17 +120,17 @@ export function IdeaEditorPage() {
 				Back home
 			</Link>
 			<h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-				{isEditing ? "Edit your idea" : "Start a new idea"}
+				{isEditing ? "Edit security brief" : "Draft a security brief"}
 			</h1>
 			<p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
-				Save a private draft while you sharpen the problem, proposed solution,
-				and story you want to share.
+				Define the system, credible abuse path, explicit authority boundary, and
+				evidence required before anyone should trust the control.
 			</p>
 
 			<form className="mt-10 space-y-6" onSubmit={handleSubmit}>
 				<div className="space-y-2">
 					<label className="text-sm font-medium" htmlFor="category">
-						Category
+						Security domain
 					</label>
 					<select
 						className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
@@ -137,7 +140,7 @@ export function IdeaEditorPage() {
 						required
 					>
 						<option value="" disabled>
-							Choose a category
+							Choose a security domain
 						</option>
 						{categories.map((category) => (
 							<option key={category.id} value={category.id}>
@@ -190,6 +193,74 @@ export function IdeaEditorPage() {
 						maxLength={20000}
 						required
 					/>
+				</div>
+
+				<div className="grid gap-6 border-t border-border pt-6">
+					<div className="space-y-2">
+						<label className="text-sm font-medium" htmlFor="threatScenario">
+							Threat scenario
+						</label>
+						<textarea
+							aria-describedby="threatScenarioHelp"
+							className="min-h-32 w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
+							id="threatScenario"
+							name="threatScenario"
+							defaultValue={idea?.threat_scenario ?? ""}
+							minLength={40}
+							maxLength={500}
+							required
+						/>
+						<p
+							className="text-xs leading-5 text-muted-foreground"
+							id="threatScenarioHelp"
+						>
+							Name the asset, actor, abuse path, and credible consequence.
+						</p>
+					</div>
+
+					<div className="space-y-2">
+						<label className="text-sm font-medium" htmlFor="controlBoundary">
+							Control boundary
+						</label>
+						<textarea
+							aria-describedby="controlBoundaryHelp"
+							className="min-h-32 w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
+							id="controlBoundary"
+							name="controlBoundary"
+							defaultValue={idea?.control_boundary ?? ""}
+							minLength={40}
+							maxLength={500}
+							required
+						/>
+						<p
+							className="text-xs leading-5 text-muted-foreground"
+							id="controlBoundaryHelp"
+						>
+							State what is authorized, excluded, access-scoped, and reversible.
+						</p>
+					</div>
+
+					<div className="space-y-2">
+						<label className="text-sm font-medium" htmlFor="proofRequired">
+							Proof required
+						</label>
+						<textarea
+							aria-describedby="proofRequiredHelp"
+							className="min-h-32 w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
+							id="proofRequired"
+							name="proofRequired"
+							defaultValue={idea?.proof_required ?? ""}
+							minLength={40}
+							maxLength={500}
+							required
+						/>
+						<p
+							className="text-xs leading-5 text-muted-foreground"
+							id="proofRequiredHelp"
+						>
+							Precommit the test, independent check, and stop condition.
+						</p>
+					</div>
 				</div>
 
 				{saveError ? (

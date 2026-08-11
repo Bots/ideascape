@@ -1,11 +1,11 @@
 # Ideascape
 
-Ideascape is an exploration-mode concept-validation platform for learning which community ideas resonate before anyone opens funding or launches a program.
+Ideascape is a security-validation lab for pressure-testing early systems before trust, access, or deployment authority expands.
 
-**These are concept previews, not active fundraisers.** Visitors can browse ideas and see aggregate interest without signing in. Members can privately indicate whether they would use, build, test, advise, or follow a concept, with no payment or commitment.
+**These are security briefs, not deployment approvals.** Visitors can inspect threat scenarios, control boundaries, and proof standards without signing in. Authenticated accounts can privately choose one unchanged review-intent label: “I would use this,” “I would help build it,” “I could test a pilot,” “I have relevant expertise,” or “Keep me updated.” These historical values describe interest, not a security role or authorization.
 
 - [Production](https://ideascape-gamma.vercel.app)
-- [Browse concept previews](https://ideascape-gamma.vercel.app/ideas)
+- [Review security briefs](https://ideascape-gamma.vercel.app/ideas)
 
 ## Project headquarters
 
@@ -16,63 +16,63 @@ Ideascape is an exploration-mode concept-validation platform for learning which 
 
 ## Current product
 
-- Public, unauthenticated idea discovery at `/ideas` and detail pages at `/ideas/:slug`
-- Twenty-seven deterministic demo concepts, seeded through versioned Supabase migrations
-- A visible concept-specific security focus on every demo: threat scenario, control boundary, and proof required before expansion
-- Three issue-driven Colorado Springs campaigns covering plate-reader surveillance, dangerous crossings, and inaccessible transit stops
-- URL-persistent text search and category filtering, including a direct permission-first technology view at `/ideas?category=technology`
-- Same-category recommendations on detail pages with accessible full-card links back into the catalog
+- Public, unauthenticated security-brief discovery at `/ideas` and detail pages at `/ideas/:slug`
+- Twenty-seven deterministic security briefs, seeded through versioned Supabase migrations
+- A complete security case on every brief: threat scenario, control boundary, and proof required before expansion
+- Three issue-driven Colorado Springs security audits covering plate-reader surveillance, dangerous crossings, and inaccessible transit stops
+- URL-persistent text search and security-domain filtering, including a direct software-and-systems view at `/ideas?category=technology`
+- Same-domain security-brief recommendations with accessible full-card links back into the catalog
 - Fully clickable discovery cards with concise accessible link names and visible keyboard focus
-- Public aggregate interest counts without exposing individual member signals
-- Authenticated, reversible participation intent—use, build, pilot, expertise, or updates—with duplicate prevention and eligibility checks
-- Focused pilot-readiness questions for six bounded concepts, with private, reversible member answers
-- Creator-only aggregate response evidence that never includes member identities
+- Public aggregate validation counts without exposing individual operator signals
+- Authenticated, reversible review intent using the unchanged labels “I would use this,” “I would help build it,” “I could test a pilot,” “I have relevant expertise,” and “Keep me updated,” with duplicate prevention and eligibility checks
+- Focused exercise-readiness questions for six bounded security briefs, with private, reversible respondent answers
+- Author-only aggregate response evidence that never includes respondent identities
 - A public Project Time Capsule pilot plan with precommitted continue, revise, and archive thresholds
-- A creator/operator-only readiness dashboard for practical signals, pilot responses, private application totals, capacity, and a threshold-based decision preview
-- A private `/admin` operations dashboard for allowlisted administrators, with live aggregate member, idea, interest, validation, pilot, and application counts plus published-concept activity
+- An author/operator-only readiness dashboard for validation signals, exercise responses, private application totals, capacity, and a threshold-based decision preview
+- A private `/admin` operations dashboard for allowlisted administrators, with live aggregate operator, brief, validation, exercise, and application counts plus published security-brief activity
 - Email/password, Google, and GitHub OAuth-capable authentication with safe post-auth return paths
-- Public member profiles plus owner-only profile updates
-- Private creator drafts and editing at `/ideas/new` and `/ideas/:id/edit`
+- Public security-operator profiles plus owner-only profile updates
+- Private security-brief drafts and editing at `/ideas/new` and `/ideas/:id/edit`, including required threat, boundary, and proof fields
 - Persistent, system-aware light and dark themes restricted to black, white,
   neutral grays, and `#ff5a1f` bright orange
 - Route-level code splitting for non-home pages
 - Supabase row-level security and pgTAP coverage for profiles, ideas, media, categories, and interest signals
 
-There is intentionally no live fundraising, checkout, custody, or payment collection. Funding research is deferred and is not part of the current landing page, catalog, or pilot-readiness mission.
+Review grants no production access, deployment authority, custody, or payment. A brief advances only through explicit permission and evidence gates.
 
 ## Demo catalog
 
-Fresh databases contain these published concept previews:
+Fresh databases contain these published security briefs:
 
-1. [The Clean Air Library](https://ideascape-gamma.vercel.app/ideas/clean-air-library)
-2. [Repair Commons on Wheels](https://ideascape-gamma.vercel.app/ideas/repair-commons)
-3. [Neighbor Ride Credits](https://ideascape-gamma.vercel.app/ideas/neighbor-ride-credits)
-4. [After-Dark Storefronts](https://ideascape-gamma.vercel.app/ideas/after-dark-storefronts)
-5. [Shade Every Mountain Metro Stop](https://ideascape-gamma.vercel.app/ideas/shade-stop-network)
-6. [Skill Swap Saturdays](https://ideascape-gamma.vercel.app/ideas/skill-swap-saturdays)
-7. [Cross Academy Alive](https://ideascape-gamma.vercel.app/ideas/civic-accessibility-lab)
-8. [Block-Ready Kits](https://ideascape-gamma.vercel.app/ideas/block-ready-kits)
+1. [Smoke Readiness Control Drill](https://ideascape-gamma.vercel.app/ideas/clean-air-library)
+2. [Authorized Repair Safety Clinic](https://ideascape-gamma.vercel.app/ideas/repair-commons)
+3. [Essential Trip Privacy Relay](https://ideascape-gamma.vercel.app/ideas/neighbor-ride-credits)
+4. [After-Dark Installation Safety Review](https://ideascape-gamma.vercel.app/ideas/after-dark-storefronts)
+5. [Transit Stop Hazard Audit](https://ideascape-gamma.vercel.app/ideas/shade-stop-network)
+6. [Repair Procedure Safety Drill](https://ideascape-gamma.vercel.app/ideas/skill-swap-saturdays)
+7. [Crossing Safety Evidence Audit](https://ideascape-gamma.vercel.app/ideas/civic-accessibility-lab)
+8. [Outage Kit Integrity Drill](https://ideascape-gamma.vercel.app/ideas/block-ready-kits)
 9. [Device Liberation Lab](https://ideascape-gamma.vercel.app/ideas/device-liberation-lab)
-10. [File Rescue Cooperative](https://ideascape-gamma.vercel.app/ideas/file-rescue-cooperative)
+10. [File Recovery Integrity Clinic](https://ideascape-gamma.vercel.app/ideas/file-rescue-cooperative)
 11. [Cloud Exit Toolkit](https://ideascape-gamma.vercel.app/ideas/cloud-exit-toolkit)
 12. [Private AI Workbench](https://ideascape-gamma.vercel.app/ideas/private-ai-workbench)
 13. [Home Lab Defense Clinic](https://ideascape-gamma.vercel.app/ideas/home-lab-defense-clinic)
-14. [Community Compute Cooperative](https://ideascape-gamma.vercel.app/ideas/community-compute-cooperative)
+14. [Secure Compute Isolation Lab](https://ideascape-gamma.vercel.app/ideas/community-compute-cooperative)
 15. [Offline Mesh Field Kit](https://ideascape-gamma.vercel.app/ideas/offline-mesh-field-kit)
 16. [Open Repair Atlas](https://ideascape-gamma.vercel.app/ideas/open-repair-atlas)
 17. [Accessible Interface Retrofit Lab](https://ideascape-gamma.vercel.app/ideas/accessible-interface-retrofit-lab)
 18. [Project Time Capsule](https://ideascape-gamma.vercel.app/ideas/project-time-capsule)
-19. [Waste Heat Works](https://ideascape-gamma.vercel.app/ideas/waste-heat-works)
-20. [Model Commons Lab](https://ideascape-gamma.vercel.app/ideas/model-commons-lab)
-21. [Flock Off Colorado Springs](https://ideascape-gamma.vercel.app/ideas/glass-box-sensor-network)
+19. [Compute Heat Fail-Safe Lab](https://ideascape-gamma.vercel.app/ideas/waste-heat-works)
+20. [Model Evaluation Integrity Lab](https://ideascape-gamma.vercel.app/ideas/model-commons-lab)
+21. [Plate Reader Privacy Audit](https://ideascape-gamma.vercel.app/ideas/glass-box-sensor-network)
 22. [Oral History Provenance Lab](https://ideascape-gamma.vercel.app/ideas/oral-history-provenance-lab)
-23. [Neighborhood Incident Relay](https://ideascape-gamma.vercel.app/ideas/neighborhood-incident-relay)
+23. [Private Incident Triage Relay](https://ideascape-gamma.vercel.app/ideas/neighborhood-incident-relay)
 24. [Phishing Drill Library](https://ideascape-gamma.vercel.app/ideas/phishing-drill-library)
 25. [Water Sensor Integrity Watch](https://ideascape-gamma.vercel.app/ideas/water-sensor-integrity-watch)
 26. [Clinic Device Privacy Check](https://ideascape-gamma.vercel.app/ideas/clinic-device-privacy-check)
 27. [Software Supply Chain Clinic](https://ideascape-gamma.vercel.app/ideas/software-supply-chain-clinic)
 
-Each concept uses a stable UUID and slug, polished multi-paragraph copy, and a locally hosted SVG illustration so local resets and production verification remain reproducible. Every demo uses the same permission-first discipline: it names a concrete threat scenario, an authorization, privacy, safety, provenance, or fail-safe control boundary, and measurable proof required before the concept earns a larger test. The earliest five broad previews define bounded first tests, required permissions, privacy limits, measurable continuation evidence, and explicit stop conditions instead of assuming that backing or an operating program already exists. Those five concepts and Project Time Capsule also ask one focused, private-answer validation question so practical demand, permissions, and pilot capability can be evaluated as aggregate evidence rather than public member activity. Three previously generic previews are now sharp Colorado Springs campaigns: challenge the plate-reader dragnet through public records and lawful organizing, force a dangerous Academy Boulevard crossing into the engineering record, and turn Mountain Metro's own accessibility findings into five concrete stop fixes.
+Each brief uses a stable UUID and slug, locally hosted artwork, and a permission-first security case. Every record names a concrete threat scenario, an authorization, privacy, safety, provenance, or fail-safe control boundary, and measurable proof required before a larger exercise. Focused private-answer review questions turn operator intent into aggregate evidence without exposing identities. Colorado Springs briefs cover plate-reader privacy, crossing safety evidence, and transit-stop hazards through lawful, reproducible security review.
 
 ## Stack
 
@@ -145,25 +145,25 @@ Ideascape validates requested return destinations as safe internal paths before 
 
 ## Data and privacy model
 
-The database models categories, creator-owned ideas, ordered media, explicit lifecycle states, and private per-member interest signals.
+The database models security domains, author-owned briefs, ordered media, explicit lifecycle states, and private per-account validation signals. Legacy table and column names remain stable compatibility identifiers.
 
-- Published ideas and their media are publicly readable.
-- Draft ideas and draft media are visible only to their creator.
-- Interest writes require authentication and are unique per member and idea.
-- Members can privately set or change how they would participate, then remove their signal at any time.
-- Members can read, add, update, or remove only their own interest row.
-- Anonymous and authenticated visitors receive counts through aggregate-only database functions; individual signals and participation intent are never exposed publicly.
-- Active validation questions and constrained answer choices are public, while each member's response row is private and reversible.
-- Concept creators receive option totals through a creator-scoped aggregate function; raw respondent identities are never returned.
-- Concept creators and trusted pilot operators receive aggregate readiness counts and a deterministic threshold preview; applicant and respondent identities are never returned by the dashboard function.
-- Draft and cancelled ideas reject interest writes.
-- Public profiles are readable by everyone, while authenticated members can update only their own profile fields.
+- Published security briefs and their media are publicly readable.
+- Draft security briefs and draft media are visible only to their author.
+- Validation-signal writes require authentication and are unique per account and brief.
+- Accounts can privately set or change review intent, then remove the signal at any time.
+- Accounts can read, add, update, or remove only their own validation-signal row.
+- Anonymous and authenticated visitors receive counts through aggregate-only database functions; individual signals and review intent are never exposed publicly.
+- Active security-review questions and constrained answer choices are public, while each respondent row is private and reversible.
+- Security brief authors receive option totals through an author-scoped aggregate function; raw respondent identities are never returned.
+- Security brief authors and trusted exercise operators receive aggregate readiness counts and a deterministic threshold preview; applicant and respondent identities are never returned by the dashboard function.
+- Draft and cancelled briefs reject validation-signal writes.
+- Public operator profiles are readable by everyone, while authenticated accounts can update only their own profile fields.
 
 ## Landing-page product story
 
-The landing page presents Ideascape as a public workshop for early ideas rather than a transaction product. It introduces all six catalog categories, explains the concept-validation flow, offers concrete ways to participate, and asks four proof questions before any idea expands: whose problem it is, what the smallest useful test is, what must stay protected, and what evidence would change the plan.
+The landing page presents Ideascape as a security-validation lab. It introduces six security domains, explains the threat-to-evidence flow, offers concrete ways to challenge a brief, and asks four proof questions before any control advances: what can fail, what authority is excluded, how the control fails safely, and what evidence earns trust.
 
-The current experience accepts no payments or fundraising. Interest is a reversible signal, not a purchase, vote, or permission grant. Deferred funding research remains isolated in `PLAN.md` and requires a separate consequential product decision before implementation.
+The current experience accepts no payments and grants no operational authority. Validation intent is a reversible signal, not a vote, approval, or permission grant.
 
 ## Quality checks
 
@@ -176,6 +176,7 @@ npm run test:e2e       # Playwright suite
 npm run supabase:reset
 npx supabase test db supabase/tests/database --local
 npx supabase db lint --local --level warning
+psql 'postgresql://postgres:postgres@127.0.0.1:54322/postgres' -v ON_ERROR_STOP=1 -f supabase/verification/security-positioning-upgrade.test.sql
 ```
 
 Database work is complete only after a clean migration reset, the full pgTAP suite, and warning-level schema lint pass.
@@ -194,10 +195,11 @@ src/
 │   └── theme/           # Persistent light/dark theme support
 ├── lib/                 # Environment, Supabase client, and shared utilities
 └── test/                # Test setup and shared helpers
-public/images/ideas/     # Locally hosted concept illustrations
+public/images/ideas/     # Locally hosted security-brief illustrations
 supabase/
 ├── migrations/          # Ordered schema, policy, RPC, and demo-data changes
-└── tests/database/      # pgTAP schema, RLS, aggregate, and seed contracts
+├── tests/database/      # pgTAP schema, RLS, aggregate, and seed contracts
+└── verification/        # Transactional migration-upgrade and private-data preservation checks
 ```
 
 See [PLAN.md](./PLAN.md) for the broader product sequence and [docs/PROJECT_STATUS.md](./docs/PROJECT_STATUS.md) for the current operating view.

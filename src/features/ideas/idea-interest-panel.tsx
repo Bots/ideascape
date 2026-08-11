@@ -1,5 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowRight, Heart, LoaderCircle, UsersRound } from "lucide-react";
+import {
+	ArrowRight,
+	BadgeCheck,
+	LoaderCircle,
+	ShieldCheck,
+} from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { useAuth } from "@/features/auth/auth-provider";
@@ -83,7 +88,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 	const summary = summaryQuery.data;
 	const isPending = isAuthLoading || summaryQuery.isPending;
 	const countLabel = summary
-		? `${summary.interestCount} ${summary.interestCount === 1 ? "person is" : "people are"} interested`
+		? `${summary.interestCount} validation ${summary.interestCount === 1 ? "signal" : "signals"}`
 		: "";
 
 	return (
@@ -94,18 +99,19 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 			<div className="relative grid gap-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(26rem,1.15fr)] lg:items-center">
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-signal">
-						<UsersRound className="size-4" aria-hidden="true" />
-						Help shape what comes next
+						<ShieldCheck className="size-4" aria-hidden="true" />
+						Security brief interest
 					</p>
 					<h2
 						className="mt-3 text-3xl font-light tracking-[-0.025em] sm:text-4xl"
 						id="idea-interest-heading"
 					>
-						Would you want to see this happen?
+						How are you interested in this security brief?
 					</h2>
 					<p className="mt-3 max-w-2xl leading-7 text-neutral-300">
-						Tell us how you might participate so we can distinguish curiosity
-						from practical demand. No payment or commitment.
+						Choose the original interest statement that fits you. Your choice
+						does not claim security expertise and grants no access, payment,
+						deployment authority, or commitment.
 					</p>
 				</div>
 
@@ -119,13 +125,13 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 								className="size-4 animate-spin"
 								aria-hidden="true"
 							/>
-							Loading interest…
+							Loading validation signals…
 						</p>
 					) : null}
 
 					{summaryQuery.isError ? (
 						<p className="text-sm text-neutral-200" role="alert">
-							Interest signals are unavailable right now. Please try again
+							Validation signals are unavailable right now. Please try again
 							later.
 						</p>
 					) : null}
@@ -142,10 +148,10 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 								<div>
 									<fieldset>
 										<legend className="text-sm font-semibold text-white">
-											How would you participate?
+											Choose your private interest
 										</legend>
 										<p className="mt-1 text-xs leading-5 text-neutral-400">
-											Your choice is private. Only the total interest count is
+											Your choice is private. Only the total validation count is
 											public.
 										</p>
 										<div className="mt-3 grid gap-2 sm:grid-cols-2">
@@ -172,7 +178,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 														}
 														type="button"
 													>
-														<Heart
+														<BadgeCheck
 															className={cn(
 																"size-4",
 																isSelected && "fill-current",
@@ -197,7 +203,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 											type="button"
 											variant="outline"
 										>
-											Remove interest
+											Remove validation signal
 										</Button>
 									) : null}
 								</div>
@@ -209,7 +215,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 									})}
 									to={signInPath}
 								>
-									Sign in to show interest
+									Sign in to share private interest
 									<ArrowRight aria-hidden="true" />
 								</Link>
 							)}
@@ -218,7 +224,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 
 					{interestMutation.isError ? (
 						<p className="mt-3 text-sm text-neutral-200" role="alert">
-							We could not update your interest. Please try again.
+							We could not update your validation signal. Please try again.
 						</p>
 					) : null}
 				</div>

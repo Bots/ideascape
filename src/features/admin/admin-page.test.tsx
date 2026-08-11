@@ -124,6 +124,12 @@ describe("AdminPage", () => {
 			screen.getByRole("link", { name: /project time capsule/i }),
 		).toHaveAttribute("href", "/ideas/project-time-capsule");
 		expect(
+			screen.getByRole("columnheader", { name: /security brief/i }),
+		).toBeInTheDocument();
+		expect(
+			screen.getByRole("columnheader", { name: /validation signals/i }),
+		).toBeInTheDocument();
+		expect(
 			screen.getByText(/respondent identities are excluded/i),
 		).toBeInTheDocument();
 		expect(screen.getByText(/draft content is excluded/i)).toBeInTheDocument();
@@ -182,7 +188,7 @@ describe("AdminPage", () => {
 		renderPage();
 
 		expect(
-			await screen.findByText(/no published concept activity yet/i),
+			await screen.findByText(/no published security brief activity yet/i),
 		).toBeInTheDocument();
 	});
 

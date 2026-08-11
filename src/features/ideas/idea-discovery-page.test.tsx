@@ -26,7 +26,7 @@ const idea = {
 	published_at: "2026-08-09T00:00:00.000Z",
 	created_at: "2026-08-08T00:00:00.000Z",
 	interestCount: 4,
-	category: { id: 1, slug: "technology", name: "Technology" },
+	category: { id: 1, slug: "technology", name: "Software & Systems" },
 	creator: {
 		id: "11111111-1111-4111-8111-111111111111",
 		username: "idea-creator-11111111",
@@ -84,7 +84,9 @@ describe("IdeaDiscoveryPage", () => {
 
 		renderDiscovery();
 
-		expect(screen.getByRole("status")).toHaveTextContent(/loading ideas/i);
+		expect(screen.getByRole("status")).toHaveTextContent(
+			/loading security briefs/i,
+		);
 	});
 
 	it("renders published idea cards with detail and creator links", async () => {
@@ -93,7 +95,7 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery();
 
 		expect(
-			await screen.findByRole("heading", { name: /discover ideas/i }),
+			await screen.findByRole("heading", { name: /review security briefs/i }),
 		).toBeInTheDocument();
 		expect(
 			screen.queryByRole("link", { name: /^explore ideas$/i }),
@@ -103,17 +105,17 @@ describe("IdeaDiscoveryPage", () => {
 		});
 		expect(cardLink).toHaveAttribute("href", `/ideas/${idea.slug}`);
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
-		expect(screen.getAllByText("Technology").length).toBeGreaterThan(0);
+		expect(screen.getAllByText("Software & Systems").length).toBeGreaterThan(0);
 		expect(
 			screen.getByText(
-				/every concept preview names a threat scenario, control boundary, and proof required/i,
+				/every brief names a threat scenario, control boundary, and proof required/i,
 			),
 		).toBeInTheDocument();
-		expect(screen.getByText("Concept preview")).toBeInTheDocument();
+		expect(screen.getByText("Security brief")).toBeInTheDocument();
 		expect(screen.getByText("Security focus")).toBeInTheDocument();
 		expect(screen.getByText(idea.threat_scenario)).toBeInTheDocument();
-		expect(screen.getByText("1 demo concept")).toBeInTheDocument();
-		expect(screen.getByText("4 people interested")).toBeInTheDocument();
+		expect(screen.getByText("1 security brief")).toBeInTheDocument();
+		expect(screen.getByText("4 validation signals")).toBeInTheDocument();
 		expect(
 			screen.getByRole("img", { name: /solar desalination prototype/i }),
 		).toHaveAttribute("src", idea.media[0].url);
@@ -122,8 +124,8 @@ describe("IdeaDiscoveryPage", () => {
 			`/profiles/${idea.creator.username}`,
 		);
 		expect(
-			screen.getByRole("note", { name: /exploration mode/i }),
-		).toHaveTextContent(/concept previews, not active fundraisers/i);
+			screen.getByRole("note", { name: /security review mode/i }),
+		).toHaveTextContent(/security briefs, not deployment approvals/i);
 	});
 
 	it("does not claim a security case for concepts without all three fields", async () => {
@@ -150,7 +152,7 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery("/ideas?category=technology");
 
 		expect(
-			await screen.findByRole("combobox", { name: /category/i }),
+			await screen.findByRole("combobox", { name: /security domain/i }),
 		).toHaveValue("technology");
 		expect(
 			screen.getByRole("link", { name: `View ${idea.title}` }),
@@ -158,7 +160,9 @@ describe("IdeaDiscoveryPage", () => {
 		expect(
 			screen.queryByRole("link", { name: `View ${healthIdea.title}` }),
 		).not.toBeInTheDocument();
-		expect(screen.getByText("Showing 1 of 2 concepts")).toBeInTheDocument();
+		expect(
+			screen.getByText("Showing 1 of 2 security briefs"),
+		).toBeInTheDocument();
 	});
 
 	it("restores search from the URL and offers a clear path when no concepts match", async () => {
@@ -168,7 +172,7 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery("/ideas?q=heat");
 
 		const search = await screen.findByRole("searchbox", {
-			name: /search concept previews/i,
+			name: /search security briefs/i,
 		});
 		expect(search).toHaveValue("heat");
 		expect(
@@ -182,7 +186,9 @@ describe("IdeaDiscoveryPage", () => {
 		await user.type(search, "unmatched phrase");
 
 		expect(
-			screen.getByRole("heading", { name: /no concepts match these filters/i }),
+			screen.getByRole("heading", {
+				name: /no security briefs match these filters/i,
+			}),
 		).toBeInTheDocument();
 		await user.click(screen.getByRole("button", { name: /clear filters/i }));
 		expect(search).toHaveValue("");
@@ -195,7 +201,7 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery();
 
 		expect(
-			await screen.findByText("Be first to signal interest"),
+			await screen.findByText("Be first to add a validation signal"),
 		).toBeInTheDocument();
 		expect(screen.queryByText(/fund now/i)).not.toBeInTheDocument();
 	});
@@ -207,11 +213,11 @@ describe("IdeaDiscoveryPage", () => {
 
 		expect(
 			await screen.findByRole("heading", {
-				name: /the first ideas are taking shape/i,
+				name: /the first security briefs are taking shape/i,
 			}),
 		).toBeInTheDocument();
 		const startIdeaLinks = screen.getAllByRole("link", {
-			name: /start an idea/i,
+			name: /draft a security brief/i,
 		});
 		expect(startIdeaLinks).toHaveLength(2);
 		for (const link of startIdeaLinks) {
@@ -227,7 +233,7 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			"Unable to load ideas. Please try again.",
+			"Unable to load security briefs. Please try again.",
 		);
 		expect(screen.getByText("Catalog unavailable")).toBeInTheDocument();
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
@@ -243,9 +249,9 @@ describe("IdeaDiscoveryPage", () => {
 		});
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			"Unable to refresh ideas. Showing the latest available catalog.",
+			"Unable to refresh security briefs. Showing the latest available catalog.",
 		);
-		expect(screen.getByText("1 demo concept")).toBeInTheDocument();
+		expect(screen.getByText("1 security brief")).toBeInTheDocument();
 		expect(
 			screen.getByRole("link", { name: `View ${idea.title}` }),
 		).toBeInTheDocument();

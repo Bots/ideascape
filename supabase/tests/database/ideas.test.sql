@@ -131,7 +131,8 @@ values
   );
 
 insert into public.ideas (
-  id, creator_id, category_id, slug, title, summary, description
+  id, creator_id, category_id, slug, title, summary, description,
+  threat_scenario, control_boundary, proof_required
 )
 values (
   'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
@@ -140,11 +141,15 @@ values (
   'analytical-engine',
   'The Analytical Engine',
   'A general-purpose mechanical computer.',
-  'A programmable machine powered by punched cards.'
+  'A programmable machine powered by punched cards.',
+  'A malformed program could produce incorrect tables that appear authoritative to downstream users.',
+  'The draft remains private and testing uses known inputs with no production decision authority.',
+  'Independent comparison against known tables must reproduce correct output and detect bad input.'
 );
 
 insert into public.ideas (
-  id, creator_id, category_id, slug, title, summary, description, status, published_at
+  id, creator_id, category_id, slug, title, summary, description, status, published_at,
+  threat_scenario, control_boundary, proof_required
 )
 values (
   'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',
@@ -155,7 +160,10 @@ values (
   'A machine for tabulating polynomial functions.',
   'Making mathematical tables more reliable.',
   'published',
-  now()
+  now(),
+  'Incorrect mechanical calculations could propagate undetected into published reference tables.',
+  'The fixture is public but grants no authority beyond deterministic read-visibility testing.',
+  'Known polynomial tables must match independently computed values across the tested range.'
 );
 
 select is(

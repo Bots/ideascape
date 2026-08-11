@@ -5,7 +5,7 @@ This page is the public engineering headquarters for Ideascape. GitHub Issues ar
 ## Links
 
 - [Production](https://ideascape-gamma.vercel.app)
-- [Concept previews](https://ideascape-gamma.vercel.app/ideas)
+- [Security briefs](https://ideascape-gamma.vercel.app/ideas)
 - [Repository](https://github.com/Bots/ideascape)
 - [Open issues](https://github.com/Bots/ideascape/issues)
 - [Milestones](https://github.com/Bots/ideascape/milestones)
@@ -15,15 +15,15 @@ This page is the public engineering headquarters for Ideascape. GitHub Issues ar
 
 ## Product mode
 
-Ideascape is in **Exploration mode**. The twenty-seven published entries are concept previews, not active fundraisers or operating programs. Public aggregate interest helps test whether people want a place like this before funding is introduced. Members can privately distinguish whether they would use, build, test, advise, or follow a concept. Signaling interest involves no payment or commitment.
+Ideascape is in **Security review mode**. Twenty-seven published briefs expose a threat scenario, control boundary, and proof standard before any system can advance. Public aggregate counts show review depth without exposing individual intent. Private signals retain their original labels and meanings: “I would use this,” “I would help build it,” “I could test a pilot,” “I have relevant expertise,” and “Keep me updated.” A signal describes interest, not a security role, and grants no production access, deployment authority, payment, or commitment.
 
 ## Current focus
 
-1. Learn which concepts produce practical participation intent, not only passive curiosity, while testing each one inside a published security case.
-2. Use focused private-answer questions across six bounded concepts to test practical demand, permissions, and pilot capability through aggregate evidence.
-3. Use the Project Time Capsule readiness dashboard to compare aggregate evidence with the published continue, revise, and archive thresholds.
-4. Use the private operations dashboard to watch aggregate membership, concepts, validation, pilot intake, and published-concept activity without opening respondent-level records.
-5. Complete the first capped Project Time Capsule intake UI, then add operating guidance and measurable rebuild outcomes without introducing payments or custody.
+1. Strengthen each security brief through scoped adversarial review rather than popularity.
+2. Use focused private-answer questions across six bounded briefs to test authorization, control ownership, and exercise capability through aggregate evidence.
+3. Compare Project Time Capsule evidence with precommitted continue, revise, and archive thresholds.
+4. Use private operations aggregates to monitor security review depth without opening respondent-level records.
+5. Complete the first capped Project Time Capsule exercise intake, then publish measurable rebuild and recovery outcomes without introducing payments or custody.
 
 ## Delivered
 
@@ -33,23 +33,23 @@ Ideascape is in **Exploration mode**. The twenty-seven published entries are con
 - Supabase authentication with email, Google, and GitHub-capable OAuth flows
 - Safe internal return paths across email authentication, OAuth, and callback failures
 - Public profiles with owner-only updates
-- Idea, category, media, lifecycle, and private interest-signal schema
-- Private draft creation and editing
-- Public idea discovery and detail routes with twenty-seven deterministic demo concepts, including nineteen permission-first or security-forward previews
-- Visible catalog security focuses and detail-page security cases connecting all twenty-seven demos to a concrete threat scenario, control boundary, and proof requirement
-- Three localized Colorado Springs campaigns with explicit demands, public-record evidence, permitted field tests, and anti-tampering boundaries
-- Five early previews refined into bounded, permissioned tests with measurable continue, revise, and stop evidence
-- Shareable, URL-persistent discovery search and category filters with useful zero-result recovery
-- Same-category recommendations that connect detail pages to related concept previews and filtered discovery
+- Security-brief, domain, media, lifecycle, and private validation-signal schema
+- Private security-brief creation and editing with required threat, boundary, and proof fields
+- Public discovery and detail routes with twenty-seven deterministic security briefs
+- Visible catalog security focuses and detail-page security cases connecting all twenty-seven briefs to a concrete threat scenario, control boundary, and proof requirement
+- Three localized Colorado Springs security audits with public-record evidence, permitted field tests, and anti-tampering boundaries
+- Five early records refined into bounded, permissioned tests with measurable continue, revise, and stop evidence
+- Shareable, URL-persistent discovery search and security-domain filters with useful zero-result recovery
+- Same-domain recommendations that connect detail pages to related security briefs and filtered discovery
 - Fully clickable, keyboard-focusable discovery cards
-- Local SVG concept illustrations with meaningful alternative text
-- Reversible member participation intent—use, build, pilot, expertise, or updates—with aggregate-only public counts
-- Focused pilot questions across six bounded concepts with private, reversible answers and creator-only aggregate evidence
+- Local SVG security-brief illustrations with meaningful alternative text
+- Reversible private validation intent with the unchanged labels “I would use this,” “I would help build it,” “I could test a pilot,” “I have relevant expertise,” and “Keep me updated,” with aggregate-only public counts
+- Focused exercise questions across six bounded security briefs with private, reversible answers and author-only aggregate evidence
 - Public Project Time Capsule pilot plan with a fixed evidence window, capacity, safety boundaries, and precommitted decision thresholds
-- Creator/operator-only aggregate readiness dashboard with practical-signal, participant, suitable-project, application, and remaining-capacity evidence
-- Database-authorized `/admin` operations dashboard with live aggregate counts, published-concept activity, explicit unauthorized and error states, and no respondent, draft, or application-detail access
+- Author/operator-only aggregate readiness dashboard with validation-signal, respondent, suitable-test, application, and remaining-capacity evidence
+- Database-authorized `/admin` operations dashboard with live aggregate counts, published security-brief activity, explicit unauthorized and error states, and no respondent, draft, or application-detail access
 - Deterministic pending, continue, revise, or archive previews without exposing respondent or applicant identities
-- Technology-forward landing showcase plus clear separation between the live validation flow and hypothetical future funding concepts
+- Security-first landing showcase with six attack-surface domains and a ten-stage threat-to-evidence path
 - Row-level-security and pgTAP coverage for ownership, privacy, lifecycle, and seed behavior
 - Vercel SPA deep-link routing and production deployment
 
@@ -57,7 +57,7 @@ Ideascape is in **Exploration mode**. The twenty-seven published entries are con
 
 | Environment | URL / reference | Purpose |
 | --- | --- | --- |
-| Production | https://ideascape-gamma.vercel.app | Public concept-validation application |
+| Production | https://ideascape-gamma.vercel.app | Public security-validation application |
 | Supabase | `icvscetnellunorarhvt` | Hosted authentication and Postgres |
 | Repository | `Bots/ideascape` | Source, issues, reviews, and CI |
 | Local app | Vite-assigned localhost URL | Frontend development |
@@ -70,11 +70,11 @@ Ideascape is in **Exploration mode**. The twenty-seven published entries are con
 - Every behavior change starts with a focused failing test.
 - Database changes require reviewed migrations, explicit RLS, pgTAP tests, and schema lint.
 - Privileged credentials never run in browser code.
-- Individual interest rows and participation intent remain private; public pages receive aggregate counts only.
-- Individual validation answers remain private; concept creators receive option totals without member identities.
-- Private pilot dashboards expose aggregate counts only to the concept creator or a trusted operator; ordinary members receive no dashboard row.
+- Individual validation-signal rows and review intent remain private; public pages receive aggregate counts only.
+- Individual validation answers remain private; security brief authors receive option totals without respondent identities.
+- Private exercise dashboards expose aggregate counts only to the security brief author or a trusted operator; unauthorized accounts receive no dashboard row.
 - Administrator access is enforced by a private database allowlist or trusted operator claim; the admin dashboard receives aggregate RPC results rather than direct table access.
-- No product copy may imply payment, commitment, active fundraising, or an operating program while Ideascape remains in exploration mode.
+- No product copy may imply that a validation signal authorizes access, data collection, deployment, payment, or an operating program.
 - Commit verified milestones incrementally.
 
 ## Definition of done
