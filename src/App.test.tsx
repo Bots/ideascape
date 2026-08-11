@@ -73,13 +73,17 @@ describe("App", () => {
 			}),
 		).toBeInTheDocument();
 		expect(
-			screen.getByText(/concept-validation platform/i),
+			screen.getByText(/public workshop for early ideas/i),
 		).toBeInTheDocument();
 		expect(screen.getByText("Test the possibility")).toBeInTheDocument();
-		expect(screen.getByText("Permission-first technology")).toBeInTheDocument();
-		expect(screen.getByText(/evidence about demand/i)).toBeInTheDocument();
 		expect(
-			screen.getByText(/if funding is activated later/i),
+			screen.getByText("Practical ideas, clearer next steps"),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText(/public interest and practical feedback/i),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText(/assumptions, permissions, boundaries/i),
 		).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /sign in/i })).toHaveAttribute(
 			"href",
@@ -90,8 +94,10 @@ describe("App", () => {
 			"/sign-up",
 		);
 		expect(
-			screen.getByRole("link", { name: /start an idea/i }),
-		).toHaveAttribute("href", "/ideas/new");
+			screen
+				.getAllByRole("link", { name: /start an idea/i })
+				.some((link) => link.getAttribute("href") === "/ideas/new"),
+		).toBe(true);
 		expect(
 			screen.getByRole("link", { name: /explore ideas/i }),
 		).toHaveAttribute("href", "/ideas");
@@ -102,8 +108,10 @@ describe("App", () => {
 			/testing whether people want a place like this/i,
 		);
 		expect(
-			screen.getByRole("link", { name: /join the experiment/i }),
-		).toHaveAttribute("href", "/sign-up");
+			screen
+				.getAllByRole("link", { name: /join the experiment/i })
+				.every((link) => link.getAttribute("href") === "/sign-up"),
+		).toBe(true);
 		expect(screen.getByText("Concept previews")).toBeInTheDocument();
 		expect(
 			screen.getByText("Concept previews").nextElementSibling,
@@ -126,28 +134,59 @@ describe("App", () => {
 		).not.toBeInTheDocument();
 	});
 
-	it("spotlights a permission-first technology pathway", () => {
+	it("spotlights a mix of practical community ideas", () => {
 		renderApp();
 
 		expect(
-			screen.getByRole("link", { name: /explore technology concepts/i }),
-		).toHaveAttribute("href", "/ideas?category=technology");
+			screen.getByRole("link", { name: /browse by category/i }),
+		).toHaveAttribute("href", "#idea-terrain-heading");
 		expect(
 			screen.getByRole("img", {
-				name: /owner-controlled devices.*isolated repair bench/i,
+				name: /library room with portable air cleaners/i,
 			}),
 		).toBeInTheDocument();
 		expect(
 			screen.getByRole("img", {
-				name: /read-only recovery station.*encrypted folder/i,
+				name: /storefront becomes an evening gallery/i,
 			}),
 		).toBeInTheDocument();
 		expect(
-			screen.getByText(/permission-first technology/i),
+			screen.getByText(/practical ideas, clearer next steps/i),
 		).toBeInTheDocument();
 		expect(
-			screen.getByText(/owner-authorized device work/i),
+			screen.getByText(/cleaner air, safer streets, shared repair/i),
 		).toBeInTheDocument();
+	});
+
+	it("presents broad community use cases without crypto-first framing", () => {
+		renderApp();
+
+		const main = screen.getByRole("main");
+		expect(
+			within(main).getByRole("heading", { name: /ideas for everyday life/i }),
+		).toBeInTheDocument();
+		expect(
+			within(main).getByRole("heading", { name: /ways to take part/i }),
+		).toBeInTheDocument();
+		expect(
+			within(main).getByRole("heading", { name: /proof before scale/i }),
+		).toBeInTheDocument();
+		for (const category of [
+			"Arts & Culture",
+			"Community",
+			"Education",
+			"Environment",
+			"Health",
+			"Technology",
+		]) {
+			expect(
+				within(main).getByRole("heading", { name: category }),
+			).toBeInTheDocument();
+		}
+		expect(main).toHaveTextContent(/no payments or fundraising/i);
+		expect(main).not.toHaveTextContent(
+			/smart.contract|crypto wallet|multisig|on.chain|seed phrase|funding rail/i,
+		);
 	});
 
 	it("explains the current idea-validation flow", () => {
@@ -177,60 +216,46 @@ describe("App", () => {
 		).toHaveAttribute("href", "/ideas");
 	});
 
-	it("presents smart-contract funding as a planned, safety-reviewed layer", () => {
+	it("shows concrete participation paths without implying transactions", () => {
 		renderApp();
 
-		const fundingLayer = screen.getByRole("region", {
-			name: /planned smart-contract funding/i,
+		const participation = screen.getByRole("region", {
+			name: /ways to take part/i,
 		});
-		expect(fundingLayer).toHaveTextContent(/planned, not live/i);
-		expect(fundingLayer).toHaveTextContent(/no funds are accepted today/i);
-		expect(fundingLayer).toHaveTextContent(/milestone-based releases/i);
-		expect(fundingLayer).toHaveTextContent(/release or refund/i);
-		expect(fundingLayer).toHaveTextContent(/independent security review/i);
-		expect(fundingLayer).toHaveTextContent(
-			/chain, asset, and governance design have not been selected/i,
-		);
+		expect(participation).toHaveTextContent(/current invitation/i);
+		expect(participation).toHaveTextContent(/no payments or fundraising/i);
+		for (const path of [
+			"Bring a question",
+			"Signal what matters",
+			"Add grounded context",
+		]) {
+			expect(
+				within(participation).getByRole("heading", { name: path }),
+			).toBeInTheDocument();
+		}
 	});
 
-	it("explains the planned custody threat model with concrete examples", () => {
+	it("explains the evidence and permission questions before expansion", () => {
 		renderApp();
 
-		const securityModel = screen.getByRole("region", {
-			name: /security before custody/i,
+		const proof = screen.getByRole("region", {
+			name: /proof before scale/i,
 		});
-		expect(securityModel).toHaveTextContent(/no custody is live/i);
-		expect(securityModel).toHaveTextContent(
-			/every seeded concept.*threat scenario.*control boundary.*proof required/i,
+		expect(proof).toHaveTextContent(/interest is a starting signal/i);
+		for (const question of [
+			"Whose problem is this?",
+			"What is the smallest useful test?",
+			"What must stay protected?",
+			"What result changes the plan?",
+		]) {
+			expect(
+				within(proof).getByRole("heading", { name: question }),
+			).toBeInTheDocument();
+		}
+		expect(proof).toHaveTextContent(/nothing graduates automatically/i);
+		expect(proof).toHaveTextContent(
+			/never grants permission to use private data, property, accounts, or community identity/i,
 		);
-		expect(
-			within(securityModel).getByRole("heading", {
-				name: /a milestone is claimed too early/i,
-			}),
-		).toBeInTheDocument();
-		expect(
-			within(securityModel).getByRole("heading", {
-				name: /a wallet prompt is tampered with/i,
-			}),
-		).toBeInTheDocument();
-		expect(
-			within(securityModel).getByRole("heading", {
-				name: /an admin key is compromised/i,
-			}),
-		).toBeInTheDocument();
-		expect(
-			within(securityModel).getByRole("heading", {
-				name: /a contract bug is discovered/i,
-			}),
-		).toBeInTheDocument();
-		expect(securityModel).toHaveTextContent(
-			/no single operator controls funds/i,
-		);
-		expect(securityModel).toHaveTextContent(
-			/never requests seed phrases or private keys/i,
-		);
-		expect(securityModel).toHaveTextContent(/independent audit/i);
-		expect(securityModel).toHaveTextContent(/timelocked upgrades/i);
 	});
 
 	it("renders the sign-in route", async () => {
