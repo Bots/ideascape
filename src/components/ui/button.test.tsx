@@ -12,5 +12,9 @@ describe("Button", () => {
 		expect(button).toHaveClass("min-h-11");
 		expect(button).toHaveClass("rounded-sm");
 		expect(button).toHaveClass("focus-visible:ring-2");
+		expect(button).toHaveClass("bg-signal");
+		expect(button).toHaveClass("text-black");
+		expect(button).toHaveClass("hover:bg-black");
+		expect(button).toHaveClass("hover:text-white");
 	});
 });

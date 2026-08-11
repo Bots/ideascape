@@ -195,6 +195,17 @@ describe("App", () => {
 		const howItWorks = screen.getByRole("region", {
 			name: /how ideascape works/i,
 		});
+		const timelineItems = within(howItWorks).getAllByRole("article");
+		expect(timelineItems).toHaveLength(8);
+		expect(timelineItems[0].parentElement).toHaveClass(
+			"md:grid-cols-2",
+			"xl:grid-cols-4",
+		);
+		for (const [index, item] of timelineItems.entries()) {
+			expect(item).toHaveTextContent(String(index + 1).padStart(2, "0"));
+			expect(item).toHaveClass("md:even:border-r-0");
+			expect(item).toHaveClass("xl:[&:nth-child(4n)]:border-r-0");
+		}
 		expect(
 			within(howItWorks).getByRole("heading", { name: /shape the concept/i }),
 		).toBeInTheDocument();
@@ -212,6 +223,8 @@ describe("App", () => {
 			"Design a bounded pilot",
 			"Publish what happened",
 			"Choose the next move",
+			"Repeat with intention",
+			"Leave a useful record",
 		]) {
 			expect(
 				within(howItWorks).getByRole("heading", { name: nextStep }),

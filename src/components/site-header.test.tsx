@@ -20,9 +20,9 @@ describe("SiteHeader", () => {
 		expect(
 			screen.getByRole("link", { name: /explore ideas/i }),
 		).toHaveAttribute("href", "/ideas");
-		expect(
-			screen.getByRole("link", { name: /start an idea/i }),
-		).toHaveAttribute("href", "/ideas/new");
+		const startIdeaLink = screen.getByRole("link", { name: /start an idea/i });
+		expect(startIdeaLink).toHaveAttribute("href", "/ideas/new");
+		expect(startIdeaLink).toHaveClass("bg-signal");
 		expect(screen.getByText(/account controls/i)).toBeInTheDocument();
 	});
 

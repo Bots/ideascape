@@ -303,7 +303,7 @@ export function IdeaDiscoveryPage() {
 												to={`/ideas/${idea.slug}`}
 											/>
 											{cover ? (
-												<div className="overflow-hidden">
+												<div className="editorial-image-frame overflow-hidden">
 													<img
 														alt={cover.alt_text || idea.title}
 														className="editorial-image aspect-[5/3] w-full object-cover transition duration-500 group-hover:scale-[1.025]"
@@ -315,7 +315,7 @@ export function IdeaDiscoveryPage() {
 											<div className="flex min-h-[20rem] flex-col p-6">
 												<div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider">
 													{idea.category ? (
-														<span className="border-l-2 border-primary pl-2 font-mono text-[0.6875rem] tracking-[0.12em] text-primary">
+														<span className="bg-signal px-2 py-1 font-mono text-[0.6875rem] tracking-[0.12em] text-black">
 															{idea.category.name}
 														</span>
 													) : null}

@@ -205,7 +205,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 								<Link
 									className={buttonVariants({
 										className:
-											"w-full bg-white text-black hover:bg-neutral-200",
+											"w-full border-signal bg-signal text-black hover:border-white hover:bg-white hover:text-black",
 									})}
 									to={signInPath}
 								>

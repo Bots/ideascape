@@ -1,4 +1,5 @@
 import {
+	Archive,
 	ArrowRight,
 	BookOpen,
 	Cpu,
@@ -8,6 +9,7 @@ import {
 	Leaf,
 	Lightbulb,
 	Palette,
+	RefreshCw,
 	ShieldCheck,
 	Sparkles,
 	Users,
@@ -125,6 +127,20 @@ const validationSteps = [
 		title: "Choose the next move",
 		description:
 			"Use the evidence to refine, repeat, pause, or archive the concept. Nothing advances automatically and every decision stays explainable.",
+	},
+	{
+		icon: RefreshCw,
+		number: "07",
+		title: "Repeat with intention",
+		description:
+			"If evidence supports another round, change one meaningful thing, keep the boundary small, and state what the next test is meant to resolve.",
+	},
+	{
+		icon: Archive,
+		number: "08",
+		title: "Leave a useful record",
+		description:
+			"Whether the idea grows or stops, preserve the decisions, evidence, limits, and reusable lessons so others can build from honest work.",
 	},
 ];
 
@@ -327,29 +343,33 @@ function HomePage() {
 
 						<div className="relative mx-auto w-full max-w-[39rem] pb-10 lg:pb-0">
 							<div className="absolute -left-5 -top-5 hidden h-full w-full border border-primary/35 bg-primary/8 lg:block" />
-							<figure className="relative overflow-hidden border border-foreground/20 bg-card p-2">
+							<figure className="relative overflow-hidden border border-signal bg-card p-2">
 								<div className="mb-2 flex items-center justify-between border-b border-border px-1 pb-2 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-muted-foreground">
 									<span>Field sample / 021</span>
 									<span className="text-foreground">Permission checked</span>
 								</div>
-								<img
-									alt="Neighbors prepare a library room with portable air cleaners"
-									className="editorial-image aspect-[4/3] w-full object-cover"
-									src="/images/ideas/clean-air-library.svg"
-								/>
+								<div className="editorial-image-frame">
+									<img
+										alt="Neighbors prepare a library room with portable air cleaners"
+										className="editorial-image aspect-[4/3] w-full object-cover"
+										src="/images/ideas/clean-air-library.svg"
+									/>
+								</div>
 								<figcaption className="absolute bottom-4 left-4 right-4 flex items-center justify-between border border-border bg-card px-4 py-3 text-sm">
 									<span className="font-semibold">The Clean Air Library</span>
-									<span className="bg-primary px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-wider text-primary-foreground">
+									<span className="bg-signal px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-wider text-black">
 										Health
 									</span>
 								</figcaption>
 							</figure>
 							<div className="absolute -bottom-5 -left-5 hidden w-[44%] border border-border bg-card p-1.5 sm:block">
-								<img
-									alt="A storefront becomes an evening gallery while neighbors gather outside"
-									className="editorial-image aspect-video w-full object-cover"
-									src="/images/ideas/after-dark-storefronts.svg"
-								/>
+								<div className="editorial-image-frame">
+									<img
+										alt="A storefront becomes an evening gallery while neighbors gather outside"
+										className="editorial-image aspect-video w-full object-cover"
+										src="/images/ideas/after-dark-storefronts.svg"
+									/>
+								</div>
 							</div>
 							<div className="absolute -right-4 top-10 flex items-center gap-2 border border-border bg-card px-4 py-3 text-sm font-semibold">
 								<ShieldCheck
@@ -442,22 +462,18 @@ function HomePage() {
 									<ArrowRight aria-hidden="true" />
 								</Link>
 							</div>
-							<div className="grid md:grid-cols-3">
+							<div className="grid md:grid-cols-2 xl:grid-cols-4">
 								{validationSteps.map(
 									({ icon: Icon, number, title, description }) => (
 										<article
-											className="relative border-b border-border p-7 last:border-b-0 sm:p-9 md:border-r md:[&:nth-child(3n)]:border-r-0 md:[&:nth-last-child(-n+3)]:border-b-0"
+											className="relative border-b border-border p-7 last:border-b-0 sm:p-9 md:border-r md:even:border-r-0 md:[&:nth-last-child(-n+2)]:border-b-0 xl:even:border-r xl:[&:nth-child(4n)]:border-r-0 xl:[&:nth-last-child(-n+4)]:border-b-0"
 											key={title}
 										>
 											<div className="flex items-center justify-between">
-												<span className="grid size-10 place-items-center border border-primary/30 text-primary">
+												<span className="grid size-10 place-items-center border border-signal bg-signal text-black">
 													<Icon className="size-5" aria-hidden="true" />
 												</span>
 												<div className="flex items-center gap-3">
-													<span
-														className="size-2 bg-signal"
-														aria-hidden="true"
-													/>
 													<span className="font-mono text-xs font-semibold text-primary/55">
 														{number}
 													</span>
