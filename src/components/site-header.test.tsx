@@ -14,9 +14,11 @@ describe("SiteHeader", () => {
 		);
 
 		expect(
-			screen.getByRole("link", { name: /ideascape home/i }),
+			screen.getByRole("link", { name: /controlproof home/i }),
 		).toHaveAttribute("href", "/");
-		expect(screen.getByText("IdeaScape", { exact: true })).toBeInTheDocument();
+		expect(
+			screen.getByText("ControlProof", { exact: true }),
+		).toBeInTheDocument();
 		expect(screen.queryByText(/channel open/i)).not.toBeInTheDocument();
 		expect(
 			screen.getByText("Authorized security bounties", { exact: true }),

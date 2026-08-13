@@ -1,4 +1,4 @@
-# Ideascape Security Validation Plan
+# ControlProof Security Validation Plan
 
 ## Product goal
 
@@ -6,7 +6,7 @@ Help operators expose credible threats, bound control authority, and publish rep
 
 ## Current product mode
 
-Ideascape is in **Security review mode**. Published entries are security briefs, not deployment approvals. Review signals remain private and reversible; only aggregates are public. A signal grants no production access, data authority, custody, payment, or commitment.
+ControlProof is in **Security review mode**. Published entries are authorized security bounties, not deployment approvals. Review signals remain private and reversible; only aggregates are public. A signal grants no production access, data authority, custody, payment, or commitment.
 
 ## Phase 1 — Foundation
 
