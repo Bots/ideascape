@@ -29,8 +29,8 @@ export function IdeaValidationEvidencePanel({
 				className="mt-8 border border-destructive/20 border-l-4 border-l-destructive bg-destructive/5 p-4 text-sm text-destructive"
 				role="alert"
 			>
-				Private security evidence is unavailable right now. Please try again
-				later.
+				Private security bounty evidence is unavailable right now. Please try
+				again later.
 			</p>
 		);
 	}
@@ -47,17 +47,17 @@ export function IdeaValidationEvidencePanel({
 
 	return (
 		<section
-			aria-label="Private security evidence"
+			aria-label="Private security bounty evidence"
 			className="field-panel mt-8 border-l-4 border-l-primary p-6 sm:p-8"
 		>
 			<div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
 						<BarChart3 className="size-4" aria-hidden="true" />
-						Private security evidence
+						Private security bounty evidence
 					</p>
 					<h2 className="mt-2 text-2xl font-semibold tracking-tight">
-						Security brief response summary
+						Readiness response summary
 					</h2>
 					<p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
 						Aggregate evidence for “{evidence.prompt}” Respondent identities are
@@ -71,8 +71,8 @@ export function IdeaValidationEvidencePanel({
 
 			{evidence.totalResponses === 0 ? (
 				<p className="mt-6 border border-dashed p-5 text-sm text-muted-foreground">
-					No security review responses yet. Keep the question open until there
-					is enough evidence for a continue, revise, or pause decision.
+					No readiness responses yet. Keep the question open until there is
+					enough evidence for a continue, revise, or close decision.
 				</p>
 			) : (
 				<div className="mt-6 grid gap-4">

@@ -81,18 +81,18 @@ function renderEditor(path = "/ideas/new") {
 
 async function completeForm(user: ReturnType<typeof userEvent.setup>) {
 	await user.selectOptions(
-		screen.getByLabelText(/security domain/i),
+		screen.getByLabelText(/security area/i),
 		String(category.id),
 	);
 	await user.type(screen.getByLabelText(/title/i), idea.title);
 	await user.type(screen.getByLabelText(/summary/i), idea.summary);
 	await user.type(screen.getByLabelText(/^description$/i), idea.description);
 	await user.type(
-		screen.getByLabelText(/threat scenario/i),
+		screen.getByLabelText(/attack scenario/i),
 		idea.threat_scenario,
 	);
 	await user.type(
-		screen.getByLabelText(/control boundary/i),
+		screen.getByLabelText(/rules of engagement/i),
 		idea.control_boundary,
 	);
 	await user.type(
@@ -120,7 +120,7 @@ describe("IdeaEditorPage", () => {
 
 		expect(
 			screen.getByRole("heading", {
-				name: /sign in to draft a security brief/i,
+				name: /sign in to publish a security bounty/i,
 			}),
 		).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /sign in/i })).toHaveAttribute(
@@ -134,7 +134,7 @@ describe("IdeaEditorPage", () => {
 		const user = userEvent.setup();
 		renderEditor();
 
-		await screen.findByRole("heading", { name: /draft a security brief/i });
+		await screen.findByRole("heading", { name: /publish a security bounty/i });
 		await completeForm(user);
 		await user.click(screen.getByRole("button", { name: /save draft/i }));
 
@@ -148,15 +148,15 @@ describe("IdeaEditorPage", () => {
 			proofRequired: idea.proof_required,
 		});
 		expect(
-			await screen.findByRole("heading", { name: /edit security brief/i }),
+			await screen.findByRole("heading", { name: /edit bounty/i }),
 		).toBeInTheDocument();
 	});
 
 	it("uses browser constraints for required field lengths", async () => {
 		renderEditor();
 
-		await screen.findByRole("heading", { name: /draft a security brief/i });
-		expect(screen.getByLabelText(/security domain/i)).toBeRequired();
+		await screen.findByRole("heading", { name: /publish a security bounty/i });
+		expect(screen.getByLabelText(/security area/i)).toBeRequired();
 		expect(screen.getByLabelText(/title/i)).toHaveAttribute("maxlength", "120");
 		expect(screen.getByLabelText(/summary/i)).toHaveAttribute(
 			"maxlength",
@@ -167,8 +167,8 @@ describe("IdeaEditorPage", () => {
 			"20000",
 		);
 		for (const label of [
-			/threat scenario/i,
-			/control boundary/i,
+			/attack scenario/i,
+			/rules of engagement/i,
 			/proof required/i,
 		]) {
 			expect(screen.getByLabelText(label)).toBeRequired();
@@ -183,7 +183,7 @@ describe("IdeaEditorPage", () => {
 		renderEditor(`/ideas/${idea.id}/edit`);
 
 		expect(
-			await screen.findByRole("heading", { name: /edit security brief/i }),
+			await screen.findByRole("heading", { name: /edit bounty/i }),
 		).toBeInTheDocument();
 		expect(screen.getByLabelText(/title/i)).toHaveValue(idea.title);
 		await user.clear(screen.getByLabelText(/title/i));
@@ -213,7 +213,7 @@ describe("IdeaEditorPage", () => {
 		);
 		renderEditor();
 
-		await screen.findByRole("heading", { name: /draft a security brief/i });
+		await screen.findByRole("heading", { name: /publish a security bounty/i });
 		await completeForm(user);
 		await user.click(screen.getByRole("button", { name: /save draft/i }));
 

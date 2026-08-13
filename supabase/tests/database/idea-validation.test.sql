@@ -71,27 +71,26 @@ select is(
   (
     select prompt
     from public.idea_validation_questions
-    where id = '00000000-0000-4000-8000-000000000401'
+    where id = '00000000-0000-4000-8000-000000000601'
       and idea_id = '00000000-0000-4000-8000-000000000218'
       and status = 'active'
   ),
-  'What could you bring to a first Project Time Capsule pilot?',
-  'Project Time Capsule has one deterministic active pilot question'
+  'Is the Time Capsule Disclosure Bounty ready for an authorized test run?',
+  'Time Capsule Disclosure has one deterministic active readiness question'
 );
 select is(
   (
     select array_agg(value order by sort_order)
     from public.idea_validation_options
-    where question_id = '00000000-0000-4000-8000-000000000401'
+    where question_id = '00000000-0000-4000-8000-000000000601'
   ),
   array[
-    'open-source-project',
-    'coursework-research-tool',
-    'creative-software',
-    'civic-community-application',
-    'rebuild-testing'
+    'ready-for-authorized-test',
+    'tighten-scope',
+    'proof-not-ready',
+    'close-bounty'
   ],
-  'the pilot question has five deterministic action-oriented options'
+  'the readiness question has four deterministic decision options'
 );
 
 select results_eq(
@@ -99,48 +98,48 @@ select results_eq(
     select id, idea_id, prompt, status::text
     from public.idea_validation_questions
     where id in (
-      '00000000-0000-4000-8000-000000000402',
-      '00000000-0000-4000-8000-000000000403',
-      '00000000-0000-4000-8000-000000000404',
-      '00000000-0000-4000-8000-000000000405',
-      '00000000-0000-4000-8000-000000000406'
+      '00000000-0000-4000-8000-000000000602',
+      '00000000-0000-4000-8000-000000000603',
+      '00000000-0000-4000-8000-000000000604',
+      '00000000-0000-4000-8000-000000000605',
+      '00000000-0000-4000-8000-000000000606'
     )
     order by id
   $$,
   $$
     values
       (
-        '00000000-0000-4000-8000-000000000402'::uuid,
+        '00000000-0000-4000-8000-000000000602'::uuid,
         '00000000-0000-4000-8000-000000000203'::uuid,
-        'Which real signal could you provide for a 30-day essential-trip trial?'::text,
+        'Is the Trip Relay Metadata Bounty ready for an authorized test run?'::text,
         'active'::text
       ),
       (
-        '00000000-0000-4000-8000-000000000403'::uuid,
+        '00000000-0000-4000-8000-000000000603'::uuid,
         '00000000-0000-4000-8000-000000000206'::uuid,
-        'What could you commit to during a three-Saturday repair teach-back?'::text,
+        'Is the Repair Playbook Injection Bounty ready for an authorized test run?'::text,
         'active'::text
       ),
       (
-        '00000000-0000-4000-8000-000000000404'::uuid,
+        '00000000-0000-4000-8000-000000000604'::uuid,
         '00000000-0000-4000-8000-000000000204'::uuid,
-        'Which prerequisite could you provide for a three-window evening test?'::text,
+        'Is the Night Install Tamper Bounty ready for an authorized test run?'::text,
         'active'::text
       ),
       (
-        '00000000-0000-4000-8000-000000000405'::uuid,
+        '00000000-0000-4000-8000-000000000605'::uuid,
         '00000000-0000-4000-8000-000000000208'::uuid,
-        'Which role could you realistically take in a one-building outage drill?'::text,
+        'Is the Outage Kit Supply-Chain Bounty ready for an authorized test run?'::text,
         'active'::text
       ),
       (
-        '00000000-0000-4000-8000-000000000406'::uuid,
+        '00000000-0000-4000-8000-000000000606'::uuid,
         '00000000-0000-4000-8000-000000000201'::uuid,
-        'During a smoke alert, what could you reliably support within two hours?'::text,
+        'Is the Smoke Sensor Spoofing Bounty ready for an authorized test run?'::text,
         'active'::text
       )
   $$,
-  'five bounded concepts have deterministic active risk-first questions'
+  'five bounded bounties have deterministic active readiness questions'
 );
 
 select is(
@@ -150,20 +149,20 @@ select is(
       select question_id
       from public.idea_validation_options
       where question_id in (
-        '00000000-0000-4000-8000-000000000402',
-        '00000000-0000-4000-8000-000000000403',
-        '00000000-0000-4000-8000-000000000404',
-        '00000000-0000-4000-8000-000000000405',
-        '00000000-0000-4000-8000-000000000406'
+        '00000000-0000-4000-8000-000000000602',
+        '00000000-0000-4000-8000-000000000603',
+        '00000000-0000-4000-8000-000000000604',
+        '00000000-0000-4000-8000-000000000605',
+        '00000000-0000-4000-8000-000000000606'
       )
       group by question_id
-      having count(*) = 5
+      having count(*) = 4
         and min(sort_order) = 0
-        and max(sort_order) = 4
+        and max(sort_order) = 3
     ) as complete_questions
   ),
   5::bigint,
-  'each new focused question has five deterministic ordered options'
+  'each new readiness question has four deterministic ordered options'
 );
 
 insert into auth.users (
@@ -192,8 +191,8 @@ select is(
     select count(*)
     from public.get_idea_validation_question('00000000-0000-4000-8000-000000000218')
   ),
-  5::bigint,
-  'anonymous visitors can read every active pilot-question option'
+  4::bigint,
+  'anonymous visitors can read every active readiness-question option'
 );
 select is(
   (
@@ -209,7 +208,7 @@ select is(
     cross join lateral public.get_idea_validation_question(target_ideas.idea_id) as question
     where question.viewer_option_id is null
   ),
-  25::bigint,
+  20::bigint,
   'anonymous visitors can read every new option without receiving a private choice'
 );
 select is(
@@ -225,7 +224,7 @@ select is(
   (
     select count(*)
     from public.idea_validation_questions
-    where id = '00000000-0000-4000-8000-000000000401'
+    where id = '00000000-0000-4000-8000-000000000601'
   ),
   1::bigint,
   'anonymous visitors can read the active public question'
@@ -242,8 +241,8 @@ set local role authenticated;
 set local "request.jwt.claim.sub" = '55555555-5555-4555-8555-555555555555';
 insert into public.idea_validation_responses (question_id, option_id, profile_id)
 values (
-  '00000000-0000-4000-8000-000000000401',
-  '00000000-0000-4000-8000-000000000411',
+  '00000000-0000-4000-8000-000000000601',
+  '00000000-0000-4000-8000-000000000611',
   '55555555-5555-4555-8555-555555555555'
 );
 select is(
@@ -256,12 +255,12 @@ select is(
     select distinct viewer_option_id
     from public.get_idea_validation_question('00000000-0000-4000-8000-000000000218')
   ),
-  '00000000-0000-4000-8000-000000000411'::uuid,
+  '00000000-0000-4000-8000-000000000611'::uuid,
   'the question function returns only the current member choice'
 );
 update public.idea_validation_responses
-set option_id = '00000000-0000-4000-8000-000000000415'
-where question_id = '00000000-0000-4000-8000-000000000401'
+set option_id = '00000000-0000-4000-8000-000000000614'
+where question_id = '00000000-0000-4000-8000-000000000601'
   and profile_id = '55555555-5555-4555-8555-555555555555';
 select is(
   (select count(*) from public.idea_validation_responses),
@@ -272,9 +271,9 @@ select is(
   (
     select option_id
     from public.idea_validation_responses
-    where question_id = '00000000-0000-4000-8000-000000000401'
+    where question_id = '00000000-0000-4000-8000-000000000601'
   ),
-  '00000000-0000-4000-8000-000000000415'::uuid,
+  '00000000-0000-4000-8000-000000000614'::uuid,
   'members can change their own pilot answer'
 );
 
@@ -294,18 +293,18 @@ select is(
   'other members never receive someone else pilot choice'
 );
 update public.idea_validation_responses
-set option_id = '00000000-0000-4000-8000-000000000412'
-where question_id = '00000000-0000-4000-8000-000000000401'
+set option_id = '00000000-0000-4000-8000-000000000612'
+where question_id = '00000000-0000-4000-8000-000000000601'
   and profile_id = '55555555-5555-4555-8555-555555555555';
 reset role;
 select is(
   (
     select option_id
     from public.idea_validation_responses
-    where question_id = '00000000-0000-4000-8000-000000000401'
+    where question_id = '00000000-0000-4000-8000-000000000601'
       and profile_id = '55555555-5555-4555-8555-555555555555'
   ),
-  '00000000-0000-4000-8000-000000000415'::uuid,
+  '00000000-0000-4000-8000-000000000614'::uuid,
   'members cannot change another member pilot choice'
 );
 
@@ -316,8 +315,8 @@ select is(
     select count(*)
     from public.get_idea_validation_summary('00000000-0000-4000-8000-000000000218')
   ),
-  5::bigint,
-  'the concept creator receives one aggregate row per pilot option'
+  4::bigint,
+  'the system owner receives only the current readiness options'
 );
 select is(
   (
@@ -341,8 +340,8 @@ select throws_ok(
   $$
     insert into public.idea_validation_responses (question_id, option_id, profile_id)
     values (
-      '00000000-0000-4000-8000-000000000401',
-      '00000000-0000-4000-8000-000000000411',
+      '00000000-0000-4000-8000-000000000601',
+      '00000000-0000-4000-8000-000000000611',
       '55555555-5555-4555-8555-555555555555'
     )
   $$,
@@ -353,7 +352,7 @@ select throws_ok(
 
 set local "request.jwt.claim.sub" = '55555555-5555-4555-8555-555555555555';
 delete from public.idea_validation_responses
-where question_id = '00000000-0000-4000-8000-000000000401'
+where question_id = '00000000-0000-4000-8000-000000000601'
   and profile_id = '55555555-5555-4555-8555-555555555555';
 select is(
   (select count(*) from public.idea_validation_responses),
@@ -364,15 +363,15 @@ reset role;
 
 update public.idea_validation_questions
 set status = 'closed'
-where id = '00000000-0000-4000-8000-000000000401';
+where id = '00000000-0000-4000-8000-000000000601';
 set local role authenticated;
 set local "request.jwt.claim.sub" = '55555555-5555-4555-8555-555555555555';
 select throws_ok(
   $$
     insert into public.idea_validation_responses (question_id, option_id, profile_id)
     values (
-      '00000000-0000-4000-8000-000000000401',
-      '00000000-0000-4000-8000-000000000411',
+      '00000000-0000-4000-8000-000000000601',
+      '00000000-0000-4000-8000-000000000611',
       '55555555-5555-4555-8555-555555555555'
     )
   $$,

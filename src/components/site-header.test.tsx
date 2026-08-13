@@ -16,14 +16,16 @@ describe("SiteHeader", () => {
 		expect(
 			screen.getByRole("link", { name: /ideascape home/i }),
 		).toHaveAttribute("href", "/");
+		expect(screen.getByText("IdeaScape", { exact: true })).toBeInTheDocument();
+		expect(screen.queryByText(/channel open/i)).not.toBeInTheDocument();
 		expect(
-			screen.getByText(/security validation fieldwork/i),
+			screen.getByText("Authorized security bounties", { exact: true }),
 		).toBeInTheDocument();
 		expect(
-			screen.getByRole("link", { name: /review security briefs/i }),
+			screen.getByRole("link", { name: /security bounties/i }),
 		).toHaveAttribute("href", "/ideas");
 		const startIdeaLink = screen.getByRole("link", {
-			name: /draft a security brief/i,
+			name: /publish a bounty/i,
 		});
 		expect(startIdeaLink).toHaveAttribute("href", "/ideas/new");
 		expect(startIdeaLink).toHaveClass("bg-signal");

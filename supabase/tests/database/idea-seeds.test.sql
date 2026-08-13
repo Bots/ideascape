@@ -8,542 +8,230 @@ select ok(
     from public.profiles
     where id = '00000000-0000-4000-8000-000000000101'
       and username = 'ideascape-team'
-      and display_name = 'Ideascape Team'
+      and display_name = 'IdeaScape Team'
   ),
-  'the Ideascape Team seed profile exists'
+  'the deterministic system-owner profile exists'
+);
+
+select is(
+  (select count(*) from public.ideas where creator_id = '00000000-0000-4000-8000-000000000101'),
+  27::bigint,
+  'the system owner publishes exactly 27 deterministic security bounties'
+);
+
+select is(
+  (select count(*) from public.ideas where id between '00000000-0000-4000-8000-000000000201' and '00000000-0000-4000-8000-000000000227'),
+  27::bigint,
+  'all deterministic bounty UUIDs remain stable'
+);
+
+select is(
+  (select count(*) from public.ideas where status = 'published' and published_at is not null),
+  27::bigint,
+  'every deterministic security bounty is published'
+);
+
+select is(
+  (select count(*) from public.ideas where title like '% Bounty'),
+  27::bigint,
+  'every listing is named as a bounty'
 );
 
 select is(
   (
     select count(*)
     from public.ideas
-    where slug in (
-      'shade-stop-network',
-      'skill-swap-saturdays',
-      'civic-accessibility-lab',
-      'block-ready-kits'
-    )
-  ),
-  4::bigint,
-  'four additional concept previews are seeded'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    join public.categories on categories.id = ideas.category_id
-    where ideas.slug in (
-      'device-liberation-lab',
-      'file-rescue-cooperative',
-      'cloud-exit-toolkit',
-      'private-ai-workbench'
-    )
-      and categories.slug = 'technology'
-      and ideas.status = 'published'
-      and ideas.published_at is not null
-      and char_length(ideas.summary) between 80 and 280
-      and char_length(ideas.description) >= 400
-      and position(E'\\n' in ideas.description) = 0
-      and position(E'\n' in ideas.description) > 0
-      and case ideas.slug
-        when 'device-liberation-lab' then ideas.description ilike '%written authorization%'
-        when 'file-rescue-cooperative' then ideas.description ilike '%written consent%'
-        when 'cloud-exit-toolkit' then ideas.description ilike '%checksum%'
-        when 'private-ai-workbench' then ideas.description ilike '%stays on the device%'
-        else false
-      end
-  ),
-  4::bigint,
-  'four polished permission-first technology concept previews are seeded'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    join public.categories on categories.id = ideas.category_id
-    where ideas.slug in (
-      'home-lab-defense-clinic',
-      'community-compute-cooperative',
-      'offline-mesh-field-kit',
-      'open-repair-atlas',
-      'accessible-interface-retrofit-lab',
-      'project-time-capsule'
-    )
-      and categories.slug = case ideas.slug
-        when 'home-lab-defense-clinic' then 'technology'
-        when 'community-compute-cooperative' then 'technology'
-        when 'offline-mesh-field-kit' then 'community'
-        when 'open-repair-atlas' then 'environment'
-        when 'accessible-interface-retrofit-lab' then 'health'
-        when 'project-time-capsule' then 'education'
-      end
-      and ideas.status = 'published'
-      and ideas.published_at is not null
-      and char_length(ideas.summary) between 80 and 280
-      and char_length(ideas.description) >= 400
-      and position(E'\\n' in ideas.description) = 0
-      and position(E'\n' in ideas.description) > 0
-      and case ideas.slug
-        when 'home-lab-defense-clinic' then ideas.description ilike '%participant-owned systems%'
-        when 'community-compute-cooperative' then ideas.description ilike '%acceptable-use policy%'
-        when 'offline-mesh-field-kit' then ideas.description ilike '%legal spectrum%'
-        when 'open-repair-atlas' then ideas.description ilike '%would not publish leaked%'
-        when 'accessible-interface-retrofit-lab' then ideas.description ilike '%participant consent%'
-        when 'project-time-capsule' then ideas.description ilike '%license provenance%'
-        else false
-      end
-  ),
-  6::bigint,
-  'six additional technology-forward concept previews are seeded with explicit safety boundaries'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    join public.categories on categories.id = ideas.category_id
-    where ideas.slug in (
-      'waste-heat-works',
-      'model-commons-lab',
-      'glass-box-sensor-network'
-    )
-      and categories.slug = case ideas.slug
-        when 'waste-heat-works' then 'environment'
-        when 'model-commons-lab' then 'technology'
-        when 'glass-box-sensor-network' then 'community'
-      end
-      and ideas.status = 'published'
-      and ideas.published_at is not null
-      and char_length(ideas.summary) between 80 and 280
-      and char_length(ideas.description) >= 450
-      and position(E'\\n' in ideas.description) = 0
-      and position(E'\n' in ideas.description) > 0
-      and case ideas.slug
-        when 'waste-heat-works' then ideas.description ilike '%licensed engineering review%'
-        when 'model-commons-lab' then ideas.description ilike '%participant-approved material%'
-        when 'glass-box-sensor-network' then ideas.description ilike '%no physical interference%'
-        else false
-      end
-  ),
-  3::bigint,
-  'three bold infrastructure concepts are seeded with measurable pilots and explicit boundaries'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    where slug in (
-      'shade-stop-network',
-      'civic-accessibility-lab',
-      'glass-box-sensor-network'
-    )
-      and status = 'published'
-      and char_length(summary) between 80 and 280
-      and char_length(description) >= 500
-      and position(E'\\n' in description) = 0
-      and position(E'\n' in description) > 0
-      and case slug
-        when 'shade-stop-network' then
-          title = 'Transit Stop Hazard Audit'
-          and description ilike '%2025 Mountain Metro bus-stop self-evaluation%'
-          and description ilike '%116%'
-          and description ilike '%178%'
-          and description ilike '%written approval%'
-        when 'civic-accessibility-lab' then
-          title = 'Crossing Safety Evidence Audit'
-          and description ilike '%written city authorization%'
-          and description ilike '%without capturing faces or license plates%'
-        when 'glass-box-sensor-network' then
-          title = 'Plate Reader Privacy Audit'
-          and description ilike '%Colorado Open Records Act%'
-          and description ilike '%no physical interference%'
-          and description ilike '%private license plates%'
-        else false
-      end
-  ),
-  3::bigint,
-  'three current demos become Colorado Springs security audits with lawful evidence boundaries'
-);
-
-select results_eq(
-  $$
-    select ideas.slug, idea_media.alt_text
-    from public.ideas
-    join public.idea_media on idea_media.idea_id = ideas.id
-    where ideas.slug in (
-      'shade-stop-network',
-      'civic-accessibility-lab',
-      'glass-box-sensor-network'
-    )
-      and idea_media.kind = 'image'
-      and idea_media.sort_order = 0
-    order by ideas.slug
-  $$,
-  $$
-    values
-      (
-        'civic-accessibility-lab'::text,
-        'A wheelchair user times a permitted crossing demonstration on Academy Boulevard while observers record safety evidence.'::text
-      ),
-      (
-        'glass-box-sensor-network'::text,
-        'A networked license plate reader is crossed out above a public records map of Colorado Springs.'::text
-      ),
-      (
-        'shade-stop-network'::text,
-        'A bare Mountain Metro bus stop is transformed with accessible pavement, seating, and engineered shade.'::text
-      )
-  $$,
-  'the three localized campaigns have concept-specific accessible cover descriptions'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    where slug in (
-      'neighbor-ride-credits',
-      'skill-swap-saturdays',
-      'after-dark-storefronts',
-      'block-ready-kits',
-      'clean-air-library'
-    )
-      and char_length(summary) between 80 and 280
-      and char_length(description) >= 450
-      and summary not ilike '%fund%'
-      and description not ilike '%backers%'
-      and description not ilike '%backing would%'
-      and description not ilike '%launch budget%'
-      and description not ilike '%early resources would%'
-      and case slug
-        when 'neighbor-ride-credits' then
-          description ilike '%licensed accessible transport partner%'
-          and description ilike '%maximum of 20%'
-        when 'skill-swap-saturdays' then
-          description ilike '%twelve successful teach-backs%'
-        when 'after-dark-storefronts' then
-          description ilike '%two weeks of baseline%'
-        when 'block-ready-kits' then
-          description ilike '%within 20 minutes%'
-        when 'clean-air-library' then
-          description ilike '%non-ozone-generating%'
-        else false
-      end
-  ),
-  5::bigint,
-  'five legacy previews use bounded pilots, measurable thresholds, and exploration-safe language'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    where slug in (
-      'shade-stop-network',
-      'skill-swap-saturdays',
-      'civic-accessibility-lab',
-      'block-ready-kits'
-    )
-      and status = 'published'
-      and published_at is not null
-      and char_length(summary) between 80 and 280
-      and char_length(description) >= 300
-      and position(E'\\n' in description) = 0
-      and position(E'\n' in description) > 0
-  ),
-  4::bigint,
-  'additional concept previews contain polished public copy with real paragraphs'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    where slug in (
-      'clean-air-library',
-      'repair-commons',
-      'neighbor-ride-credits',
-      'after-dark-storefronts'
-    )
-  ),
-  4::bigint,
-  'four launch ideas are seeded'
-);
-
-select results_eq(
-  $$
-    select ideas.slug, categories.slug
-    from public.ideas
-    join public.categories on categories.id = ideas.category_id
-    where ideas.slug in (
-      'clean-air-library',
-      'repair-commons',
-      'neighbor-ride-credits',
-      'after-dark-storefronts'
-    )
-    order by ideas.slug
-  $$,
-  $$
-    values
-      ('after-dark-storefronts'::text, 'arts-culture'::text),
-      ('clean-air-library'::text, 'health'::text),
-      ('neighbor-ride-credits'::text, 'community'::text),
-      ('repair-commons'::text, 'environment'::text)
-  $$,
-  'launch ideas span four relevant categories'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    where slug in (
-      'clean-air-library',
-      'repair-commons',
-      'neighbor-ride-credits',
-      'after-dark-storefronts'
-    )
-      and status = 'published'
-      and published_at is not null
-  ),
-  4::bigint,
-  'all launch ideas are published'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    where slug in (
-      'clean-air-library',
-      'repair-commons',
-      'neighbor-ride-credits',
-      'after-dark-storefronts'
-    )
-      and char_length(summary) between 80 and 280
-      and char_length(description) >= 300
-  ),
-  4::bigint,
-  'launch ideas contain useful discovery and detail copy'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    where slug in (
-      'clean-air-library',
-      'repair-commons',
-      'neighbor-ride-credits',
-      'after-dark-storefronts'
-    )
-      and position(E'\\n' in description) = 0
-      and position(E'\n' in description) > 0
-  ),
-  4::bigint,
-  'launch idea paragraphs use real line breaks'
-);
-
-select is(
-  (
-    select count(*)
-    from public.idea_media
-    join public.ideas on ideas.id = idea_media.idea_id
-    where ideas.slug in (
-      'clean-air-library',
-      'repair-commons',
-      'neighbor-ride-credits',
-      'after-dark-storefronts'
-    )
-      and idea_media.kind = 'image'
-      and idea_media.sort_order = 0
-      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
-      and char_length(idea_media.alt_text) >= 20
-  ),
-  4::bigint,
-  'every launch idea has an accessible hosted cover image'
-);
-
-select is(
-  (
-    select count(*)
-    from public.idea_media
-    join public.ideas on ideas.id = idea_media.idea_id
-    where ideas.slug in (
-      'shade-stop-network',
-      'skill-swap-saturdays',
-      'civic-accessibility-lab',
-      'block-ready-kits'
-    )
-      and idea_media.kind = 'image'
-      and idea_media.sort_order = 0
-      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
-      and char_length(idea_media.alt_text) >= 20
-  ),
-  4::bigint,
-  'every additional concept preview has an accessible hosted cover image'
-);
-
-select is(
-  (
-    select count(*)
-    from public.idea_media
-    join public.ideas on ideas.id = idea_media.idea_id
-    where ideas.slug in (
-      'device-liberation-lab',
-      'file-rescue-cooperative',
-      'cloud-exit-toolkit',
-      'private-ai-workbench'
-    )
-      and idea_media.kind = 'image'
-      and idea_media.sort_order = 0
-      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
-      and char_length(idea_media.alt_text) >= 20
-  ),
-  4::bigint,
-  'every technology concept preview has an accessible hosted cover image'
-);
-
-select is(
-  (
-    select count(*)
-    from public.idea_media
-    join public.ideas on ideas.id = idea_media.idea_id
-    where ideas.slug in (
-      'home-lab-defense-clinic',
-      'community-compute-cooperative',
-      'offline-mesh-field-kit',
-      'open-repair-atlas',
-      'accessible-interface-retrofit-lab',
-      'project-time-capsule'
-    )
-      and idea_media.kind = 'image'
-      and idea_media.sort_order = 0
-      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
-      and char_length(idea_media.alt_text) >= 20
-  ),
-  6::bigint,
-  'every new concept preview has an accessible hosted cover image'
-);
-
-select is(
-  (
-    select count(*)
-    from public.idea_media
-    join public.ideas on ideas.id = idea_media.idea_id
-    where ideas.slug in (
-      'waste-heat-works',
-      'model-commons-lab',
-      'glass-box-sensor-network'
-    )
-      and idea_media.kind = 'image'
-      and idea_media.sort_order = 0
-      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
-      and char_length(idea_media.alt_text) >= 20
-  ),
-  3::bigint,
-  'every bold infrastructure concept has an accessible hosted cover image'
-);
-
-select is(
-  (
-    select count(*)
-    from public.ideas
-    join public.categories on categories.id = ideas.category_id
-    where ideas.slug in (
-      'oral-history-provenance-lab',
-      'neighborhood-incident-relay',
-      'phishing-drill-library',
-      'water-sensor-integrity-watch',
-      'clinic-device-privacy-check',
-      'software-supply-chain-clinic'
-    )
-      and categories.slug = case ideas.slug
-        when 'oral-history-provenance-lab' then 'arts-culture'
-        when 'neighborhood-incident-relay' then 'community'
-        when 'phishing-drill-library' then 'education'
-        when 'water-sensor-integrity-watch' then 'environment'
-        when 'clinic-device-privacy-check' then 'health'
-        when 'software-supply-chain-clinic' then 'technology'
-      end
-      and ideas.status = 'published'
-      and ideas.published_at is not null
-      and char_length(ideas.summary) between 80 and 280
-      and char_length(ideas.description) >= 450
-      and char_length(ideas.threat_scenario) between 40 and 500
-      and char_length(ideas.control_boundary) between 40 and 500
-      and char_length(ideas.proof_required) between 40 and 500
-      and position(E'\\n' in ideas.description) = 0
-      and position(E'\n' in ideas.description) > 0
-  ),
-  6::bigint,
-  'six security-first concept previews span every catalog category'
-);
-
-select is(
-  (
-    select count(*)
-    from public.idea_media
-    join public.ideas on ideas.id = idea_media.idea_id
-    where ideas.slug in (
-      'oral-history-provenance-lab',
-      'neighborhood-incident-relay',
-      'phishing-drill-library',
-      'water-sensor-integrity-watch',
-      'clinic-device-privacy-check',
-      'software-supply-chain-clinic'
-    )
-      and idea_media.kind = 'image'
-      and idea_media.sort_order = 0
-      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
-      and char_length(idea_media.alt_text) >= 20
-  ),
-  6::bigint,
-  'every security-first preview has an accessible hosted cover image'
-);
-
-set local role anon;
-select is(
-  (
-    select count(*)
-    from public.ideas
-    where slug in (
-      'clean-air-library',
-      'repair-commons',
-      'neighbor-ride-credits',
-      'after-dark-storefronts',
-      'shade-stop-network',
-      'skill-swap-saturdays',
-      'civic-accessibility-lab',
-      'block-ready-kits',
-      'device-liberation-lab',
-      'file-rescue-cooperative',
-      'cloud-exit-toolkit',
-      'private-ai-workbench',
-      'home-lab-defense-clinic',
-      'community-compute-cooperative',
-      'offline-mesh-field-kit',
-      'open-repair-atlas',
-      'accessible-interface-retrofit-lab',
-      'project-time-capsule',
-      'waste-heat-works',
-      'model-commons-lab',
-      'glass-box-sensor-network',
-      'oral-history-provenance-lab',
-      'neighborhood-incident-relay',
-      'phishing-drill-library',
-      'water-sensor-integrity-watch',
-      'clinic-device-privacy-check',
-      'software-supply-chain-clinic'
-    )
+    where char_length(summary) between 80 and 280
+      and summary ilike '%owner-approved test environment%'
   ),
   27::bigint,
-  'anonymous visitors can discover every demo idea'
+  'every bounty summary explains its owner-approved test environment'
 );
-reset role;
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    where char_length(description) >= 300
+      and description ilike '%permissioned defensive challenge%'
+      and description ilike '%no production access%'
+  ),
+  27::bigint,
+  'every bounty description states its permissioned and production boundaries'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    where char_length(threat_scenario) between 40 and 500
+      and char_length(control_boundary) between 40 and 500
+      and char_length(proof_required) between 40 and 500
+  ),
+  27::bigint,
+  'every bounty has a complete attack, engagement, and proof case'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    where control_boundary ilike '%written permission%'
+      and control_boundary ilike '%production%'
+      and control_boundary ilike '%stop%'
+  ),
+  27::bigint,
+  'every bounty requires written permission and an explicit stop boundary'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    where proof_required ilike '%minimal reproduction%'
+      and proof_required ilike '%independent rerun%'
+      and proof_required ilike '%remediation%'
+  ),
+  27::bigint,
+  'every bounty requires reproducible proof and independent verification'
+);
+
+select is(
+  (
+    select count(*)
+    from public.ideas
+    where concat_ws(' ', title, summary, description, threat_scenario, control_boundary, proof_required)
+      ~* '\m(hunters?|hunt|test range|range run)\M'
+  ),
+  0::bigint,
+  'bounty copy avoids competing game and range metaphors'
+);
+
+select is(
+  (
+    select count(*)
+    from public.categories
+    join public.ideas on ideas.category_id = categories.id
+    where categories.slug in ('arts-culture', 'community', 'education', 'environment', 'health', 'technology')
+  ),
+  27::bigint,
+  'all bounties remain attached to the six stable category identifiers'
+);
+
+select is(
+  (
+    select count(distinct categories.slug)
+    from public.categories
+    join public.ideas on ideas.category_id = categories.id
+  ),
+  6::bigint,
+  'the bounty catalog spans all six security areas'
+);
+
+select results_eq(
+  $$
+    select slug, name
+    from public.categories
+    order by slug
+  $$,
+  $$
+    values
+      ('arts-culture'::text, 'Provenance & Forgery'::text),
+      ('community'::text, 'Coordination & Resilience'::text),
+      ('education'::text, 'Human Attack Surface'::text),
+      ('environment'::text, 'Physical & Sensor Systems'::text),
+      ('health'::text, 'Privacy & Safety'::text),
+      ('technology'::text, 'Software & Compute'::text)
+  $$,
+  'stable category slugs render as focused security areas'
+);
+
+select is(
+  (
+    select count(*)
+    from public.idea_media
+    join public.ideas on ideas.id = idea_media.idea_id
+    where idea_media.kind = 'image'
+      and idea_media.sort_order = 0
+      and idea_media.url like 'https://ideascape-gamma.vercel.app/images/ideas/%.svg'
+  ),
+  27::bigint,
+  'every bounty has one deterministic hosted cover image'
+);
+
+select is(
+  (
+    select count(*)
+    from public.idea_media
+    where kind = 'image'
+      and sort_order = 0
+      and char_length(trim(coalesce(alt_text, ''))) >= 40
+  ),
+  27::bigint,
+  'every bounty cover preserves a meaningful accessible description'
+);
+
+select is(
+  (
+    select count(*)
+    from public.idea_media
+    where coalesce(alt_text, '') ~* '\m(hunters?|hunt|test range|range run)\M'
+  ),
+  0::bigint,
+  'media descriptions avoid competing game and range metaphors'
+);
+
+select is(
+  (
+    select title
+    from public.ideas
+    where slug = 'project-time-capsule'
+  ),
+  'Time Capsule Disclosure Bounty',
+  'the authorized test-run example keeps its stable slug and focused title'
+);
+
+select is(
+  (
+    select title
+    from public.ideas
+    where slug = 'software-supply-chain-clinic'
+  ),
+  'Dependency Substitution Bounty',
+  'the supply-chain example is a concrete security bounty'
+);
+
+select is(
+  (
+    select count(*)
+    from public.idea_validation_questions
+    where id between '00000000-0000-4000-8000-000000000601' and '00000000-0000-4000-8000-000000000606'
+      and status = 'active'
+      and prompt ilike '%authorized test run%'
+  ),
+  6::bigint,
+  'six focused readiness questions ask about authorized test runs'
+);
+
+select is(
+  (
+    select count(*)
+    from public.idea_validation_options
+    where question_id between '00000000-0000-4000-8000-000000000601' and '00000000-0000-4000-8000-000000000606'
+  ),
+  24::bigint,
+  'the focused readiness questions have four deterministic options each'
+);
+
+select is(
+  (
+    select bio
+    from public.profiles
+    where id = '00000000-0000-4000-8000-000000000101'
+  ),
+  'System owner publishing authorized targets, clear rules of engagement, and reproducible proof standards.',
+  'the deterministic profile explains the system-owner role'
+);
 
 select * from finish();
 rollback;

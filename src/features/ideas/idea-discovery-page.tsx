@@ -5,7 +5,6 @@ import {
 	ArrowUpRight,
 	LoaderCircle,
 	Search,
-	ShieldCheck,
 	Sparkles,
 	UsersRound,
 } from "lucide-react";
@@ -19,12 +18,12 @@ import {
 } from "@/features/ideas/idea-discovery-service";
 
 const statusLabels: Record<PublishedIdeaStatus, string> = {
-	published: "Security brief",
-	funding: "Control review",
-	funded: "Pilot approved",
-	in_progress: "Exercise active",
-	completed: "Evidence published",
-	cancelled: "Closed",
+	published: "Bounty open",
+	funding: "Rules under review",
+	funded: "Test run approved",
+	in_progress: "Authorized test active",
+	completed: "Results published",
+	cancelled: "Bounty closed",
 };
 
 function isSafeImageUrl(value: string): boolean {
@@ -38,18 +37,18 @@ function isSafeImageUrl(value: string): boolean {
 
 function interestLabel(count: number): string {
 	if (count === 0) {
-		return "Be first to add a validation signal";
+		return "Be first to leave a readiness signal";
 	}
 
 	if (count === 1) {
-		return "1 validation signal";
+		return "1 readiness signal";
 	}
 
-	return `${count} validation signals`;
+	return `${count} readiness signals`;
 }
 
-function conceptCountLabel(count: number): string {
-	return `${count} security ${count === 1 ? "brief" : "briefs"}`;
+function bountyCountLabel(count: number): string {
+	return `${count} ${count === 1 ? "bounty" : "bounties"}`;
 }
 
 export function IdeaDiscoveryPage() {
@@ -133,28 +132,29 @@ export function IdeaDiscoveryPage() {
 						<div className="grid items-end gap-8 border-b border-border pb-10 lg:grid-cols-[1fr_auto]">
 							<div>
 								<p className="signal-label mb-5 border-l-2 border-signal pl-3">
-									Security validation catalog
+									Security bounties · public listings
 								</p>
 								<h1 className="text-5xl font-light tracking-[-0.035em] sm:text-7xl">
-									Review <span className="text-signal">security briefs</span>
+									Authorized{" "}
+									<span className="text-signal">security bounties</span>
 								</h1>
 								<p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-									Every brief names a threat scenario, control boundary, and
-									proof required before it can advance to a bounded exercise.
+									Every bounty names the attack scenario, rules of engagement,
+									and proof required before an authorized test can begin.
 								</p>
 							</div>
 							<div className="field-panel hidden min-w-52 border-t-4 border-t-primary px-6 py-5 lg:block">
 								<p className="field-label">
 									{ideasQuery.isError && ideasQuery.data === undefined
 										? "Catalog status"
-										: "Under review"}
+										: "Listing status"}
 								</p>
 								<p className="mt-2 text-3xl font-semibold tracking-tight">
 									{ideasQuery.isError && ideasQuery.data === undefined
-										? "Catalog unavailable"
+										? "Listings unavailable"
 										: ideasQuery.data
-											? conceptCountLabel(ideasQuery.data.length)
-											: "Loading security briefs"}
+											? bountyCountLabel(ideasQuery.data.length)
+											: "Loading security bounties"}
 								</p>
 							</div>
 						</div>
@@ -162,12 +162,12 @@ export function IdeaDiscoveryPage() {
 
 						{ideasQuery.data && ideasQuery.data.length > 0 ? (
 							<fieldset className="field-panel mt-8 grid gap-4 border-l-4 border-l-primary p-5 pr-16 lg:grid-cols-[1fr_17rem_auto] lg:items-end lg:pr-5">
-								<legend className="sr-only">Filter security briefs</legend>
+								<legend className="sr-only">Filter authorized bounties</legend>
 								<label
 									className="grid gap-2 text-sm font-semibold"
 									htmlFor="brief-search"
 								>
-									Search security briefs
+									Search security bounties
 									<span className="relative block">
 										<Search
 											aria-hidden="true"
@@ -177,7 +177,7 @@ export function IdeaDiscoveryPage() {
 											className="h-11 w-full rounded-sm border bg-background pl-10 pr-3 text-base font-normal text-foreground outline-none transition placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring"
 											id="brief-search"
 											onChange={(event) => updateSearch(event.target.value)}
-											placeholder="Try files, firmware, or local AI"
+											placeholder="Try spoofing, privacy, or supply chain"
 											type="search"
 											value={searchTerm}
 										/>
@@ -187,14 +187,14 @@ export function IdeaDiscoveryPage() {
 									className="grid gap-2 text-sm font-semibold"
 									htmlFor="category-filter"
 								>
-									Security domain
+									Security area
 									<select
 										className="h-11 w-full rounded-sm border bg-background px-3 text-base font-normal text-foreground outline-none transition focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring"
 										id="category-filter"
 										onChange={(event) => updateCategory(event.target.value)}
 										value={selectedCategory}
 									>
-										<option value="all">All security domains</option>
+										<option value="all">All security areas</option>
 										{categories.map((category) => (
 											<option key={category.slug} value={category.slug}>
 												{category.name}
@@ -207,7 +207,7 @@ export function IdeaDiscoveryPage() {
 									role="status"
 								>
 									Showing {visibleIdeas.length} of {ideasQuery.data.length}{" "}
-									security briefs
+									bounties
 								</p>
 							</fieldset>
 						) : null}
@@ -221,7 +221,7 @@ export function IdeaDiscoveryPage() {
 									className="size-5 animate-spin text-primary"
 									aria-hidden="true"
 								/>
-								Loading security briefs…
+								Loading security bounties…
 							</div>
 						) : null}
 
@@ -229,8 +229,8 @@ export function IdeaDiscoveryPage() {
 							<div className="field-panel mt-16 border-l-4 border-l-destructive p-8">
 								<p className="text-destructive" role="alert">
 									{ideasQuery.data === undefined
-										? "Unable to load security briefs. Please try again."
-										: "Unable to refresh security briefs. Showing the latest available catalog."}
+										? "Unable to load security bounties. Try again."
+										: "Unable to refresh security bounties. Showing the latest available listings."}
 								</p>
 							</div>
 						) : null}
@@ -241,17 +241,17 @@ export function IdeaDiscoveryPage() {
 									<Sparkles className="size-6" aria-hidden="true" />
 								</span>
 								<h2 className="mt-5 text-3xl font-semibold tracking-tight">
-									The first security briefs are taking shape
+									No security bounties yet
 								</h2>
 								<p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-									Be the first operator to publish a threat scenario, bounded
-									control, and reproducible proof standard.
+									Be the first system owner to publish an authorized target,
+									clear rules of engagement, and a reproducible proof standard.
 								</p>
 								<Link
 									className={buttonVariants({ className: "mt-6 h-10 px-4" })}
 									to="/ideas/new"
 								>
-									Draft a security brief
+									Publish a bounty
 									<ArrowRight aria-hidden="true" />
 								</Link>
 							</div>
@@ -265,11 +265,11 @@ export function IdeaDiscoveryPage() {
 									<Search className="size-6" aria-hidden="true" />
 								</span>
 								<h2 className="mt-5 text-3xl font-semibold tracking-tight">
-									No security briefs match these filters
+									No security bounties match these filters
 								</h2>
 								<p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-									Try a broader search, choose another security domain, or reset
-									the catalog.
+									Try a broader search, choose another security area, or clear
+									the filters.
 								</p>
 								<button
 									className={buttonVariants({
@@ -285,7 +285,7 @@ export function IdeaDiscoveryPage() {
 						) : null}
 
 						{ideasQuery.data && visibleIdeas.length > 0 ? (
-							<div className="mt-12 grid gap-px border border-border bg-border md:grid-cols-2 xl:grid-cols-3">
+							<div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 								{visibleIdeas.map((idea) => {
 									const cover = idea.media.find(
 										(media) =>
@@ -294,7 +294,7 @@ export function IdeaDiscoveryPage() {
 
 									return (
 										<article
-											className="group relative overflow-hidden bg-card transition-colors hover:bg-muted/45"
+											className="group relative overflow-hidden border border-border bg-card transition-colors hover:bg-muted/45"
 											key={idea.id}
 										>
 											<Link
@@ -312,7 +312,7 @@ export function IdeaDiscoveryPage() {
 													/>
 												</div>
 											) : null}
-											<div className="flex min-h-[20rem] flex-col p-6">
+											<div className="flex min-h-72 flex-col p-6">
 												<div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider">
 													{idea.category ? (
 														<span className="bg-signal px-2 py-1 font-mono text-[0.6875rem] tracking-[0.12em] text-black">
@@ -329,25 +329,6 @@ export function IdeaDiscoveryPage() {
 												<p className="mt-3 flex-1 leading-7 text-muted-foreground">
 													{idea.summary}
 												</p>
-												{idea.threat_scenario &&
-												idea.control_boundary &&
-												idea.proof_required ? (
-													<section
-														aria-label={`Security focus for ${idea.title}`}
-														className="mt-5 border-l-2 border-signal bg-muted p-4"
-													>
-														<p className="inline-flex items-center gap-2 font-mono text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-foreground">
-															<ShieldCheck
-																className="size-4"
-																aria-hidden="true"
-															/>
-															Security focus
-														</p>
-														<p className="mt-2 line-clamp-3 text-sm leading-6 text-muted-foreground">
-															{idea.threat_scenario}
-														</p>
-													</section>
-												) : null}
 												<div className="mt-7 flex items-center justify-between border-t border-primary/15 pt-5 text-sm text-muted-foreground">
 													<p>
 														By{" "}

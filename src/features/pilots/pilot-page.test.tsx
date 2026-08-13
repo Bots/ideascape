@@ -61,10 +61,12 @@ describe("PilotPage", () => {
 		vi.mocked(getPilotPlan).mockReturnValue(new Promise(() => {}));
 		renderPage();
 
-		expect(screen.getByRole("status")).toHaveTextContent(/loading pilot plan/i);
+		expect(screen.getByRole("status")).toHaveTextContent(
+			/loading authorized test-run plan/i,
+		);
 	});
 
-	it("publishes measurable thresholds and permission-first pilot boundaries", async () => {
+	it("publishes measurable thresholds and permission-first test boundaries", async () => {
 		renderPage();
 
 		expect(
@@ -72,39 +74,43 @@ describe("PilotPage", () => {
 				name: "Project Time Capsule pilot",
 			}),
 		).toBeInTheDocument();
-		expect(screen.getByText(/validation underway/i)).toBeInTheDocument();
-		expect(screen.getByLabelText("30-day evidence window")).toBeInTheDocument();
-		expect(screen.getByLabelText("15 validation signals")).toBeInTheDocument();
-		expect(screen.getByLabelText("5 operator interviews")).toBeInTheDocument();
 		expect(
-			screen.getByLabelText("3-project pilot capacity"),
+			screen.getByText(/test-run readiness under review/i),
+		).toBeInTheDocument();
+		expect(screen.getByLabelText("30-day evidence window")).toBeInTheDocument();
+		expect(screen.getByLabelText("15 readiness signals")).toBeInTheDocument();
+		expect(screen.getByLabelText("5 reviewer interviews")).toBeInTheDocument();
+		expect(
+			screen.getByLabelText("3-project test capacity"),
 		).toBeInTheDocument();
 
-		const decisions = screen.getByRole("region", { name: /decision rules/i });
+		const decisions = screen.getByRole("region", {
+			name: /close, revise, or proceed/i,
+		});
 		expect(within(decisions).getByText(/^continue$/i)).toBeInTheDocument();
-		expect(decisions).toHaveTextContent(/5 qualified pilot participants/i);
+		expect(decisions).toHaveTextContent(/5 qualified test participants/i);
 		expect(decisions).toHaveTextContent(/3 suitable authorized projects/i);
 		expect(within(decisions).getByText(/^revise$/i)).toBeInTheDocument();
 		expect(within(decisions).getByText(/^archive$/i)).toBeInTheDocument();
 		expect(decisions).toHaveTextContent(/2 or fewer meaningful signals/i);
 
 		const boundaries = screen.getByRole("region", {
-			name: /security exercise boundaries/i,
+			name: /rules of engagement/i,
 		});
 		expect(boundaries).toHaveTextContent(
-			/participant-authorized projects only/i,
+			/written permission and sponsor-approved projects only/i,
 		);
 		expect(boundaries).toHaveTextContent(/unauthorized proprietary source/i);
 		expect(boundaries).toHaveTextContent(/private production data/i);
 		expect(boundaries).toHaveTextContent(/secrets or live credentials/i);
-		expect(boundaries).toHaveTextContent(/no payment or commitment/i);
+		expect(boundaries).toHaveTextContent(/no payout or commitment/i);
 	});
 
-	it("keeps intake closed while validation is underway", async () => {
+	it("keeps intake closed while readiness is under review", async () => {
 		renderPage();
 
 		expect(
-			await screen.findByText(/security exercise intake is not open yet/i),
+			await screen.findByText(/authorized test-run intake is not open yet/i),
 		).toBeInTheDocument();
 		expect(
 			screen.queryByRole("link", { name: /sign in to apply/i }),
@@ -131,7 +137,7 @@ describe("PilotPage", () => {
 		renderPage();
 
 		expect(
-			await screen.findByRole("heading", { name: /pilot plan not found/i }),
+			await screen.findByRole("heading", { name: /test-run plan not found/i }),
 		).toBeInTheDocument();
 	});
 
@@ -142,7 +148,7 @@ describe("PilotPage", () => {
 		renderPage();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			/unable to load the pilot plan/i,
+			/unable to load the authorized test-run plan/i,
 		);
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
 	});

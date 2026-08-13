@@ -61,30 +61,19 @@ beforeEach(() => {
 });
 
 describe("App", () => {
-	it("introduces the Ideascape mission at the home route", () => {
+	it("introduces the focused security-bounty mission at the home route", () => {
 		renderApp();
 		const main = screen.getByRole("main");
-		const banner = screen.getByRole("banner");
-		expect(main).not.toContainElement(banner);
-
+		expect(main).not.toContainElement(screen.getByRole("banner"));
 		expect(
 			screen.getByRole("heading", {
-				name: /pressure-test security before it ships/i,
+				name: /test security with scope and proof/i,
 			}),
 		).toBeInTheDocument();
-		expect(
-			screen.getByText(/security validation lab for early systems/i),
-		).toBeInTheDocument();
-		expect(screen.getByText("Threats before trust")).toBeInTheDocument();
-		expect(
-			screen.getByText("Threats mapped. Controls bounded."),
-		).toBeInTheDocument();
-		expect(
-			screen.getByText(/state what is authorized, excluded/i),
-		).toBeInTheDocument();
-		expect(
-			screen.getByText(/precommit tests, stop conditions/i),
-		).toBeInTheDocument();
+		expect(main).toHaveTextContent(
+			/system owners publish authorized security bounties/i,
+		);
+		expect(main).toHaveTextContent(/written authorization is always separate/i);
 		expect(screen.getByRole("link", { name: /sign in/i })).toHaveAttribute(
 			"href",
 			"/sign-in",
@@ -94,192 +83,89 @@ describe("App", () => {
 			"/sign-up",
 		);
 		expect(
-			screen
-				.getAllByRole("link", { name: /draft a security brief/i })
-				.some((link) => link.getAttribute("href") === "/ideas/new"),
-		).toBe(true);
+			screen.getByRole("link", { name: /browse security bounties/i }),
+		).toHaveAttribute("href", "/ideas");
 		expect(
-			screen
-				.getAllByRole("link", { name: /review security briefs/i })
-				.every((link) => link.getAttribute("href") === "/ideas"),
-		).toBe(true);
-		const explorationNote = screen.getByRole("note", {
-			name: /security review mode/i,
+			screen.getByRole("link", { name: /publish a bounty/i }),
+		).toHaveAttribute("href", "/ideas/new");
+		const rules = screen.getByRole("note", {
+			name: /authorized bounty rules/i,
 		});
-		expect(explorationNote).toHaveTextContent(
-			/security briefs, not deployment approvals/i,
-		);
-		expect(
-			screen
-				.getAllByRole("link", { name: /join the security review/i })
-				.every((link) => link.getAttribute("href") === "/sign-up"),
-		).toBe(true);
-		expect(screen.getByText("Security briefs")).toBeInTheDocument();
-		expect(
-			screen.getByText("Security briefs").nextElementSibling,
-		).toHaveTextContent("27");
-		expect(
-			screen.getByText(
-				/every brief names a threat scenario, control boundary, and proof required/i,
-			),
-		).toBeInTheDocument();
+		expect(rules).toHaveTextContent(/no authorization, no test/i);
+		expect(rules).toHaveTextContent(/does not handle payouts/i);
 	});
 
-	it("hides the join-security-review action from signed-in operators", () => {
+	it("hides the account-acquisition action from signed-in reviewers", () => {
 		vi.mocked(useAuth).mockReturnValue({
 			user: {
 				id: "55555555-5555-4555-8555-555555555555",
-				email: "member@example.com",
+				email: "reviewer@example.com",
 			} as ReturnType<typeof useAuth>["user"],
 			isLoading: false,
 		});
-
 		renderApp();
-
 		expect(
-			screen.queryByRole("link", { name: /join the security review/i }),
+			screen.queryByRole("link", { name: /create an account/i }),
 		).not.toBeInTheDocument();
 	});
 
-	it("spotlights concrete security controls", () => {
+	it("presents one five-step security-bounty workflow", () => {
 		renderApp();
-
-		expect(
-			screen.getByRole("link", { name: /browse security domains/i }),
-		).toHaveAttribute("href", "#idea-terrain-heading");
-		expect(
-			screen.getByRole("img", {
-				name: /verifies signed dependencies/i,
-			}),
-		).toBeInTheDocument();
-		expect(
-			screen.getByRole("img", {
-				name: /contained phishing drill/i,
-			}),
-		).toBeInTheDocument();
-		expect(
-			screen.getByText(/threats mapped. controls bounded/i),
-		).toBeInTheDocument();
-		expect(
-			screen.getByText(/software, infrastructure, identity, human-risk/i),
-		).toBeInTheDocument();
+		const workflow = screen.getByRole("region", {
+			name: /from bounty to verified result/i,
+		});
+		const steps = within(workflow).getAllByRole("article");
+		expect(steps).toHaveLength(5);
+		for (const [index, title] of [
+			"Publish the security bounty",
+			"Define scope and proof",
+			"Gather private readiness",
+			"Run an authorized test",
+			"Verify and close",
+		].entries()) {
+			expect(steps[index]).toHaveTextContent(
+				String(index + 1).padStart(2, "0"),
+			);
+			expect(
+				within(workflow).getByRole("heading", { name: title }),
+			).toBeInTheDocument();
+		}
 	});
 
-	it("presents six security domains without transaction framing", () => {
+	it("presents six security areas with the same operating model", () => {
 		renderApp();
-
 		const main = screen.getByRole("main");
 		expect(
-			within(main).getByRole("heading", {
-				name: /security domains under review/i,
-			}),
+			within(main).getByRole("heading", { name: /browse by system risk/i }),
 		).toBeInTheDocument();
-		expect(
-			within(main).getByRole("heading", { name: /ways to challenge a brief/i }),
-		).toBeInTheDocument();
-		expect(
-			within(main).getByRole("heading", { name: /proof before scale/i }),
-		).toBeInTheDocument();
-		for (const category of [
-			"Provenance & Authenticity",
-			"Resilience & Response",
-			"Human Risk",
-			"Infrastructure Integrity",
+		for (const area of [
+			"Provenance & Forgery",
+			"Coordination & Resilience",
+			"Human Attack Surface",
+			"Physical & Sensor Systems",
 			"Privacy & Safety",
-			"Software & Systems",
+			"Software & Compute",
 		]) {
 			expect(
-				within(main).getByRole("heading", { name: category }),
+				within(main).getByRole("heading", { name: area }),
 			).toBeInTheDocument();
 		}
-		expect(main).toHaveTextContent(/never grants production access/i);
 		expect(main).not.toHaveTextContent(
-			/smart.contract|crypto wallet|multisig|on.chain|seed phrase|funding rail/i,
+			/crypto wallet|multisig|on.chain|seed phrase/i,
 		);
 	});
 
-	it("explains the current idea-validation flow", () => {
+	it("makes the platform boundary explicit", () => {
 		renderApp();
-
-		const howItWorks = screen.getByRole("region", {
-			name: /the security validation path/i,
+		const boundary = screen.getByRole("region", {
+			name: /scope is visible. authorization stays separate/i,
 		});
-		const timelineItems = within(howItWorks).getAllByRole("article");
-		expect(timelineItems).toHaveLength(10);
-		expect(timelineItems[0].parentElement).toHaveClass(
-			"md:grid-cols-2",
-			"xl:grid-cols-5",
+		expect(boundary).toHaveTextContent(/never grants access/i);
+		expect(boundary).toHaveTextContent(
+			/payments, escrow, or guaranteed rewards/i,
 		);
-		for (const [index, item] of timelineItems.entries()) {
-			expect(item).toHaveTextContent(String(index + 1).padStart(2, "0"));
-			expect(item).toHaveClass("md:even:border-r-0");
-			expect(item).toHaveClass("xl:[&:nth-child(5n)]:border-r-0");
-		}
-		for (const nextStep of [
-			"Frame the system",
-			"Map the threat scenario",
-			"Set the control boundary",
-			"Publish the security brief",
-			"Collect validation signals",
-			"Design a bounded pilot",
-			"Challenge the security case",
-			"Publish what happened",
-			"Choose, repeat, or stop",
-			"Leave a useful record",
-		]) {
-			expect(
-				within(howItWorks).getByRole("heading", { name: nextStep }),
-			).toBeInTheDocument();
-		}
-		expect(howItWorks).toHaveTextContent(/deployment authority/i);
-		expect(
-			within(howItWorks).getByRole("link", {
-				name: /review the security catalog/i,
-			}),
-		).toHaveAttribute("href", "/ideas");
-	});
-
-	it("shows concrete security-review paths without implying authority", () => {
-		renderApp();
-
-		const participation = screen.getByRole("region", {
-			name: /ways to challenge a brief/i,
-		});
-		expect(participation).toHaveTextContent(/current security review/i);
-		expect(participation).toHaveTextContent(/never grants production access/i);
-		for (const path of [
-			"Submit a system",
-			"Challenge a control",
-			"Contribute evidence",
-		]) {
-			expect(
-				within(participation).getByRole("heading", { name: path }),
-			).toBeInTheDocument();
-		}
-	});
-
-	it("explains the evidence and permission questions before expansion", () => {
-		renderApp();
-
-		const proof = screen.getByRole("region", {
-			name: /proof before scale/i,
-		});
-		expect(proof).toHaveTextContent(
-			/validation signal is not permission to deploy/i,
-		);
-		for (const question of [
-			"What can fail or be abused?",
-			"What authority is excluded?",
-			"How does the control fail safely?",
-			"What evidence earns trust?",
-		]) {
-			expect(
-				within(proof).getByRole("heading", { name: question }),
-			).toBeInTheDocument();
-		}
-		expect(proof).toHaveTextContent(/nothing advances automatically/i);
-		expect(proof).toHaveTextContent(
-			/never grants permission to use private data, property, accounts, or production systems/i,
+		expect(boundary).toHaveTextContent(
+			/private readiness signals as aggregate counts/i,
 		);
 	});
 

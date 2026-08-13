@@ -58,14 +58,14 @@ describe("IdeaInterestPanel", () => {
 
 		expect(
 			await screen.findByRole("heading", {
-				name: /how are you interested in this security brief/i,
+				name: /how are you interested in this security bounty/i,
 			}),
 		).toBeInTheDocument();
 		expect(
 			screen.getByText(/does not claim security expertise/i),
 		).toBeInTheDocument();
 		expect(
-			await screen.findByText(/12 validation signals/i),
+			await screen.findByText(/12 readiness signals/i),
 		).toBeInTheDocument();
 		const signInLink = screen.getByRole("link", {
 			name: /sign in to share private interest/i,
@@ -89,14 +89,14 @@ describe("IdeaInterestPanel", () => {
 			name: /choose your private interest/i,
 		});
 		const pilotButton = within(intentGroup).getByRole("button", {
-			name: /i could test a pilot/i,
+			name: /i could join an authorized test run/i,
 		});
 		expect(pilotButton).toHaveAttribute("aria-pressed", "false");
 		await user.click(pilotButton);
 
 		expect(signalIdeaInterest).toHaveBeenCalledWith(ideaId, userId, "pilot");
 		expect(
-			await screen.findByText(/13 validation signals/i),
+			await screen.findByText(/13 readiness signals/i),
 		).toBeInTheDocument();
 		expect(pilotButton).toHaveAttribute("aria-pressed", "true");
 		expect(pilotButton).toHaveClass("bg-signal", "text-black");
@@ -126,7 +126,7 @@ describe("IdeaInterestPanel", () => {
 		await user.click(buildButton);
 
 		expect(signalIdeaInterest).toHaveBeenCalledWith(ideaId, userId, "build");
-		expect(screen.getByText(/12 validation signals/i)).toBeInTheDocument();
+		expect(screen.getByText(/12 readiness signals/i)).toBeInTheDocument();
 		expect(buildButton).toHaveAttribute("aria-pressed", "true");
 		expect(useButton).toHaveAttribute("aria-pressed", "false");
 	});
@@ -145,17 +145,17 @@ describe("IdeaInterestPanel", () => {
 		renderPanel();
 
 		const interestButton = await screen.findByRole("button", {
-			name: /remove validation signal/i,
+			name: /remove readiness signal/i,
 		});
 		expect(interestButton).toHaveAttribute("aria-pressed", "true");
 		await user.click(interestButton);
 
 		expect(removeIdeaInterest).toHaveBeenCalledWith(ideaId, userId);
 		expect(
-			await screen.findByText(/11 validation signals/i),
+			await screen.findByText(/11 readiness signals/i),
 		).toBeInTheDocument();
 		expect(
-			screen.queryByRole("button", { name: /remove validation signal/i }),
+			screen.queryByRole("button", { name: /remove readiness signal/i }),
 		).not.toBeInTheDocument();
 	});
 
@@ -166,7 +166,7 @@ describe("IdeaInterestPanel", () => {
 		renderPanel();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			/validation signals are unavailable right now/i,
+			/readiness signals are unavailable right now/i,
 		);
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
 	});

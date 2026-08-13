@@ -1,4 +1,4 @@
-import { ArrowRight, MapPinned } from "lucide-react";
+import { ArrowRight, Radio, ShieldCheck } from "lucide-react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function SiteHeader({
 	account,
-	exploreLabel = "Review security briefs",
+	exploreLabel = "Security bounties",
 	exploreTo = "/ideas",
 	showExplore = true,
 	showStartIdea = true,
@@ -21,20 +21,20 @@ export function SiteHeader({
 		<header className="border-b border-border bg-card/95">
 			<div className="site-shell flex min-h-16 flex-wrap items-center gap-x-6 gap-y-3 py-2">
 				<Link
-					aria-label="Ideascape home"
+					aria-label="IdeaScape home"
 					className="group flex min-h-11 items-center gap-3"
 					to="/"
 				>
-					<span className="relative grid size-10 place-items-center border border-primary bg-primary text-primary-foreground transition group-hover:bg-primary/90">
-						<MapPinned className="size-5" aria-hidden="true" />
+					<span className="relative grid size-10 place-items-center border border-signal bg-black text-signal transition group-hover:bg-signal group-hover:text-black">
+						<ShieldCheck className="size-5" aria-hidden="true" />
 						<span className="absolute -bottom-1 -right-1 size-2.5 border border-card bg-signal" />
 					</span>
 					<span className="grid leading-none">
 						<span className="text-base font-semibold tracking-[-0.02em]">
-							Ideascape
+							IdeaScape
 						</span>
 						<span className="mt-1 hidden font-mono text-[0.625rem] uppercase tracking-[0.12em] text-muted-foreground md:block">
-							Security validation fieldwork
+							Authorized security bounties
 						</span>
 					</span>
 				</Link>
@@ -60,7 +60,7 @@ export function SiteHeader({
 								className={cn(buttonVariants({ size: "sm" }), "px-3")}
 								to="/ideas/new"
 							>
-								Draft a security brief
+								Publish a bounty
 								<ArrowRight aria-hidden="true" />
 							</Link>
 						) : null}
@@ -68,6 +68,20 @@ export function SiteHeader({
 				) : null}
 
 				{account ? <div className="ml-auto min-w-0">{account}</div> : null}
+			</div>
+			<div className="packet-trace" aria-hidden="true">
+				<span>
+					<Radio className="mr-2 inline size-3" />
+					{
+						" AUTHORIZED SECURITY BOUNTIES · AUTHORIZED TARGETS ONLY · WRITTEN PERMISSION REQUIRED · REPRODUCIBLE PROOF REQUIRED · NO AUTHORIZATION, NO TEST · "
+					}
+				</span>
+				<span>
+					<Radio className="mr-2 inline size-3" />
+					{
+						" AUTHORIZED SECURITY BOUNTIES · AUTHORIZED TARGETS ONLY · WRITTEN PERMISSION REQUIRED · REPRODUCIBLE PROOF REQUIRED · NO AUTHORIZATION, NO TEST · "
+					}
+				</span>
 			</div>
 		</header>
 	);

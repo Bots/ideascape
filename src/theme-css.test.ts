@@ -35,18 +35,29 @@ const allowedPalette = new Set([
 	"#000000",
 	"#050505",
 	"#0a0a0a",
+	"#0a0a09",
+	"#0f0f0d",
+	"#11110f",
+	"#171714",
 	"#171717",
+	"#201108",
+	"#24231f",
 	"#262626",
+	"#3e3c37",
 	"#404040",
 	"#525252",
+	"#625f58",
 	"#737373",
+	"#aaa79f",
 	"#a3a3a3",
 	"#d4d4d4",
 	"#e5e5e5",
 	"#f5f5f5",
+	"#f2efe6",
 	"#fafafa",
 	"#ffffff",
 	"#ff5a1f",
+	"#ffb091",
 ]);
 
 const prohibitedNamedColors = new RegExp(
@@ -215,10 +226,16 @@ function findPaletteViolations(source: string): string[] {
 			: normalized;
 		return !allowedPalette.has(expanded);
 	});
-	const arbitraryColorFunctions =
-		source.match(
-			/\b(?:oklch|oklab|lch|lab|rgba?|hsla?|hwb|color|device-cmyk|light-dark|contrast-color|color-contrast)\s*\(/gi,
-		) ?? [];
+	const arbitraryColorFunctions = [
+		...(source.match(
+			/\b(?:oklch|oklab|lch|lab|rgba|hsla?|hwb|color|device-cmyk|light-dark|contrast-color|color-contrast)\s*\(/gi,
+		) ?? []),
+		...(source.match(/\brgb\([^)]*\)/gi) ?? [])
+			.filter(
+				(value) => !/rgb\((?:255 90 31|242 239 230) \/ 0\.\d+\)/i.test(value),
+			)
+			.map(() => "rgb("),
+	];
 	const namedColorUtilities =
 		source.match(
 			/\b(?:red|green|blue|yellow|amber|orange|lime|emerald|cyan|sky|indigo|violet|purple|fuchsia|pink|rose|teal|slate|stone|zinc|gray)-\d{2,3}\b/gi,
@@ -280,7 +297,7 @@ function findPaletteViolations(source: string): string[] {
 	];
 }
 
-describe("civic field-notebook design system", () => {
+describe("security-bounty field system", () => {
 	it("uses a deliberate editorial type family", () => {
 		expect(stylesheet).toContain(
 			'@import "@fontsource-variable/ibm-plex-sans"',
@@ -292,30 +309,23 @@ describe("civic field-notebook design system", () => {
 		expect(stylesheet).toContain('--font-mono: "IBM Plex Mono", monospace');
 	});
 
-	it("uses only black, white, grayscale, and one bright orange signal", () => {
-		expect(rootTheme).toContain("--background: #ffffff");
-		expect(rootTheme).toContain("--card: #ffffff");
-		expect(rootTheme).toContain("--popover: #ffffff");
-		expect(rootTheme).toContain("--sidebar: #ffffff");
-		expect(rootTheme).toContain("--foreground: #0a0a0a");
-		expect(rootTheme).toContain("--primary: #0a0a0a");
+	it("uses distinct bone-light and black-dark monochrome-orange themes", () => {
+		expect(rootTheme).toContain("--background: #f2efe6");
+		expect(rootTheme).toContain("--foreground: #050505");
 		expect(rootTheme).toContain("--signal: #ff5a1f");
-		expect(rootTheme).toContain("--signal-foreground: #000000");
-		expect(rootTheme).toContain("--destructive: #0a0a0a");
-		expect(rootTheme).toContain("--border: #737373");
-		expect(rootTheme).toContain("--input: #737373");
-		expect(rootTheme).toContain("--radius: 0.375rem");
-		expect(darkTheme).toContain("--background: #000000");
-		expect(darkTheme).toContain("--card: #000000");
-		expect(darkTheme).toContain("--popover: #000000");
-		expect(darkTheme).toContain("--sidebar: #000000");
-		expect(darkTheme).toContain("--foreground: #fafafa");
-		expect(darkTheme).toContain("--primary: #fafafa");
+		expect(rootTheme).toContain("--signal-foreground: #050505");
+		expect(darkTheme).toContain("--background: #050505");
+		expect(darkTheme).toContain("--card: #0a0a09");
+		expect(darkTheme).toContain("--popover: #0a0a09");
+		expect(darkTheme).toContain("--sidebar: #050505");
+		expect(darkTheme).toContain("--foreground: #f2efe6");
+		expect(darkTheme).toContain("--primary: #f2efe6");
 		expect(darkTheme).toContain("--signal: #ff5a1f");
-		expect(darkTheme).toContain("--destructive: #fafafa");
-		expect(darkTheme).toContain("--border: #737373");
-		expect(darkTheme).toContain("--input: #737373");
-		expect(darkTheme).toContain("--ring: #ff5a1f");
+		expect(darkTheme).toContain("--destructive: #ff5a1f");
+		expect(darkTheme).toContain("--border: #3e3c37");
+		expect(darkTheme).toContain("--input: #625f58");
+		expect(darkTheme).toContain("--radius: 0");
+		expect(rootTheme).not.toBe(darkTheme);
 	});
 
 	it("keeps every production color inside the monochrome-orange palette", () => {
@@ -382,8 +392,7 @@ describe("civic field-notebook design system", () => {
 		expect(productionSources.join("\n")).not.toMatch(
 			/\b(?:ring|outline)-(?:signal|ring)\/\d+\b/,
 		);
-		expect(rootTheme).toContain("--border: #737373");
-		expect(darkTheme).toContain("--border: #737373");
+		expect(darkTheme).toContain("--border: #3e3c37");
 	});
 
 	it("anchors grayscale editorial imagery with an exact orange rule", () => {
@@ -412,18 +421,26 @@ describe("civic field-notebook design system", () => {
 		expect(profilePageSource).not.toContain("editorial-image-frame");
 	});
 
-	it("uses orange as decoration rather than low-contrast small text on white", () => {
-		expect(stylesheet).toMatch(/\.signal-label\s*\{[\s\S]*text-foreground/);
-		expect(appSource).toContain(
-			'<span className="text-foreground">Permission checked</span>',
+	it("spaces the main bounty cards for easier catalog scanning", () => {
+		expect(ideaDiscoverySource).toContain(
+			'className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3"',
+		);
+		expect(ideaDiscoverySource).toContain(
+			'className="group relative overflow-hidden border border-border bg-card',
 		);
 	});
 
-	it("uses flat pure canvases without grid or contour backgrounds", () => {
+	it("uses orange as decoration rather than low-contrast small text on white", () => {
+		expect(stylesheet).toMatch(/\.signal-label\s*\{[\s\S]*text-foreground/);
+		expect(appSource).toContain('className="text-signal"');
+	});
+
+	it("uses one restrained grid signature without contour decoration", () => {
 		const productionSources = listVisualSourceFiles(
 			resolve(process.cwd(), "src"),
 		).map((file) => readFileSync(file, "utf8"));
-		expect(stylesheet).not.toContain("background-image:");
+		expect(stylesheet).toContain(".bounty-grid");
+		expect(stylesheet).toContain("background-image:");
 		expect(stylesheet).not.toContain(".field-grid");
 		expect(stylesheet).not.toContain(".contour-field");
 		expect(productionSources.join("\n")).not.toMatch(
@@ -459,9 +476,9 @@ describe("civic field-notebook design system", () => {
 		expect(appShell).toContain('classList.add("dark")');
 	});
 
-	it("describes the landing page as security validation fieldwork", () => {
+	it("describes the landing page as authorized security bounties", () => {
 		expect(appShell).toContain(
-			"<title>Ideascape — Security validation fieldwork</title>",
+			"<title>IdeaScape — Authorized security bounties</title>",
 		);
 	});
 });

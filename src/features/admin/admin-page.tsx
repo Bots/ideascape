@@ -64,7 +64,7 @@ export function AdminPage() {
 		return (
 			<AdminStatusPage
 				heading="Sign in to view operations"
-				message="The operations dashboard is restricted to authorized Ideascape administrators."
+				message="The operations dashboard is restricted to authorized IdeaScape administrators."
 				action={
 					<Link className={buttonVariants()} to="/sign-in?returnTo=%2Fadmin">
 						Sign in
@@ -128,7 +128,7 @@ function AdminDashboard({
 
 	return (
 		<>
-			<SiteHeader exploreLabel="Security catalog" />
+			<SiteHeader exploreLabel="Security bounties" />
 			<main className="min-h-screen overflow-hidden bg-background text-foreground">
 				<div className="site-shell">
 					<section className="border-x border-b border-border bg-background/94 px-6 pb-12 pt-12 sm:px-10 sm:pb-16 sm:pt-16 lg:px-12 lg:pt-20">
@@ -138,12 +138,12 @@ function AdminDashboard({
 								Private operations
 							</p>
 							<h1 className="mt-6 text-balance text-5xl font-light leading-[1] tracking-[-0.035em] sm:text-7xl">
-								Operations dashboard
+								Security bounty operations
 							</h1>
 							<p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">
-								A privacy-preserving view of security briefs, validation
-								evidence, and bounded-exercise readiness. Counts are live at
-								request time.
+								A privacy-preserving view of security bounties, readiness
+								responses, and authorized test-run plans. Counts are live at
+								request time; individual response histories remain private.
 							</p>
 							<p className="mt-4 text-sm text-muted-foreground">
 								Generated{" "}
@@ -159,37 +159,37 @@ function AdminDashboard({
 						<MetricCard
 							icon={Users}
 							value={summary.memberCount}
-							label="Operators"
-							detail="Public security operator profiles"
+							label="System owners"
+							detail="Public system-owner profiles"
 						/>
 						<MetricCard
 							icon={FileStack}
 							value={summary.ideaCount}
-							label="Security briefs"
+							label="Bounties"
 							detail={`${summary.publishedIdeaCount} published · ${summary.draftIdeaCount} private drafts · ${otherIdeaCount} other states`}
 						/>
 						<MetricCard
 							icon={HeartHandshake}
 							value={summary.interestSignalCount}
-							label="Validation signals"
+							label="Readiness signals"
 							detail={`${summary.meaningfulSignalCount} include practical review intent`}
 						/>
 						<MetricCard
 							icon={ClipboardCheck}
 							value={summary.validationResponseCount}
-							label="Validation responses"
+							label="Readiness responses"
 							detail="Private answers counted in aggregate"
 						/>
 						<MetricCard
 							icon={Activity}
 							value={summary.openApplicationCount}
-							label="Open exercise applications"
-							detail={`${summary.acceptedApplicationCount} accepted · ${summary.pilotCount} pilot plans`}
+							label="Open test-run applications"
+							detail={`${summary.acceptedApplicationCount} accepted · ${summary.pilotCount} test-run plans`}
 						/>
 						<MetricCard
 							icon={ShieldCheck}
 							value={summary.pilotCount}
-							label="Security exercises"
+							label="Test-run plans"
 							detail="Published threshold-based plans"
 						/>
 					</section>
@@ -198,32 +198,32 @@ function AdminDashboard({
 						<div className="flex flex-wrap items-end justify-between gap-4">
 							<div>
 								<p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-									Published security briefs only
+									Published bounties only
 								</p>
 								<h2 className="mt-2 text-3xl font-semibold tracking-[-0.04em]">
-									Security brief activity
+									Security bounty activity
 								</h2>
 							</div>
 							<p className="max-w-xl text-sm leading-6 text-muted-foreground">
-								Sorted by combined validation signals, review responses, and
-								exercise applications.
+								Sorted by private readiness signals, aggregate responses, and
+								historical test-run applications.
 							</p>
 						</div>
 
 						{isActivityLoading ? (
 							<p className="mt-8 text-sm text-muted-foreground" role="status">
-								Loading security brief activity…
+								Loading bounty activity…
 							</p>
 						) : null}
 						{isActivityError ? (
 							<p className="mt-8 text-sm text-destructive" role="alert">
-								Unable to load security brief activity. The dashboard summary is
+								Unable to load bounty activity. The control-room summary is
 								still available.
 							</p>
 						) : null}
 						{!isActivityLoading && !isActivityError && activity.length === 0 ? (
 							<p className="mt-8 border border-dashed p-6 text-sm text-muted-foreground">
-								No published security brief activity yet.
+								No published bounty activity yet.
 							</p>
 						) : null}
 						{activity.length > 0 ? (
@@ -232,13 +232,13 @@ function AdminDashboard({
 									<thead>
 										<tr className="text-xs uppercase tracking-wider text-muted-foreground">
 											<th className="border-b px-3 py-3 font-semibold">
-												Security brief
+												Bounty
 											</th>
 											<th className="border-b px-3 py-3 text-right font-semibold">
-												Validation signals
+												Readiness signals
 											</th>
 											<th className="border-b px-3 py-3 text-right font-semibold">
-												Validation
+												Responses
 											</th>
 											<th className="border-b px-3 py-3 text-right font-semibold">
 												Applications
@@ -285,7 +285,7 @@ function AdminDashboard({
 							<p className="font-semibold text-foreground">Privacy boundary</p>
 							<p className="mt-1">
 								Respondent identities are excluded, draft content is excluded,
-								and pilot application details are excluded. This dashboard
+								and test-run application details are excluded. This dashboard
 								exposes operational aggregates, not individual histories.
 							</p>
 						</div>
@@ -326,7 +326,7 @@ function MetricCard({
 }
 
 function AdminStatusPage({
-	heading = "Ideascape operations",
+	heading = "IdeaScape bounty operations",
 	message,
 	isError = false,
 	action,

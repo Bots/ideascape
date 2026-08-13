@@ -87,6 +87,12 @@ export async function getIdeaValidationSummary(
 	if (rows.length === 0) {
 		return null;
 	}
+	const questionIds = new Set(rows.map((row) => row.question_id));
+	if (questionIds.size !== 1) {
+		throw new Error(
+			"Validation summary returned multiple validation questions with incompatible meanings.",
+		);
+	}
 
 	const options = rows.map((row) => ({
 		id: row.option_id,

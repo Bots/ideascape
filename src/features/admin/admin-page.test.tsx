@@ -109,7 +109,9 @@ describe("AdminPage", () => {
 		renderPage();
 
 		expect(
-			await screen.findByRole("heading", { name: /operations dashboard/i }),
+			await screen.findByRole("heading", {
+				name: /security bounty operations/i,
+			}),
 		).toBeInTheDocument();
 		const overview = screen.getByRole("region", {
 			name: /operational overview/i,
@@ -124,10 +126,10 @@ describe("AdminPage", () => {
 			screen.getByRole("link", { name: /project time capsule/i }),
 		).toHaveAttribute("href", "/ideas/project-time-capsule");
 		expect(
-			screen.getByRole("columnheader", { name: /security brief/i }),
+			screen.getByRole("columnheader", { name: /bounty/i }),
 		).toBeInTheDocument();
 		expect(
-			screen.getByRole("columnheader", { name: /validation signals/i }),
+			screen.getByRole("columnheader", { name: /readiness signals/i }),
 		).toBeInTheDocument();
 		expect(
 			screen.getByText(/respondent identities are excluded/i),
@@ -151,7 +153,9 @@ describe("AdminPage", () => {
 		const page = renderPage(queryClient);
 
 		expect(
-			await screen.findByRole("heading", { name: /operations dashboard/i }),
+			await screen.findByRole("heading", {
+				name: /security bounty operations/i,
+			}),
 		).toBeInTheDocument();
 		expect(await screen.findByText("Project Time Capsule")).toBeInTheDocument();
 
@@ -188,7 +192,7 @@ describe("AdminPage", () => {
 		renderPage();
 
 		expect(
-			await screen.findByText(/no published security brief activity yet/i),
+			await screen.findByText(/no published bounty activity yet/i),
 		).toBeInTheDocument();
 	});
 

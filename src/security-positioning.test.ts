@@ -96,21 +96,22 @@ describe("security-first product positioning", () => {
 		}
 	});
 
-	it("documents private review intent with its persisted meanings", () => {
-		const documentation = positioningDocs
-			.map((path) => readFileSync(path, "utf8"))
-			.join("\n");
-
+	it("keeps private review intent labels aligned with persisted meanings", () => {
+		const interestPanel = readFileSync(
+			join(repositoryRoot, "src/features/ideas/idea-interest-panel.tsx"),
+			"utf8",
+		);
 		for (const meaning of [
 			"I would use this",
 			"I would help build it",
-			"I could test a pilot",
+			"I could join an authorized test run",
 			"I have relevant expertise",
 			"Keep me updated",
 		]) {
-			expect(documentation).toMatch(new RegExp(`\\b${meaning}\\b`, "i"));
+			expect(interestPanel).toMatch(new RegExp(`\\b${meaning}\\b`, "i"));
 		}
-		expect(documentation).not.toMatch(
+		expect(interestPanel).toContain('value: "pilot"');
+		expect(interestPanel).not.toMatch(
 			/\b(?:system operators?|control testers?|exercise hosts?|threat-model reviewers?)\b/i,
 		);
 	});

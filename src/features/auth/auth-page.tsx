@@ -90,7 +90,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 					<span className="grid size-10 place-items-center bg-primary text-primary-foreground">
 						<MapPinned className="size-5" aria-hidden="true" />
 					</span>
-					<span className="text-lg">Ideascape</span>
+					<span className="text-lg">IdeaScape</span>
 				</Link>
 
 				{isSignUpComplete ? (
@@ -116,8 +116,8 @@ export function AuthPage({ mode }: AuthPageProps) {
 						</h1>
 						<p className="mt-2 text-sm text-muted-foreground">
 							{isSignIn
-								? "Welcome back. Continue reviewing threats, controls, and evidence."
-								: "Create an operator account to draft and challenge security briefs."}
+								? "Welcome back. Review current security bounties."
+								: "Create an account to publish and review authorized security bounties."}
 						</p>
 
 						<div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -197,7 +197,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 						</form>
 
 						<p className="mt-6 text-center text-sm text-muted-foreground">
-							{isSignIn ? "New to Ideascape? " : "Already have an account? "}
+							{isSignIn ? "New to IdeaScape? " : "Already have an account? "}
 							<Link
 								className="font-medium text-foreground underline underline-offset-4"
 								to={isSignIn ? signUpPath : signInPath}
