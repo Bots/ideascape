@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, LoaderCircle, MapPinned } from "lucide-react";
+import { ArrowLeft, LoaderCircle, ShieldCheck } from "lucide-react";
 import { type FormEvent, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -77,11 +77,11 @@ export function IdeaEditorPage() {
 		return (
 			<EditorShell>
 				<h1 className="text-3xl font-semibold tracking-tight">
-					Sign in to draft a security brief
+					Sign in to publish a security bounty
 				</h1>
 				<p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-					Every security brief is tied to a verified operator profile. Sign in
-					before defining its threat, control boundary, and proof standard.
+					Every security bounty is tied to a system owner profile. Sign in
+					before defining the authorized target, rules of engagement, and proof.
 				</p>
 				<Link className={buttonVariants({ className: "mt-6" })} to="/sign-in">
 					Sign in
@@ -91,7 +91,7 @@ export function IdeaEditorPage() {
 	}
 
 	if (categoriesQuery.isPending || (isEditing && ideaQuery.isPending)) {
-		return <EditorStatus message="Loading security brief editor…" />;
+		return <EditorStatus message="Loading bounty editor…" />;
 	}
 
 	if (categoriesQuery.isError || (isEditing && ideaQuery.isError)) {
@@ -101,7 +101,7 @@ export function IdeaEditorPage() {
 					Editor unavailable
 				</h1>
 				<p className="mt-3 text-muted-foreground" role="alert">
-					Unable to load the security brief editor. Please try again.
+					Unable to load the bounty editor. Try again.
 				</p>
 			</EditorShell>
 		);
@@ -120,17 +120,17 @@ export function IdeaEditorPage() {
 				Back home
 			</Link>
 			<h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-				{isEditing ? "Edit security brief" : "Draft a security brief"}
+				{isEditing ? "Edit bounty" : "Publish a security bounty"}
 			</h1>
 			<p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
-				Define the system, credible abuse path, explicit authority boundary, and
-				evidence required before anyone should trust the control.
+				Name the system owner, authorized target, attack scenario, rules of
+				engagement, and proof required to verify the result.
 			</p>
 
 			<form className="mt-10 space-y-6" onSubmit={handleSubmit}>
 				<div className="space-y-2">
 					<label className="text-sm font-medium" htmlFor="category">
-						Security domain
+						Security area
 					</label>
 					<select
 						className="h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring"
@@ -140,7 +140,7 @@ export function IdeaEditorPage() {
 						required
 					>
 						<option value="" disabled>
-							Choose a security domain
+							Choose a security area
 						</option>
 						{categories.map((category) => (
 							<option key={category.id} value={category.id}>
@@ -198,7 +198,7 @@ export function IdeaEditorPage() {
 				<div className="grid gap-6 border-t border-border pt-6">
 					<div className="space-y-2">
 						<label className="text-sm font-medium" htmlFor="threatScenario">
-							Threat scenario
+							Attack scenario
 						</label>
 						<textarea
 							aria-describedby="threatScenarioHelp"
@@ -220,7 +220,7 @@ export function IdeaEditorPage() {
 
 					<div className="space-y-2">
 						<label className="text-sm font-medium" htmlFor="controlBoundary">
-							Control boundary
+							Rules of engagement
 						</label>
 						<textarea
 							aria-describedby="controlBoundaryHelp"
@@ -236,7 +236,8 @@ export function IdeaEditorPage() {
 							className="text-xs leading-5 text-muted-foreground"
 							id="controlBoundaryHelp"
 						>
-							State what is authorized, excluded, access-scoped, and reversible.
+							Require written permission; state authorized assets, exclusions,
+							data rules, stop condition, and disclosure path.
 						</p>
 					</div>
 
@@ -258,7 +259,8 @@ export function IdeaEditorPage() {
 							className="text-xs leading-5 text-muted-foreground"
 							id="proofRequiredHelp"
 						>
-							Precommit the test, independent check, and stop condition.
+							Precommit the reproduction, independent retest, fix evidence, and
+							closure condition.
 						</p>
 					</div>
 				</div>
@@ -294,9 +296,9 @@ function EditorShell({ children }: { children: React.ReactNode }) {
 					className="mb-10 flex items-center gap-3 font-semibold tracking-tight"
 				>
 					<span className="grid size-10 place-items-center bg-primary text-primary-foreground">
-						<MapPinned className="size-5" aria-hidden="true" />
+						<ShieldCheck className="size-5" aria-hidden="true" />
 					</span>
-					<span className="text-lg">Ideascape</span>
+					<span className="text-lg">IdeaScape · Security bounty editor</span>
 				</Link>
 				{children}
 			</section>

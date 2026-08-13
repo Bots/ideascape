@@ -18,7 +18,7 @@ const recommendationCopy: Record<
 	continue: {
 		label: "Continue threshold met",
 		description:
-			"Participant and suitable-project evidence support preparing the published capped pilot.",
+			"Participant and suitable-project evidence support preparing the published authorized test run.",
 	},
 	revise: {
 		label: "Revise before advancing",
@@ -84,8 +84,8 @@ export function PilotReadinessPanel({ pilotId }: { pilotId: string }) {
 						Evidence against the published thresholds
 					</h2>
 					<p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
-						Aggregate progress for the security brief author and trusted
-						exercise operators. Respondent identities are never included.
+						Aggregate progress for the system owner and authorized test
+						reviewers. Respondent identities are never included.
 					</p>
 				</div>
 				<ClipboardCheck
@@ -131,7 +131,7 @@ export function PilotReadinessPanel({ pilotId }: { pilotId: string }) {
 						{readiness.remainingCapacity} spaces remain
 					</span>
 					<span className="mt-1 block text-muted-foreground">
-						within pilot capacity
+						within test-run capacity
 					</span>
 				</p>
 			</div>

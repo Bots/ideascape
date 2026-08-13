@@ -68,11 +68,11 @@ select is(
   ),
   row(
     'project-time-capsule',
-    'Project Time Capsule pilot',
+    'Time Capsule Disclosure Bounty authorized test run',
     'validating',
     'pending'
   )::text,
-  'Project Time Capsule has one deterministic validating pilot plan'
+  'Time Capsule Disclosure Bounty has one deterministic authorized test run plan'
 );
 select is(
   (

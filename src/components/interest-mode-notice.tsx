@@ -1,4 +1,4 @@
-import { ArrowRight, FlaskConical } from "lucide-react";
+import { ArrowRight, FileCheck2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,7 @@ export function InterestModeNotice({
 }: InterestModeNoticeProps) {
 	return (
 		<div
-			aria-label="Security review mode"
+			aria-label="Authorized bounty rules"
 			className={cn(
 				"relative overflow-hidden border border-primary/30 border-l-4 border-l-primary bg-primary/6 p-4 sm:p-5",
 				className,
@@ -24,15 +24,16 @@ export function InterestModeNotice({
 			<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 				<div className="flex items-start gap-3">
 					<span className="grid size-10 shrink-0 place-items-center border border-primary/35 text-primary">
-						<FlaskConical className="size-5" aria-hidden="true" />
+						<FileCheck2 className="size-5" aria-hidden="true" />
 					</span>
 					<div>
-						<p className="font-semibold tracking-tight">Security review mode</p>
+						<p className="font-semibold tracking-tight">Rules of engagement</p>
 						<p className="mt-1 max-w-3xl text-sm leading-6 text-muted-foreground">
-							These are security briefs, not deployment approvals. Every brief
-							states a threat scenario, control boundary, and proof standard. No
-							payment, production access, or operational authority changes
-							hands.
+							These are authorized security bounties, not invitations to probe
+							random systems. Test only assets you own or have written
+							permission to test. IdeaScape does not handle payouts, grant
+							production access, or transfer operational authority. No
+							authorization, no test.
 						</p>
 					</div>
 				</div>
@@ -44,7 +45,7 @@ export function InterestModeNotice({
 						})}
 						to="/sign-up"
 					>
-						Join the security review
+						Create an account
 						<ArrowRight aria-hidden="true" />
 					</Link>
 				) : null}

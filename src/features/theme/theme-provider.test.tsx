@@ -44,6 +44,11 @@ describe("theme controls", () => {
 		expect(
 			screen.getByRole("button", { name: /switch to light mode/i }),
 		).toBeInTheDocument();
+		expect(document.documentElement.style.colorScheme).toBe("dark");
+		expect(document.querySelector('meta[name="theme-color"]')).toHaveAttribute(
+			"content",
+			"#050505",
+		);
 	});
 
 	it("toggles and persists the visitor theme", async () => {
@@ -58,7 +63,18 @@ describe("theme controls", () => {
 		expect(window.localStorage.getItem("ideascape.theme")).toBe("dark");
 		expect(document.querySelector('meta[name="theme-color"]')).toHaveAttribute(
 			"content",
-			"#000000",
+			"#050505",
+		);
+	});
+
+	it("reports the bone light canvas when light mode is active", () => {
+		renderTheme();
+
+		expect(document.documentElement).not.toHaveClass("dark");
+		expect(document.documentElement.style.colorScheme).toBe("light");
+		expect(document.querySelector('meta[name="theme-color"]')).toHaveAttribute(
+			"content",
+			"#f2efe6",
 		);
 	});
 

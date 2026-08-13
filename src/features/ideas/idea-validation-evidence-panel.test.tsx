@@ -60,11 +60,11 @@ describe("IdeaValidationEvidencePanel", () => {
 
 		expect(getIdeaValidationSummary).not.toHaveBeenCalled();
 		expect(
-			screen.queryByText(/private security evidence/i),
+			screen.queryByText(/private security bounty evidence/i),
 		).not.toBeInTheDocument();
 	});
 
-	it("shows aggregate answer totals only to the security brief author", async () => {
+	it("shows aggregate answer totals only to the bounty author", async () => {
 		vi.mocked(useAuth).mockReturnValue({
 			user: { id: creatorId } as ReturnType<typeof useAuth>["user"],
 			isLoading: false,
@@ -72,7 +72,9 @@ describe("IdeaValidationEvidencePanel", () => {
 		renderPanel();
 
 		expect(
-			await screen.findByRole("region", { name: /private security evidence/i }),
+			await screen.findByRole("region", {
+				name: /private security bounty evidence/i,
+			}),
 		).toBeInTheDocument();
 		expect(screen.getByText("5 total responses")).toBeInTheDocument();
 		expect(screen.getByText("3 responses")).toBeInTheDocument();
@@ -97,7 +99,7 @@ describe("IdeaValidationEvidencePanel", () => {
 		renderPanel();
 
 		expect(
-			await screen.findByText(/no security review responses yet/i),
+			await screen.findByText(/no readiness responses yet/i),
 		).toBeInTheDocument();
 	});
 
@@ -112,7 +114,7 @@ describe("IdeaValidationEvidencePanel", () => {
 		renderPanel();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			/private security evidence is unavailable right now/i,
+			/private security bounty evidence is unavailable right now/i,
 		);
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
 	});

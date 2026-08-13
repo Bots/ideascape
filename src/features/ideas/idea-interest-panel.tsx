@@ -23,7 +23,7 @@ const intentOptions: ReadonlyArray<{
 }> = [
 	{ value: "use", label: "I would use this" },
 	{ value: "build", label: "I would help build it" },
-	{ value: "pilot", label: "I could test a pilot" },
+	{ value: "pilot", label: "I could join an authorized test run" },
 	{ value: "expertise", label: "I have relevant expertise" },
 	{ value: "updates", label: "Keep me updated" },
 ];
@@ -88,7 +88,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 	const summary = summaryQuery.data;
 	const isPending = isAuthLoading || summaryQuery.isPending;
 	const countLabel = summary
-		? `${summary.interestCount} validation ${summary.interestCount === 1 ? "signal" : "signals"}`
+		? `${summary.interestCount} readiness ${summary.interestCount === 1 ? "signal" : "signals"}`
 		: "";
 
 	return (
@@ -100,18 +100,17 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-signal">
 						<ShieldCheck className="size-4" aria-hidden="true" />
-						Security brief interest
+						Private readiness signal
 					</p>
 					<h2
 						className="mt-3 text-3xl font-light tracking-[-0.025em] sm:text-4xl"
 						id="idea-interest-heading"
 					>
-						How are you interested in this security brief?
+						How are you interested in this security bounty?
 					</h2>
 					<p className="mt-3 max-w-2xl leading-7 text-neutral-300">
-						Choose the original interest statement that fits you. Your choice
-						does not claim security expertise and grants no access, payment,
-						deployment authority, or commitment.
+						It grants no access, payout, deployment authority, or commitment,
+						and it does not claim security expertise or accept the bounty.
 					</p>
 				</div>
 
@@ -125,14 +124,13 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 								className="size-4 animate-spin"
 								aria-hidden="true"
 							/>
-							Loading validation signals…
+							Loading readiness signals…
 						</p>
 					) : null}
 
 					{summaryQuery.isError ? (
 						<p className="text-sm text-neutral-200" role="alert">
-							Validation signals are unavailable right now. Please try again
-							later.
+							Readiness signals are unavailable right now. Try again later.
 						</p>
 					) : null}
 
@@ -151,8 +149,8 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 											Choose your private interest
 										</legend>
 										<p className="mt-1 text-xs leading-5 text-neutral-400">
-											Your choice is private. Only the total validation count is
-											public.
+											Your choice is private. Only the total readiness signal
+											count is public.
 										</p>
 										<div className="mt-3 grid gap-2 sm:grid-cols-2">
 											{intentOptions.map((option) => {
@@ -203,7 +201,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 											type="button"
 											variant="outline"
 										>
-											Remove validation signal
+											Remove readiness signal
 										</Button>
 									) : null}
 								</div>
@@ -224,7 +222,7 @@ export function IdeaInterestPanel({ ideaId }: { ideaId: string }) {
 
 					{interestMutation.isError ? (
 						<p className="mt-3 text-sm text-neutral-200" role="alert">
-							We could not update your validation signal. Please try again.
+							We could not update your readiness signal. Try again.
 						</p>
 					) : null}
 				</div>

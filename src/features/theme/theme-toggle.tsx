@@ -10,7 +10,7 @@ export function ThemeToggle() {
 	return (
 		<Button
 			aria-label={actionLabel}
-			className="fixed bottom-5 right-5 z-50 size-11 rounded-sm border-primary/35 bg-card text-foreground hover:border-primary hover:bg-muted sm:bottom-7 sm:right-7"
+			className="fixed bottom-7 right-7 z-50 size-11 rounded-sm border-primary/35 bg-card text-foreground hover:border-primary hover:bg-muted max-sm:static max-sm:mx-auto max-sm:my-5 max-sm:size-10"
 			onClick={toggleTheme}
 			size="icon-lg"
 			title={actionLabel}

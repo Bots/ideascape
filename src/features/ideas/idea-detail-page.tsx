@@ -11,6 +11,7 @@ import { Link, useParams } from "react-router-dom";
 import { InterestModeNotice } from "@/components/interest-mode-notice";
 import { SiteHeader } from "@/components/site-header";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
 	getPublishedIdea,
 	type IdeaMedia,
@@ -22,12 +23,12 @@ import { IdeaValidationEvidencePanel } from "@/features/ideas/idea-validation-ev
 import { IdeaValidationPanel } from "@/features/ideas/idea-validation-panel";
 
 const statusLabels: Record<PublishedIdeaStatus, string> = {
-	published: "Security brief",
-	funding: "Control review",
-	funded: "Pilot approved",
-	in_progress: "Exercise active",
-	completed: "Evidence published",
-	cancelled: "Closed",
+	published: "Bounty open",
+	funding: "Rules under review",
+	funded: "Test run approved",
+	in_progress: "Authorized test active",
+	completed: "Results published",
+	cancelled: "Bounty closed",
 };
 
 function isSafeMediaUrl(value: string): boolean {
@@ -44,7 +45,7 @@ function IdeaMediaItem({ media }: { media: IdeaMedia }) {
 		return null;
 	}
 
-	const accessibleName = media.alt_text || "Security brief media";
+	const accessibleName = media.alt_text || "Authorized bounty media";
 
 	if (media.kind === "video") {
 		return (
@@ -88,12 +89,12 @@ function IdeaSecurityCase({
 }) {
 	const claims = [
 		{
-			label: "Threat scenario",
+			label: "Attack scenario",
 			value: threatScenario,
 			icon: TriangleAlert,
 		},
 		{
-			label: "Control boundary",
+			label: "Rules of engagement",
 			value: controlBoundary,
 			icon: ShieldCheck,
 		},
@@ -113,19 +114,19 @@ function IdeaSecurityCase({
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-signal">
 						<ShieldCheck className="size-4" aria-hidden="true" />
-						Security case
+						Security bounty
 					</p>
 					<h2
 						className="mt-3 text-3xl font-light tracking-[-0.025em] sm:text-4xl"
 						id="idea-security-case"
 					>
-						Security case: what must be true before this expands
+						Scope the test. Verify the result.
 					</h2>
 				</div>
 				<p className="mt-4 max-w-md text-sm leading-6 text-neutral-300 sm:mt-0">
-					A proposed control is not a guarantee. This brief names the failure
-					path, the operating boundary, and the evidence needed to earn a larger
-					test.
+					A security bounty is not permission by itself. This listing names the
+					attack scenario, rules of engagement, and proof required before an
+					authorized test run.
 				</p>
 			</div>
 			<div className="grid gap-px bg-neutral-700 lg:grid-cols-3">
@@ -168,7 +169,7 @@ export function IdeaDetailPage() {
 
 	return (
 		<>
-			<SiteHeader exploreLabel="Back to security briefs" />
+			<SiteHeader exploreLabel="Back to security bounties" />
 			<main className="min-h-screen overflow-hidden text-foreground">
 				<div className="site-shell min-h-screen">
 					{ideaQuery.isPending ? (
@@ -180,7 +181,7 @@ export function IdeaDetailPage() {
 								className="size-5 animate-spin text-primary"
 								aria-hidden="true"
 							/>
-							Loading security brief…
+							Loading security bounty…
 						</div>
 					) : null}
 
@@ -190,7 +191,7 @@ export function IdeaDetailPage() {
 								Something went wrong
 							</h1>
 							<p className="mt-4 text-destructive" role="alert">
-								Unable to load this security brief. Please try again.
+								Unable to load this bounty. Try again.
 							</p>
 						</section>
 					) : null}
@@ -201,17 +202,17 @@ export function IdeaDetailPage() {
 								<Sparkles className="size-6" aria-hidden="true" />
 							</span>
 							<h1 className="mt-5 text-3xl font-semibold tracking-tight">
-								Security brief not found
+								Bounty not found
 							</h1>
 							<p className="mt-4 leading-7 text-muted-foreground">
-								This security brief may be private, unpublished, or no longer
+								This bounty may be private, unpublished, closed, or no longer
 								available.
 							</p>
 							<Link
 								className={buttonVariants({ className: "mt-6 h-10 px-4" })}
 								to="/ideas"
 							>
-								Review security briefs
+								Return to security bounties
 							</Link>
 						</section>
 					) : null}
@@ -237,7 +238,7 @@ export function IdeaDetailPage() {
 									{ideaQuery.data.summary}
 								</p>
 								<p className="mt-8 inline-flex items-center gap-2 border-l-2 border-signal pl-3 text-sm text-muted-foreground">
-									Brief owner{" "}
+									System owner{" "}
 									<Link
 										className="font-semibold text-foreground underline decoration-primary/45 underline-offset-4"
 										to={`/profiles/${ideaQuery.data.creator.username}`}
@@ -251,7 +252,7 @@ export function IdeaDetailPage() {
 							{ideaQuery.data.media.length > 0 ? (
 								<section
 									className="mt-12 grid gap-6"
-									aria-label="Security brief media"
+									aria-label="Authorized bounty media"
 								>
 									{ideaQuery.data.media.map((media) => (
 										<IdeaMediaItem key={media.id} media={media} />
@@ -271,7 +272,7 @@ export function IdeaDetailPage() {
 										className="text-2xl font-semibold tracking-tight"
 										id="about-idea"
 									>
-										System description
+										Bounty scope
 									</h2>
 								</div>
 								<p className="mt-7 max-w-3xl whitespace-pre-wrap text-lg leading-8 text-muted-foreground">
@@ -296,22 +297,22 @@ export function IdeaDetailPage() {
 								<section className="mt-8 border border-primary/25 border-l-4 border-l-primary bg-primary/7 p-6 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-8">
 									<div>
 										<p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
-											Evidence before commitment
+											Authorized test run
 										</p>
 										<h2 className="mt-2 text-2xl font-semibold">
-											See the precommitted pilot rules
+											Review the test-run plan
 										</h2>
 										<p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-											Review the evidence window, capacity, safety boundaries,
-											and continue, revise, or archive thresholds before intake
-											opens.
+											Review the evidence window, authorized assets, stop
+											conditions, and continue, revise, or close thresholds
+											before testing begins.
 										</p>
 									</div>
 									<Link
 										className={buttonVariants({ className: "mt-5 sm:mt-0" })}
 										to="/pilots/project-time-capsule"
 									>
-										View pilot plan
+										View test-run plan
 										<ArrowUpRight aria-hidden="true" />
 									</Link>
 								</section>
@@ -325,13 +326,13 @@ export function IdeaDetailPage() {
 									<div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
 										<div>
 											<p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
-												Continue the review
+												Related security bounties
 											</p>
 											<h2
 												className="mt-2 text-3xl font-semibold tracking-tight"
 												id="related-concepts-heading"
 											>
-												More {ideaQuery.data.category.name} security briefs
+												More {ideaQuery.data.category.name} bounties
 											</h2>
 										</div>
 										<Link
@@ -341,12 +342,19 @@ export function IdeaDetailPage() {
 											})}
 											to={`/ideas?category=${encodeURIComponent(ideaQuery.data.category.slug)}`}
 										>
-											Review all {ideaQuery.data.category.name} briefs
+											View all {ideaQuery.data.category.name} bounties
 											<ArrowUpRight aria-hidden="true" />
 										</Link>
 									</div>
 
-									<div className="mt-6 grid gap-px border border-border bg-border md:grid-cols-3">
+									<div
+										className={cn(
+											"mt-6 grid gap-px border border-border bg-border",
+											relatedIdeas.length === 2
+												? "md:grid-cols-2"
+												: "md:grid-cols-3",
+										)}
+									>
 										{relatedIdeas.map((relatedIdea) => {
 											const cover = relatedIdea.media.find(
 												(media) =>

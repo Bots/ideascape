@@ -85,7 +85,7 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery();
 
 		expect(screen.getByRole("status")).toHaveTextContent(
-			/loading security briefs/i,
+			/loading security bounties/i,
 		);
 	});
 
@@ -95,7 +95,9 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery();
 
 		expect(
-			await screen.findByRole("heading", { name: /review security briefs/i }),
+			await screen.findByRole("heading", {
+				name: /authorized security bounties/i,
+			}),
 		).toBeInTheDocument();
 		expect(
 			screen.queryByRole("link", { name: /^explore ideas$/i }),
@@ -108,14 +110,14 @@ describe("IdeaDiscoveryPage", () => {
 		expect(screen.getAllByText("Software & Systems").length).toBeGreaterThan(0);
 		expect(
 			screen.getByText(
-				/every brief names a threat scenario, control boundary, and proof required/i,
+				/every bounty names the attack scenario, rules of engagement, and proof required/i,
 			),
 		).toBeInTheDocument();
-		expect(screen.getByText("Security brief")).toBeInTheDocument();
-		expect(screen.getByText("Security focus")).toBeInTheDocument();
-		expect(screen.getByText(idea.threat_scenario)).toBeInTheDocument();
-		expect(screen.getByText("1 security brief")).toBeInTheDocument();
-		expect(screen.getByText("4 validation signals")).toBeInTheDocument();
+		expect(screen.getByText("Bounty open")).toBeInTheDocument();
+		expect(screen.queryByText("Attack scenario")).not.toBeInTheDocument();
+		expect(screen.queryByText(idea.threat_scenario)).not.toBeInTheDocument();
+		expect(screen.getByText("1 bounty")).toBeInTheDocument();
+		expect(screen.getByText("4 readiness signals")).toBeInTheDocument();
 		expect(
 			screen.getByRole("img", { name: /solar desalination prototype/i }),
 		).toHaveAttribute("src", idea.media[0].url);
@@ -124,8 +126,8 @@ describe("IdeaDiscoveryPage", () => {
 			`/profiles/${idea.creator.username}`,
 		);
 		expect(
-			screen.getByRole("note", { name: /security review mode/i }),
-		).toHaveTextContent(/security briefs, not deployment approvals/i);
+			screen.getByRole("note", { name: /authorized bounty rules/i }),
+		).toHaveTextContent(/does not handle payouts/i);
 	});
 
 	it("does not claim a security case for concepts without all three fields", async () => {
@@ -143,7 +145,8 @@ describe("IdeaDiscoveryPage", () => {
 		expect(
 			await screen.findByRole("link", { name: `View ${idea.title}` }),
 		).toBeInTheDocument();
-		expect(screen.queryByText("Security focus")).not.toBeInTheDocument();
+		expect(screen.queryByText("Attack scenario")).not.toBeInTheDocument();
+		expect(screen.queryByText(idea.threat_scenario)).not.toBeInTheDocument();
 	});
 
 	it("restores a category filter from the URL and only shows matching concepts", async () => {
@@ -152,7 +155,7 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery("/ideas?category=technology");
 
 		expect(
-			await screen.findByRole("combobox", { name: /security domain/i }),
+			await screen.findByRole("combobox", { name: /security area/i }),
 		).toHaveValue("technology");
 		expect(
 			screen.getByRole("link", { name: `View ${idea.title}` }),
@@ -160,9 +163,7 @@ describe("IdeaDiscoveryPage", () => {
 		expect(
 			screen.queryByRole("link", { name: `View ${healthIdea.title}` }),
 		).not.toBeInTheDocument();
-		expect(
-			screen.getByText("Showing 1 of 2 security briefs"),
-		).toBeInTheDocument();
+		expect(screen.getByText("Showing 1 of 2 bounties")).toBeInTheDocument();
 	});
 
 	it("restores search from the URL and offers a clear path when no concepts match", async () => {
@@ -172,7 +173,7 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery("/ideas?q=heat");
 
 		const search = await screen.findByRole("searchbox", {
-			name: /search security briefs/i,
+			name: /search security bounties/i,
 		});
 		expect(search).toHaveValue("heat");
 		expect(
@@ -187,7 +188,7 @@ describe("IdeaDiscoveryPage", () => {
 
 		expect(
 			screen.getByRole("heading", {
-				name: /no security briefs match these filters/i,
+				name: /no security bounties match these filters/i,
 			}),
 		).toBeInTheDocument();
 		await user.click(screen.getByRole("button", { name: /clear filters/i }));
@@ -201,7 +202,7 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery();
 
 		expect(
-			await screen.findByText("Be first to add a validation signal"),
+			await screen.findByText("Be first to leave a readiness signal"),
 		).toBeInTheDocument();
 		expect(screen.queryByText(/fund now/i)).not.toBeInTheDocument();
 	});
@@ -213,11 +214,11 @@ describe("IdeaDiscoveryPage", () => {
 
 		expect(
 			await screen.findByRole("heading", {
-				name: /the first security briefs are taking shape/i,
+				name: /no security bounties yet/i,
 			}),
 		).toBeInTheDocument();
 		const startIdeaLinks = screen.getAllByRole("link", {
-			name: /draft a security brief/i,
+			name: /publish a bounty/i,
 		});
 		expect(startIdeaLinks).toHaveLength(2);
 		for (const link of startIdeaLinks) {
@@ -233,9 +234,9 @@ describe("IdeaDiscoveryPage", () => {
 		renderDiscovery();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			"Unable to load security briefs. Please try again.",
+			"Unable to load security bounties. Try again.",
 		);
-		expect(screen.getByText("Catalog unavailable")).toBeInTheDocument();
+		expect(screen.getByText("Listings unavailable")).toBeInTheDocument();
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
 	});
 
@@ -249,12 +250,12 @@ describe("IdeaDiscoveryPage", () => {
 		});
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			"Unable to refresh security briefs. Showing the latest available catalog.",
+			"Unable to refresh security bounties. Showing the latest available listings.",
 		);
-		expect(screen.getByText("1 security brief")).toBeInTheDocument();
+		expect(screen.getByText("1 bounty")).toBeInTheDocument();
 		expect(
 			screen.getByRole("link", { name: `View ${idea.title}` }),
 		).toBeInTheDocument();
-		expect(screen.queryByText("Catalog unavailable")).not.toBeInTheDocument();
+		expect(screen.queryByText("Listings unavailable")).not.toBeInTheDocument();
 	});
 });

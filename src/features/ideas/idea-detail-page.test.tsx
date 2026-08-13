@@ -106,7 +106,7 @@ describe("IdeaDetailPage", () => {
 		renderDetail();
 
 		expect(screen.getByRole("status")).toHaveTextContent(
-			/loading security brief/i,
+			/loading security bounty/i,
 		);
 	});
 
@@ -120,29 +120,30 @@ describe("IdeaDetailPage", () => {
 		).toBeInTheDocument();
 		expect(screen.getByText(idea.summary)).toBeInTheDocument();
 		expect(screen.getByText(idea.description)).toBeInTheDocument();
-		const securityCase = screen.getByRole("region", {
-			name: /^security case: what must be true before this expands$/i,
-		});
+		const securityCase = screen
+			.getByRole("heading", { name: /scope the test. verify the result/i })
+			.closest("section");
+		expect(securityCase).not.toBeNull();
 		expect(
-			within(securityCase).getByText("Threat scenario"),
+			within(securityCase as HTMLElement).getByText("Attack scenario"),
 		).toBeInTheDocument();
 		expect(
-			within(securityCase).getByText(idea.threat_scenario),
+			within(securityCase as HTMLElement).getByText(idea.threat_scenario),
 		).toBeInTheDocument();
 		expect(
-			within(securityCase).getByText("Control boundary"),
+			within(securityCase as HTMLElement).getByText("Rules of engagement"),
 		).toBeInTheDocument();
 		expect(
-			within(securityCase).getByText(idea.control_boundary),
+			within(securityCase as HTMLElement).getByText(idea.control_boundary),
 		).toBeInTheDocument();
 		expect(
-			within(securityCase).getByText("Proof required"),
+			within(securityCase as HTMLElement).getByText("Proof required"),
 		).toBeInTheDocument();
 		expect(
-			within(securityCase).getByText(idea.proof_required),
+			within(securityCase as HTMLElement).getByText(idea.proof_required),
 		).toBeInTheDocument();
 		expect(screen.getByText("Software & Systems")).toBeInTheDocument();
-		expect(screen.getByText("Security brief")).toBeInTheDocument();
+		expect(screen.getByText("Bounty open")).toBeInTheDocument();
 		expect(screen.getByRole("link", { name: /idea creator/i })).toHaveAttribute(
 			"href",
 			`/profiles/${idea.creator.username}`,
@@ -151,17 +152,17 @@ describe("IdeaDetailPage", () => {
 			screen.getByRole("img", { name: /solar desalination prototype/i }),
 		).toHaveAttribute("src", idea.media[0].url);
 		expect(
-			screen.getByRole("link", { name: /back to security briefs/i }),
+			screen.getByRole("link", { name: /back to security bounties/i }),
 		).toHaveAttribute("href", "/ideas");
 		expect(
-			screen.getByRole("note", { name: /security review mode/i }),
-		).toHaveTextContent(/security briefs, not deployment approvals/i);
+			screen.getByRole("note", { name: /authorized bounty rules/i }),
+		).toHaveTextContent(/no authorization, no test/i);
 		expect(
 			await screen.findByRole("heading", {
-				name: /how are you interested in this security brief/i,
+				name: /how are you interested in this security bounty/i,
 			}),
 		).toBeInTheDocument();
-		expect(screen.getByText(/3 validation signals/i)).toBeInTheDocument();
+		expect(screen.getByText(/3 readiness signals/i)).toBeInTheDocument();
 	});
 
 	it("omits the security case when a creator has not defined one", async () => {
@@ -178,8 +179,8 @@ describe("IdeaDetailPage", () => {
 			await screen.findByRole("heading", { name: idea.title }),
 		).toBeInTheDocument();
 		expect(
-			screen.queryByRole("region", {
-				name: /^security case: what must be true before this expands$/i,
+			screen.queryByRole("heading", {
+				name: /scope the test. verify the result/i,
 			}),
 		).not.toBeInTheDocument();
 	});
@@ -210,14 +211,14 @@ describe("IdeaDetailPage", () => {
 		renderDetail();
 
 		const related = await screen.findByRole("region", {
-			name: /more software & systems security briefs/i,
+			name: /more software & systems bounties/i,
 		});
 		expect(
 			within(related).getByRole("link", { name: /view private ai workbench/i }),
 		).toHaveAttribute("href", "/ideas/private-ai-workbench");
 		expect(
 			within(related).getByRole("link", {
-				name: /review all software & systems briefs/i,
+				name: /view all software & systems bounties/i,
 			}),
 		).toHaveAttribute("href", "/ideas?category=technology");
 		expect(
@@ -256,7 +257,7 @@ describe("IdeaDetailPage", () => {
 			}),
 		).toBeInTheDocument();
 		expect(
-			screen.getByRole("link", { name: /view pilot plan/i }),
+			screen.getByRole("link", { name: /view test-run plan/i }),
 		).toHaveAttribute("href", "/pilots/project-time-capsule");
 	});
 
@@ -305,10 +306,10 @@ describe("IdeaDetailPage", () => {
 		renderDetail("missing-idea");
 
 		expect(
-			await screen.findByRole("heading", { name: /security brief not found/i }),
+			await screen.findByRole("heading", { name: /bounty not found/i }),
 		).toBeInTheDocument();
 		expect(
-			screen.getByRole("link", { name: /review security briefs/i }),
+			screen.getByRole("link", { name: /return to security bounties/i }),
 		).toHaveAttribute("href", "/ideas");
 	});
 
@@ -320,7 +321,7 @@ describe("IdeaDetailPage", () => {
 		renderDetail();
 
 		expect(await screen.findByRole("alert")).toHaveTextContent(
-			"Unable to load this security brief. Please try again.",
+			"Unable to load this bounty. Try again.",
 		);
 		expect(screen.getByRole("alert")).not.toHaveTextContent(/sensitive/i);
 	});

@@ -133,6 +133,34 @@ describe("idea validation service", () => {
 		});
 	});
 
+	it("rejects mixed historical and active evidence instead of combining meanings", async () => {
+		rpc.mockResolvedValueOnce({
+			data: [
+				{
+					question_id: questionId,
+					prompt: "Historical pilot question",
+					option_id: optionId,
+					option_value: "historical-answer",
+					option_label: "Historical answer",
+					response_count: 3,
+				},
+				{
+					question_id: "00000000-0000-4000-8000-000000000601",
+					prompt: "Is this bounty ready for an authorized test run?",
+					option_id: "00000000-0000-4000-8000-000000000611",
+					option_value: "ready-for-authorized-test",
+					option_label: "Ready for an authorized test run",
+					response_count: 2,
+				},
+			],
+			error: null,
+		});
+
+		await expect(getIdeaValidationSummary(ideaId)).rejects.toThrow(
+			"multiple validation questions",
+		);
+	});
+
 	it("saves one private response idempotently for the current member", async () => {
 		await expect(
 			saveIdeaValidationResponse(questionId, optionId, profileId),

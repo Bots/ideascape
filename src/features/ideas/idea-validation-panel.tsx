@@ -82,8 +82,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 				className="mt-12 border border-destructive/20 border-l-4 border-l-destructive bg-destructive/5 p-4 text-sm text-destructive"
 				role="alert"
 			>
-				The security review question is unavailable right now. Please try again
-				later.
+				The bounty readiness question is unavailable right now. Try again later.
 			</p>
 		);
 	}
@@ -102,7 +101,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 				<div>
 					<p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
 						<ClipboardCheck className="size-4" aria-hidden="true" />
-						Security exercise readiness
+						Authorized test-run readiness
 					</p>
 					<h2
 						className="mt-3 text-3xl font-light tracking-[-0.025em] sm:text-4xl"
@@ -111,9 +110,9 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 						{question.prompt}
 					</h2>
 					<p className="mt-4 max-w-xl leading-7 text-muted-foreground">
-						Choose the closest fit. This tests whether a bounded exercise has
-						the control boundary, proof threshold, and authorized operators to
-						proceed.
+						Choose the closest fit. This asks whether the bounty has clear rules
+						of engagement, a reproducible proof threshold, and an authorized
+						test environment.
 					</p>
 					<p className="mt-5 flex items-start gap-2 text-sm leading-6 text-muted-foreground">
 						<LockKeyhole
@@ -121,8 +120,8 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 							aria-hidden="true"
 						/>
 						<span>
-							Your choice stays private. The security brief author sees
-							aggregate totals only.
+							Your choice stays private. The system owner sees aggregate totals
+							only.
 						</span>
 					</p>
 				</div>
@@ -226,7 +225,7 @@ export function IdeaValidationPanel({ ideaId }: { ideaId: string }) {
 
 					{responseMutation.isError ? (
 						<p className="mt-3 text-sm text-destructive" role="alert">
-							We could not save your pilot answer. Please try again.
+							We could not save your bounty answer. Try again.
 						</p>
 					) : null}
 				</div>

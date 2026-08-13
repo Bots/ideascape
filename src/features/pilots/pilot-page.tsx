@@ -21,12 +21,12 @@ import {
 } from "@/features/pilots/pilot-service";
 
 const statusLabels: Record<PilotStatus, string> = {
-	validating: "Security validation underway",
-	recruiting: "Recruiting a bounded exercise",
-	active: "Security exercise active",
-	completed: "Security exercise completed",
-	paused: "Security exercise paused",
-	archived: "Security exercise archived",
+	validating: "Test-run readiness under review",
+	recruiting: "Recruiting authorized reviewers",
+	active: "Authorized test run active",
+	completed: "Authorized test run completed",
+	paused: "Authorized test run paused",
+	archived: "Authorized test run archived",
 };
 
 export function PilotPage() {
@@ -40,13 +40,13 @@ export function PilotPage() {
 	});
 
 	if (pilotQuery.isPending || isAuthLoading) {
-		return <PilotStatusPage message="Loading pilot plan…" />;
+		return <PilotStatusPage message="Loading authorized test-run plan…" />;
 	}
 
 	if (pilotQuery.isError) {
 		return (
 			<PilotStatusPage
-				message="Unable to load the pilot plan. Please try again later."
+				message="Unable to load the authorized test-run plan. Try again later."
 				isError
 			/>
 		);
@@ -56,8 +56,8 @@ export function PilotPage() {
 	if (!pilot) {
 		return (
 			<PilotStatusPage
-				heading="Pilot plan not found"
-				message="This pilot plan is unavailable or has not been published."
+				heading="Test-run plan not found"
+				message="This authorized test-run plan is unavailable or has not been published."
 			/>
 		);
 	}
@@ -68,7 +68,7 @@ export function PilotPage() {
 	return (
 		<>
 			<SiteHeader
-				exploreLabel="Security brief"
+				exploreLabel="Security bounty"
 				exploreTo="/ideas/project-time-capsule"
 			/>
 			<main className="min-h-screen overflow-hidden text-foreground">
@@ -77,15 +77,15 @@ export function PilotPage() {
 						<div className="max-w-4xl">
 							<p className="signal-label inline-flex items-center gap-2 border-l-2 border-signal pl-3">
 								<FlaskConical className="size-4" aria-hidden="true" />
-								Evidence before commitment
+								Authorized test run · plan 001
 							</p>
 							<h1 className="mt-6 text-balance text-5xl font-light leading-[1] tracking-[-0.035em] sm:text-7xl">
 								{pilot.title}
 							</h1>
 							<p className="mt-7 max-w-3xl text-xl leading-9 text-muted-foreground">
-								Test whether authorized software projects can be preserved and
-								rebuilt reproducibly on a clean machine—before treating the
-								control as an operating program.
+								Try to expose secrets, private history, unlicensed material, or
+								unreproducible builds in sponsor-approved archives—then prove
+								the fix on a clean machine.
 							</p>
 							<div className="mt-8 inline-flex items-center gap-2 border-l-2 border-primary pl-3 text-sm font-semibold">
 								<ClipboardCheck
@@ -98,7 +98,7 @@ export function PilotPage() {
 					</section>
 
 					<section
-						aria-label="Pilot evidence targets"
+						aria-label="Authorized test-run evidence targets"
 						className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
 					>
 						<EvidenceTarget
@@ -107,15 +107,15 @@ export function PilotPage() {
 						/>
 						<EvidenceTarget
 							value={String(pilot.signal_goal)}
-							label="validation signals"
+							label="readiness signals"
 						/>
 						<EvidenceTarget
 							value={String(pilot.interview_goal)}
-							label="operator interviews"
+							label="reviewer interviews"
 						/>
 						<EvidenceTarget
 							value={`${pilot.project_capacity}-project`}
-							label="pilot capacity"
+							label="test capacity"
 						/>
 					</section>
 					<PilotReadinessPanel pilotId={pilot.id} />
@@ -125,24 +125,23 @@ export function PilotPage() {
 						className="field-panel mt-12 border-t-4 border-t-primary p-7 sm:p-10"
 					>
 						<p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-							Precommitted evaluation
+							Test-run gates · precommitted
 						</p>
 						<h2
 							className="mt-3 text-4xl font-semibold tracking-[-0.04em]"
 							id="decision-rules-heading"
 						>
-							Decision rules
+							Close, revise, or proceed
 						</h2>
 						<p className="mt-4 max-w-3xl leading-7 text-muted-foreground">
-							The outcome is not decided by enthusiasm alone. These thresholds
-							are published before recruitment so weak evidence cannot be
-							reframed as a success later.
+							A test run does not begin on confidence alone. Thresholds are
+							published before recruitment so the decision is based on evidence.
 						</p>
 						<div className="mt-8 grid gap-4 lg:grid-cols-3">
 							<DecisionCard
 								icon={CheckCircle2}
 								title="Continue"
-								description={`${pilot.continue_participant_threshold} qualified pilot participants and ${pilot.continue_project_threshold} suitable authorized projects support a capped pilot.`}
+								description={`${pilot.continue_participant_threshold} qualified test participants and ${pilot.continue_project_threshold} suitable authorized projects support a capped authorized test run.`}
 							/>
 							<DecisionCard
 								icon={RefreshCcw}
@@ -152,7 +151,7 @@ export function PilotPage() {
 							<DecisionCard
 								icon={Archive}
 								title="Archive"
-								description={`${pilot.archive_signal_ceiling} or fewer meaningful signals remain after deliberate outreach, so the security brief should not absorb more work.`}
+								description={`${pilot.archive_signal_ceiling} or fewer meaningful signals remain after deliberate outreach, so the bounty should close without an authorized test run.`}
 							/>
 						</div>
 					</section>
@@ -167,11 +166,12 @@ export function PilotPage() {
 								className="mt-5 text-3xl font-semibold"
 								id="pilot-boundaries-heading"
 							>
-								Security exercise boundaries
+								Rules of engagement
 							</h2>
 							<p className="mt-4 leading-7 text-white/70">
-								Participant-authorized projects only. No credential bypass,
-								system intrusion, custody, payment, or commitment.
+								Written permission and sponsor-approved projects only. No
+								third-party targets, real credentials, production intrusion,
+								custody, payout, or deployment authority.
 							</p>
 						</div>
 						<div className="field-panel p-7 sm:p-10">
@@ -192,7 +192,8 @@ export function PilotPage() {
 									aria-hidden="true"
 								/>
 								Application details will remain private to the applicant and
-								authorized pilot operators. No payment or commitment.
+								authorized test reviewers. IdeaScape handles no payout or
+								commitment.
 							</p>
 						</div>
 					</section>
@@ -205,14 +206,14 @@ export function PilotPage() {
 								</p>
 								<h2 className="mt-3 text-3xl font-semibold tracking-tight">
 									{pilot.status === "validating"
-										? "Security exercise intake is not open yet"
+										? "Authorized test-run intake is not open yet"
 										: pilot.status === "recruiting"
-											? "Private exercise applications are open"
+											? "Private test-run applications are open"
 											: statusLabels[pilot.status]}
 								</h2>
 								<p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
 									{pilot.status === "validating"
-										? "Ideascape is collecting scoped security-validation signals before inviting exercise applications."
+										? "IdeaScape is collecting private readiness signals before inviting authorized test-run applications."
 										: "One strong, authorized project per applicant. Intake remains capped and reversible."}
 								</p>
 							</div>

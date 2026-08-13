@@ -8,28 +8,28 @@ select is(
     from public.categories
     join (
       values
-        ('arts-culture'::text, 'Provenance & Authenticity'::text),
-        ('community'::text, 'Resilience & Response'::text),
-        ('education'::text, 'Human Risk'::text),
-        ('environment'::text, 'Infrastructure Integrity'::text),
+        ('arts-culture'::text, 'Provenance & Forgery'::text),
+        ('community'::text, 'Coordination & Resilience'::text),
+        ('education'::text, 'Human Attack Surface'::text),
+        ('environment'::text, 'Physical & Sensor Systems'::text),
         ('health'::text, 'Privacy & Safety'::text),
-        ('technology'::text, 'Software & Systems'::text)
+        ('technology'::text, 'Software & Compute'::text)
     ) as expected(slug, name)
       on expected.slug = categories.slug
       and expected.name = categories.name
   ),
   6::bigint,
-  'legacy category identifiers render as six security domains'
+  'legacy category identifiers render as six focused security areas'
 );
 
 select is(
   (
     select count(*)
     from public.categories
-    where description !~* '(security|threat|risk|control|privacy|integrity|resilien|authentic)'
+    where description !~* '(authorized|bount|security|threat|risk|control|privacy|integrity|resilien|authentic)'
   ),
   0::bigint,
-  'every security domain description states its security purpose'
+  'every security-area description states its authorized security purpose'
 );
 
 select is(
