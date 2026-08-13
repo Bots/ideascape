@@ -18,7 +18,7 @@ const recommendationCopy: Record<
 	continue: {
 		label: "Continue threshold met",
 		description:
-			"Participant and suitable-project evidence support preparing the published authorized test run.",
+			"Ready-reviewer and suitable-project evidence support preparing the published authorized test run.",
 	},
 	revise: {
 		label: "Revise before advancing",
@@ -101,7 +101,7 @@ export function PilotReadinessPanel({ pilotId }: { pilotId: string }) {
 				/>
 				<Metric
 					value={readiness.participantResponseCount}
-					label="participant responses"
+					label="ready reviewers"
 				/>
 				<Metric
 					value={readiness.projectResponseCount}
