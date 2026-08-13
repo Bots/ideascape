@@ -1,6 +1,6 @@
-# Ideascape
+# ControlProof
 
-Ideascape is a security-validation lab for pressure-testing early systems before trust, access, or deployment authority expands.
+ControlProof is an authorized security-bounty platform for turning a defined threat and control boundary into reproducible proof before trust, access, or deployment authority expands.
 
 **These are security briefs, not deployment approvals.** Visitors can inspect threat scenarios, control boundaries, and proof standards without signing in. Authenticated accounts can privately choose one unchanged review-intent label: “I would use this,” “I would help build it,” “I could test a pilot,” “I have relevant expertise,” or “Keep me updated.” These historical values describe interest, not a security role or authorization.
 
@@ -121,7 +121,7 @@ npm run supabase:reset
 npm run supabase:stop
 ```
 
-The repository is linked to the hosted Ideascape project (`icvscetnellunorarhvt`). To restore that CLI link on another workstation:
+The repository remains linked to the existing hosted Supabase project (`icvscetnellunorarhvt`). To restore that CLI link on another workstation:
 
 ```bash
 npx supabase login
@@ -141,7 +141,7 @@ For each OAuth provider:
 3. Register the Supabase callback with the provider: `https://<project-ref>.supabase.co/auth/v1/callback`.
 4. Add the deployed app's `/auth/callback` route to Supabase's trusted redirect URLs. For local development, allow both `http://localhost:5173/auth/callback` and `http://127.0.0.1:5173/auth/callback` when needed.
 
-Ideascape validates requested return destinations as safe internal paths before and after OAuth. External, protocol-relative, and backslash-based redirect attempts fall back to `/`.
+ControlProof validates requested return destinations as safe internal paths before and after OAuth. External, protocol-relative, and backslash-based redirect attempts fall back to `/`.
 
 ## Data and privacy model
 
@@ -161,7 +161,7 @@ The database models security domains, author-owned briefs, ordered media, explic
 
 ## Landing-page product story
 
-The landing page presents Ideascape as a security-validation lab. It introduces six security domains, explains the threat-to-evidence flow, offers concrete ways to challenge a brief, and asks four proof questions before any control advances: what can fail, what authority is excluded, how the control fails safely, and what evidence earns trust.
+The landing page presents ControlProof as an authorized security-bounty platform. It introduces six security domains, explains the threat-to-evidence flow, offers concrete ways to challenge a bounty, and asks four proof questions before any control advances: what can fail, what authority is excluded, how the control fails safely, and what evidence earns trust.
 
 The current experience accepts no payments and grants no operational authority. Validation intent is a reversible signal, not a vote, approval, or permission grant.
 

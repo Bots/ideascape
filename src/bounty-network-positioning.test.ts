@@ -199,8 +199,9 @@ describe("focused authorized security bounty platform", () => {
 		expect(read("src/components/interest-mode-notice.tsx")).not.toMatch(
 			/\bCrosshair\b/,
 		);
-		expect(read("src/components/site-header.tsx")).toContain("IdeaScape");
-		expect(read("src/components/site-header.tsx")).not.toContain(">Ideascape<");
+		expect(read("src/components/site-header.tsx")).toContain("ControlProof");
+		expect(read("src/components/site-header.tsx")).not.toContain("IdeaScape");
+		expect(visibleCopy).not.toMatch(/IdeaScape|Ideascape/);
 	});
 
 	it("uses the same security-bounty vocabulary on every major surface", () => {
