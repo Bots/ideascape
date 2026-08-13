@@ -59,6 +59,19 @@ update public.idea_validation_options
 set value = 'ready-in-range'
 where id = '00000000-0000-4000-8000-000000000611';
 
+insert into public.idea_validation_responses (question_id, option_id, profile_id)
+values
+  (
+    '00000000-0000-4000-8000-000000000401',
+    '00000000-0000-4000-8000-000000000411',
+    '00000000-0000-4000-8000-000000000101'
+  ),
+  (
+    '00000000-0000-4000-8000-000000000601',
+    '00000000-0000-4000-8000-000000000611',
+    '00000000-0000-4000-8000-000000000101'
+  );
+
 create temporary table bounty_upgrade_fixture_before as
 select
   ideas.updated_at,
@@ -70,6 +83,8 @@ where ideas.id = '88888888-8888-4888-8888-888888888811'
 
 \ir ../migrations/20260811193000_recast_as_authorized_bounty_network.sql
 \ir ../migrations/20260811193000_recast_as_authorized_bounty_network.sql
+\ir ../migrations/20260813203034_fix_pilot_readiness_generation_counts.sql
+\ir ../migrations/20260813203034_fix_pilot_readiness_generation_counts.sql
 
 do $$
 begin
@@ -151,6 +166,19 @@ begin
     from public.get_idea_validation_summary('00000000-0000-4000-8000-000000000218')
   ) <> 0 then
     raise exception 'unauthenticated validation summary unexpectedly returned rows';
+  end if;
+
+  perform set_config(
+    'request.jwt.claim.sub',
+    '00000000-0000-4000-8000-000000000101',
+    true
+  );
+
+  if (
+    select row(participant_response_count, project_response_count)::text
+    from public.get_pilot_readiness_summary('00000000-0000-4000-8000-000000000501')
+  ) is distinct from row(1::bigint, 1::bigint)::text then
+    raise exception 'authorized bounty migration mixed historical and active pilot-readiness responses';
   end if;
 end
 $$;

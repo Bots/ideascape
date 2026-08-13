@@ -141,12 +141,12 @@ export function PilotPage() {
 							<DecisionCard
 								icon={CheckCircle2}
 								title="Continue"
-								description={`${pilot.continue_participant_threshold} qualified test participants and ${pilot.continue_project_threshold} suitable authorized projects support a capped authorized test run.`}
+								description={`${pilot.continue_participant_threshold} reviewers ready for an authorized test and ${pilot.continue_project_threshold} suitable authorized projects support a capped authorized test run.`}
 							/>
 							<DecisionCard
 								icon={RefreshCcw}
 								title="Revise"
-								description={`Meaningful interest exists, but fewer than ${pilot.continue_participant_threshold} people are prepared to participate or the proposed projects do not fit the safety boundary.`}
+								description={`Meaningful interest exists, but fewer than ${pilot.continue_participant_threshold} reviewers are ready for an authorized test or the proposed projects do not fit the safety boundary.`}
 							/>
 							<DecisionCard
 								icon={Archive}

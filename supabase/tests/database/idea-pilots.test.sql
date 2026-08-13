@@ -589,6 +589,13 @@ values
   ('00000000-0000-4000-8000-000000000401', '00000000-0000-4000-8000-000000000411', '55555555-5555-4555-8555-555555555555'),
   ('00000000-0000-4000-8000-000000000401', '00000000-0000-4000-8000-000000000415', '66666666-6666-4666-8666-666666666666');
 
+insert into public.idea_validation_responses (question_id, option_id, profile_id)
+values (
+  '00000000-0000-4000-8000-000000000601',
+  '00000000-0000-4000-8000-000000000611',
+  '55555555-5555-4555-8555-555555555555'
+);
+
 set local role authenticated;
 set local "request.jwt.claim.sub" = '55555555-5555-4555-8555-555555555555';
 set local "request.jwt.claims" = '{"sub":"55555555-5555-4555-8555-555555555555","role":"authenticated","app_metadata":{}}';
@@ -613,8 +620,8 @@ select is(
     )::text
     from public.get_pilot_readiness_summary('00000000-0000-4000-8000-000000000501')
   ),
-  row(2, 2, 1, 1, 1, 2, 'pending')::text,
-  'the creator receives aggregate progress without applicant identities'
+  row(2, 1, 1, 1, 1, 2, 'pending')::text,
+  'the creator receives current ready-reviewer and historical project aggregates without double-counting one member'
 );
 
 set local "request.jwt.claim.sub" = '77777777-7777-4777-8777-777777777777';
@@ -654,6 +661,11 @@ select is(
   'expired evidence above the archive ceiling but below continue thresholds recommends revision'
 );
 reset role;
+
+insert into public.idea_validation_responses (question_id, option_id, profile_id)
+values
+  ('00000000-0000-4000-8000-000000000601', '00000000-0000-4000-8000-000000000611', '66666666-6666-4666-8666-666666666666'),
+  ('00000000-0000-4000-8000-000000000601', '00000000-0000-4000-8000-000000000611', '77777777-7777-4777-8777-777777777777');
 
 update public.idea_pilots
 set continue_participant_threshold = 3, continue_project_threshold = 2

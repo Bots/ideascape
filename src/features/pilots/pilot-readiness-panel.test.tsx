@@ -83,6 +83,8 @@ describe("PilotReadinessPanel", () => {
 		expect(within(dashboard).getByText("9")).toBeInTheDocument();
 		expect(within(dashboard).getByText("5")).toBeInTheDocument();
 		expect(within(dashboard).getByText("3")).toBeInTheDocument();
+		expect(within(dashboard).getByText(/ready reviewers/i)).toBeInTheDocument();
+		expect(dashboard).not.toHaveTextContent(/participant responses/i);
 		expect(within(dashboard).getByText("2 active")).toBeInTheDocument();
 		expect(within(dashboard).getByText("1 accepted")).toBeInTheDocument();
 		expect(within(dashboard).getByText("2 spaces remain")).toBeInTheDocument();

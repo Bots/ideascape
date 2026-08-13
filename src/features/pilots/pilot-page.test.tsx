@@ -88,7 +88,9 @@ describe("PilotPage", () => {
 			name: /close, revise, or proceed/i,
 		});
 		expect(within(decisions).getByText(/^continue$/i)).toBeInTheDocument();
-		expect(decisions).toHaveTextContent(/5 qualified test participants/i);
+		expect(decisions).toHaveTextContent(
+			/5 reviewers ready for an authorized test/i,
+		);
 		expect(decisions).toHaveTextContent(/3 suitable authorized projects/i);
 		expect(within(decisions).getByText(/^revise$/i)).toBeInTheDocument();
 		expect(within(decisions).getByText(/^archive$/i)).toBeInTheDocument();
