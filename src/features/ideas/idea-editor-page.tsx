@@ -298,7 +298,9 @@ function EditorShell({ children }: { children: React.ReactNode }) {
 					<span className="grid size-10 place-items-center bg-primary text-primary-foreground">
 						<ShieldCheck className="size-5" aria-hidden="true" />
 					</span>
-					<span className="text-lg">IdeaScape · Security bounty editor</span>
+					<span className="text-lg">
+						ProofBoundary · Security bounty editor
+					</span>
 				</Link>
 				{children}
 			</section>

@@ -38,7 +38,7 @@ export function AuthCallbackPage() {
 						className="mt-3 text-sm leading-6 text-muted-foreground"
 						role="status"
 					>
-						Your authentication provider is returning you to IdeaScape. Your
+						Your authentication provider is returning you to ProofBoundary. Your
 						session will be restored automatically.
 					</p>
 					<Link
@@ -65,7 +65,7 @@ export function AuthCallbackPage() {
 						Signed in successfully
 					</h1>
 					<p className="mt-3 text-sm leading-6 text-muted-foreground">
-						Your IdeaScape session is ready.
+						Your ProofBoundary session is ready.
 					</p>
 					<Link
 						className="mt-6 inline-block text-sm font-medium underline underline-offset-4"

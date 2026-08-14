@@ -192,7 +192,7 @@ export function PilotPage() {
 									aria-hidden="true"
 								/>
 								Application details will remain private to the applicant and
-								authorized test reviewers. IdeaScape handles no payout or
+								authorized test reviewers. ProofBoundary handles no payout or
 								commitment.
 							</p>
 						</div>
@@ -213,7 +213,7 @@ export function PilotPage() {
 								</h2>
 								<p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
 									{pilot.status === "validating"
-										? "IdeaScape is collecting private readiness signals before inviting authorized test-run applications."
+										? "ProofBoundary is collecting private readiness signals before inviting authorized test-run applications."
 										: "One strong, authorized project per applicant. Intake remains capped and reversible."}
 								</p>
 							</div>

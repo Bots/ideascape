@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Globe2, LoaderCircle, MapPinned } from "lucide-react";
+import { Globe2, LoaderCircle, ShieldCheck } from "lucide-react";
 import type { ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getPublicProfile } from "@/features/profiles/profile-service";
@@ -13,9 +13,9 @@ function ProfileShell({ children }: { children: ReactNode }) {
 					className="mb-10 flex items-center gap-3 font-semibold tracking-tight"
 				>
 					<span className="grid size-10 place-items-center bg-primary text-primary-foreground">
-						<MapPinned className="size-5" aria-hidden="true" />
+						<ShieldCheck className="size-5" aria-hidden="true" />
 					</span>
-					<span className="text-lg">IdeaScape · Security bounties</span>
+					<span className="text-lg">ProofBoundary · Security bounties</span>
 				</Link>
 				{children}
 			</section>
@@ -107,7 +107,7 @@ export function ProfilePage() {
 					Profile not found
 				</h1>
 				<p className="mt-3 text-muted-foreground">
-					We couldn&apos;t find an IdeaScape system owner with that username.
+					We couldn&apos;t find a ProofBoundary system owner with that username.
 				</p>
 				<Link
 					className="mt-6 inline-block font-medium underline underline-offset-4"
