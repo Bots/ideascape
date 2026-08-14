@@ -146,7 +146,7 @@ const securityAreas = [
 
 const boundaries = [
 	{
-		title: "ControlProof records",
+		title: "IdeaScape records",
 		items: [
 			"The authorized target and system owner",
 			"Rules of engagement and stop conditions",
@@ -155,7 +155,7 @@ const boundaries = [
 		],
 	},
 	{
-		title: "ControlProof does not provide",
+		title: "IdeaScape does not provide",
 		items: [
 			"Permission to access any target",
 			"Production credentials or private data",
@@ -192,7 +192,7 @@ function HomePage() {
 								<span className="text-signal">scope and proof.</span>
 							</h1>
 							<p className="mt-8 max-w-xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl">
-								ControlProof helps system owners publish authorized security
+								IdeaScape helps system owners publish authorized security
 								bounties and helps reviewers evaluate whether each one is ready
 								for a controlled test.
 							</p>

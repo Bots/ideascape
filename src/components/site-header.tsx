@@ -21,7 +21,7 @@ export function SiteHeader({
 		<header className="border-b border-border bg-card/95">
 			<div className="site-shell flex min-h-16 flex-wrap items-center gap-x-6 gap-y-3 py-2">
 				<Link
-					aria-label="ControlProof home"
+					aria-label="IdeaScape home"
 					className="group flex min-h-11 items-center gap-3"
 					to="/"
 				>
@@ -31,7 +31,7 @@ export function SiteHeader({
 					</span>
 					<span className="grid leading-none">
 						<span className="text-base font-semibold tracking-[-0.02em]">
-							ControlProof
+							IdeaScape
 						</span>
 						<span className="mt-1 hidden font-mono text-[0.625rem] uppercase tracking-[0.12em] text-muted-foreground md:block">
 							Authorized security bounties

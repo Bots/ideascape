@@ -31,7 +31,7 @@ export function InterestModeNotice({
 						<p className="mt-1 max-w-3xl text-sm leading-6 text-muted-foreground">
 							These are authorized security bounties, not invitations to probe
 							random systems. Test only assets you own or have written
-							permission to test. ControlProof does not handle payouts, grant
+							permission to test. IdeaScape does not handle payouts, grant
 							production access, or transfer operational authority. No
 							authorization, no test.
 						</p>

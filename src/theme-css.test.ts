@@ -478,7 +478,7 @@ describe("security-bounty field system", () => {
 
 	it("describes the landing page as authorized security bounties", () => {
 		expect(appShell).toContain(
-			"<title>ControlProof — Authorized security bounties</title>",
+			"<title>IdeaScape — Authorized security bounties</title>",
 		);
 	});
 });
