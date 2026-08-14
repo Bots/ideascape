@@ -192,7 +192,7 @@ export function PilotPage() {
 									aria-hidden="true"
 								/>
 								Application details will remain private to the applicant and
-								authorized test reviewers. ControlProof handles no payout or
+								authorized test reviewers. IdeaScape handles no payout or
 								commitment.
 							</p>
 						</div>
@@ -213,7 +213,7 @@ export function PilotPage() {
 								</h2>
 								<p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
 									{pilot.status === "validating"
-										? "ControlProof is collecting private readiness signals before inviting authorized test-run applications."
+										? "IdeaScape is collecting private readiness signals before inviting authorized test-run applications."
 										: "One strong, authorized project per applicant. Intake remains capped and reversible."}
 								</p>
 							</div>
