@@ -64,7 +64,7 @@ export function AdminPage() {
 		return (
 			<AdminStatusPage
 				heading="Sign in to view operations"
-				message="The operations dashboard is restricted to authorized IdeaScape administrators."
+				message="The operations dashboard is restricted to authorized ProofBoundary administrators."
 				action={
 					<Link className={buttonVariants()} to="/sign-in?returnTo=%2Fadmin">
 						Sign in
@@ -326,7 +326,7 @@ function MetricCard({
 }
 
 function AdminStatusPage({
-	heading = "IdeaScape bounty operations",
+	heading = "ProofBoundary bounty operations",
 	message,
 	isError = false,
 	action,

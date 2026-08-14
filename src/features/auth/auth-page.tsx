@@ -1,4 +1,4 @@
-import { MapPinned } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { type FormEvent, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -88,9 +88,9 @@ export function AuthPage({ mode }: AuthPageProps) {
 					className="mb-8 flex items-center gap-3 font-semibold tracking-tight"
 				>
 					<span className="grid size-10 place-items-center bg-primary text-primary-foreground">
-						<MapPinned className="size-5" aria-hidden="true" />
+						<ShieldCheck className="size-5" aria-hidden="true" />
 					</span>
-					<span className="text-lg">IdeaScape</span>
+					<span className="text-lg">ProofBoundary</span>
 				</Link>
 
 				{isSignUpComplete ? (
@@ -197,7 +197,9 @@ export function AuthPage({ mode }: AuthPageProps) {
 						</form>
 
 						<p className="mt-6 text-center text-sm text-muted-foreground">
-							{isSignIn ? "New to IdeaScape? " : "Already have an account? "}
+							{isSignIn
+								? "New to ProofBoundary? "
+								: "Already have an account? "}
 							<Link
 								className="font-medium text-foreground underline underline-offset-4"
 								to={isSignIn ? signUpPath : signInPath}

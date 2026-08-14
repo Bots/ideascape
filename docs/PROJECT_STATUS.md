@@ -1,6 +1,6 @@
-# Ideascape Project Headquarters
+# ProofBoundary Project Headquarters
 
-This page is the public engineering headquarters for Ideascape. GitHub Issues are the source of truth for engineering work; `PLAN.md` describes the broader product sequence.
+This page is the public engineering headquarters for ProofBoundary. GitHub Issues are the source of truth for engineering work; `PLAN.md` describes the broader product sequence.
 
 ## Links
 
@@ -15,7 +15,7 @@ This page is the public engineering headquarters for Ideascape. GitHub Issues ar
 
 ## Product mode
 
-Ideascape is in **Security review mode**. Twenty-seven published briefs expose a threat scenario, control boundary, and proof standard before any system can advance. Public aggregate counts show review depth without exposing individual intent. Private signals retain their original labels and meanings: “I would use this,” “I would help build it,” “I could test a pilot,” “I have relevant expertise,” and “Keep me updated.” A signal describes interest, not a security role, and grants no production access, deployment authority, payment, or commitment.
+ProofBoundary is in **Security review mode**. Twenty-seven authorized security bounties expose a threat scenario, authorization boundary, and proof standard before any system can advance. Public aggregate counts show review depth without exposing individual intent. Private signals retain their original labels and meanings: “I would use this,” “I would help build it,” “I could test a pilot,” “I have relevant expertise,” and “Keep me updated.” A signal describes interest, not a security role, and grants no production access, data authority, custody, deployment authority, payment, or commitment.
 
 ## Current focus
 
